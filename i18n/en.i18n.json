@@ -1,0 +1,310 @@
+{
+    "welcome": "Welcome",
+    "get_started": "Get Started",
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "logintext": "I am happy to see you. You can continue where you left off by logging in to your account.",
+    "termOfService": {
+        "text1": "By signing up for swipe, you agree to our ",
+        "link1": "Terms of Service",
+        "text2": ". Learn how we process your data in our ",
+        "link2": "Privacy Policy",
+        "text3": " and ",
+        "link3": "Cookies Policy",
+        "text4": ""
+    },
+    "cookies": "Cookies Policy",
+    "privacy": "Privacy Policy",
+    "termsOfService": {
+        "title": "Yogiface – Terms of Service",
+        "lastUpdated": "Last Updated: 2025",
+        "principle": "Yogiface is a wellness application that provides face yoga exercises and guided content aimed at supporting facial muscles. The Application does not provide medical, clinical, aesthetic, or professional health services.",
+        "intro": "These Terms of Service (\"Terms\") contain the rules applicable to your use of the Yogiface mobile application (\"Application\"). By using the Application, you agree to these Terms. If you do not agree to the Terms, you should not use the Application.",
+        "section1": {
+            "title": "1. Scope of Service",
+            "content": "Yogiface offers users a guided face yoga and exercise experience. The Application includes:",
+            "items": [
+                "Face yoga and exercise guides",
+                "Daily and weekly exercise routines",
+                "Targeted recommendations for specific facial areas",
+                "Customizable plans and progress tracking"
+            ],
+            "note": "The content provided does not constitute professional, medical, or aesthetic advice, diagnosis, or treatment."
+        },
+        "section2": {
+            "title": "2. Conditions of Use",
+            "items": [
+                "You must be at least 13 years old.",
+                "You must provide accurate and up-to-date account information.",
+                "You acknowledge that the exercises are not a medical service."
+            ]
+        },
+        "section3": {
+            "title": "3. Prohibited Uses",
+            "items": [
+                "Using the app for illegal activities.",
+                "Selling, reproducing, or distributing content without permission.",
+                "Unauthorized access, hacking, or reverse engineering attempts."
+            ]
+        },
+        "section4": {
+            "title": "4. Account and Membership",
+            "content": "You are responsible for your account security. Yogiface reserves the right to suspend or close accounts in case of usage contrary to the Terms."
+        },
+        "section5": {
+            "title": "5. Premium and Paid Services",
+            "items": [
+                "Pricing is based on App Store and Google Play policies.",
+                "Subscriptions may renew automatically; cancellations are made via store settings."
+            ]
+        },
+        "section6": {
+            "title": "6. Disclaimer",
+            "content": "Users perform exercises at their own responsibility. In case of any health issues, users should consult a healthcare professional. The App should not be used for diagnosis or treatment."
+        },
+        "section7": {
+            "title": "7. Intellectual Property",
+            "content": "Design, software, images, and exercise content belong to Yogiface. Unauthorized copying or source code modification is prohibited."
+        },
+        "section12": {
+            "title": "12. Governing Law",
+            "content": "These Terms are governed by the laws of the Republic of Turkey. Istanbul Central Courts have jurisdiction over disputes."
+        },
+        "section13": {
+            "title": "13. Contact",
+            "email": "📩 Email: support@fly-work.com"
+        }
+    },
+    "cookiesPolicy": {
+        "title": "Yogiface – Cookie Policy",
+        "lastUpdated": "Last Updated: 2025",
+        "intro": "Welcome to Yogiface! Every time you visit the app, we use digital helpers (cookies) to improve and personalize your experience. This policy explains how you can manage your preferences.",
+        "section1": {
+            "title": "1. What Are Cookies?",
+            "content": "Cookies are small data files placed on your device. They help us understand how you use the app and make your experience smoother. Cookies do not directly contain your identity; they act as digital helpers that remember your preferences and usage habits."
+        },
+        "section2": {
+            "title": "2. Which Cookies Do We Use?",
+            "essential": {
+                "title": "Strictly Necessary Cookies",
+                "content": "Required for basic app functions. They support core processes such as session management, security, and basic navigation."
+            },
+            "performance": {
+                "title": "Performance and Analytics Cookies",
+                "content": "Helps us understand which areas are used most frequently and which sections need improvement."
+            },
+            "personalization": {
+                "title": "Personalization Cookies",
+                "content": "Provides a more personal experience by remembering settings such as language, theme, and exercise preferences."
+            },
+            "marketing": {
+                "title": "Marketing and Advertising Cookies",
+                "content": "May be used to provide content and promotions more suitable to your interests and sometimes works with third-party services."
+            }
+        },
+        "section3": {
+            "title": "3. Why Do We Use Cookies?",
+            "items": [
+                "To ensure the app runs fast and smoothly",
+                "To reduce repetitive actions by remembering user preferences",
+                "To make the experience more personal and useful",
+                "To improve the app by analyzing usage data"
+            ]
+        },
+        "section4": {
+            "title": "4. Third-Party Cookies",
+            "content": "Some cookies may be placed by third-party partners providing analytical and advertising services. These are subject to the providers' own privacy and cookie policies."
+        },
+        "section5": {
+            "title": "5. Cookie Control and Management",
+            "content": "You can manage cookies via device settings, app permissions, or system settings. Disabling necessary cookies may cause parts of the app to malfunction."
+        },
+        "section6": {
+            "title": "6. Use of Data",
+            "content": "Data obtained through cookies, if qualified as personal data, is processed within the legal framework under the Privacy Policy."
+        },
+        "section7": {
+            "title": "7. Policy Updates",
+            "content": "This policy may be updated depending on technological and legal changes. The current version becomes effective as soon as it is published."
+        },
+        "section8": {
+            "title": "8. Contact",
+            "email": "📩 Email: support@fly-work.com"
+        }
+    },
+    "privacyPolicy": {
+        "title": "Yogiface – Privacy Policy",
+        "lastUpdated": "Last Updated: 2025",
+        "intro": "This Privacy Policy explains the principles regarding the collection, use, storage, and protection of personal data of all users who use the Yogiface mobile application (\"App\"). By using the App, you accept this policy.",
+        "principle": "Yogiface adopts user privacy and data security as a core principle. All personal data is processed in accordance with GDPR and relevant legislation.",
+        "section1": {
+            "title": "1. Collected Information",
+            "sub1": {
+                "title": "1.1. User-Provided Data",
+                "items": [
+                    "Name, nickname, or profile info",
+                    "Email address (for registration, purchase, and support)",
+                    "Exercise plans, preferences, and personalization settings",
+                    "Feedback, requests, and support messages"
+                ]
+            },
+            "sub2": {
+                "title": "1.2. Automatically Collected Data",
+                "items": [
+                    "Device type, operating system, and technical info",
+                    "Approximate location data (city/country level)",
+                    "Usage info such as session duration and screen interactions",
+                    "Performance, error, and crash logs"
+                ]
+            }
+        },
+        "section2": {
+            "title": "2. Data Usage Purposes",
+            "items": [
+                "To ensure uninterrupted operation of the app",
+                "To personalize and optimize the face yoga experience",
+                "To perform error detection and performance analysis",
+                "To respond to user demands and support requests"
+            ],
+            "note": "Important: User data is never sold to third parties."
+        },
+        "section3": {
+            "title": "3. Data Retention",
+            "items": [
+                "Data is stored as long as the user account is active.",
+                "When an account is deleted, personal data is irreversibly removed.",
+                "Support records are kept for a maximum of 12 months after completion."
+            ]
+        },
+        "section4": {
+            "title": "4. Data Sharing",
+            "content": "Your data is only shared in case of legal requirements (official requests), service providers (cloud infrastructure, analytics), or with explicit user consent."
+        },
+        "section5": {
+            "title": "5. Cookies and Security",
+            "content": "Yogiface may use cookies for performance and experience enhancement. Your data is protected by SSL/TLS encryption and regular security audits."
+        },
+        "section6": {
+            "title": "6. User Rights",
+            "content": "You have the right to access, correct, delete, and restrict data processing.",
+            "contact": "For requests:",
+            "email": "support@fly-work.com"
+        },
+        "section8": {
+            "title": "8. Children's Privacy",
+            "content": "Yogiface is not intended for individuals under 13. Any data collected from this age group will be deleted immediately if detected."
+        },
+        "section10": {
+            "title": "10. Contact",
+            "email": "📩 Email: support@fly-work.com"
+        }
+    },
+    "onboarding": {
+        "basicInformation": "BASIC INFORMATION",
+        "target": "TARGET",
+        "habits": "HABITS",
+        "step": "STEP",
+        "of": "OF",
+        "tellUsAboutYourself": "Tell Us About Yourself",
+        "shortBioDescription": "A short bio helps others know the real you. Keep it fun and genuine",
+        "enterYourFullname": "Enter your Fullname",
+        "fullName": "Full Name",
+        "male": "Male",
+        "female": "Female",
+        "dontWantToMention": "I don't want to mention it",
+        "whatIsMainObjective": "What is the main objective?",
+        "reduceWrinkles": "Reduce wrinkles",
+        "tightenSkin": "Tighten skin",
+        "liftDroopyEyelids": "Lift droopy eyelids",
+        "eliminateDoubleChin": "Eliminate double chin",
+        "brightenSkinTone": "Brighten skin tone",
+        "allOfTheAbove": "All of the above",
+        "whichAreaToImprove": "Which area would you like to improve?",
+        "forehead": "Forehead",
+        "eyes": "Eyes",
+        "nose": "Nose",
+        "cheeks": "Cheeks",
+        "lips": "Lips",
+        "jawline": "Jawline",
+        "neck": "Neck",
+        "whatFaceShapeAiming": "What face shape are you aiming for?",
+        "heart": "Heart",
+        "oval": "Oval",
+        "square": "Square",
+        "round": "Round",
+        "diamond": "Diamond",
+        "whatIsYourSkinType": "What is your skin type?",
+        "normal": "Normal",
+        "oily": "Oily",
+        "dry": "Dry",
+        "combination": "Combination",
+        "sensitive": "Sensitive",
+        "whichOfThemDoYouHave": "Which of them do you have?",
+        "acneAndPimples": "Acne and pimples",
+        "redness": "Redness",
+        "swelling": "Swelling",
+        "wrinkles": "Wrinkles",
+        "neckLines": "Neck lines",
+        "howOftenWearMakeup": "How often do you wear make-up?",
+        "everyDay": "Every day",
+        "fewDaysAWeek": "A few days a week",
+        "occasionally": "Occasionally",
+        "never": "Never",
+        "haveYouHadBotox": "Have you had Botox?",
+        "yes": "Yes",
+        "no": "No",
+        "creatingPersonalizedProfile": "Creating Your Personalized Profile",
+        "tailoringExperience": "We are tailoring your experience based on your preferences...",
+        "matchingPersonalities": "MATCHING PERSONALITIES"
+    },
+    "pressBackAgainToExit": "Press back again to exit",
+    "addedToFavoritesTitle": "Exercise successfully added to favorites!",
+    "removedFromFavoritesTitle": "Exercise successfully removed from favorites!",
+    "removedFromFavorites": "You can access other exercises you want to add from courses",
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "questions": {
+            "q1": {
+                "question": "What is YogiFace?",
+                "answer": "YogiFace is an AI-powered personal care app that offers face yoga exercises to improve skin appearance by working facial muscles."
+            },
+            "q2": {
+                "question": "Does the app really work?",
+                "answer": "Yes. Face yoga activates facial muscles to increase skin firmness, accelerate circulation, and provide a more youthful appearance with regular use."
+            },
+            "q3": {
+                "question": "What does artificial intelligence do here?",
+                "answer": "YogiFace analyzes facial features, identifies target areas, and creates a personalized exercise plan. This way, each movement is optimized according to personal needs."
+            },
+            "q4": {
+                "question": "How much time do I need to dedicate each day?",
+                "answer": "Only 5-10 minutes a day is sufficient. With regular practice, visible changes begin within a few weeks."
+            },
+            "q5": {
+                "question": "When will I see results?",
+                "answer": "With regular use, improvement in skin tone is visible within 2-3 weeks, and facial features become more defined within 4-6 weeks. Results may vary from person to person."
+            },
+            "q6": {
+                "question": "Does it work for problems like double chin or sagging?",
+                "answer": "Yes. YogiFace offers targeted exercises for the jawline, cheek muscles, and neck area. When done regularly, these exercises provide significant tightening in these areas."
+            },
+            "q7": {
+                "question": "How do I know if I'm doing the movements correctly?",
+                "answer": "The app uses AI to analyze your facial angle, expression, and movement pattern; it notifies you of any incorrect points."
+            },
+            "q8": {
+                "question": "Is it suitable for all ages?",
+                "answer": "Yes. Face yoga is a non-invasive natural method. Everyone from a young age can safely practice it."
+            },
+            "q9": {
+                "question": "Is YogiFace free?",
+                "answer": "Basic exercises are free. Personal programs, advanced face analysis, and special AI recommendations are included in the premium package."
+            },
+            "q10": {
+                "question": "Can people who have had cosmetic surgery use it?",
+                "answer": "Many users use it safely, but it is recommended to consult a doctor during the post-operative recovery period."
+            }
+        }
+    }
+}

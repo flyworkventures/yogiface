@@ -1,0 +1,310 @@
+{
+    "welcome": "Hoşgeldiniz",
+    "get_started": "Başlayın",
+    "next": "Sonraki",
+    "back": "Geri",
+    "skip": "Atla",
+    "logintext": "Seni gördüğüm için mutluyum. Hesabınıza giriş yaparak nerede durduysanız oradan devam edebilirsiniz.",
+    "termOfService": {
+        "text1": "Swipe'a kaydolarak ",
+        "link1": "Hizmet Şartlarımızı",
+        "text2": " kabul etmiş olursunuz. ",
+        "link2": "Gizlilik Politikamızda",
+        "text3": " ve ",
+        "link3": "Çerez Politikamızda",
+        "text4": " verilerinizi nasıl işlediğimizi öğrenin"
+    },
+    "cookies": "Çerez Politikası",
+    "privacy": "Gizlilik Politikası",
+    "termsOfService": {
+        "title": "Yogiface – Hizmet Şartları",
+        "lastUpdated": "Son Güncelleme: 2025",
+        "principle": "Yogiface, yüz yogası egzersizleri ve yüz kaslarını desteklemeye yönelik rehber içerikler sunan bir wellness uygulamasıdır. Uygulama, tıbbi, klinik, estetik veya profesyonel sağlık hizmeti sağlamaz.",
+        "intro": "Bu Hizmet Şartları (\"Şartlar\"), Yogiface mobil uygulamasını (\"Uygulama\") kullanmanız için geçerli olan kuralları içerir. Uygulamayı kullanarak bu Şartları kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız Uygulama'yı kullanmamalısınız.",
+        "section1": {
+            "title": "1. Hizmetin Kapsamı",
+            "content": "Yogiface, kullanıcılara yüz kaslarını çalıştırmaya yönelik rehberli bir deneyim sunar. Uygulama şunları içerir:",
+            "items": [
+                "Yüz yogası ve yüz egzersizi rehberleri",
+                "Günlük ve haftalık egzersiz rutinleri",
+                "Yüz bölgelerine özel çalışma önerileri",
+                "Kişiselleştirilebilir egzersiz planları ve ilerleme takibi"
+            ],
+            "note": "Sunulan içerikler profesyonel, tıbbi veya estetik bir tavsiye niteliği taşımaz."
+        },
+        "section2": {
+            "title": "2. Uygulamayı Kullanma Koşulları",
+            "items": [
+                "En az 13 yaşında olmalısınız.",
+                "Hesap bilgilerinizi doğru ve güncel sağlamalısınız.",
+                "Egzersizlerin tıbbi bir hizmet olmadığını kabul edersiniz."
+            ]
+        },
+        "section3": {
+            "title": "3. Yasaklı Kullanımlar",
+            "items": [
+                "Uygulamayı yasa dışı faaliyetler için kullanmak.",
+                "İçerikleri izinsiz satmak, çoğaltmak veya dağıtmak.",
+                "Sisteme izinsiz erişim, hack veya reverse engineering girişimleri."
+            ]
+        },
+        "section4": {
+            "title": "4. Hesap ve Üyelik",
+            "content": "Hesap güvenliğiniz size aittir. Yogiface, Şartlara aykırı kullanım tespit edilmesi halinde hesapları askıya alma veya kapatma hakkını saklı tutar."
+        },
+        "section5": {
+            "title": "5. Premium ve Ücretli Hizmetler",
+            "items": [
+                "Ücretlendirme uygulama mağazası (App Store/Google Play) politikalarına göre yapılır.",
+                "Abonelikler otomatik yenilenebilir; iptaller mağaza ayarlarından yapılır."
+            ]
+        },
+        "section6": {
+            "title": "6. İçerik ve Sorumluluk Reddi",
+            "content": "Kullanıcı, egzersizleri kendi sorumluluğunda uygular. Herhangi bir sağlık sorunu durumunda kullanıcılar uzman bir sağlık profesyoneline başvurmalıdır. Uygulama teşhis veya tedavi amaçlı kullanılmamalıdır."
+        },
+        "section7": {
+            "title": "7. Fikri Mülkiyet Hakları",
+            "content": "Tasarım, yazılım, görseller ve egzersiz içerikleri Yogiface'e aittir. İzinsiz kopyalama veya kaynak kodunu değiştirme yapılamaz."
+        },
+        "section12": {
+            "title": "12. Uygulanacak Hukuk",
+            "content": "Bu Şartlar Türkiye Cumhuriyeti yasalarına tabidir. Yetkili merci İstanbul Merkez Mahkemeleridir."
+        },
+        "section13": {
+            "title": "13. İletişim",
+            "email": "📩 E-posta: support@fly-work.com"
+        }
+    },
+    "cookiesPolicy": {
+        "title": "Yogiface – Çerez Politikası",
+        "lastUpdated": "Son Güncelleme: 2025",
+        "intro": "Yogiface'e hoş geldiniz! Uygulamayı her ziyaret ettiğinizde deneyiminizi geliştirmek ve kişiselleştirmek amacıyla bazı dijital yardımcılar (çerezler) kullanıyoruz. Bu politika, tercihlerinizi nasıl yönetebileceğinizi açıklar.",
+        "section1": {
+            "title": "1. Çerez Nedir?",
+            "content": "Çerezler, cihazınıza yerleştirilen küçük veri dosyalarıdır. Uygulamayı nasıl kullandığınızı anlamamıza yardımcı olur ve deneyiminizi daha akıcı hale getirir. Çerezler kimliğinizi doğrudan içermez; tercihlerinizi ve kullanım alışkanlıklarınızı hatırlar."
+        },
+        "section2": {
+            "title": "2. Hangi Çerezleri Kullanıyoruz?",
+            "essential": {
+                "title": "Zorunlu Çerezler",
+                "content": "Uygulamanın temel işlevleri için gereklidir. Oturum yönetimi, güvenlik ve temel navigasyon gibi çekirdek süreçleri destekler."
+            },
+            "performance": {
+                "title": "Performans ve Analitik Çerezleri",
+                "content": "Hangi alanların daha sık kullanıldığını ve hangi bölümlerin iyileştirilmesi gerektiğini anlamamıza yardımcı olur."
+            },
+            "personalization": {
+                "title": "Kişiselleştirme Çerezleri",
+                "content": "Dil, tema ve egzersiz tercihleri gibi ayarları hatırlayarak her kullanımda size daha kişisel bir deneyim sunar."
+            },
+            "marketing": {
+                "title": "Pazarlama ve Reklam Çerezleri",
+                "content": "İlgi alanlarınıza daha uygun içerikler sunmak amacıyla kullanılabilir ve bazı durumlarda üçüncü taraf hizmetlerle çalışabilir."
+            }
+        },
+        "section3": {
+            "title": "3. Çerezleri Neden Kullanıyoruz?",
+            "items": [
+                "Uygulamanın hızlı ve sorunsuz çalışmasını sağlamak",
+                "Kullanıcı tercihlerini hatırlayarak tekrar eden işlemleri azaltmak",
+                "Deneyimi daha kişisel ve kullanışlı hale getirmek",
+                "Kullanım verilerini analiz ederek uygulamayı geliştirmek"
+            ]
+        },
+        "section4": {
+            "title": "4. Üçüncü Taraf Çerezleri",
+            "content": "Bazı çerezler, analitik ve reklam hizmetleri sunan üçüncü taraf iş ortakları tarafından yerleştirilebilir. Bu çerezler ilgili hizmet sağlayıcıların kendi politikalarına tabidir."
+        },
+        "section5": {
+            "title": "5. Çerez Kontrolleri ve Yönetimi",
+            "content": "Çerezleri cihaz ayarlarından, uygulama izinlerinden veya sistem ayarlarından yönetebilirsiniz. Zorunlu çerezlerin kapatılması, uygulamanın bazı bölümlerinin düzgün çalışmamasına neden olabilir."
+        },
+        "section6": {
+            "title": "6. Verilerin Kullanımı",
+            "content": "Çerezler aracılığıyla elde edilen veriler, kişisel veri niteliği taşıması halinde Gizlilik Politikası kapsamında ve yasal çerçevede işlenir."
+        },
+        "section7": {
+            "title": "7. Politika Güncellemeleri",
+            "content": "Bu politika teknolojik ve yasal gelişmelere bağlı olarak güncellenebilir. Güncel sürüm yayınlandığı anda yürürlüğe girer."
+        },
+        "section8": {
+            "title": "8. İletişim",
+            "email": "📩 E-posta: support@fly-work.com"
+        }
+    },
+    "privacyPolicy": {
+        "title": "Yogiface – Gizlilik Politikası",
+        "lastUpdated": "Son Güncelleme: 2025",
+        "intro": "Bu Gizlilik Politikası, Yogiface mobil uygulamasını (\"Uygulama\") kullanan tüm kullanıcıların kişisel verilerinin toplanması, kullanılması, saklanması ve korunmasına ilişkin esasları açıklar. Uygulamayı kullanarak bu politikayı kabul etmiş sayılırsınız.",
+        "principle": "Yogiface, kullanıcı gizliliğini ve veri güvenliğini temel ilke olarak benimser. Tüm kişisel veriler KVKK, GDPR ve ilgili mevzuata uygun şekilde işlenir.",
+        "section1": {
+            "title": "1. Toplanan Bilgiler",
+            "sub1": {
+                "title": "1.1. Kullanıcı Tarafından Sağlanan Veriler",
+                "items": [
+                    "Ad, takma ad veya profil bilgileri",
+                    "E-posta adresi (kayıt, satın alma ve destek işlemleri için)",
+                    "Egzersiz planları, tercihler ve kişiselleştirme ayarları",
+                    "Geri bildirim, talep ve destek mesajları"
+                ]
+            },
+            "sub2": {
+                "title": "1.2. Otomatik Olarak Toplanan Veriler",
+                "items": [
+                    "Cihaz türü, işletim sistemi ve teknik bilgiler",
+                    "Yaklaşık konum verisi (şehir/ülke bazında)",
+                    "Oturum süresi ve ekran etkileşimleri gibi kullanım bilgileri",
+                    "Performans, hata ve çökme kayıtları"
+                ]
+            }
+        },
+        "section2": {
+            "title": "2. Verilerin Kullanım Amaçları",
+            "items": [
+                "Uygulamanın kesintisiz çalışmasını sağlamak",
+                "Yüz yogası deneyimini kişiselleştirmek ve optimize etmek",
+                "Hata tespiti ve performans analizleri yapmak",
+                "Kullanıcı taleplerine ve destek isteklerine yanıt vermek"
+            ],
+            "note": "Önemli: Kullanıcı verileri hiçbir şekilde üçüncü taraflara satılmaz."
+        },
+        "section3": {
+            "title": "3. Veri Saklama Süresi",
+            "items": [
+                "Veriler, kullanıcı hesabı aktif olduğu sürece saklanır.",
+                "Hesap silindiğinde, kişisel veriler geri döndürülemez biçimde silinir.",
+                "Destek kayıtları işlem tamamlandıktan sonra en fazla 12 ay tutulur."
+            ]
+        },
+        "section4": {
+            "title": "4. Verilerin Paylaşımı",
+            "content": "Verileriniz yalnızca yasal gereklilikler (resmi makam talepleri), hizmet sağlayıcılar (bulut altyapısı, analitik) veya kullanıcının açık rızası durumunda paylaşılabilir."
+        },
+        "section5": {
+            "title": "5. Çerezler ve Güvenlik",
+            "content": "Yogiface, performans ve deneyim iyileştirme amacıyla çerezler kullanabilir. Verileriniz SSL/TLS şifreleme ve düzenli güvenlik denetimleri ile korunur."
+        },
+        "section6": {
+            "title": "6. Kullanıcı Hakları",
+            "content": "Erişim, düzeltme, silme ve veri işleme kısıtlama haklarınız saklıdır.",
+            "contact": "Talepleriniz için:",
+            "email": "support@fly-work.com"
+        },
+        "section8": {
+            "title": "8. Çocukların Gizliliği",
+            "content": "Yogiface, 13 yaş altı kişilere yönelik değildir. Bu yaş grubundan veri toplandığı tespit edilirse derhal silinir."
+        },
+        "section10": {
+            "title": "10. İletişim",
+            "email": "📩 E-posta: support@fly-work.com"
+        }
+    },
+    "onboarding": {
+        "basicInformation": "TEMEL BİLGİLER",
+        "target": "HEDEF",
+        "habits": "ALIŞKANLIKLAR",
+        "step": "ADIM",
+        "of": "/",
+        "tellUsAboutYourself": "Bize Kendinizden Bahsedin",
+        "shortBioDescription": "Kısa bir biyografi, başkalarının sizi gerçekten tanımasına yardımcı olur. Eğlenceli ve samimi tutun",
+        "enterYourFullname": "Adınızı Soyadınızı Girin",
+        "fullName": "Ad Soyad",
+        "male": "Erkek",
+        "female": "Kadın",
+        "dontWantToMention": "Belirtmek istemiyorum",
+        "whatIsMainObjective": "Ana hedef nedir?",
+        "reduceWrinkles": "Kırışıklıkları azalt",
+        "tightenSkin": "Cildi sıkılaştır",
+        "liftDroopyEyelids": "Düşük göz kapaklarını toparla",
+        "eliminateDoubleChin": "Gıdıyı yok et",
+        "brightenSkinTone": "Cilt tonunu aydınlat",
+        "allOfTheAbove": "Yukarıdakilerin hepsi",
+        "whichAreaToImprove": "Hangi bölgeyi iyileştirmek istersiniz?",
+        "forehead": "Alın",
+        "eyes": "Gözler",
+        "nose": "Burun",
+        "cheeks": "Yanaklar",
+        "lips": "Dudaklar",
+        "jawline": "Çene hattı",
+        "neck": "Boyun",
+        "whatFaceShapeAiming": "Hangi yüz şeklini hedefliyorsunuz?",
+        "heart": "Kalp",
+        "oval": "Oval",
+        "square": "Kare",
+        "round": "Yuvarlak",
+        "diamond": "Elmas",
+        "whatIsYourSkinType": "Cilt tipiniz nedir?",
+        "normal": "Normal",
+        "oily": "Yağlı",
+        "dry": "Kuru",
+        "combination": "Karma",
+        "sensitive": "Hassas",
+        "whichOfThemDoYouHave": "Bunlardan hangisine sahipsiniz?",
+        "acneAndPimples": "Akne ve sivilce",
+        "redness": "Kızarıklıklar",
+        "swelling": "Şişlik",
+        "wrinkles": "Kırışıklıklar",
+        "neckLines": "Boyun çizgileri",
+        "howOftenWearMakeup": "Ne sıklıkla makyaj yaparsınız?",
+        "everyDay": "Her gün",
+        "fewDaysAWeek": "Haftada bir kaç gün",
+        "occasionally": "Arada sırada",
+        "never": "Hiç",
+        "haveYouHadBotox": "Botox yaptırdınız mı?",
+        "yes": "Evet",
+        "no": "Hayır",
+        "creatingPersonalizedProfile": "Kişiselleştirilmiş Profiliniz Oluşturuluyor",
+        "tailoringExperience": "Tercihlerinize göre deneyiminizi özelleştiriyoruz...",
+        "matchingPersonalities": "KİŞİLİKLER EŞLEŞTİRİLİYOR"
+    },
+    "pressBackAgainToExit": "Çıkmak için bir kez daha geri tuşuna basın",
+    "addedToFavoritesTitle": "Egzersiz başarıyla favorilere eklendi!",
+    "removedFromFavoritesTitle": "Egzersiz başarıyla favoriden kaldırıldı!",
+    "removedFromFavorites": "Eklemek istediğiniz diğer egzersizlere kurslardan ulaşabilirsiniz",
+    "faq": {
+        "title": "Sıkça Sorulan Sorular",
+        "questions": {
+            "q1": {
+                "question": "YogiFace nedir?",
+                "answer": "YogiFace, yüz kaslarını çalıştırarak cilt görünümünü iyileştiren yüz yogası egzersizleri sunan, yapay zekâ destekli kişisel bakım uygulamasıdır."
+            },
+            "q2": {
+                "question": "Uygulama gerçekten işe yarıyor mu?",
+                "answer": "Evet. Yüz yogası, yüz kaslarını aktive ederek cilt sıkılığını artırır, dolaşımı hızlandırır ve düzenli kullanımda daha genç bir görünüm sağlar."
+            },
+            "q3": {
+                "question": "Yapay zekâ burada ne yapıyor?",
+                "answer": "YogiFace, yüz hatlarını analiz eder, hedef bölgeleri belirler ve kullanıcıya özel egzersiz planı oluşturur. Böylece her hareket kişisel ihtiyaca göre optimize edilir."
+            },
+            "q4": {
+                "question": "Her gün ne kadar süre ayırmam gerekiyor?",
+                "answer": "Günde yalnızca 5–10 dakika yeterlidir. Düzenli uygulamayla birkaç hafta içinde gözle görülür değişim başlar."
+            },
+            "q5": {
+                "question": "Sonuçlar ne zaman görünür?",
+                "answer": "Düzenli kullanımda 2–3 hafta içinde cilt tonunda iyileşme, 4–6 hafta içinde yüz hatlarında belirginleşme görülür. Sonuçlar kişiden kişiye değişebilir."
+            },
+            "q6": {
+                "question": "Çift çene veya sarkma gibi sorunlarda işe yarar mı?",
+                "answer": "Evet. YogiFace, çene hattı, yanak kasları ve boyun bölgesi için hedefli egzersizler sunar. Bu egzersizler düzenli yapıldığında bu bölgelerde belirgin sıkılaşma sağlar."
+            },
+            "q7": {
+                "question": "Hareketleri doğru yapıp yapmadığımı nasıl anlarım?",
+                "answer": "Uygulama, yapay zekâ desteğiyle yüz açını, ifadeni ve hareket düzenini analiz eder; yanlış yaptığın noktaları sana bildirir."
+            },
+            "q8": {
+                "question": "Her yaş için uygun mu?",
+                "answer": "Evet. Yüz yogası invaziv olmayan doğal bir yöntemdir. Genç yaşlardan itibaren herkes güvenle uygulayabilir."
+            },
+            "q9": {
+                "question": "YogiFace ücretsiz mi?",
+                "answer": "Temel egzersizler ücretsizdir. Kişisel programlar, ileri seviye yüz analizi ve özel AI önerileri premium pakette yer alır."
+            },
+            "q10": {
+                "question": "Estetik operasyon yaptırmış olanlar kullanabilir mi?",
+                "answer": "Birçok kullanıcı güvenle kullanır, ancak operasyon sonrası iyileşme sürecinde mutlaka doktora danışılması önerilir."
+            }
+        }
+    }
+}

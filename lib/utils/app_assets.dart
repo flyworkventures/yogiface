@@ -1,0 +1,113 @@
+class AppAssets {
+  AppAssets._();
+}
+
+class AppImages {
+  AppImages._();
+
+  static const String logo = 'assets/images/logo.png';
+  static const String background = 'assets/images/background.png';
+  static const String login = 'assets/images/login.png';
+  static const String splash1 = 'assets/images/splash1.png';
+  static const String splash2 = 'assets/images/splash2.png';
+  static const String splash3 = 'assets/images/splash3.png';
+  static const String splashscreen1 = 'assets/images/splashscreen1.png';
+  static const String female = 'assets/images/female1.png';
+  static const String female2 = 'assets/images/female2.png';
+  static const String female3 = 'assets/images/female3.png';
+  static const String profilephoto = 'assets/images/profilphoto.png';
+  static const String quikactionimage = 'assets/images/quikactionimage.png';
+  static const String popularcourses1 = 'assets/images/popularcourse1.png';
+  static const String focusarea1 = 'assets/images/focusarea1.png';
+  static const String focusarea2 = 'assets/images/focusarea2.png';
+  static const String facialanalys = 'assets/images/facialanalys.png';
+  static const String dailyexercise = 'assets/images/dailyexercise.png';
+  static const String premium = 'assets/images/premium.png';
+  static const String sharefriends = 'assets/images/sharefriends.png';
+  static const String focusareaforehead = 'assets/images/focusareaforehead.png';
+  static const String focusareanoise = 'assets/images/focusareanoise.png';
+  static const String focusareacheek = 'assets/images/focusareacheek.png';
+  static const String focusareaeyes = 'assets/images/focusareaeyes.png';
+  static const String vmove = 'assets/images/vmove.png';
+  static const String cheeflifter = 'assets/images/cheeflifter.png';
+  static const String maincheeflifter = 'assets/images/maincheeflefter.png';
+  static const String kare = 'assets/images/kare.png';
+  static const String yuvarlak = 'assets/images/yuvarlak.png';
+  static const String elmas = 'assets/images/elmas.png';
+  static const String oval = 'assets/images/oval.png';
+  static const String kalp = 'assets/images/kalp.png';
+  static const String yuz = 'assets/images/yuz.png';
+  static const String alin = 'assets/images/alın.png';
+  static const String goz = 'assets/images/goz.png';
+  static const String yanak = 'assets/images/yanak.png';
+  static const String dudak = 'assets/images/dudak.png';
+  static const String burun = 'assets/images/burun.png';
+  static const String cene = 'assets/images/cene.png';
+  static const String boyun = 'assets/images/boyun.png';
+}
+
+class AppIcons {
+  AppIcons._();
+  static const String female = 'assets/icons/female.png';
+  static const String copy = 'assets/icons/copy.png';
+  static const String male = 'assets/icons/male.png';
+  static const String arrow = 'assets/icons/arrow.png';
+  static const String setting = 'assets/icons/setting.png';
+  static const String heart = 'assets/icons/heart.png';
+  static const String circlebackground = 'assets/icons/circlebackground.png';
+  static const String profile = 'assets/icons/profile.png';
+  static const String notifications = 'assets/icons/notifications.png';
+  static const String leaf = 'assets/icons/leaf.png';
+  static const String person2 = 'assets/icons/person2.png';
+  static const String trophy = 'assets/icons/trophy.png';
+  static const String premiumaward = 'assets/icons/premiumaward.png';
+  static const String trash = 'assets/icons/trash.png';
+  static const String nonotifications = 'assets/icons/nonotifications.png';
+  static const String logout = 'assets/icons/logout.png';
+  static const String clipgroup = 'assets/icons/Clipgroup.png';
+  static const String qr = 'assets/icons/qr.png';
+  static const String questionmark = 'assets/icons/questionmark.png';
+  static const String award = 'assets/icons/award.png';
+  static const String useredit = 'assets/icons/user-edit.png';
+  static const String heart2 = 'assets/icons/heart2.png';
+  static const String notificationpurple =
+      'assets/icons/notificationpurple.png';
+  static const String like = 'assets/icons/like.png';
+  static const String flag = 'assets/icons/flag.png';
+  static const String combination = 'assets/icons/combination.png';
+  static const String dry = 'assets/icons/dry.png';
+  static const String oily = 'assets/icons/oily.png';
+  static const String sensitive = 'assets/icons/sensitive.png';
+  static const String editleaf = 'assets/icons/editleaf.png';
+  static const String editfemale = 'assets/icons/editfemale.png';
+  static const String editmale = 'assets/icons/editmale.png';
+  static const String forbidden = 'assets/icons/forbidden.png';
+  static const String age = 'assets/icons/age.png';
+  static const String email = 'assets/icons/email.png';
+  static const String editperson = 'assets/icons/editperson.png';
+  static const String lock = 'assets/icons/lock.png';
+  static const String deleteAccount = 'assets/icons/delete_account.png';
+  static const String tr = 'assets/icons/tr.png';
+  static const String jp = 'assets/icons/jp.png';
+  static const String en = 'assets/icons/in.png';
+  static const String ger = 'assets/icons/ger.png';
+  static const String italy = 'assets/icons/italy.png';
+  static const String rus = 'assets/icons/rus.png';
+  static const String fr = 'assets/icons/fr.png';
+  static const String eng = 'assets/icons/eng.png';
+  static const String kr = 'assets/icons/kr.png';
+  static const String pr = 'assets/icons/pr.png';
+  static const String lightining = 'assets/icons/lightining.png';
+  static const String mountains = 'assets/icons/mountains.png';
+  static const String timefast = 'assets/icons/time-fast.png';
+  static const String coffee = 'assets/icons/coffee.png';
+  static const String starsgroup = 'assets/icons/starsgroup.png';
+  static const String apple = 'assets/icons/appleIcon.png';
+  static const String google = 'assets/icons/google.png';
+  static const String facebook = 'assets/icons/facebook.png';
+  static const String menuhome = 'assets/icons/menuhome.png';
+  static const String menustars = 'assets/icons/menustars.png';
+  static const String menuperson = 'assets/icons/menuperson.png';
+  static const String clock = 'assets/icons/clock.png';
+  static const String tick = 'assets/icons/tick.png';
+}
