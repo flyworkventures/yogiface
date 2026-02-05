@@ -41,8 +41,11 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 
+	/// en: 'Welcome $name'
+	String welcome({required Object name}) => 'Welcome ${name}';
+
 	/// en: 'Welcome'
-	String get welcome => 'Welcome';
+	String get welcome2 => 'Welcome';
 
 	/// en: 'Get Started'
 	String get get_started => 'Get Started';
@@ -85,6 +88,51 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	String get removedFromFavorites => 'You can access other exercises you want to add from courses';
 
 	late final TranslationsFaqEn faq = TranslationsFaqEn._(_root);
+
+	/// en: 'Full Face / General Revitalization'
+	String get full_face => 'Full Face / General Revitalization';
+
+	/// en: 'Eyes & Eye Area'
+	String get eye_area => 'Eyes & Eye Area';
+
+	/// en: 'Nose & Nose Area'
+	String get nose_area => 'Nose & Nose Area';
+
+	/// en: 'Cheeks & Mid Face'
+	String get cheeks_mid_face => 'Cheeks & Mid Face';
+
+	/// en: 'Lips & Mouth Area'
+	String get lip_area => 'Lips & Mouth Area';
+
+	/// en: 'Jawline, Chin & Double Chin'
+	String get jawline_chin => 'Jawline, Chin & Double Chin';
+
+	/// en: 'Forehead & Brow Area'
+	String get forehead_brow => 'Forehead & Brow Area';
+
+	/// en: 'Neck & Decollete'
+	String get neck_decollete => 'Neck & Decollete';
+
+	/// en: 'Good Morning'
+	String get good_morning => 'Good Morning';
+
+	/// en: 'Good Afternoon'
+	String get good_afternoon => 'Good Afternoon';
+
+	/// en: 'Good Evening'
+	String get good_evening => 'Good Evening';
+
+	late final TranslationsSplashEn splash = TranslationsSplashEn._(_root);
+	late final TranslationsProfileEn profile = TranslationsProfileEn._(_root);
+	late final TranslationsHomeEn home = TranslationsHomeEn._(_root);
+	late final TranslationsCourseDetailEn courseDetail = TranslationsCourseDetailEn._(_root);
+	late final TranslationsCoursesEn courses = TranslationsCoursesEn._(_root);
+	late final TranslationsPersonalProgramEn personalProgram = TranslationsPersonalProgramEn._(_root);
+	late final TranslationsEditProfileEn editProfile = TranslationsEditProfileEn._(_root);
+	late final TranslationsNotificationsEn notifications = TranslationsNotificationsEn._(_root);
+	late final TranslationsShareEn share = TranslationsShareEn._(_root);
+	late final TranslationsFacialScanEn facialScan = TranslationsFacialScanEn._(_root);
+	late final TranslationsAuthEn auth = TranslationsAuthEn._(_root);
 }
 
 // Path: termOfService
@@ -294,6 +342,9 @@ class TranslationsOnboardingEn {
 	/// en: 'Neck'
 	String get neck => 'Neck';
 
+	/// en: 'Full Face'
+	String get fullface => 'Full Face';
+
 	/// en: 'What face shape are you aiming for?'
 	String get whatFaceShapeAiming => 'What face shape are you aiming for?';
 
@@ -378,6 +429,18 @@ class TranslationsOnboardingEn {
 	/// en: 'We are tailoring your experience based on your preferences...'
 	String get tailoringExperience => 'We are tailoring your experience based on your preferences...';
 
+	/// en: 'Gender'
+	String get gender => 'Gender';
+
+	/// en: 'Age'
+	String get age => 'Age';
+
+	/// en: 'Weight'
+	String get weight => 'Weight';
+
+	/// en: 'Height'
+	String get height => 'Height';
+
 	/// en: 'MATCHING PERSONALITIES'
 	String get matchingPersonalities => 'MATCHING PERSONALITIES';
 }
@@ -394,6 +457,317 @@ class TranslationsFaqEn {
 	String get title => 'Frequently Asked Questions';
 
 	late final TranslationsFaqQuestionsEn questions = TranslationsFaqQuestionsEn._(_root);
+}
+
+// Path: splash
+class TranslationsSplashEn {
+	TranslationsSplashEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final TranslationsSplashScreen1En screen1 = TranslationsSplashScreen1En._(_root);
+	late final TranslationsSplashScreen2En screen2 = TranslationsSplashScreen2En._(_root);
+	late final TranslationsSplashScreen3En screen3 = TranslationsSplashScreen3En._(_root);
+}
+
+// Path: profile
+class TranslationsProfileEn {
+	TranslationsProfileEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Profile'
+	String get title => 'Profile';
+
+	/// en: 'Free Version'
+	String get freeVersion => 'Free Version';
+
+	/// en: 'Error'
+	String get error => 'Error';
+
+	late final TranslationsProfileSectionsEn sections = TranslationsProfileSectionsEn._(_root);
+	late final TranslationsProfileMenuEn menu = TranslationsProfileMenuEn._(_root);
+
+	/// en: 'MANAGE'
+	String get manage => 'MANAGE';
+
+	late final TranslationsProfileLogoutDialogEn logoutDialog = TranslationsProfileLogoutDialogEn._(_root);
+}
+
+// Path: home
+class TranslationsHomeEn {
+	TranslationsHomeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Premium!'
+	String get premium => 'Premium!';
+
+	/// en: 'Focus Areas'
+	String get focusAreas => 'Focus Areas';
+
+	/// en: 'Popular Courses'
+	String get popularCourses => 'Popular Courses';
+
+	/// en: 'See More'
+	String get seeMore => 'See More';
+
+	late final TranslationsHomePersonalizedEn personalized = TranslationsHomePersonalizedEn._(_root);
+	late final TranslationsHomePremiumPlanEn premiumPlan = TranslationsHomePremiumPlanEn._(_root);
+	late final TranslationsHomeQuickActionsEn quickActions = TranslationsHomeQuickActionsEn._(_root);
+	late final TranslationsHomeTodaysExerciseEn todaysExercise = TranslationsHomeTodaysExerciseEn._(_root);
+	late final TranslationsHomeCoursesEn courses = TranslationsHomeCoursesEn._(_root);
+	late final TranslationsHomeBenefitsEn benefits = TranslationsHomeBenefitsEn._(_root);
+}
+
+// Path: courseDetail
+class TranslationsCourseDetailEn {
+	TranslationsCourseDetailEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Course Detail'
+	String get title => 'Course Detail';
+
+	/// en: 'Get Started'
+	String get getStarted => 'Get Started';
+
+	/// en: 'No exercises found for this category'
+	String get noExercisesFound => 'No exercises found for this category';
+
+	late final TranslationsCourseDetailInstructionsEn instructions = TranslationsCourseDetailInstructionsEn._(_root);
+}
+
+// Path: courses
+class TranslationsCoursesEn {
+	TranslationsCoursesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'All Courses'
+	String get title => 'All Courses';
+
+	/// en: 'Error loading exercises'
+	String get error => 'Error loading exercises';
+
+	/// en: 'Personal Courses'
+	String get personalCoursesTitle => 'Personal Courses';
+}
+
+// Path: personalProgram
+class TranslationsPersonalProgramEn {
+	TranslationsPersonalProgramEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Set Your Daily Goal'
+	String get dailyGoalTitle => 'Set Your Daily Goal';
+
+	/// en: 'Choose a pace that fits your schedule'
+	String get dailyGoalDescription => 'Choose a pace that fits your schedule';
+
+	/// en: 'Personalizing Your Plan...'
+	String get personalizing => 'Personalizing Your Plan...';
+
+	/// en: 'Your personal 30-day face yoga program is ready✨'
+	String get readyMessage => 'Your personal 30-day face yoga program is ready✨';
+
+	/// en: 'Min'
+	String get minutes => 'Min';
+}
+
+// Path: editProfile
+class TranslationsEditProfileEn {
+	TranslationsEditProfileEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Edit Profile'
+	String get title => 'Edit Profile';
+
+	/// en: 'Change Photo'
+	String get changePhoto => 'Change Photo';
+
+	/// en: 'Full Name'
+	String get fullName => 'Full Name';
+
+	/// en: 'E-mail'
+	String get email => 'E-mail';
+
+	/// en: 'Age'
+	String get age => 'Age';
+
+	/// en: 'Gender'
+	String get gender => 'Gender';
+
+	/// en: 'Skin Type'
+	String get skinType => 'Skin Type';
+
+	/// en: 'Focus Area'
+	String get focusArea => 'Focus Area';
+
+	/// en: 'Forehead, Eyes, Nose, Mouth, Cheeks...'
+	String get focusAreaHint => 'Forehead, Eyes, Nose, Mouth, Cheeks...';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Saving...'
+	String get saving => 'Saving...';
+
+	/// en: 'Profile updated successfully'
+	String get updateSuccess => 'Profile updated successfully';
+
+	/// en: 'An error occurred while updating profile'
+	String get updateError => 'An error occurred while updating profile';
+
+	/// en: 'Delete Account'
+	String get deleteAccount => 'Delete Account';
+}
+
+// Path: notifications
+class TranslationsNotificationsEn {
+	TranslationsNotificationsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Notifications'
+	String get title => 'Notifications';
+
+	/// en: 'No notifications yet'
+	String get emptyTitle => 'No notifications yet';
+
+	/// en: 'We'll notify you when there's an important update about your learning journey.'
+	String get emptyDescription => 'We\'ll notify you when there\'s an important update about your learning journey.';
+
+	/// en: 'Don't miss out on Premium benefits!'
+	String get premiumBannerTitle => 'Don\'t miss out on\nPremium benefits!';
+
+	/// en: 'Grab the opportunities as a Premium subscriber.'
+	String get premiumBannerDescription => 'Grab the opportunities as a Premium subscriber.';
+
+	/// en: 'Your daily meditation is ready!'
+	String get sample1Title => 'Your daily meditation is ready!';
+
+	/// en: 'Find your calm for the day'
+	String get sample1Description => 'Find your calm for the day';
+
+	/// en: '15 min ago'
+	String get sample1Time => '15 min ago';
+
+	/// en: 'New Exercise: Ocean Breath'
+	String get sample2Title => 'New Exercise: Ocean Breath';
+
+	/// en: 'A new breathing technique has been added'
+	String get sample2Description => 'A new breathing technique has been added';
+
+	/// en: '1 hour ago'
+	String get sample2Time => '1 hour ago';
+
+	/// en: 'You've hit a 7-day streak!'
+	String get sample3Title => 'You\'ve hit a 7-day streak!';
+
+	/// en: 'Keep up the amazing work on your well-being'
+	String get sample3Description => 'Keep up the amazing work on your well-being';
+
+	/// en: 'Yesterday'
+	String get sample3Time => 'Yesterday';
+}
+
+// Path: share
+class TranslationsShareEn {
+	TranslationsShareEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Share with Friends'
+	String get title => 'Share with Friends';
+
+	/// en: 'Share the Peace'
+	String get mainTitle => 'Share the Peace';
+
+	/// en: 'Invite your friends to breathe together. For every invite, you both get '
+	String get descriptionPart1 => 'Invite your friends to breathe together.\nFor every invite, you both get ';
+
+	/// en: '1 week Premium'
+	String get descriptionPart2 => '1 week Premium';
+
+	/// en: ''
+	String get descriptionPart3 => '';
+
+	/// en: 'YOUR REFERRAL CODE'
+	String get yourReferralCode => 'YOUR REFERRAL CODE';
+
+	/// en: 'Code copied!'
+	String get codeCopied => 'Code copied!';
+
+	/// en: 'Copy Code'
+	String get copyCode => 'Copy Code';
+}
+
+// Path: facialScan
+class TranslationsFacialScanEn {
+	TranslationsFacialScanEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Facial Scan'
+	String get title => 'Facial Scan';
+
+	/// en: 'STEP $current OF $total'
+	String step({required Object current, required Object total}) => 'STEP ${current} OF ${total}';
+
+	/// en: 'Get Started'
+	String get getStarted => 'Get Started';
+
+	late final TranslationsFacialScanAnalyzingEn analyzing = TranslationsFacialScanAnalyzingEn._(_root);
+	late final TranslationsFacialScanResultEn result = TranslationsFacialScanResultEn._(_root);
+	late final TranslationsFacialScanInstructionsEn instructions = TranslationsFacialScanInstructionsEn._(_root);
+	late final TranslationsFacialScanErrorsEn errors = TranslationsFacialScanErrorsEn._(_root);
+	late final TranslationsFacialScanPositionsEn positions = TranslationsFacialScanPositionsEn._(_root);
+}
+
+// Path: auth
+class TranslationsAuthEn {
+	TranslationsAuthEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Google'
+	String get google => 'Google';
+
+	/// en: 'Facebook'
+	String get facebook => 'Facebook';
+
+	/// en: 'Apple'
+	String get apple => 'Apple';
+
+	/// en: 'Continue as Guest'
+	String get guest => 'Continue as Guest';
+
+	/// en: 'Sign-in failed: $error'
+	String signInFailed({required Object error}) => 'Sign-in failed: ${error}';
 }
 
 // Path: termsOfService.section1
@@ -830,6 +1204,360 @@ class TranslationsFaqQuestionsEn {
 	late final TranslationsFaqQuestionsQ10En q10 = TranslationsFaqQuestionsQ10En._(_root);
 }
 
+// Path: splash.screen1
+class TranslationsSplashScreen1En {
+	TranslationsSplashScreen1En._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Shape Your Face Naturally'
+	String get title => 'Shape Your Face Naturally';
+
+	/// en: 'Work your facial muscles with just a few minutes of daily face exercises. Create a natural, aesthetic, and non-invasive beauty routine.'
+	String get description => 'Work your facial muscles with just a few minutes of daily face exercises. Create a natural, aesthetic, and non-invasive beauty routine.';
+}
+
+// Path: splash.screen2
+class TranslationsSplashScreen2En {
+	TranslationsSplashScreen2En._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Personalized Exercise Plan with Ai'
+	String get title => 'Personalized Exercise Plan with Ai';
+
+	/// en: 'AI analyzes your facial features, determines your needs, and recommends exercises tailored to you. It tracks which muscles need more work.'
+	String get description => 'AI analyzes your facial features, determines your needs, and recommends exercises tailored to you. It tracks which muscles need more work.';
+}
+
+// Path: splash.screen3
+class TranslationsSplashScreen3En {
+	TranslationsSplashScreen3En._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Visible Results'
+	String get title => 'Visible Results';
+
+	/// en: 'With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes.'
+	String get description => 'With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes.';
+}
+
+// Path: profile.sections
+class TranslationsProfileSectionsEn {
+	TranslationsProfileSectionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'ACCOUNT SETTINGS'
+	String get accountSettings => 'ACCOUNT SETTINGS';
+
+	/// en: 'SUPPORT & OTHER'
+	String get supportAndOther => 'SUPPORT & OTHER';
+}
+
+// Path: profile.menu
+class TranslationsProfileMenuEn {
+	TranslationsProfileMenuEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Edit Profile'
+	String get editProfile => 'Edit Profile';
+
+	/// en: 'Notifications'
+	String get notifications => 'Notifications';
+
+	/// en: 'Premium'
+	String get premium => 'Premium';
+
+	/// en: 'Favorite Exercises'
+	String get favoriteExercises => 'Favorite Exercises';
+
+	/// en: 'App Language'
+	String get appLanguage => 'App Language';
+
+	/// en: 'Share with Friends'
+	String get shareWithFriends => 'Share with Friends';
+
+	/// en: 'Enter Invite Code'
+	String get enterInviteCode => 'Enter Invite Code';
+
+	/// en: 'Rate Us'
+	String get rateUs => 'Rate Us';
+
+	/// en: 'FAQ'
+	String get faq => 'FAQ';
+
+	/// en: 'Logout'
+	String get logout => 'Logout';
+}
+
+// Path: profile.logoutDialog
+class TranslationsProfileLogoutDialogEn {
+	TranslationsProfileLogoutDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'You are about to log out'
+	String get title => 'You are about to log out';
+
+	/// en: 'See you again! We will keep tracking your breath exercises.'
+	String get message => 'See you again! We will keep tracking your breath exercises.';
+
+	/// en: 'Log Out'
+	String get logoutButton => 'Log Out';
+
+	/// en: 'Cancel'
+	String get cancelButton => 'Cancel';
+}
+
+// Path: home.personalized
+class TranslationsHomePersonalizedEn {
+	TranslationsHomePersonalizedEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Personalized Facial Analysis Report'
+	String get title => 'Personalized\nFacial Analysis\nReport';
+
+	/// en: 'Please analyze your skin to find out what type it is.'
+	String get description => 'Please analyze your skin\nto find out what type it is.';
+
+	/// en: 'Try it now'
+	String get button => 'Try it now';
+}
+
+// Path: home.premiumPlan
+class TranslationsHomePremiumPlanEn {
+	TranslationsHomePremiumPlanEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Premium Plan'
+	String get title => 'Premium Plan';
+
+	/// en: 'Unlock your ai chatbot & get all premium features'
+	String get description => 'Unlock your ai chatbot & get \nall premium features';
+
+	/// en: 'Get Premium'
+	String get button => 'Get Premium';
+
+	late final TranslationsHomePremiumPlanDialogEn dialog = TranslationsHomePremiumPlanDialogEn._(_root);
+}
+
+// Path: home.quickActions
+class TranslationsHomeQuickActionsEn {
+	TranslationsHomeQuickActionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Quick Actions'
+	String get title => 'Quick Actions';
+
+	/// en: 'Your Personal Program'
+	String get programTitle => 'Your Personal Program';
+
+	/// en: 'For your best look in 30 days'
+	String get programSubtitle => 'For your best look\nin 30 days';
+
+	/// en: 'Get Started'
+	String get button => 'Get Started';
+}
+
+// Path: home.todaysExercise
+class TranslationsHomeTodaysExerciseEn {
+	TranslationsHomeTodaysExerciseEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Today's Exercise'
+	String get title => 'Today\'s Exercise';
+
+	/// en: 'Recommended Routine'
+	String get recommended => 'Recommended Routine';
+
+	/// en: 'for today'
+	String get forToday => 'for today';
+}
+
+// Path: home.courses
+class TranslationsHomeCoursesEn {
+	TranslationsHomeCoursesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final TranslationsHomeCoursesForeheadSmootherEn foreheadSmoother = TranslationsHomeCoursesForeheadSmootherEn._(_root);
+	late final TranslationsHomeCoursesVMoveEn vMove = TranslationsHomeCoursesVMoveEn._(_root);
+	late final TranslationsHomeCoursesCheekLifterEn cheekLifter = TranslationsHomeCoursesCheekLifterEn._(_root);
+}
+
+// Path: home.benefits
+class TranslationsHomeBenefitsEn {
+	TranslationsHomeBenefitsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final TranslationsHomeBenefitsNaturalIroningEn naturalIroning = TranslationsHomeBenefitsNaturalIroningEn._(_root);
+	late final TranslationsHomeBenefitsBotoxEffectEn botoxEffect = TranslationsHomeBenefitsBotoxEffectEn._(_root);
+	late final TranslationsHomeBenefitsStressReliefEn stressRelief = TranslationsHomeBenefitsStressReliefEn._(_root);
+	late final TranslationsHomeBenefitsRadiantAppearanceEn radiantAppearance = TranslationsHomeBenefitsRadiantAppearanceEn._(_root);
+	late final TranslationsHomeBenefitsDePuffingEn dePuffing = TranslationsHomeBenefitsDePuffingEn._(_root);
+}
+
+// Path: courseDetail.instructions
+class TranslationsCourseDetailInstructionsEn {
+	TranslationsCourseDetailInstructionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final TranslationsCourseDetailInstructionsInstruction1En instruction1 = TranslationsCourseDetailInstructionsInstruction1En._(_root);
+	late final TranslationsCourseDetailInstructionsInstruction2En instruction2 = TranslationsCourseDetailInstructionsInstruction2En._(_root);
+}
+
+// Path: facialScan.analyzing
+class TranslationsFacialScanAnalyzingEn {
+	TranslationsFacialScanAnalyzingEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Analyzing'
+	String get title => 'Analyzing';
+
+	/// en: 'Analyzing Your Unique Features'
+	String get description => 'Analyzing Your Unique Features';
+
+	/// en: 'Detecting skin texture, muscle tone, and focus area for your personalized routine.'
+	String get detail => 'Detecting skin texture, muscle tone, and focus area for your personalized routine.';
+
+	/// en: 'AI ENGINE WORKING'
+	String get aiEngineWorking => 'AI ENGINE WORKING';
+}
+
+// Path: facialScan.result
+class TranslationsFacialScanResultEn {
+	TranslationsFacialScanResultEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Your Analysis is Ready!'
+	String get title => 'Your Analysis is Ready!';
+
+	/// en: 'We've tailored a routine based on your results.'
+	String get subtitle => 'We\'ve tailored a routine based on your results.';
+
+	/// en: 'SKIN TYPE'
+	String get skinType => 'SKIN TYPE';
+
+	/// en: 'PRIMARY GOAL'
+	String get primaryGoal => 'PRIMARY GOAL';
+
+	/// en: 'Recommended for You'
+	String get recommended => 'Recommended for You';
+
+	/// en: 'Back'
+	String get back => 'Back';
+}
+
+// Path: facialScan.instructions
+class TranslationsFacialScanInstructionsEn {
+	TranslationsFacialScanInstructionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Position your face within the frame'
+	String get front => 'Position your face within the frame';
+
+	/// en: 'Turn your head to the left'
+	String get left => 'Turn your head to the left';
+
+	/// en: 'Turn your head to the right'
+	String get right => 'Turn your head to the right';
+
+	/// en: 'Ensure you are in a well-lit environment for better results'
+	String get lighting => 'Ensure you are in a well-lit environment for better results';
+
+	/// en: 'Tap the camera button to take a photo'
+	String get tapToCapture => 'Tap the camera button to take a photo';
+}
+
+// Path: facialScan.errors
+class TranslationsFacialScanErrorsEn {
+	TranslationsFacialScanErrorsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Camera permission is required to take photos.'
+	String get cameraPermission => 'Camera permission is required to take photos.';
+
+	/// en: 'Camera Permission Required'
+	String get cameraPermissionRequired => 'Camera Permission Required';
+
+	/// en: 'Camera permission is required for facial scanning. Please enable it in app settings.'
+	String get cameraPermissionMessage => 'Camera permission is required for facial scanning. Please enable it in app settings.';
+
+	/// en: 'Open Settings'
+	String get openSettings => 'Open Settings';
+
+	/// en: 'Cancel'
+	String get cancel => 'Cancel';
+
+	/// en: 'No face detected. Please try again.'
+	String get noFaceDetected => 'No face detected. Please try again.';
+
+	/// en: 'Failed to capture image. Please try again.'
+	String get captureFailed => 'Failed to capture image. Please try again.';
+}
+
+// Path: facialScan.positions
+class TranslationsFacialScanPositionsEn {
+	TranslationsFacialScanPositionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'FRONT'
+	String get front => 'FRONT';
+
+	/// en: 'LEFT'
+	String get left => 'LEFT';
+
+	/// en: 'RIGHT'
+	String get right => 'RIGHT';
+}
+
 // Path: cookiesPolicy.section2.essential
 class TranslationsCookiesPolicySection2EssentialEn {
 	TranslationsCookiesPolicySection2EssentialEn._(this._root);
@@ -1078,6 +1806,174 @@ class TranslationsFaqQuestionsQ10En {
 	String get answer => 'Many users use it safely, but it is recommended to consult a doctor during the post-operative recovery period.';
 }
 
+// Path: home.premiumPlan.dialog
+class TranslationsHomePremiumPlanDialogEn {
+	TranslationsHomePremiumPlanDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Feature Not Available'
+	String get title => 'Feature Not Available';
+
+	/// en: 'This feature is currently not available.'
+	String get message => 'This feature is currently not available.';
+
+	/// en: 'OK'
+	String get button => 'OK';
+}
+
+// Path: home.courses.foreheadSmoother
+class TranslationsHomeCoursesForeheadSmootherEn {
+	TranslationsHomeCoursesForeheadSmootherEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'The Forehead Smoother'
+	String get title => 'The Forehead Smoother';
+
+	/// en: 'This move releases tension in the forehead muscles and frown lines accumulated...'
+	String get description => 'This move releases tension in the forehead muscles and frown lines accumulated...';
+}
+
+// Path: home.courses.vMove
+class TranslationsHomeCoursesVMoveEn {
+	TranslationsHomeCoursesVMoveEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'The "V" Move'
+	String get title => 'The "V" Move';
+
+	/// en: 'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.'
+	String get description => 'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.';
+}
+
+// Path: home.courses.cheekLifter
+class TranslationsHomeCoursesCheekLifterEn {
+	TranslationsHomeCoursesCheekLifterEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'The Cheek Lifter'
+	String get title => 'The Cheek Lifter';
+
+	/// en: 'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.'
+	String get description => 'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.';
+}
+
+// Path: home.benefits.naturalIroning
+class TranslationsHomeBenefitsNaturalIroningEn {
+	TranslationsHomeBenefitsNaturalIroningEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Natural Ironing:'
+	String get title => 'Natural Ironing:';
+
+	/// en: 'Opens horizontal lines on the forehead and prevents them from deepening.'
+	String get description => 'Opens horizontal lines on the forehead and prevents them from deepening.';
+}
+
+// Path: home.benefits.botoxEffect
+class TranslationsHomeBenefitsBotoxEffectEn {
+	TranslationsHomeBenefitsBotoxEffectEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Botox Effect'
+	String get title => 'Botox Effect';
+
+	/// en: 'Relaxes tense muscles and breaks the habit of frowning.'
+	String get description => 'Relaxes tense muscles and breaks the habit of frowning.';
+}
+
+// Path: home.benefits.stressRelief
+class TranslationsHomeBenefitsStressReliefEn {
+	TranslationsHomeBenefitsStressReliefEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Stress Relief'
+	String get title => 'Stress Relief';
+
+	/// en: 'Relieves stress accumulated on the forehead and alleviates headaches.'
+	String get description => 'Relieves stress accumulated on the forehead and alleviates headaches.';
+}
+
+// Path: home.benefits.radiantAppearance
+class TranslationsHomeBenefitsRadiantAppearanceEn {
+	TranslationsHomeBenefitsRadiantAppearanceEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Radiant Appearance'
+	String get title => 'Radiant Appearance';
+
+	/// en: 'Boosts blood circulation to give the skin a glow.'
+	String get description => 'Boosts blood circulation to give the skin a glow.';
+}
+
+// Path: home.benefits.dePuffing
+class TranslationsHomeBenefitsDePuffingEn {
+	TranslationsHomeBenefitsDePuffingEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'De-Puffing'
+	String get title => 'De-Puffing';
+
+	/// en: 'Reduces facial puffiness through its lymphatic drainage effect.'
+	String get description => 'Reduces facial puffiness through its lymphatic drainage effect.';
+}
+
+// Path: courseDetail.instructions.instruction1
+class TranslationsCourseDetailInstructionsInstruction1En {
+	TranslationsCourseDetailInstructionsInstruction1En._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Wash Your Hands and Face'
+	String get title => 'Wash Your Hands and Face';
+
+	/// en: 'A clean skin allows the massage to be more effective.'
+	String get description => 'A clean skin allows the massage to be more effective.';
+}
+
+// Path: courseDetail.instructions.instruction2
+class TranslationsCourseDetailInstructionsInstruction2En {
+	TranslationsCourseDetailInstructionsInstruction2En._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Apply Face Oil or Moisturizer'
+	String get title => 'Apply Face Oil or Moisturizer';
+
+	/// en: 'Smoothly glide without pulling your skin.'
+	String get description => 'Smoothly glide without pulling your skin.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -1086,7 +1982,8 @@ class TranslationsFaqQuestionsQ10En {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'welcome' => 'Welcome',
+			'welcome' => ({required Object name}) => 'Welcome ${name}',
+			'welcome2' => 'Welcome',
 			'get_started' => 'Get Started',
 			'next' => 'Next',
 			'back' => 'Back',
@@ -1226,6 +2123,7 @@ extension on Translations {
 			'onboarding.lips' => 'Lips',
 			'onboarding.jawline' => 'Jawline',
 			'onboarding.neck' => 'Neck',
+			'onboarding.fullface' => 'Full Face',
 			'onboarding.whatFaceShapeAiming' => 'What face shape are you aiming for?',
 			'onboarding.heart' => 'Heart',
 			'onboarding.oval' => 'Oval',
@@ -1254,6 +2152,10 @@ extension on Translations {
 			'onboarding.no' => 'No',
 			'onboarding.creatingPersonalizedProfile' => 'Creating Your Personalized Profile',
 			'onboarding.tailoringExperience' => 'We are tailoring your experience based on your preferences...',
+			'onboarding.gender' => 'Gender',
+			'onboarding.age' => 'Age',
+			'onboarding.weight' => 'Weight',
+			'onboarding.height' => 'Height',
 			'onboarding.matchingPersonalities' => 'MATCHING PERSONALITIES',
 			'pressBackAgainToExit' => 'Press back again to exit',
 			'addedToFavoritesTitle' => 'Exercise successfully added to favorites!',
@@ -1280,6 +2182,163 @@ extension on Translations {
 			'faq.questions.q9.answer' => 'Basic exercises are free. Personal programs, advanced face analysis, and special AI recommendations are included in the premium package.',
 			'faq.questions.q10.question' => 'Can people who have had cosmetic surgery use it?',
 			'faq.questions.q10.answer' => 'Many users use it safely, but it is recommended to consult a doctor during the post-operative recovery period.',
+			'full_face' => 'Full Face / General Revitalization',
+			'eye_area' => 'Eyes & Eye Area',
+			'nose_area' => 'Nose & Nose Area',
+			'cheeks_mid_face' => 'Cheeks & Mid Face',
+			'lip_area' => 'Lips & Mouth Area',
+			'jawline_chin' => 'Jawline, Chin & Double Chin',
+			'forehead_brow' => 'Forehead & Brow Area',
+			'neck_decollete' => 'Neck & Decollete',
+			'good_morning' => 'Good Morning',
+			'good_afternoon' => 'Good Afternoon',
+			'good_evening' => 'Good Evening',
+			'splash.screen1.title' => 'Shape Your Face Naturally',
+			'splash.screen1.description' => 'Work your facial muscles with just a few minutes of daily face exercises. Create a natural, aesthetic, and non-invasive beauty routine.',
+			'splash.screen2.title' => 'Personalized Exercise Plan with Ai',
+			'splash.screen2.description' => 'AI analyzes your facial features, determines your needs, and recommends exercises tailored to you. It tracks which muscles need more work.',
+			'splash.screen3.title' => 'Visible Results',
+			'splash.screen3.description' => 'With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes.',
+			'profile.title' => 'Profile',
+			'profile.freeVersion' => 'Free Version',
+			'profile.error' => 'Error',
+			'profile.sections.accountSettings' => 'ACCOUNT SETTINGS',
+			'profile.sections.supportAndOther' => 'SUPPORT & OTHER',
+			'profile.menu.editProfile' => 'Edit Profile',
+			'profile.menu.notifications' => 'Notifications',
+			'profile.menu.premium' => 'Premium',
+			'profile.menu.favoriteExercises' => 'Favorite Exercises',
+			'profile.menu.appLanguage' => 'App Language',
+			'profile.menu.shareWithFriends' => 'Share with Friends',
+			'profile.menu.enterInviteCode' => 'Enter Invite Code',
+			'profile.menu.rateUs' => 'Rate Us',
+			'profile.menu.faq' => 'FAQ',
+			'profile.menu.logout' => 'Logout',
+			'profile.manage' => 'MANAGE',
+			'profile.logoutDialog.title' => 'You are about to log out',
+			'profile.logoutDialog.message' => 'See you again! We will keep tracking your breath exercises.',
+			'profile.logoutDialog.logoutButton' => 'Log Out',
+			'profile.logoutDialog.cancelButton' => 'Cancel',
+			'home.premium' => 'Premium!',
+			'home.focusAreas' => 'Focus Areas',
+			'home.popularCourses' => 'Popular Courses',
+			'home.seeMore' => 'See More',
+			'home.personalized.title' => 'Personalized\nFacial Analysis\nReport',
+			'home.personalized.description' => 'Please analyze your skin\nto find out what type it is.',
+			'home.personalized.button' => 'Try it now',
+			'home.premiumPlan.title' => 'Premium Plan',
+			'home.premiumPlan.description' => 'Unlock your ai chatbot & get \nall premium features',
+			'home.premiumPlan.button' => 'Get Premium',
+			'home.premiumPlan.dialog.title' => 'Feature Not Available',
+			'home.premiumPlan.dialog.message' => 'This feature is currently not available.',
+			'home.premiumPlan.dialog.button' => 'OK',
+			'home.quickActions.title' => 'Quick Actions',
+			'home.quickActions.programTitle' => 'Your Personal Program',
+			'home.quickActions.programSubtitle' => 'For your best look\nin 30 days',
+			'home.quickActions.button' => 'Get Started',
+			'home.todaysExercise.title' => 'Today\'s Exercise',
+			'home.todaysExercise.recommended' => 'Recommended Routine',
+			'home.todaysExercise.forToday' => 'for today',
+			'home.courses.foreheadSmoother.title' => 'The Forehead Smoother',
+			'home.courses.foreheadSmoother.description' => 'This move releases tension in the forehead muscles and frown lines accumulated...',
+			'home.courses.vMove.title' => 'The "V" Move',
+			'home.courses.vMove.description' => 'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
+			'home.courses.cheekLifter.title' => 'The Cheek Lifter',
+			'home.courses.cheekLifter.description' => 'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.',
+			'home.benefits.naturalIroning.title' => 'Natural Ironing:',
+			'home.benefits.naturalIroning.description' => 'Opens horizontal lines on the forehead and prevents them from deepening.',
+			'home.benefits.botoxEffect.title' => 'Botox Effect',
+			'home.benefits.botoxEffect.description' => 'Relaxes tense muscles and breaks the habit of frowning.',
+			'home.benefits.stressRelief.title' => 'Stress Relief',
+			'home.benefits.stressRelief.description' => 'Relieves stress accumulated on the forehead and alleviates headaches.',
+			'home.benefits.radiantAppearance.title' => 'Radiant Appearance',
+			'home.benefits.radiantAppearance.description' => 'Boosts blood circulation to give the skin a glow.',
+			'home.benefits.dePuffing.title' => 'De-Puffing',
+			'home.benefits.dePuffing.description' => 'Reduces facial puffiness through its lymphatic drainage effect.',
+			'courseDetail.title' => 'Course Detail',
+			'courseDetail.getStarted' => 'Get Started',
+			'courseDetail.noExercisesFound' => 'No exercises found for this category',
+			'courseDetail.instructions.instruction1.title' => 'Wash Your Hands and Face',
+			'courseDetail.instructions.instruction1.description' => 'A clean skin allows the massage to be more effective.',
+			'courseDetail.instructions.instruction2.title' => 'Apply Face Oil or Moisturizer',
+			'courseDetail.instructions.instruction2.description' => 'Smoothly glide without pulling your skin.',
+			'courses.title' => 'All Courses',
+			'courses.error' => 'Error loading exercises',
+			'courses.personalCoursesTitle' => 'Personal Courses',
+			'personalProgram.dailyGoalTitle' => 'Set Your Daily Goal',
+			'personalProgram.dailyGoalDescription' => 'Choose a pace that fits your schedule',
+			'personalProgram.personalizing' => 'Personalizing Your Plan...',
+			'personalProgram.readyMessage' => 'Your personal 30-day face yoga program is ready✨',
+			'personalProgram.minutes' => 'Min',
+			'editProfile.title' => 'Edit Profile',
+			'editProfile.changePhoto' => 'Change Photo',
+			'editProfile.fullName' => 'Full Name',
+			'editProfile.email' => 'E-mail',
+			'editProfile.age' => 'Age',
+			'editProfile.gender' => 'Gender',
+			'editProfile.skinType' => 'Skin Type',
+			'editProfile.focusArea' => 'Focus Area',
+			'editProfile.focusAreaHint' => 'Forehead, Eyes, Nose, Mouth, Cheeks...',
+			'editProfile.save' => 'Save',
+			'editProfile.saving' => 'Saving...',
+			'editProfile.updateSuccess' => 'Profile updated successfully',
+			'editProfile.updateError' => 'An error occurred while updating profile',
+			'editProfile.deleteAccount' => 'Delete Account',
+			'notifications.title' => 'Notifications',
+			'notifications.emptyTitle' => 'No notifications yet',
+			'notifications.emptyDescription' => 'We\'ll notify you when there\'s an important update about your learning journey.',
+			'notifications.premiumBannerTitle' => 'Don\'t miss out on\nPremium benefits!',
+			'notifications.premiumBannerDescription' => 'Grab the opportunities as a Premium subscriber.',
+			'notifications.sample1Title' => 'Your daily meditation is ready!',
+			'notifications.sample1Description' => 'Find your calm for the day',
+			'notifications.sample1Time' => '15 min ago',
+			'notifications.sample2Title' => 'New Exercise: Ocean Breath',
+			'notifications.sample2Description' => 'A new breathing technique has been added',
+			'notifications.sample2Time' => '1 hour ago',
+			'notifications.sample3Title' => 'You\'ve hit a 7-day streak!',
+			'notifications.sample3Description' => 'Keep up the amazing work on your well-being',
+			'notifications.sample3Time' => 'Yesterday',
+			'share.title' => 'Share with Friends',
+			'share.mainTitle' => 'Share the Peace',
+			'share.descriptionPart1' => 'Invite your friends to breathe together.\nFor every invite, you both get ',
+			'share.descriptionPart2' => '1 week Premium',
+			'share.descriptionPart3' => '',
+			'share.yourReferralCode' => 'YOUR REFERRAL CODE',
+			'share.codeCopied' => 'Code copied!',
+			'share.copyCode' => 'Copy Code',
+			'facialScan.title' => 'Facial Scan',
+			'facialScan.step' => ({required Object current, required Object total}) => 'STEP ${current} OF ${total}',
+			'facialScan.getStarted' => 'Get Started',
+			'facialScan.analyzing.title' => 'Analyzing',
+			'facialScan.analyzing.description' => 'Analyzing Your Unique Features',
+			'facialScan.analyzing.detail' => 'Detecting skin texture, muscle tone, and focus area for your personalized routine.',
+			'facialScan.analyzing.aiEngineWorking' => 'AI ENGINE WORKING',
+			'facialScan.result.title' => 'Your Analysis is Ready!',
+			'facialScan.result.subtitle' => 'We\'ve tailored a routine based on your results.',
+			'facialScan.result.skinType' => 'SKIN TYPE',
+			'facialScan.result.primaryGoal' => 'PRIMARY GOAL',
+			'facialScan.result.recommended' => 'Recommended for You',
+			'facialScan.result.back' => 'Back',
+			'facialScan.instructions.front' => 'Position your face within the frame',
+			'facialScan.instructions.left' => 'Turn your head to the left',
+			'facialScan.instructions.right' => 'Turn your head to the right',
+			'facialScan.instructions.lighting' => 'Ensure you are in a well-lit environment for better results',
+			'facialScan.instructions.tapToCapture' => 'Tap the camera button to take a photo',
+			'facialScan.errors.cameraPermission' => 'Camera permission is required to take photos.',
+			'facialScan.errors.cameraPermissionRequired' => 'Camera Permission Required',
+			'facialScan.errors.cameraPermissionMessage' => 'Camera permission is required for facial scanning. Please enable it in app settings.',
+			'facialScan.errors.openSettings' => 'Open Settings',
+			'facialScan.errors.cancel' => 'Cancel',
+			'facialScan.errors.noFaceDetected' => 'No face detected. Please try again.',
+			'facialScan.errors.captureFailed' => 'Failed to capture image. Please try again.',
+			'facialScan.positions.front' => 'FRONT',
+			'facialScan.positions.left' => 'LEFT',
+			'facialScan.positions.right' => 'RIGHT',
+			'auth.google' => 'Google',
+			'auth.facebook' => 'Facebook',
+			'auth.apple' => 'Apple',
+			'auth.guest' => 'Continue as Guest',
+			'auth.signInFailed' => ({required Object error}) => 'Sign-in failed: ${error}',
 			_ => null,
 		};
 	}

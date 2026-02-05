@@ -18,13 +18,13 @@ class HabitsStep1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final concerns = [
-      context.t.onboarding.acneAndPimples,
-      context.t.onboarding.redness,
-      context.t.onboarding.swelling,
-      context.t.onboarding.wrinkles,
-      context.t.onboarding.neckLines,
-    ];
+    final concernsMap = {
+      'acne': context.t.onboarding.acneAndPimples,
+      'redness': context.t.onboarding.redness,
+      'swelling': context.t.onboarding.swelling,
+      'wrinkles': context.t.onboarding.wrinkles,
+      'neck_lines': context.t.onboarding.neckLines,
+    };
 
     return Padding(
       padding: AppPaddings.horizontalPage,
@@ -67,22 +67,27 @@ class HabitsStep1 extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.xl),
-          ...concerns.map((concern) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                child: CheckboxOption(
-                  label: concern,
-                  isSelected: selectedConcerns.value.contains(concern),
-                  onTap: () {
-                    final newSet = Set<String>.from(selectedConcerns.value);
-                    if (newSet.contains(concern)) {
-                      newSet.remove(concern);
-                    } else {
-                      newSet.add(concern);
-                    }
-                    selectedConcerns.value = newSet;
-                  },
-                ),
-              )),
+          ...concernsMap.entries.map((entry) {
+            final backendValue = entry.key;
+            final displayLabel = entry.value;
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+              child: CheckboxOption(
+                label: displayLabel,
+                isSelected: selectedConcerns.value.contains(backendValue),
+                onTap: () {
+                  final newSet = Set<String>.from(selectedConcerns.value);
+                  if (newSet.contains(backendValue)) {
+                    newSet.remove(backendValue);
+                  } else {
+                    newSet.add(backendValue);
+                  }
+                  selectedConcerns.value = newSet;
+                },
+              ),
+            );
+          }),
           const Spacer(),
         ],
       ),

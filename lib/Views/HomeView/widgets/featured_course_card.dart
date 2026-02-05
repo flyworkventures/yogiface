@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/shared/custom_cached_network_image.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
+import 'package:yogiface/utils/app_assets.dart';
 
 class FeaturedCourseCard extends StatelessWidget {
   final String imagePath;
@@ -8,6 +10,7 @@ class FeaturedCourseCard extends StatelessWidget {
   final String description;
   final String thumbnailPath;
   final VoidCallback? onTap;
+  final bool isAsset;
   final bool isFavorite;
   final VoidCallback? onFavoriteTap;
   final bool showFavoriteButton;
@@ -18,6 +21,7 @@ class FeaturedCourseCard extends StatelessWidget {
     required this.description,
     required this.thumbnailPath,
     this.onTap,
+    this.isAsset = false,
     this.isFavorite = false,
     this.onFavoriteTap,
     this.showFavoriteButton = false,
@@ -52,27 +56,19 @@ class FeaturedCourseCard extends StatelessWidget {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: Image.asset(
-                    imagePath,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: double.infinity,
-                        height: 160,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFFF5F5F5),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
+                  child: isAsset
+                      ? Image.asset(
+                          imagePath,
+                          width: double.infinity,
+                          fit: BoxFit.contain,
+                        )
+                      : CustomCachedNetworkImage(
+                          imageUrl: imagePath,
+                          height: 200,
+                          width: double.infinity,
+                          fit: BoxFit.contain,
+                          backgroundImage: AppImages.courseBackground,
                         ),
-                        child: const Icon(
-                          Icons.image_not_supported_outlined,
-                          size: 40,
-                          color: Color(0xFFBDBDBD),
-                        ),
-                      );
-                    },
-                  ),
                 ),
                 // Favori Butonu
                 if (showFavoriteButton)
@@ -112,12 +108,28 @@ class FeaturedCourseCard extends StatelessWidget {
               child: Row(
                 children: [
                   // Küçük Thumbnail
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      thumbnailPath,
-                    ),
-                  ),
+                  isAsset
+                      ? Image.asset(
+                          thumbnailPath,
+                          height: 60,
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: Transform.scale(
+                              scale: 2.5,
+                              child: CustomCachedNetworkImage(
+                                imageUrl: thumbnailPath,
+                                fit: BoxFit.contain,
+                                height: 60,
+                                width: 60,
+                                backgroundImage: AppImages.courseBackground,
+                              ),
+                            ),
+                          ),
+                        ),
                   const SizedBox(width: 12),
                   // Başlık ve Açıklama
                   Expanded(
@@ -127,7 +139,7 @@ class FeaturedCourseCard extends StatelessWidget {
                         Text(
                           title,
                           style: AppTextStyles.onboardingBody(
-                            14,
+                            16,
                             weight: FontWeight.w600,
                           ),
                         ),
@@ -137,7 +149,8 @@ class FeaturedCourseCard extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: AppTextStyles.onboardingBody(
-                            12,
+                            13,
+                            height: 1.2,
                             weight: FontWeight.w300,
                           ),
                         ),

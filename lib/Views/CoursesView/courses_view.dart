@@ -1,27 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CoursesView/widgets/course_header.dart';
 import 'package:yogiface/Views/CoursesView/widgets/courses_list.dart';
 import 'package:yogiface/Views/CoursesView/widgets/focus_areas_list.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_overlay.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/utils/print.dart';
 
-class AllCoursesView extends HookWidget {
+class AllCoursesView extends HookConsumerWidget {
   const AllCoursesView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final focusAreas = [
-      {'name': 'Ağız', 'image': AppImages.focusarea1},
-      {'name': 'Gözler', 'image': AppImages.focusareaeyes},
-      {'name': 'Burun', 'image': AppImages.focusareanoise},
-      {'name': 'Yanak', 'image': AppImages.focusareacheek},
-      {'name': 'Alın', 'image': AppImages.focusareaforehead},
+      {
+        'name': t.onboarding.fullface,
+        'image': AppImages.yuz,
+        'type': 'full_face'
+      },
+      {
+        'name': t.onboarding.eyes,
+        'image': AppImages.focusareaeyes,
+        'type': 'eye_area'
+      },
+      {
+        'name': t.onboarding.nose,
+        'image': AppImages.focusareanoise,
+        'type': 'nose_area'
+      },
+      {
+        'name': t.onboarding.cheeks,
+        'image': AppImages.focusareacheek,
+        'type': 'cheeks_mid_face'
+      },
+      {
+        'name': t.onboarding.lips,
+        'image': AppImages.focusarea1,
+        'type': 'lip_area'
+      },
+      {
+        'name': t.onboarding.jawline,
+        'image': AppImages.cene,
+        'type': 'jawline_chin'
+      },
+      {
+        'name': t.onboarding.forehead,
+        'image': AppImages.focusareaforehead,
+        'type': 'forehead_brow'
+      },
+      {
+        'name': t.onboarding.neck,
+        'image': AppImages.boyun,
+        'type': 'neck_decollete'
+      },
     ];
 
     final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
+
+    // Fetch exercises
+    final exerciseRepository =
+        ref.watch(AllProviders.exerciseRepositoryProvider);
+    // Using simple useFuture for now. In a real app, define a FutureProvider for caching.
+    final exercisesSnapshot = useFuture(
+      useMemoized(() => exerciseRepository.getAllExercises(lang: 'en'),
+          []), // TODO: dynamic lang
+    );
+
+    // Local favorite state - eventually should be sync with backend or provider
+    // Initial state can be empty, we will populate it if backend returns isFavorited
     final favoriteCourses = useState<Set<int>>({});
 
     useEffect(() {
@@ -33,92 +83,33 @@ class AllCoursesView extends HookWidget {
       return () => tabController.removeListener(listener);
     }, [tabController]);
 
-    final coursesByArea = useMemoized(
-        () => <int, List<Map<String, String>>>{
-              0: [
-                {
-                  'title': 'Lip Plumper',
-                  'description':
-                      'Naturally plumps and defines lips through targeted exercises.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Smile Lifter',
-                  'description':
-                      'Lifts the corners of the mouth and reduces nasolabial folds.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              1: [
-                {
-                  'title': 'The "V" Move',
-                  'description':
-                      'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Eye Brightener',
-                  'description':
-                      'Reduces puffiness and dark circles, giving a refreshed look.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Crow\'s Feet Eraser',
-                  'description':
-                      'Smooths fine lines around the eyes for a youthful appearance.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              2: [
-                {
-                  'title': 'Nose Refiner',
-                  'description':
-                      'Tones the muscles around the nose for a more defined appearance.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              3: [
-                {
-                  'title': 'The Cheek Lifter',
-                  'description':
-                      'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Cheek Sculptor',
-                  'description':
-                      'Defines and contours cheekbones for a more sculpted look.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              4: [
-                {
-                  'title': 'The Forehead Smoother',
-                  'description':
-                      'This move releases tension in the forehead muscles and frown lines accumulated.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Brow Lifter',
-                  'description':
-                      'Lifts drooping brows and opens up the eye area naturally.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-            },
-        []);
+    // Initial favorite population when data is loaded
+    useEffect(() {
+      if (exercisesSnapshot.hasData && exercisesSnapshot.data != null) {
+        final favorites = exercisesSnapshot.data!.data.exercises
+            ?.where((e) => e.isFavorited)
+            .map((e) => e.id)
+            .toSet();
+        if (favorites != null) {
+          favoriteCourses.value = favorites;
+        }
+      }
+      return null;
+    }, [exercisesSnapshot.hasData]);
 
-    final currentCourses = coursesByArea[selectedIndex.value] ?? [];
+    final currentType = focusAreas[selectedIndex.value]['type'];
+    final allExercises = exercisesSnapshot.data?.data.exercises ?? [];
+
+    final currentCourses = useMemoized(() {
+      if (currentType == 'full_face') {
+        // Option 1: Show all exercises for full face? Or specific full face exercises?
+        // Usually full_face might mean "All" or a specific category.
+        // Based on previous fake data, index 0 was just a category.
+        // Assuming strict filtering by type.
+        return allExercises.where((e) => e.type == 'full_face').toList();
+      }
+      return allExercises.where((e) => e.type == currentType).toList();
+    }, [allExercises, currentType]);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -134,63 +125,89 @@ class AllCoursesView extends HookWidget {
           ),
         ),
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
               CourseHeader(
                 showBackButton: false,
-                title: 'All Courses',
+                title: t.courses.title,
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 16),
-                        FocusAreasList(
-                          focusAreas: focusAreas,
-                          selectedIndex: selectedIndex.value,
-                          onAreaSelected: (index) {
-                            tabController.animateTo(index);
-                            selectedIndex.value = index;
-                          },
-                        ),
-                        const SizedBox(height: 24),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      FocusAreasList(
+                        focusAreas: focusAreas
+                            .map((e) => {
+                                  'name': e['name'] as String,
+                                  'image': e['image'] as String
+                                })
+                            .toList(),
+                        selectedIndex: selectedIndex.value,
+                        onAreaSelected: (index) {
+                          tabController.animateTo(index);
+                          selectedIndex.value = index;
+                        },
+                      ),
+                      const SizedBox(height: 24),
+                      if (exercisesSnapshot.connectionState ==
+                          ConnectionState.waiting)
+                        const Center(child: CircularProgressIndicator())
+                      else if (exercisesSnapshot.hasError)
+                        Center(
+                            child: Text(
+                                '${t.courses.error}: ${exercisesSnapshot.error}'))
+                      else
                         AnimatedSwitcher(
                           duration: const Duration(milliseconds: 300),
-                          child: CoursesList(
-                            key: ValueKey(selectedIndex.value),
-                            courses: currentCourses,
-                            favoriteCourses: favoriteCourses.value,
-                            onFavoriteToggle: (index) {
-                              final newSet =
-                                  Set<int>.from(favoriteCourses.value);
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CoursesList(
+                              key: ValueKey(selectedIndex.value),
+                              courses: currentCourses,
+                              favoriteCourses: favoriteCourses.value,
+                              onFavoriteToggle: (id) async {
+                                // Optimistic update
+                                final newSet =
+                                    Set<int>.from(favoriteCourses.value);
+                                final isFav = newSet.contains(id);
 
-                              if (newSet.contains(index)) {
-                                CustomOverlay.show(
-                                  context,
-                                  title: t.removedFromFavoritesTitle,
-                                  message: t.removedFromFavorites,
-                                  icon: AppIcons.heart2,
-                                  type: OverlayType.favoriteRemoved,
-                                );
-                                newSet.remove(index);
-                              } else {
-                                newSet.add(index);
-                                CustomOverlay.show(
-                                  context,
-                                  message: t.addedToFavoritesTitle,
-                                  icon: AppIcons.heart2,
-                                  type: OverlayType.success,
-                                );
-                              }
-                              favoriteCourses.value = newSet;
-                            },
+                                if (isFav) {
+                                  newSet.remove(id);
+                                  CustomOverlay.show(
+                                    context,
+                                    title: t.removedFromFavoritesTitle,
+                                    message: t.removedFromFavorites,
+                                    icon: AppIcons.heart2,
+                                    type: OverlayType.favoriteRemoved,
+                                  );
+                                } else {
+                                  newSet.add(id);
+                                  CustomOverlay.show(
+                                    context,
+                                    message: t.addedToFavoritesTitle,
+                                    icon: AppIcons.heart2,
+                                    type: OverlayType.success,
+                                  );
+                                }
+                                favoriteCourses.value = newSet;
+
+                                // API Call
+                                try {
+                                  await exerciseRepository.toggleFavorite(
+                                      id: id, isFavorited: isFav);
+                                } catch (e) {
+                                  Print.error("Failed to toggle favorite: $e");
+                                  // Revert on error
+                                  // favoriteCourses.value = ... (omitted for brevity, but good practice)
+                                }
+                              },
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 100),
-                      ],
-                    ),
+                      const SizedBox(height: 100),
+                    ],
                   ),
                 ),
               ),

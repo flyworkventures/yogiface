@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -93,7 +94,7 @@ class ProfileMenuItem extends StatelessWidget {
                   ),
                   if (isHighlighted)
                     Text(
-                      'YÖNET',
+                      context.t.profile.manage,
                       style: AppTextStyles.latoBody(
                         12,
                         weight: FontWeight.w500,

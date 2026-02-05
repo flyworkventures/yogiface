@@ -1,5 +1,6 @@
 {
-    "welcome": "Hoşgeldiniz",
+    "welcome": "Hoşgeldiniz $name",
+    "welcome2": "Hoşgeldiniz",
     "get_started": "Başlayın",
     "next": "Sonraki",
     "back": "Geri",
@@ -228,6 +229,7 @@
         "lips": "Dudaklar",
         "jawline": "Çene hattı",
         "neck": "Boyun",
+        "fullface": "Tüm Yüz",
         "whatFaceShapeAiming": "Hangi yüz şeklini hedefliyorsunuz?",
         "heart": "Kalp",
         "oval": "Oval",
@@ -256,6 +258,10 @@
         "no": "Hayır",
         "creatingPersonalizedProfile": "Kişiselleştirilmiş Profiliniz Oluşturuluyor",
         "tailoringExperience": "Tercihlerinize göre deneyiminizi özelleştiriyoruz...",
+        "gender": "Cinsiyet",
+        "age": "Yaş",
+        "weight": "Kilo",
+        "height": "Boy",
         "matchingPersonalities": "KİŞİLİKLER EŞLEŞTİRİLİYOR"
     },
     "pressBackAgainToExit": "Çıkmak için bir kez daha geri tuşuna basın",
@@ -306,5 +312,242 @@
                 "answer": "Birçok kullanıcı güvenle kullanır, ancak operasyon sonrası iyileşme sürecinde mutlaka doktora danışılması önerilir."
             }
         }
+    },
+    "full_face": "Tüm Yüz / Genel Canlandırma",
+    "eye_area": "Göz & Göz Çevresi",
+    "nose_area": "Burun & Burun Çevresi",
+    "cheeks_mid_face": "Yanak & Orta Yüz",
+    "lip_area": "Dudak & Ağız Çevresi",
+    "jawline_chin": "Çene, Jawline & Gıdı",
+    "forehead_brow": "Alın & Kaş Bölgesi",
+    "neck_decollete": "Boyun & Dekolte",
+    "good_morning": "Günaydın",
+    "good_afternoon": "İyi günler",
+    "good_evening": "İyi akşamlar",
+    "splash": {
+        "screen1": {
+            "title": "Yüzünüzü Doğal Yollarla Şekillendirin",
+            "description": "Günde sadece birkaç dakika yüz egzersizi ile yüz kaslarınızı çalıştırın. Doğal, estetik ve invaziv olmayan bir güzellik rutini oluşturun."
+        },
+        "screen2": {
+            "title": "Yapay Zeka ile Kişiselleştirilmiş Egzersiz Planı",
+            "description": "Yapay zeka yüz hatlarınızı analiz eder, ihtiyaçlarınızı belirler ve size özel egzersizler önerir. Hangi kasların daha fazla çalışması gerektiğini takip eder."
+        },
+        "screen3": {
+            "title": "Görünür Sonuçlar",
+            "description": "Düzenli kullanımla yüz hatları daha belirgin hale gelir, dolaşım iyileşir ve cilt daha canlı görünür. Her gün küçük adımlar büyük değişimler getirir."
+        }
+    },
+    "profile": {
+        "title": "Profil",
+        "freeVersion": "Ücretsiz Versiyon",
+        "error": "Hata",
+        "sections": {
+            "accountSettings": "HESAP AYARLARI",
+            "supportAndOther": "DESTEK & DİĞER"
+        },
+        "menu": {
+            "editProfile": "Profil Düzenle",
+            "notifications": "Bildirimler",
+            "premium": "Premium",
+            "favoriteExercises": "Favori Egzersizler",
+            "appLanguage": "Uygulama Dili",
+            "shareWithFriends": "Arkadaşlarınla Paylaş",
+            "enterInviteCode": "Davet Kodu Gir",
+            "rateUs": "Bizi Değerlendir",
+            "faq": "SSS",
+            "logout": "Çıkış Yap"
+        },
+        "manage": "YÖNET",
+        "logoutDialog": {
+            "title": "Çıkış yapmak üzeresiniz",
+            "message": "Tekrar görüşmek üzere! Nefes egzersizlerinizi izleyeceğiz.",
+            "logoutButton": "Çıkış Yap",
+            "cancelButton": "Vazgeç"
+        }
+    },
+    "home": {
+        "premium": "Premium!",
+        "focusAreas": "Odak Alanları",
+        "popularCourses": "Popüler Kurslar",
+        "seeMore": "Daha Fazla",
+        "personalized": {
+            "title": "Kişiselleştirilmiş\nYüz Analizi\nRaporu",
+            "description": "Cilt tipinizi öğrenmek için\nlütfen yüzünüzü analiz edin.",
+            "button": "Hemen Dene"
+        },
+        "premiumPlan": {
+            "title": "Premium Plan",
+            "description": "AI asistanının kilidini aç &\ntüm premium özellikleri edin",
+            "button": "Premium Al",
+            "dialog": {
+                "title": "Özellik Aktif Değil",
+                "message": "Bu özellik şu anda kullanıma açık değildir.",
+                "button": "Tamam"
+            }
+        },
+        "quickActions": {
+            "title": "Hızlı İşlemler",
+            "programTitle": "Kişisel Programınız",
+            "programSubtitle": "30 günde en iyi görünümünüz\niçin",
+            "button": "Başla"
+        },
+        "todaysExercise": {
+            "title": "Günün Egzersizi",
+            "recommended": "Önerilen Rutin",
+            "forToday": "bugün için"
+        },
+        "courses": {
+            "foreheadSmoother": {
+                "title": "Alın Düzenleyici",
+                "description": "Bu hareket alın kaslarındaki gerginliği ve birikmiş kaş çatma çizgilerini serbest bırakır..."
+            },
+            "vMove": {
+                "title": "\"V\" Hareketi",
+                "description": "Göz çevresindeki hassas cildi güçlendirir, düşük göz kapaklarını kaldırır ve yorgunluk belirtilerini siler."
+            },
+            "cheekLifter": {
+                "title": "Yanak Kaldırıcı",
+                "description": "Yerçekimine en çok maruz kalan yanak kaslarını (Zigomatik) kaldırarak yüz ovalini geri kazandırır."
+            }
+        },
+        "benefits": {
+            "naturalIroning": {
+                "title": "Doğal Ütüleme:",
+                "description": "Alındaki yatay çizgileri açar ve derinleşmelerini önler."
+            },
+            "botoxEffect": {
+                "title": "Botoks Etkisi",
+                "description": "Gergin kasları gevşetir ve kaş çatma alışkanlığını kırar."
+            },
+            "stressRelief": {
+                "title": "Stres Giderme",
+                "description": "Alında biriken stresi alır ve baş ağrılarını hafifletir."
+            },
+            "radiantAppearance": {
+                "title": "Işıltılı Görünüm",
+                "description": "Kan dolaşımını hızlandırarak cilde parlaklık verir."
+            },
+            "dePuffing": {
+                "title": "Ödem Atıcı",
+                "description": "Lenfatik drenaj etkisiyle yüzdeki şişkinliği azaltır."
+            }
+        }
+    },
+    "courseDetail": {
+        "title": "Kurs Detayı",
+        "getStarted": "Başlayın",
+        "noExercisesFound": "Bu kategori için egzersiz bulunamadı",
+        "instructions": {
+            "instruction1": {
+                "title": "Ellerinizi ve Yüzünüzü Yıkayın",
+                "description": "Temiz bir cilt masajın daha etkili olmasını sağlar."
+            },
+            "instruction2": {
+                "title": "Yüz Yağı veya Nemlendirici Uygulayın",
+                "description": "Cildinizi çekmeden yumuşakça kaydırın."
+            }
+        }
+    },
+    "courses": {
+        "title": "Tüm Kurslar",
+        "error": "Egzersizler yüklenirken hata oluştu",
+        "personalCoursesTitle": "Kişisel Kurslar"
+    },
+    "personalProgram": {
+        "dailyGoalTitle": "Günlük Hedefinizi Belirleyin",
+        "dailyGoalDescription": "Programınıza uyan bir tempo seçin",
+        "personalizing": "Planınız Kişiselleştiriliyor...",
+        "readyMessage": "Kişisel 30 günlük yüz yogası programınız hazır✨",
+        "minutes": "Dk"
+    },
+    "editProfile": {
+        "title": "Profil Düzenle",
+        "changePhoto": "Fotoğrafı Değiştir",
+        "fullName": "Ad Soyad",
+        "email": "E-posta",
+        "age": "Yaş",
+        "gender": "Cinsiyet",
+        "skinType": "Cilt Tipi",
+        "focusArea": "Odak Alanı",
+        "focusAreaHint": "Alın, Gözler, Burun, Ağız, Yanaklar...",
+        "save": "Kaydet",
+        "saving": "Kaydediliyor...",
+        "updateSuccess": "Profil başarıyla güncellendi",
+        "updateError": "Profil güncellenirken bir hata oluştu",
+        "deleteAccount": "Hesabı Sil"
+    },
+    "notifications": {
+        "title": "Bildirimler",
+        "emptyTitle": "Henüz bildirim yok",
+        "emptyDescription": "Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.",
+        "premiumBannerTitle": "Premium avantajlarını\nkaçırma!",
+        "premiumBannerDescription": "Premium abonesi olarak fırsatları yakala.",
+        "sample1Title": "Günlük meditasyonunuz hazır!",
+        "sample1Description": "Gününüz için huzurunuzu bulun",
+        "sample1Time": "15 dakika önce",
+        "sample2Title": "Yeni Egzersiz: Okyanus Nefesi",
+        "sample2Description": "Yeni bir nefes tekniği eklendi",
+        "sample2Time": "1 saat önce",
+        "sample3Title": "7 günlük seriye ulaştınız!",
+        "sample3Description": "Refahınız için harika bir iş çıkarıyorsunuz",
+        "sample3Time": "Dün"
+    },
+    "share": {
+        "title": "Arkadaşlarınla Paylaş",
+        "mainTitle": "Huzuru Paylaş",
+        "descriptionPart1": "Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ",
+        "descriptionPart2": "1 hafta Premium\n",
+        "descriptionPart3": " kazanın",
+        "yourReferralCode": "REFERANS KODUN",
+        "codeCopied": "Kod kopyalandı!",
+        "copyCode": "Kodu Kopyala"
+    },
+    "facialScan": {
+        "title": "Yüz Taraması",
+        "step": "ADIM $current / $total",
+        "getStarted": "Başla",
+        "analyzing": {
+            "title": "Analiz Ediliyor",
+            "description": "Benzersiz Özellikleriniz Analiz Ediliyor",
+            "detail": "Cilt dokusu, kas tonusu ve kişiselleştirilmiş rutininiz için odak alanları tespit ediliyor.",
+            "aiEngineWorking": "YAPAY ZEKA ÇALIŞIYOR"
+        },
+        "result": {
+            "title": "Analiziniz Hazır!",
+            "subtitle": "Sonuçlarınıza göre bir rutin hazırladık.",
+            "skinType": "CİLT TİPİ",
+            "primaryGoal": "ANA HEDEF",
+            "recommended": "Sizin İçin Önerilen",
+            "back": "Geri"
+        },
+        "instructions": {
+            "front": "Yüzünüzü çerçevenin içine yerleştirin",
+            "left": "Başınızı sola çevirin",
+            "right": "Başınızı sağa çevirin",
+            "lighting": "Daha iyi sonuçlar için iyi aydınlatılmış bir ortamda olduğunuzdan emin olun",
+            "tapToCapture": "Fotoğraf çekmek için kamera butonuna dokunun"
+        },
+        "errors": {
+            "cameraPermission": "Fotoğraf çekmek için kamera izni gerekiyor.",
+            "cameraPermissionRequired": "Kamera İzni Gerekli",
+            "cameraPermissionMessage": "Yüz taraması için kamera izni gerekiyor. Lütfen ayarlardan etkinleştirin.",
+            "openSettings": "Ayarları Aç",
+            "cancel": "İptal",
+            "noFaceDetected": "Yüz algılanamadı. Lütfen tekrar deneyin.",
+            "captureFailed": "Görüntü alınamadı. Lütfen tekrar deneyin."
+        },
+        "positions": {
+            "front": "ÖN",
+            "left": "SOL",
+            "right": "SAĞ"
+        }
+    },
+    "auth": {
+        "google": "Google",
+        "facebook": "Facebook",
+        "apple": "Apple",
+        "guest": "Misafir Olarak Devam Et",
+        "signInFailed": "Giriş başarısız: $error"
     }
 }

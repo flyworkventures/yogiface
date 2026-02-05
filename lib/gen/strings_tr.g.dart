@@ -37,7 +37,8 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	TranslationsTr $copyWith({TranslationMetadata<AppLocale, Translations>? meta}) => TranslationsTr(meta: meta ?? this.$meta);
 
 	// Translations
-	@override String get welcome => 'Hoşgeldiniz';
+	@override String welcome({required Object name}) => 'Hoşgeldiniz ${name}';
+	@override String get welcome2 => 'Hoşgeldiniz';
 	@override String get get_started => 'Başlayın';
 	@override String get next => 'Sonraki';
 	@override String get back => 'Geri';
@@ -55,6 +56,28 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get removedFromFavoritesTitle => 'Egzersiz başarıyla favoriden kaldırıldı!';
 	@override String get removedFromFavorites => 'Eklemek istediğiniz diğer egzersizlere kurslardan ulaşabilirsiniz';
 	@override late final _TranslationsFaqTr faq = _TranslationsFaqTr._(_root);
+	@override String get full_face => 'Tüm Yüz / Genel Canlandırma';
+	@override String get eye_area => 'Göz & Göz Çevresi';
+	@override String get nose_area => 'Burun & Burun Çevresi';
+	@override String get cheeks_mid_face => 'Yanak & Orta Yüz';
+	@override String get lip_area => 'Dudak & Ağız Çevresi';
+	@override String get jawline_chin => 'Çene, Jawline & Gıdı';
+	@override String get forehead_brow => 'Alın & Kaş Bölgesi';
+	@override String get neck_decollete => 'Boyun & Dekolte';
+	@override String get good_morning => 'Günaydın';
+	@override String get good_afternoon => 'İyi günler';
+	@override String get good_evening => 'İyi akşamlar';
+	@override late final _TranslationsSplashTr splash = _TranslationsSplashTr._(_root);
+	@override late final _TranslationsProfileTr profile = _TranslationsProfileTr._(_root);
+	@override late final _TranslationsHomeTr home = _TranslationsHomeTr._(_root);
+	@override late final _TranslationsCourseDetailTr courseDetail = _TranslationsCourseDetailTr._(_root);
+	@override late final _TranslationsCoursesTr courses = _TranslationsCoursesTr._(_root);
+	@override late final _TranslationsPersonalProgramTr personalProgram = _TranslationsPersonalProgramTr._(_root);
+	@override late final _TranslationsEditProfileTr editProfile = _TranslationsEditProfileTr._(_root);
+	@override late final _TranslationsNotificationsTr notifications = _TranslationsNotificationsTr._(_root);
+	@override late final _TranslationsShareTr share = _TranslationsShareTr._(_root);
+	@override late final _TranslationsFacialScanTr facialScan = _TranslationsFacialScanTr._(_root);
+	@override late final _TranslationsAuthTr auth = _TranslationsAuthTr._(_root);
 }
 
 // Path: termOfService
@@ -170,6 +193,7 @@ class _TranslationsOnboardingTr implements TranslationsOnboardingEn {
 	@override String get lips => 'Dudaklar';
 	@override String get jawline => 'Çene hattı';
 	@override String get neck => 'Boyun';
+	@override String get fullface => 'Tüm Yüz';
 	@override String get whatFaceShapeAiming => 'Hangi yüz şeklini hedefliyorsunuz?';
 	@override String get heart => 'Kalp';
 	@override String get oval => 'Oval';
@@ -198,6 +222,10 @@ class _TranslationsOnboardingTr implements TranslationsOnboardingEn {
 	@override String get no => 'Hayır';
 	@override String get creatingPersonalizedProfile => 'Kişiselleştirilmiş Profiliniz Oluşturuluyor';
 	@override String get tailoringExperience => 'Tercihlerinize göre deneyiminizi özelleştiriyoruz...';
+	@override String get gender => 'Cinsiyet';
+	@override String get age => 'Yaş';
+	@override String get weight => 'Kilo';
+	@override String get height => 'Boy';
 	@override String get matchingPersonalities => 'KİŞİLİKLER EŞLEŞTİRİLİYOR';
 }
 
@@ -210,6 +238,186 @@ class _TranslationsFaqTr implements TranslationsFaqEn {
 	// Translations
 	@override String get title => 'Sıkça Sorulan Sorular';
 	@override late final _TranslationsFaqQuestionsTr questions = _TranslationsFaqQuestionsTr._(_root);
+}
+
+// Path: splash
+class _TranslationsSplashTr implements TranslationsSplashEn {
+	_TranslationsSplashTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsSplashScreen1Tr screen1 = _TranslationsSplashScreen1Tr._(_root);
+	@override late final _TranslationsSplashScreen2Tr screen2 = _TranslationsSplashScreen2Tr._(_root);
+	@override late final _TranslationsSplashScreen3Tr screen3 = _TranslationsSplashScreen3Tr._(_root);
+}
+
+// Path: profile
+class _TranslationsProfileTr implements TranslationsProfileEn {
+	_TranslationsProfileTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profil';
+	@override String get freeVersion => 'Ücretsiz Versiyon';
+	@override String get error => 'Hata';
+	@override late final _TranslationsProfileSectionsTr sections = _TranslationsProfileSectionsTr._(_root);
+	@override late final _TranslationsProfileMenuTr menu = _TranslationsProfileMenuTr._(_root);
+	@override String get manage => 'YÖNET';
+	@override late final _TranslationsProfileLogoutDialogTr logoutDialog = _TranslationsProfileLogoutDialogTr._(_root);
+}
+
+// Path: home
+class _TranslationsHomeTr implements TranslationsHomeEn {
+	_TranslationsHomeTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get premium => 'Premium!';
+	@override String get focusAreas => 'Odak Alanları';
+	@override String get popularCourses => 'Popüler Kurslar';
+	@override String get seeMore => 'Daha Fazla';
+	@override late final _TranslationsHomePersonalizedTr personalized = _TranslationsHomePersonalizedTr._(_root);
+	@override late final _TranslationsHomePremiumPlanTr premiumPlan = _TranslationsHomePremiumPlanTr._(_root);
+	@override late final _TranslationsHomeQuickActionsTr quickActions = _TranslationsHomeQuickActionsTr._(_root);
+	@override late final _TranslationsHomeTodaysExerciseTr todaysExercise = _TranslationsHomeTodaysExerciseTr._(_root);
+	@override late final _TranslationsHomeCoursesTr courses = _TranslationsHomeCoursesTr._(_root);
+	@override late final _TranslationsHomeBenefitsTr benefits = _TranslationsHomeBenefitsTr._(_root);
+}
+
+// Path: courseDetail
+class _TranslationsCourseDetailTr implements TranslationsCourseDetailEn {
+	_TranslationsCourseDetailTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kurs Detayı';
+	@override String get getStarted => 'Başlayın';
+	@override String get noExercisesFound => 'Bu kategori için egzersiz bulunamadı';
+	@override late final _TranslationsCourseDetailInstructionsTr instructions = _TranslationsCourseDetailInstructionsTr._(_root);
+}
+
+// Path: courses
+class _TranslationsCoursesTr implements TranslationsCoursesEn {
+	_TranslationsCoursesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tüm Kurslar';
+	@override String get error => 'Egzersizler yüklenirken hata oluştu';
+	@override String get personalCoursesTitle => 'Kişisel Kurslar';
+}
+
+// Path: personalProgram
+class _TranslationsPersonalProgramTr implements TranslationsPersonalProgramEn {
+	_TranslationsPersonalProgramTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get dailyGoalTitle => 'Günlük Hedefinizi Belirleyin';
+	@override String get dailyGoalDescription => 'Programınıza uyan bir tempo seçin';
+	@override String get personalizing => 'Planınız Kişiselleştiriliyor...';
+	@override String get readyMessage => 'Kişisel 30 günlük yüz yogası programınız hazır✨';
+	@override String get minutes => 'Dk';
+}
+
+// Path: editProfile
+class _TranslationsEditProfileTr implements TranslationsEditProfileEn {
+	_TranslationsEditProfileTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Profil Düzenle';
+	@override String get changePhoto => 'Fotoğrafı Değiştir';
+	@override String get fullName => 'Ad Soyad';
+	@override String get email => 'E-posta';
+	@override String get age => 'Yaş';
+	@override String get gender => 'Cinsiyet';
+	@override String get skinType => 'Cilt Tipi';
+	@override String get focusArea => 'Odak Alanı';
+	@override String get focusAreaHint => 'Alın, Gözler, Burun, Ağız, Yanaklar...';
+	@override String get save => 'Kaydet';
+	@override String get saving => 'Kaydediliyor...';
+	@override String get updateSuccess => 'Profil başarıyla güncellendi';
+	@override String get updateError => 'Profil güncellenirken bir hata oluştu';
+	@override String get deleteAccount => 'Hesabı Sil';
+}
+
+// Path: notifications
+class _TranslationsNotificationsTr implements TranslationsNotificationsEn {
+	_TranslationsNotificationsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Bildirimler';
+	@override String get emptyTitle => 'Henüz bildirim yok';
+	@override String get emptyDescription => 'Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.';
+	@override String get premiumBannerTitle => 'Premium avantajlarını\nkaçırma!';
+	@override String get premiumBannerDescription => 'Premium abonesi olarak fırsatları yakala.';
+	@override String get sample1Title => 'Günlük meditasyonunuz hazır!';
+	@override String get sample1Description => 'Gününüz için huzurunuzu bulun';
+	@override String get sample1Time => '15 dakika önce';
+	@override String get sample2Title => 'Yeni Egzersiz: Okyanus Nefesi';
+	@override String get sample2Description => 'Yeni bir nefes tekniği eklendi';
+	@override String get sample2Time => '1 saat önce';
+	@override String get sample3Title => '7 günlük seriye ulaştınız!';
+	@override String get sample3Description => 'Refahınız için harika bir iş çıkarıyorsunuz';
+	@override String get sample3Time => 'Dün';
+}
+
+// Path: share
+class _TranslationsShareTr implements TranslationsShareEn {
+	_TranslationsShareTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Arkadaşlarınla Paylaş';
+	@override String get mainTitle => 'Huzuru Paylaş';
+	@override String get descriptionPart1 => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ';
+	@override String get descriptionPart2 => '1 hafta Premium\n';
+	@override String get descriptionPart3 => ' kazanın';
+	@override String get yourReferralCode => 'REFERANS KODUN';
+	@override String get codeCopied => 'Kod kopyalandı!';
+	@override String get copyCode => 'Kodu Kopyala';
+}
+
+// Path: facialScan
+class _TranslationsFacialScanTr implements TranslationsFacialScanEn {
+	_TranslationsFacialScanTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yüz Taraması';
+	@override String step({required Object current, required Object total}) => 'ADIM ${current} / ${total}';
+	@override String get getStarted => 'Başla';
+	@override late final _TranslationsFacialScanAnalyzingTr analyzing = _TranslationsFacialScanAnalyzingTr._(_root);
+	@override late final _TranslationsFacialScanResultTr result = _TranslationsFacialScanResultTr._(_root);
+	@override late final _TranslationsFacialScanInstructionsTr instructions = _TranslationsFacialScanInstructionsTr._(_root);
+	@override late final _TranslationsFacialScanErrorsTr errors = _TranslationsFacialScanErrorsTr._(_root);
+	@override late final _TranslationsFacialScanPositionsTr positions = _TranslationsFacialScanPositionsTr._(_root);
+}
+
+// Path: auth
+class _TranslationsAuthTr implements TranslationsAuthEn {
+	_TranslationsAuthTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get google => 'Google';
+	@override String get facebook => 'Facebook';
+	@override String get apple => 'Apple';
+	@override String get guest => 'Misafir Olarak Devam Et';
+	@override String signInFailed({required Object error}) => 'Giriş başarısız: ${error}';
 }
 
 // Path: termsOfService.section1
@@ -545,6 +753,239 @@ class _TranslationsFaqQuestionsTr implements TranslationsFaqQuestionsEn {
 	@override late final _TranslationsFaqQuestionsQ10Tr q10 = _TranslationsFaqQuestionsQ10Tr._(_root);
 }
 
+// Path: splash.screen1
+class _TranslationsSplashScreen1Tr implements TranslationsSplashScreen1En {
+	_TranslationsSplashScreen1Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yüzünüzü Doğal Yollarla Şekillendirin';
+	@override String get description => 'Günde sadece birkaç dakika yüz egzersizi ile yüz kaslarınızı çalıştırın. Doğal, estetik ve invaziv olmayan bir güzellik rutini oluşturun.';
+}
+
+// Path: splash.screen2
+class _TranslationsSplashScreen2Tr implements TranslationsSplashScreen2En {
+	_TranslationsSplashScreen2Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yapay Zeka ile Kişiselleştirilmiş Egzersiz Planı';
+	@override String get description => 'Yapay zeka yüz hatlarınızı analiz eder, ihtiyaçlarınızı belirler ve size özel egzersizler önerir. Hangi kasların daha fazla çalışması gerektiğini takip eder.';
+}
+
+// Path: splash.screen3
+class _TranslationsSplashScreen3Tr implements TranslationsSplashScreen3En {
+	_TranslationsSplashScreen3Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Görünür Sonuçlar';
+	@override String get description => 'Düzenli kullanımla yüz hatları daha belirgin hale gelir, dolaşım iyileşir ve cilt daha canlı görünür. Her gün küçük adımlar büyük değişimler getirir.';
+}
+
+// Path: profile.sections
+class _TranslationsProfileSectionsTr implements TranslationsProfileSectionsEn {
+	_TranslationsProfileSectionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get accountSettings => 'HESAP AYARLARI';
+	@override String get supportAndOther => 'DESTEK & DİĞER';
+}
+
+// Path: profile.menu
+class _TranslationsProfileMenuTr implements TranslationsProfileMenuEn {
+	_TranslationsProfileMenuTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get editProfile => 'Profil Düzenle';
+	@override String get notifications => 'Bildirimler';
+	@override String get premium => 'Premium';
+	@override String get favoriteExercises => 'Favori Egzersizler';
+	@override String get appLanguage => 'Uygulama Dili';
+	@override String get shareWithFriends => 'Arkadaşlarınla Paylaş';
+	@override String get enterInviteCode => 'Davet Kodu Gir';
+	@override String get rateUs => 'Bizi Değerlendir';
+	@override String get faq => 'SSS';
+	@override String get logout => 'Çıkış Yap';
+}
+
+// Path: profile.logoutDialog
+class _TranslationsProfileLogoutDialogTr implements TranslationsProfileLogoutDialogEn {
+	_TranslationsProfileLogoutDialogTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Çıkış yapmak üzeresiniz';
+	@override String get message => 'Tekrar görüşmek üzere! Nefes egzersizlerinizi izleyeceğiz.';
+	@override String get logoutButton => 'Çıkış Yap';
+	@override String get cancelButton => 'Vazgeç';
+}
+
+// Path: home.personalized
+class _TranslationsHomePersonalizedTr implements TranslationsHomePersonalizedEn {
+	_TranslationsHomePersonalizedTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kişiselleştirilmiş\nYüz Analizi\nRaporu';
+	@override String get description => 'Cilt tipinizi öğrenmek için\nlütfen yüzünüzü analiz edin.';
+	@override String get button => 'Hemen Dene';
+}
+
+// Path: home.premiumPlan
+class _TranslationsHomePremiumPlanTr implements TranslationsHomePremiumPlanEn {
+	_TranslationsHomePremiumPlanTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Premium Plan';
+	@override String get description => 'AI asistanının kilidini aç &\ntüm premium özellikleri edin';
+	@override String get button => 'Premium Al';
+	@override late final _TranslationsHomePremiumPlanDialogTr dialog = _TranslationsHomePremiumPlanDialogTr._(_root);
+}
+
+// Path: home.quickActions
+class _TranslationsHomeQuickActionsTr implements TranslationsHomeQuickActionsEn {
+	_TranslationsHomeQuickActionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hızlı İşlemler';
+	@override String get programTitle => 'Kişisel Programınız';
+	@override String get programSubtitle => '30 günde en iyi görünümünüz\niçin';
+	@override String get button => 'Başla';
+}
+
+// Path: home.todaysExercise
+class _TranslationsHomeTodaysExerciseTr implements TranslationsHomeTodaysExerciseEn {
+	_TranslationsHomeTodaysExerciseTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Günün Egzersizi';
+	@override String get recommended => 'Önerilen Rutin';
+	@override String get forToday => 'bugün için';
+}
+
+// Path: home.courses
+class _TranslationsHomeCoursesTr implements TranslationsHomeCoursesEn {
+	_TranslationsHomeCoursesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsHomeCoursesForeheadSmootherTr foreheadSmoother = _TranslationsHomeCoursesForeheadSmootherTr._(_root);
+	@override late final _TranslationsHomeCoursesVMoveTr vMove = _TranslationsHomeCoursesVMoveTr._(_root);
+	@override late final _TranslationsHomeCoursesCheekLifterTr cheekLifter = _TranslationsHomeCoursesCheekLifterTr._(_root);
+}
+
+// Path: home.benefits
+class _TranslationsHomeBenefitsTr implements TranslationsHomeBenefitsEn {
+	_TranslationsHomeBenefitsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsHomeBenefitsNaturalIroningTr naturalIroning = _TranslationsHomeBenefitsNaturalIroningTr._(_root);
+	@override late final _TranslationsHomeBenefitsBotoxEffectTr botoxEffect = _TranslationsHomeBenefitsBotoxEffectTr._(_root);
+	@override late final _TranslationsHomeBenefitsStressReliefTr stressRelief = _TranslationsHomeBenefitsStressReliefTr._(_root);
+	@override late final _TranslationsHomeBenefitsRadiantAppearanceTr radiantAppearance = _TranslationsHomeBenefitsRadiantAppearanceTr._(_root);
+	@override late final _TranslationsHomeBenefitsDePuffingTr dePuffing = _TranslationsHomeBenefitsDePuffingTr._(_root);
+}
+
+// Path: courseDetail.instructions
+class _TranslationsCourseDetailInstructionsTr implements TranslationsCourseDetailInstructionsEn {
+	_TranslationsCourseDetailInstructionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsCourseDetailInstructionsInstruction1Tr instruction1 = _TranslationsCourseDetailInstructionsInstruction1Tr._(_root);
+	@override late final _TranslationsCourseDetailInstructionsInstruction2Tr instruction2 = _TranslationsCourseDetailInstructionsInstruction2Tr._(_root);
+}
+
+// Path: facialScan.analyzing
+class _TranslationsFacialScanAnalyzingTr implements TranslationsFacialScanAnalyzingEn {
+	_TranslationsFacialScanAnalyzingTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Analiz Ediliyor';
+	@override String get description => 'Benzersiz Özellikleriniz Analiz Ediliyor';
+	@override String get detail => 'Cilt dokusu, kas tonusu ve kişiselleştirilmiş rutininiz için odak alanları tespit ediliyor.';
+	@override String get aiEngineWorking => 'YAPAY ZEKA ÇALIŞIYOR';
+}
+
+// Path: facialScan.result
+class _TranslationsFacialScanResultTr implements TranslationsFacialScanResultEn {
+	_TranslationsFacialScanResultTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Analiziniz Hazır!';
+	@override String get subtitle => 'Sonuçlarınıza göre bir rutin hazırladık.';
+	@override String get skinType => 'CİLT TİPİ';
+	@override String get primaryGoal => 'ANA HEDEF';
+	@override String get recommended => 'Sizin İçin Önerilen';
+	@override String get back => 'Geri';
+}
+
+// Path: facialScan.instructions
+class _TranslationsFacialScanInstructionsTr implements TranslationsFacialScanInstructionsEn {
+	_TranslationsFacialScanInstructionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get front => 'Yüzünüzü çerçevenin içine yerleştirin';
+	@override String get left => 'Başınızı sola çevirin';
+	@override String get right => 'Başınızı sağa çevirin';
+	@override String get lighting => 'Daha iyi sonuçlar için iyi aydınlatılmış bir ortamda olduğunuzdan emin olun';
+	@override String get tapToCapture => 'Fotoğraf çekmek için kamera butonuna dokunun';
+}
+
+// Path: facialScan.errors
+class _TranslationsFacialScanErrorsTr implements TranslationsFacialScanErrorsEn {
+	_TranslationsFacialScanErrorsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get cameraPermission => 'Fotoğraf çekmek için kamera izni gerekiyor.';
+	@override String get cameraPermissionRequired => 'Kamera İzni Gerekli';
+	@override String get cameraPermissionMessage => 'Yüz taraması için kamera izni gerekiyor. Lütfen ayarlardan etkinleştirin.';
+	@override String get openSettings => 'Ayarları Aç';
+	@override String get cancel => 'İptal';
+	@override String get noFaceDetected => 'Yüz algılanamadı. Lütfen tekrar deneyin.';
+	@override String get captureFailed => 'Görüntü alınamadı. Lütfen tekrar deneyin.';
+}
+
+// Path: facialScan.positions
+class _TranslationsFacialScanPositionsTr implements TranslationsFacialScanPositionsEn {
+	_TranslationsFacialScanPositionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get front => 'ÖN';
+	@override String get left => 'SOL';
+	@override String get right => 'SAĞ';
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialTr implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialTr._(this._root);
@@ -731,6 +1172,128 @@ class _TranslationsFaqQuestionsQ10Tr implements TranslationsFaqQuestionsQ10En {
 	@override String get answer => 'Birçok kullanıcı güvenle kullanır, ancak operasyon sonrası iyileşme sürecinde mutlaka doktora danışılması önerilir.';
 }
 
+// Path: home.premiumPlan.dialog
+class _TranslationsHomePremiumPlanDialogTr implements TranslationsHomePremiumPlanDialogEn {
+	_TranslationsHomePremiumPlanDialogTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Özellik Aktif Değil';
+	@override String get message => 'Bu özellik şu anda kullanıma açık değildir.';
+	@override String get button => 'Tamam';
+}
+
+// Path: home.courses.foreheadSmoother
+class _TranslationsHomeCoursesForeheadSmootherTr implements TranslationsHomeCoursesForeheadSmootherEn {
+	_TranslationsHomeCoursesForeheadSmootherTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Alın Düzenleyici';
+	@override String get description => 'Bu hareket alın kaslarındaki gerginliği ve birikmiş kaş çatma çizgilerini serbest bırakır...';
+}
+
+// Path: home.courses.vMove
+class _TranslationsHomeCoursesVMoveTr implements TranslationsHomeCoursesVMoveEn {
+	_TranslationsHomeCoursesVMoveTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '"V" Hareketi';
+	@override String get description => 'Göz çevresindeki hassas cildi güçlendirir, düşük göz kapaklarını kaldırır ve yorgunluk belirtilerini siler.';
+}
+
+// Path: home.courses.cheekLifter
+class _TranslationsHomeCoursesCheekLifterTr implements TranslationsHomeCoursesCheekLifterEn {
+	_TranslationsHomeCoursesCheekLifterTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yanak Kaldırıcı';
+	@override String get description => 'Yerçekimine en çok maruz kalan yanak kaslarını (Zigomatik) kaldırarak yüz ovalini geri kazandırır.';
+}
+
+// Path: home.benefits.naturalIroning
+class _TranslationsHomeBenefitsNaturalIroningTr implements TranslationsHomeBenefitsNaturalIroningEn {
+	_TranslationsHomeBenefitsNaturalIroningTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Doğal Ütüleme:';
+	@override String get description => 'Alındaki yatay çizgileri açar ve derinleşmelerini önler.';
+}
+
+// Path: home.benefits.botoxEffect
+class _TranslationsHomeBenefitsBotoxEffectTr implements TranslationsHomeBenefitsBotoxEffectEn {
+	_TranslationsHomeBenefitsBotoxEffectTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Botoks Etkisi';
+	@override String get description => 'Gergin kasları gevşetir ve kaş çatma alışkanlığını kırar.';
+}
+
+// Path: home.benefits.stressRelief
+class _TranslationsHomeBenefitsStressReliefTr implements TranslationsHomeBenefitsStressReliefEn {
+	_TranslationsHomeBenefitsStressReliefTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Stres Giderme';
+	@override String get description => 'Alında biriken stresi alır ve baş ağrılarını hafifletir.';
+}
+
+// Path: home.benefits.radiantAppearance
+class _TranslationsHomeBenefitsRadiantAppearanceTr implements TranslationsHomeBenefitsRadiantAppearanceEn {
+	_TranslationsHomeBenefitsRadiantAppearanceTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Işıltılı Görünüm';
+	@override String get description => 'Kan dolaşımını hızlandırarak cilde parlaklık verir.';
+}
+
+// Path: home.benefits.dePuffing
+class _TranslationsHomeBenefitsDePuffingTr implements TranslationsHomeBenefitsDePuffingEn {
+	_TranslationsHomeBenefitsDePuffingTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ödem Atıcı';
+	@override String get description => 'Lenfatik drenaj etkisiyle yüzdeki şişkinliği azaltır.';
+}
+
+// Path: courseDetail.instructions.instruction1
+class _TranslationsCourseDetailInstructionsInstruction1Tr implements TranslationsCourseDetailInstructionsInstruction1En {
+	_TranslationsCourseDetailInstructionsInstruction1Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ellerinizi ve Yüzünüzü Yıkayın';
+	@override String get description => 'Temiz bir cilt masajın daha etkili olmasını sağlar.';
+}
+
+// Path: courseDetail.instructions.instruction2
+class _TranslationsCourseDetailInstructionsInstruction2Tr implements TranslationsCourseDetailInstructionsInstruction2En {
+	_TranslationsCourseDetailInstructionsInstruction2Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Yüz Yağı veya Nemlendirici Uygulayın';
+	@override String get description => 'Cildinizi çekmeden yumuşakça kaydırın.';
+}
+
 /// The flat map containing all translations for locale <tr>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -739,7 +1302,8 @@ class _TranslationsFaqQuestionsQ10Tr implements TranslationsFaqQuestionsQ10En {
 extension on TranslationsTr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'welcome' => 'Hoşgeldiniz',
+			'welcome' => ({required Object name}) => 'Hoşgeldiniz ${name}',
+			'welcome2' => 'Hoşgeldiniz',
 			'get_started' => 'Başlayın',
 			'next' => 'Sonraki',
 			'back' => 'Geri',
@@ -879,6 +1443,7 @@ extension on TranslationsTr {
 			'onboarding.lips' => 'Dudaklar',
 			'onboarding.jawline' => 'Çene hattı',
 			'onboarding.neck' => 'Boyun',
+			'onboarding.fullface' => 'Tüm Yüz',
 			'onboarding.whatFaceShapeAiming' => 'Hangi yüz şeklini hedefliyorsunuz?',
 			'onboarding.heart' => 'Kalp',
 			'onboarding.oval' => 'Oval',
@@ -907,6 +1472,10 @@ extension on TranslationsTr {
 			'onboarding.no' => 'Hayır',
 			'onboarding.creatingPersonalizedProfile' => 'Kişiselleştirilmiş Profiliniz Oluşturuluyor',
 			'onboarding.tailoringExperience' => 'Tercihlerinize göre deneyiminizi özelleştiriyoruz...',
+			'onboarding.gender' => 'Cinsiyet',
+			'onboarding.age' => 'Yaş',
+			'onboarding.weight' => 'Kilo',
+			'onboarding.height' => 'Boy',
 			'onboarding.matchingPersonalities' => 'KİŞİLİKLER EŞLEŞTİRİLİYOR',
 			'pressBackAgainToExit' => 'Çıkmak için bir kez daha geri tuşuna basın',
 			'addedToFavoritesTitle' => 'Egzersiz başarıyla favorilere eklendi!',
@@ -933,6 +1502,163 @@ extension on TranslationsTr {
 			'faq.questions.q9.answer' => 'Temel egzersizler ücretsizdir. Kişisel programlar, ileri seviye yüz analizi ve özel AI önerileri premium pakette yer alır.',
 			'faq.questions.q10.question' => 'Estetik operasyon yaptırmış olanlar kullanabilir mi?',
 			'faq.questions.q10.answer' => 'Birçok kullanıcı güvenle kullanır, ancak operasyon sonrası iyileşme sürecinde mutlaka doktora danışılması önerilir.',
+			'full_face' => 'Tüm Yüz / Genel Canlandırma',
+			'eye_area' => 'Göz & Göz Çevresi',
+			'nose_area' => 'Burun & Burun Çevresi',
+			'cheeks_mid_face' => 'Yanak & Orta Yüz',
+			'lip_area' => 'Dudak & Ağız Çevresi',
+			'jawline_chin' => 'Çene, Jawline & Gıdı',
+			'forehead_brow' => 'Alın & Kaş Bölgesi',
+			'neck_decollete' => 'Boyun & Dekolte',
+			'good_morning' => 'Günaydın',
+			'good_afternoon' => 'İyi günler',
+			'good_evening' => 'İyi akşamlar',
+			'splash.screen1.title' => 'Yüzünüzü Doğal Yollarla Şekillendirin',
+			'splash.screen1.description' => 'Günde sadece birkaç dakika yüz egzersizi ile yüz kaslarınızı çalıştırın. Doğal, estetik ve invaziv olmayan bir güzellik rutini oluşturun.',
+			'splash.screen2.title' => 'Yapay Zeka ile Kişiselleştirilmiş Egzersiz Planı',
+			'splash.screen2.description' => 'Yapay zeka yüz hatlarınızı analiz eder, ihtiyaçlarınızı belirler ve size özel egzersizler önerir. Hangi kasların daha fazla çalışması gerektiğini takip eder.',
+			'splash.screen3.title' => 'Görünür Sonuçlar',
+			'splash.screen3.description' => 'Düzenli kullanımla yüz hatları daha belirgin hale gelir, dolaşım iyileşir ve cilt daha canlı görünür. Her gün küçük adımlar büyük değişimler getirir.',
+			'profile.title' => 'Profil',
+			'profile.freeVersion' => 'Ücretsiz Versiyon',
+			'profile.error' => 'Hata',
+			'profile.sections.accountSettings' => 'HESAP AYARLARI',
+			'profile.sections.supportAndOther' => 'DESTEK & DİĞER',
+			'profile.menu.editProfile' => 'Profil Düzenle',
+			'profile.menu.notifications' => 'Bildirimler',
+			'profile.menu.premium' => 'Premium',
+			'profile.menu.favoriteExercises' => 'Favori Egzersizler',
+			'profile.menu.appLanguage' => 'Uygulama Dili',
+			'profile.menu.shareWithFriends' => 'Arkadaşlarınla Paylaş',
+			'profile.menu.enterInviteCode' => 'Davet Kodu Gir',
+			'profile.menu.rateUs' => 'Bizi Değerlendir',
+			'profile.menu.faq' => 'SSS',
+			'profile.menu.logout' => 'Çıkış Yap',
+			'profile.manage' => 'YÖNET',
+			'profile.logoutDialog.title' => 'Çıkış yapmak üzeresiniz',
+			'profile.logoutDialog.message' => 'Tekrar görüşmek üzere! Nefes egzersizlerinizi izleyeceğiz.',
+			'profile.logoutDialog.logoutButton' => 'Çıkış Yap',
+			'profile.logoutDialog.cancelButton' => 'Vazgeç',
+			'home.premium' => 'Premium!',
+			'home.focusAreas' => 'Odak Alanları',
+			'home.popularCourses' => 'Popüler Kurslar',
+			'home.seeMore' => 'Daha Fazla',
+			'home.personalized.title' => 'Kişiselleştirilmiş\nYüz Analizi\nRaporu',
+			'home.personalized.description' => 'Cilt tipinizi öğrenmek için\nlütfen yüzünüzü analiz edin.',
+			'home.personalized.button' => 'Hemen Dene',
+			'home.premiumPlan.title' => 'Premium Plan',
+			'home.premiumPlan.description' => 'AI asistanının kilidini aç &\ntüm premium özellikleri edin',
+			'home.premiumPlan.button' => 'Premium Al',
+			'home.premiumPlan.dialog.title' => 'Özellik Aktif Değil',
+			'home.premiumPlan.dialog.message' => 'Bu özellik şu anda kullanıma açık değildir.',
+			'home.premiumPlan.dialog.button' => 'Tamam',
+			'home.quickActions.title' => 'Hızlı İşlemler',
+			'home.quickActions.programTitle' => 'Kişisel Programınız',
+			'home.quickActions.programSubtitle' => '30 günde en iyi görünümünüz\niçin',
+			'home.quickActions.button' => 'Başla',
+			'home.todaysExercise.title' => 'Günün Egzersizi',
+			'home.todaysExercise.recommended' => 'Önerilen Rutin',
+			'home.todaysExercise.forToday' => 'bugün için',
+			'home.courses.foreheadSmoother.title' => 'Alın Düzenleyici',
+			'home.courses.foreheadSmoother.description' => 'Bu hareket alın kaslarındaki gerginliği ve birikmiş kaş çatma çizgilerini serbest bırakır...',
+			'home.courses.vMove.title' => '"V" Hareketi',
+			'home.courses.vMove.description' => 'Göz çevresindeki hassas cildi güçlendirir, düşük göz kapaklarını kaldırır ve yorgunluk belirtilerini siler.',
+			'home.courses.cheekLifter.title' => 'Yanak Kaldırıcı',
+			'home.courses.cheekLifter.description' => 'Yerçekimine en çok maruz kalan yanak kaslarını (Zigomatik) kaldırarak yüz ovalini geri kazandırır.',
+			'home.benefits.naturalIroning.title' => 'Doğal Ütüleme:',
+			'home.benefits.naturalIroning.description' => 'Alındaki yatay çizgileri açar ve derinleşmelerini önler.',
+			'home.benefits.botoxEffect.title' => 'Botoks Etkisi',
+			'home.benefits.botoxEffect.description' => 'Gergin kasları gevşetir ve kaş çatma alışkanlığını kırar.',
+			'home.benefits.stressRelief.title' => 'Stres Giderme',
+			'home.benefits.stressRelief.description' => 'Alında biriken stresi alır ve baş ağrılarını hafifletir.',
+			'home.benefits.radiantAppearance.title' => 'Işıltılı Görünüm',
+			'home.benefits.radiantAppearance.description' => 'Kan dolaşımını hızlandırarak cilde parlaklık verir.',
+			'home.benefits.dePuffing.title' => 'Ödem Atıcı',
+			'home.benefits.dePuffing.description' => 'Lenfatik drenaj etkisiyle yüzdeki şişkinliği azaltır.',
+			'courseDetail.title' => 'Kurs Detayı',
+			'courseDetail.getStarted' => 'Başlayın',
+			'courseDetail.noExercisesFound' => 'Bu kategori için egzersiz bulunamadı',
+			'courseDetail.instructions.instruction1.title' => 'Ellerinizi ve Yüzünüzü Yıkayın',
+			'courseDetail.instructions.instruction1.description' => 'Temiz bir cilt masajın daha etkili olmasını sağlar.',
+			'courseDetail.instructions.instruction2.title' => 'Yüz Yağı veya Nemlendirici Uygulayın',
+			'courseDetail.instructions.instruction2.description' => 'Cildinizi çekmeden yumuşakça kaydırın.',
+			'courses.title' => 'Tüm Kurslar',
+			'courses.error' => 'Egzersizler yüklenirken hata oluştu',
+			'courses.personalCoursesTitle' => 'Kişisel Kurslar',
+			'personalProgram.dailyGoalTitle' => 'Günlük Hedefinizi Belirleyin',
+			'personalProgram.dailyGoalDescription' => 'Programınıza uyan bir tempo seçin',
+			'personalProgram.personalizing' => 'Planınız Kişiselleştiriliyor...',
+			'personalProgram.readyMessage' => 'Kişisel 30 günlük yüz yogası programınız hazır✨',
+			'personalProgram.minutes' => 'Dk',
+			'editProfile.title' => 'Profil Düzenle',
+			'editProfile.changePhoto' => 'Fotoğrafı Değiştir',
+			'editProfile.fullName' => 'Ad Soyad',
+			'editProfile.email' => 'E-posta',
+			'editProfile.age' => 'Yaş',
+			'editProfile.gender' => 'Cinsiyet',
+			'editProfile.skinType' => 'Cilt Tipi',
+			'editProfile.focusArea' => 'Odak Alanı',
+			'editProfile.focusAreaHint' => 'Alın, Gözler, Burun, Ağız, Yanaklar...',
+			'editProfile.save' => 'Kaydet',
+			'editProfile.saving' => 'Kaydediliyor...',
+			'editProfile.updateSuccess' => 'Profil başarıyla güncellendi',
+			'editProfile.updateError' => 'Profil güncellenirken bir hata oluştu',
+			'editProfile.deleteAccount' => 'Hesabı Sil',
+			'notifications.title' => 'Bildirimler',
+			'notifications.emptyTitle' => 'Henüz bildirim yok',
+			'notifications.emptyDescription' => 'Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.',
+			'notifications.premiumBannerTitle' => 'Premium avantajlarını\nkaçırma!',
+			'notifications.premiumBannerDescription' => 'Premium abonesi olarak fırsatları yakala.',
+			'notifications.sample1Title' => 'Günlük meditasyonunuz hazır!',
+			'notifications.sample1Description' => 'Gününüz için huzurunuzu bulun',
+			'notifications.sample1Time' => '15 dakika önce',
+			'notifications.sample2Title' => 'Yeni Egzersiz: Okyanus Nefesi',
+			'notifications.sample2Description' => 'Yeni bir nefes tekniği eklendi',
+			'notifications.sample2Time' => '1 saat önce',
+			'notifications.sample3Title' => '7 günlük seriye ulaştınız!',
+			'notifications.sample3Description' => 'Refahınız için harika bir iş çıkarıyorsunuz',
+			'notifications.sample3Time' => 'Dün',
+			'share.title' => 'Arkadaşlarınla Paylaş',
+			'share.mainTitle' => 'Huzuru Paylaş',
+			'share.descriptionPart1' => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ',
+			'share.descriptionPart2' => '1 hafta Premium\n',
+			'share.descriptionPart3' => ' kazanın',
+			'share.yourReferralCode' => 'REFERANS KODUN',
+			'share.codeCopied' => 'Kod kopyalandı!',
+			'share.copyCode' => 'Kodu Kopyala',
+			'facialScan.title' => 'Yüz Taraması',
+			'facialScan.step' => ({required Object current, required Object total}) => 'ADIM ${current} / ${total}',
+			'facialScan.getStarted' => 'Başla',
+			'facialScan.analyzing.title' => 'Analiz Ediliyor',
+			'facialScan.analyzing.description' => 'Benzersiz Özellikleriniz Analiz Ediliyor',
+			'facialScan.analyzing.detail' => 'Cilt dokusu, kas tonusu ve kişiselleştirilmiş rutininiz için odak alanları tespit ediliyor.',
+			'facialScan.analyzing.aiEngineWorking' => 'YAPAY ZEKA ÇALIŞIYOR',
+			'facialScan.result.title' => 'Analiziniz Hazır!',
+			'facialScan.result.subtitle' => 'Sonuçlarınıza göre bir rutin hazırladık.',
+			'facialScan.result.skinType' => 'CİLT TİPİ',
+			'facialScan.result.primaryGoal' => 'ANA HEDEF',
+			'facialScan.result.recommended' => 'Sizin İçin Önerilen',
+			'facialScan.result.back' => 'Geri',
+			'facialScan.instructions.front' => 'Yüzünüzü çerçevenin içine yerleştirin',
+			'facialScan.instructions.left' => 'Başınızı sola çevirin',
+			'facialScan.instructions.right' => 'Başınızı sağa çevirin',
+			'facialScan.instructions.lighting' => 'Daha iyi sonuçlar için iyi aydınlatılmış bir ortamda olduğunuzdan emin olun',
+			'facialScan.instructions.tapToCapture' => 'Fotoğraf çekmek için kamera butonuna dokunun',
+			'facialScan.errors.cameraPermission' => 'Fotoğraf çekmek için kamera izni gerekiyor.',
+			'facialScan.errors.cameraPermissionRequired' => 'Kamera İzni Gerekli',
+			'facialScan.errors.cameraPermissionMessage' => 'Yüz taraması için kamera izni gerekiyor. Lütfen ayarlardan etkinleştirin.',
+			'facialScan.errors.openSettings' => 'Ayarları Aç',
+			'facialScan.errors.cancel' => 'İptal',
+			'facialScan.errors.noFaceDetected' => 'Yüz algılanamadı. Lütfen tekrar deneyin.',
+			'facialScan.errors.captureFailed' => 'Görüntü alınamadı. Lütfen tekrar deneyin.',
+			'facialScan.positions.front' => 'ÖN',
+			'facialScan.positions.left' => 'SOL',
+			'facialScan.positions.right' => 'SAĞ',
+			'auth.google' => 'Google',
+			'auth.facebook' => 'Facebook',
+			'auth.apple' => 'Apple',
+			'auth.guest' => 'Misafir Olarak Devam Et',
+			'auth.signInFailed' => ({required Object error}) => 'Giriş başarısız: ${error}',
 			_ => null,
 		};
 	}

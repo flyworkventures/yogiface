@@ -12,10 +12,14 @@ class SkintypeCard extends StatelessWidget {
   const SkintypeCard({
     this.skintype,
     this.imagePath,
+    this.isSelected = false,
+    this.onTap,
     super.key, // ignore: unused_element_parameter
   });
   final String? skintype;
   final String? imagePath;
+  final bool isSelected;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,8 @@ class SkintypeCard extends StatelessWidget {
           title: skintype!,
           backgroundColor: AppColors.profileTextFieldColor,
           iconBackgroundColor: AppColors.profileTextFieldColor,
+          isSelected: isSelected,
+          onTap: onTap,
         ),
         const SizedBox(height: AppSpacing.xl),
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/gen/strings.g.dart';
 
 import '../../../theme/app_colors.dart';
 
@@ -40,7 +41,7 @@ class PremiumPlanWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'Özellik Aktif Değil',
+                  context.t.home.premiumPlan.dialog.title,
                   style: AppTextStyles.onboardingBody(
                     20,
                     weight: FontWeight.w700,
@@ -50,7 +51,7 @@ class PremiumPlanWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Bu özellik şu anda kullanıma açık değildir.',
+                  context.t.home.premiumPlan.dialog.message,
                   style: AppTextStyles.onboardingBody(
                     14,
                     weight: FontWeight.w400,
@@ -60,7 +61,7 @@ class PremiumPlanWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 CustomButton(
-                  label: 'Tamam',
+                  label: context.t.home.premiumPlan.dialog.button,
                   fullWidth: true,
                   size: CustomButtonSize.small,
                   backgroundColor: const Color(0xFFE8A7F2),
@@ -111,7 +112,7 @@ class PremiumPlanWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 12),
-                Text('Premium Plan',
+                Text(context.t.home.premiumPlan.title,
                     style: AppTextStyles.onboardingBody(
                       21,
                       weight: FontWeight.bold,
@@ -119,7 +120,7 @@ class PremiumPlanWidget extends StatelessWidget {
                       letterSpacing: 0.5,
                     )),
                 const SizedBox(height: 8),
-                Text('Unlock your ai chatbot & get \nall premium features',
+                Text(context.t.home.premiumPlan.description,
                     style: AppTextStyles.onboardingBody(
                       13,
                       weight: FontWeight.w500,
@@ -129,7 +130,7 @@ class PremiumPlanWidget extends StatelessWidget {
                     )),
                 const SizedBox(height: 16),
                 CustomButton(
-                  label: 'Get Premium',
+                  label: context.t.home.premiumPlan.button,
                   fullWidth: true,
                   size: CustomButtonSize.small,
                   backgroundColor: Colors.white,

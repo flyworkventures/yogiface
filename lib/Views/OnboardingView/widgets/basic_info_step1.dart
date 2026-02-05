@@ -78,7 +78,7 @@ class BasicInfoStep1 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Gender',
+                context.t.onboarding.gender,
                 style:
                     AppTextStyles.onboardingBody(16, weight: FontWeight.w600),
               ),
@@ -108,8 +108,8 @@ class BasicInfoStep1 extends StatelessWidget {
                   child: GenderButton(
                     label: context.t.onboarding.dontWantToMention,
                     iconPath: null,
-                    isSelected: selectedGender.value == 'none',
-                    onTap: () => selectedGender.value = 'none',
+                    isSelected: selectedGender.value == 'other',
+                    onTap: () => selectedGender.value = 'other',
                   ),
                 ),
               ],
@@ -119,13 +119,13 @@ class BasicInfoStep1 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Age',
+                context.t.onboarding.age,
                 style:
                     AppTextStyles.onboardingBody(16, weight: FontWeight.w600),
               ),
             ),
             HorizontalNumberPicker(
-              min: 18,
+              min: 13,
               max: 100,
               selected: selectedAge.value,
               onChanged: (value) => selectedAge.value = value,

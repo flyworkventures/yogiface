@@ -18,13 +18,13 @@ class TargetStep3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skinTypes = [
-      context.t.onboarding.normal,
-      context.t.onboarding.oily,
-      context.t.onboarding.dry,
-      context.t.onboarding.combination,
-      context.t.onboarding.sensitive,
-    ];
+    final skinTypesMap = {
+      'normal': context.t.onboarding.normal,
+      'oily': context.t.onboarding.oily,
+      'dry': context.t.onboarding.dry,
+      'combination': context.t.onboarding.combination,
+      'sensitive': context.t.onboarding.sensitive,
+    };
 
     return Padding(
       padding: AppPaddings.horizontalPage,
@@ -64,19 +64,24 @@ class TargetStep3 extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.xl),
-          ...skinTypes.map((type) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 300),
-                    child: CheckboxOption(
-                      label: type,
-                      isSelected: selectedSkinType.value == type,
-                      onTap: () => selectedSkinType.value = type,
-                    ),
+          ...skinTypesMap.entries.map((entry) {
+            final backendValue = entry.key;
+            final displayLabel = entry.value;
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 300),
+                  child: CheckboxOption(
+                    label: displayLabel,
+                    isSelected: selectedSkinType.value == backendValue,
+                    onTap: () => selectedSkinType.value = backendValue,
                   ),
                 ),
-              )),
+              ),
+            );
+          }),
           const Spacer(),
         ],
       ),

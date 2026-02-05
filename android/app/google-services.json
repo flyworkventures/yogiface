@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "643185133399",
+    "project_id": "yogiface-1d490",
+    "storage_bucket": "yogiface-1d490.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643185133399:android:a91a0f69e8648f2c1ea012",
+        "android_client_info": {
+          "package_name": "com.flywork.yogifaceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643185133399-juee6bm3s0nb5bfcjvol2tcnb53s6vof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARY0sbL7nI8yIPOMcdGJeuNdSMENCwrp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643185133399-juee6bm3s0nb5bfcjvol2tcnb53s6vof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

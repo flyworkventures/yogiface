@@ -3,26 +3,43 @@ import 'dart:async';
 import 'package:cross_fade/cross_fade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/SplashView/models/splash_info_model.dart';
 import 'package:yogiface/Views/SplashView/widgets/splash_widget.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
 /// {@template splash_view}
 /// SplashView widget - Combined splash screen with initial image and carousel
 /// {@endtemplate}
-class SplashView extends HookWidget {
+class SplashView extends HookConsumerWidget {
   /// {@macro splash_view}
   const SplashView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final showInitialSplash = useState<bool>(true);
 
     final currentPage = useState<int>(0);
     final autoScrollTimer = useRef<Timer?>(null);
+
+    // Check authentication status on mount
     useEffect(() {
-      Future.delayed(const Duration(seconds: 2), () {
-        showInitialSplash.value = false;
+      Future.delayed(const Duration(seconds: 2), () async {
+        // Check if user is logged in
+        final authRepo = ref.read(AllProviders.authRepositoryProvider);
+        final isLoggedIn = await authRepo.isLoggedIn();
+
+        if (!context.mounted) return;
+
+        if (isLoggedIn) {
+          // User is logged in, go directly to main
+          Navigator.of(context).pushReplacementNamed('/main');
+        } else {
+          // User is not logged in, show splash carousel
+          showInitialSplash.value = false;
+        }
       });
       return null;
     }, []);
@@ -31,21 +48,18 @@ class SplashView extends HookWidget {
     final splashData = [
       SplashInfoModel(
         imagePath: AppImages.splash1,
-        title: 'Shape Your Face Naturally',
-        description:
-            'Work your facial muscles with just a few minutes of daily face exercises. Create a natural, aesthetic, and non-invasive beauty routine.',
+        title: context.t.splash.screen1.title,
+        description: context.t.splash.screen1.description,
       ),
       SplashInfoModel(
         imagePath: AppImages.splash2,
-        title: 'Personalized Exercise Plan with Ai',
-        description:
-            'AI analyzes your facial features, determines your needs, and recommends exercises tailored to you. It tracks which muscles need more work.',
+        title: context.t.splash.screen2.title,
+        description: context.t.splash.screen2.description,
       ),
       SplashInfoModel(
         imagePath: AppImages.splash3,
-        title: 'Visible Results',
-        description:
-            'With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes.',
+        title: context.t.splash.screen3.title,
+        description: context.t.splash.screen3.description,
       ),
     ];
 

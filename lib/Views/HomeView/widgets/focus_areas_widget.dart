@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
 import 'package:yogiface/Views/HomeView/widgets/featured_course_card.dart';
+import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -10,38 +12,46 @@ class FocusAreasWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> areas = [
-      {'name': 'Ağız', 'image': AppImages.focusarea1},
-      {'name': 'Gözler', 'image': AppImages.focusareaeyes},
-      {'name': 'Burun', 'image': AppImages.focusareanoise},
-      {'name': 'Yanak', 'image': AppImages.focusareacheek},
-      {'name': 'Alın', 'image': AppImages.focusareaforehead},
+      {'name': context.t.onboarding.lips, 'image': AppImages.focusarea1},
+      {'name': context.t.onboarding.eyes, 'image': AppImages.focusareaeyes},
+      {'name': context.t.onboarding.nose, 'image': AppImages.focusareanoise},
+      {'name': context.t.onboarding.cheeks, 'image': AppImages.focusareacheek},
+      {'name': context.t.onboarding.jawline, 'image': AppImages.cene},
+      {
+        'name': context.t.onboarding.forehead,
+        'image': AppImages.focusareaforehead
+      },
+      {'name': context.t.onboarding.neck, 'image': AppImages.boyun},
+      {'name': context.t.full_face, 'image': AppImages.yuz},
     ];
     final course = Course(
-      title: 'The "V" Move',
-      description:
-          'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
+      title: context.t.home.courses.vMove.title,
+      description: context.t.home.courses.vMove.description,
       imagePath: AppImages.focusarea2,
       thumbnailPath: AppImages.popularcourses1,
       benefits: [BenefitItem(title: "title", description: "description")],
     );
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Başlık
-          Text(
-            'Focus Areas',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Başlık
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
+          child: Text(
+            context.t.home.focusAreas,
             style: AppTextStyles.onboardingBody(
               18,
               weight: FontWeight.w700,
             ),
           ),
-          const SizedBox(height: 16),
+        ),
+        const SizedBox(height: 16),
 
-          // Yuvarlak Fotoğraflar - Yatay Liste
-          SizedBox(
+        // Yuvarlak Fotoğraflar - Yatay Liste
+        Padding(
+          padding: EdgeInsets.only(left: AppSpacing.xxl),
+          child: SizedBox(
             height: 85,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
@@ -59,14 +69,18 @@ class FocusAreasWidget extends StatelessWidget {
               },
             ),
           ),
+        ),
 
-          const SizedBox(height: 20),
+        const SizedBox(height: 20),
 
-          FeaturedCourseCard(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
+          child: FeaturedCourseCard(
             imagePath: AppImages.focusarea2,
             title: course.title,
             description: course.description,
             thumbnailPath: course.thumbnailPath,
+            isAsset: true,
             onTap: () {
               Navigator.push(
                 context,
@@ -76,8 +90,8 @@ class FocusAreasWidget extends StatelessWidget {
               );
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

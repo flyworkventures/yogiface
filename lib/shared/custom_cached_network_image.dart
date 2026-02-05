@@ -21,6 +21,7 @@ class CustomCachedNetworkImage extends StatelessWidget {
     this.filterQuality = FilterQuality.high,
     this.onTap,
     this.semanticLabel,
+    this.backgroundImage,
   });
 
   final String imageUrl;
@@ -39,23 +40,34 @@ class CustomCachedNetworkImage extends StatelessWidget {
   final FilterQuality filterQuality;
   final VoidCallback? onTap;
   final String? semanticLabel;
+  final String? backgroundImage;
 
   @override
   Widget build(BuildContext context) {
-    Widget image = CachedNetworkImage(
-      imageUrl: imageUrl,
-      cacheKey: cacheKey,
-      width: width,
-      height: height,
-      fit: fit,
-      memCacheWidth: memCacheWidth,
-      memCacheHeight: memCacheHeight,
-      alignment: alignment,
-      fadeInDuration: fadeInDuration,
-      fadeOutDuration: fadeOutDuration,
-      filterQuality: filterQuality,
-      placeholder: placeholder ?? _defaultPlaceholder,
-      errorWidget: errorWidget ?? _defaultErrorWidget,
+    Widget image = Container(
+      decoration: backgroundImage != null
+          ? BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(backgroundImage!),
+                fit: BoxFit.cover,
+              ),
+            )
+          : null,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        cacheKey: cacheKey,
+        width: width,
+        height: height,
+        fit: fit,
+        memCacheWidth: memCacheWidth,
+        memCacheHeight: memCacheHeight,
+        alignment: alignment,
+        fadeInDuration: fadeInDuration,
+        fadeOutDuration: fadeOutDuration,
+        filterQuality: filterQuality,
+        placeholder: placeholder ?? _defaultPlaceholder,
+        errorWidget: errorWidget ?? _defaultErrorWidget,
+      ),
     );
 
     final double resolvedRadius = borderRadius ?? AppBorderRadius.md;
@@ -77,12 +89,18 @@ class CustomCachedNetworkImage extends StatelessWidget {
   }
 
   Widget _defaultPlaceholder(BuildContext context, String url) {
-    final Color base = Theme.of(context).colorScheme.surfaceContainerHighest;
     return Container(
       width: width,
       height: height,
       alignment: Alignment.center,
-      color: base.withValues(alpha: 0.3),
+      decoration: backgroundImage != null
+          ? BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(backgroundImage!),
+                fit: BoxFit.cover,
+              ),
+            )
+          : null,
       child: SizedBox(
         width: 24,
         height: 24,

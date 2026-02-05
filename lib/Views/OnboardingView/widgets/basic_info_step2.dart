@@ -40,7 +40,7 @@ class BasicInfoStep2 extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.xl * 2),
           Text(
-            'Weight',
+            context.t.onboarding.weight,
             style: AppTextStyles.onboardingBody(16, weight: FontWeight.w600),
           ),
           HorizontalNumberPicker(
@@ -51,7 +51,7 @@ class BasicInfoStep2 extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.xl * 2),
           Text(
-            'Height',
+            context.t.onboarding.height,
             style: AppTextStyles.onboardingBody(16, weight: FontWeight.w600),
           ),
           VerticalNumericSelector(

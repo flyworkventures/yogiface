@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_border_radius.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -11,17 +12,16 @@ class PhotoCaptureWidget extends StatelessWidget {
     required this.imagePath,
     required this.onCapturePressed,
     required this.isLoading,
-    this.instructionTitle = 'Position your face within the frame',
-    this.instructionSubtitle =
-        'Ensure you are in a well-lit environment for better results',
+    this.instructionTitle,
+    this.instructionSubtitle,
     this.frontFaceImagePath,
   });
 
   final String? imagePath;
   final VoidCallback onCapturePressed;
   final bool isLoading;
-  final String instructionTitle;
-  final String instructionSubtitle;
+  final String? instructionTitle;
+  final String? instructionSubtitle;
   final String? frontFaceImagePath;
 
   @override
@@ -76,7 +76,7 @@ class PhotoCaptureWidget extends StatelessWidget {
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                'Tap the camera button to take a photo',
+                                context.t.facialScan.instructions.tapToCapture,
                                 style: AppTextStyles.body(
                                   14,
                                   color: AppColors.onboardingGreyText,
@@ -92,7 +92,7 @@ class PhotoCaptureWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Text(
-            instructionTitle,
+            instructionTitle ?? context.t.facialScan.instructions.front,
             style: AppTextStyles.heading(
               18,
               FontWeight.w600,
@@ -104,7 +104,7 @@ class PhotoCaptureWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Text(
-              instructionSubtitle,
+              instructionSubtitle ?? context.t.facialScan.instructions.lighting,
               style: AppTextStyles.body(
                 14,
                 color: AppColors.onboardingGreyText,

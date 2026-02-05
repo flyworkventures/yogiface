@@ -1,13 +1,11 @@
-/// Phase of the exercise
 enum ExercisePhase {
   idle,
-  countdown, // 3, 2, 1 countdown
-  exercise, // Video playing
-  rest, // Rest period
-  completed, // All exercises done
+  countdown,
+  exercise,
+  rest,
+  completed,
 }
 
-/// Model for a single exercise
 class Exercise {
   final String id;
   final String title;
@@ -24,7 +22,6 @@ class Exercise {
   });
 }
 
-/// State for the exercise player
 class ExerciseState {
   final List<Exercise> exercises;
   final int currentExerciseIndex;

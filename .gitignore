@@ -1,0 +1,93 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Android related
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+
+# iOS/XCode related
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/default.mode1v3
+**/ios/**/default.mode2v3
+**/ios/**/default.pbxuser
+**/ios/**/default.perspectivev3
+**/ios/flutter/App.framework
+**/ios/flutter/Flutter.framework
+**/ios/flutter/Generated.xcconfig
+**/ios/flutter/app.flx
+**/ios/flutter/app.zip
+**/ios/flutter/flutter_assets/
+**/ios/GPUShipper/
+**/ios/Podfile.lock
+**/ios/Pods/
+**/ios/Runner.xcworkspace/xcshareddata/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner.xcodeproj/project.xcworkspace/
+**/ios/Runner.xcodeproj/xcuserdata/
+**/ios/Runner.xcodeproj/xcshareddata/
+**/ios/ServiceDefinitions.json
+**/ios/Runner.app/
+**/ios/Runner.app.dSYM/
+
+# Exceptions to above rules.
+!**/ios/Runner.xcworkspace/contents.xcworkspacedata
+!**/ios/Runner.xcodeproj/project.pbxproj
+
+# MacOS related
+**/macos/Flutter/ephemeral/
+**/macos/Flutter/Generated.xcconfig
+**/macos/Flutter/flutter_export_environment.sh
+**/macos/Runner.xcworkspace/xcshareddata/
+**/macos/Runner.xcworkspace/xcuserdata/
+**/macos/Runner.xcodeproj/project.xcworkspace/
+**/macos/Runner.xcodeproj/xcuserdata/
+**/macos/Runner.xcodeproj/xcshareddata/
+**/macos/Podfile.lock
+**/macos/Pods/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json

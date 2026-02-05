@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/gen/strings.g.dart';
 
 import '../../../theme/app_colors.dart';
 
@@ -16,7 +17,7 @@ class TodaysExerciseWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Today's Exercise",
+            context.t.home.todaysExercise.title,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -48,7 +49,7 @@ class TodaysExerciseWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Recommended Routine',
+                        context.t.home.todaysExercise.recommended,
                         style: AppTextStyles.onboardingBody(
                           18,
                           weight: FontWeight.w500,
@@ -58,7 +59,7 @@ class TodaysExerciseWidget extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'for today',
+                        context.t.home.todaysExercise.forToday,
                         style: AppTextStyles.onboardingBody(
                           18,
                           weight: FontWeight.w500,
@@ -101,7 +102,8 @@ class TodaysExerciseWidget extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 4),
                         child: Text(
-                          DateFormat.MMM('tr')
+                          DateFormat.MMM(
+                                  Localizations.localeOf(context).languageCode)
                               .format(DateTime.now())
                               .toUpperCase(),
                           textAlign: TextAlign.center,

@@ -18,12 +18,12 @@ class HabitsStep2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final frequencies = [
-      context.t.onboarding.everyDay,
-      context.t.onboarding.fewDaysAWeek,
-      context.t.onboarding.occasionally,
-      context.t.onboarding.never,
-    ];
+    final frequenciesMap = {
+      'every_day': context.t.onboarding.everyDay,
+      'few_days_week': context.t.onboarding.fewDaysAWeek,
+      'occasionally': context.t.onboarding.occasionally,
+      'never': context.t.onboarding.never,
+    };
 
     return Padding(
       padding: AppPaddings.horizontalPage,
@@ -62,14 +62,19 @@ class HabitsStep2 extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.xl),
-          ...frequencies.map((frequency) => Padding(
-                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                child: CheckboxOption(
-                  label: frequency,
-                  isSelected: makeupFrequency.value == frequency,
-                  onTap: () => makeupFrequency.value = frequency,
-                ),
-              )),
+          ...frequenciesMap.entries.map((entry) {
+            final backendValue = entry.key;
+            final displayLabel = entry.value;
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+              child: CheckboxOption(
+                label: displayLabel,
+                isSelected: makeupFrequency.value == backendValue,
+                onTap: () => makeupFrequency.value = backendValue,
+              ),
+            );
+          }),
           const Spacer(),
         ],
       ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/Views/FacialScanView/services/face_detection_service.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -94,7 +95,7 @@ class FacePositionSelector extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  position.label.toUpperCase(),
+                  _getLocalizedLabel(context, position),
                   style: AppTextStyles.body(
                     11,
                     weight: isActive ? FontWeight.w600 : FontWeight.w500,
@@ -113,15 +114,13 @@ class FacePositionSelector extends StatelessWidget {
   }
 }
 
-extension FacePositionLabel on FacePosition {
-  String get label {
-    switch (this) {
-      case FacePosition.front:
-        return 'Front';
-      case FacePosition.left:
-        return 'Left';
-      case FacePosition.right:
-        return 'Right';
-    }
+String _getLocalizedLabel(BuildContext context, FacePosition position) {
+  switch (position) {
+    case FacePosition.front:
+      return context.t.facialScan.positions.front;
+    case FacePosition.left:
+      return context.t.facialScan.positions.left;
+    case FacePosition.right:
+      return context.t.facialScan.positions.right;
   }
 }

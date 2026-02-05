@@ -1,5 +1,6 @@
 {
-    "welcome": "Welcome",
+    "welcome": "Welcome $name",
+    "welcome2": "Welcome",
     "get_started": "Get Started",
     "next": "Next",
     "back": "Back",
@@ -228,6 +229,7 @@
         "lips": "Lips",
         "jawline": "Jawline",
         "neck": "Neck",
+        "fullface": "Full Face",
         "whatFaceShapeAiming": "What face shape are you aiming for?",
         "heart": "Heart",
         "oval": "Oval",
@@ -256,6 +258,10 @@
         "no": "No",
         "creatingPersonalizedProfile": "Creating Your Personalized Profile",
         "tailoringExperience": "We are tailoring your experience based on your preferences...",
+        "gender": "Gender",
+        "age": "Age",
+        "weight": "Weight",
+        "height": "Height",
         "matchingPersonalities": "MATCHING PERSONALITIES"
     },
     "pressBackAgainToExit": "Press back again to exit",
@@ -306,5 +312,242 @@
                 "answer": "Many users use it safely, but it is recommended to consult a doctor during the post-operative recovery period."
             }
         }
+    },
+    "full_face": "Full Face / General Revitalization",
+    "eye_area": "Eyes & Eye Area",
+    "nose_area": "Nose & Nose Area",
+    "cheeks_mid_face": "Cheeks & Mid Face",
+    "lip_area": "Lips & Mouth Area",
+    "jawline_chin": "Jawline, Chin & Double Chin",
+    "forehead_brow": "Forehead & Brow Area",
+    "neck_decollete": "Neck & Decollete",
+    "good_morning": "Good Morning",
+    "good_afternoon": "Good Afternoon",
+    "good_evening": "Good Evening",
+    "splash": {
+        "screen1": {
+            "title": "Shape Your Face Naturally",
+            "description": "Work your facial muscles with just a few minutes of daily face exercises. Create a natural, aesthetic, and non-invasive beauty routine."
+        },
+        "screen2": {
+            "title": "Personalized Exercise Plan with Ai",
+            "description": "AI analyzes your facial features, determines your needs, and recommends exercises tailored to you. It tracks which muscles need more work."
+        },
+        "screen3": {
+            "title": "Visible Results",
+            "description": "With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes."
+        }
+    },
+    "profile": {
+        "title": "Profile",
+        "freeVersion": "Free Version",
+        "error": "Error",
+        "sections": {
+            "accountSettings": "ACCOUNT SETTINGS",
+            "supportAndOther": "SUPPORT & OTHER"
+        },
+        "menu": {
+            "editProfile": "Edit Profile",
+            "notifications": "Notifications",
+            "premium": "Premium",
+            "favoriteExercises": "Favorite Exercises",
+            "appLanguage": "App Language",
+            "shareWithFriends": "Share with Friends",
+            "enterInviteCode": "Enter Invite Code",
+            "rateUs": "Rate Us",
+            "faq": "FAQ",
+            "logout": "Logout"
+        },
+        "manage": "MANAGE",
+        "logoutDialog": {
+            "title": "You are about to log out",
+            "message": "See you again! We will keep tracking your breath exercises.",
+            "logoutButton": "Log Out",
+            "cancelButton": "Cancel"
+        }
+    },
+    "home": {
+        "premium": "Premium!",
+        "focusAreas": "Focus Areas",
+        "popularCourses": "Popular Courses",
+        "seeMore": "See More",
+        "personalized": {
+            "title": "Personalized\nFacial Analysis\nReport",
+            "description": "Please analyze your skin\nto find out what type it is.",
+            "button": "Try it now"
+        },
+        "premiumPlan": {
+            "title": "Premium Plan",
+            "description": "Unlock your ai chatbot & get \nall premium features",
+            "button": "Get Premium",
+            "dialog": {
+                "title": "Feature Not Available",
+                "message": "This feature is currently not available.",
+                "button": "OK"
+            }
+        },
+        "quickActions": {
+            "title": "Quick Actions",
+            "programTitle": "Your Personal Program",
+            "programSubtitle": "For your best look\nin 30 days",
+            "button": "Get Started"
+        },
+        "todaysExercise": {
+            "title": "Today's Exercise",
+            "recommended": "Recommended Routine",
+            "forToday": "for today"
+        },
+        "courses": {
+            "foreheadSmoother": {
+                "title": "The Forehead Smoother",
+                "description": "This move releases tension in the forehead muscles and frown lines accumulated..."
+            },
+            "vMove": {
+                "title": "The \"V\" Move",
+                "description": "Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue."
+            },
+            "cheekLifter": {
+                "title": "The Cheek Lifter",
+                "description": "Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval."
+            }
+        },
+        "benefits": {
+            "naturalIroning": {
+                "title": "Natural Ironing:",
+                "description": "Opens horizontal lines on the forehead and prevents them from deepening."
+            },
+            "botoxEffect": {
+                "title": "Botox Effect",
+                "description": "Relaxes tense muscles and breaks the habit of frowning."
+            },
+            "stressRelief": {
+                "title": "Stress Relief",
+                "description": "Relieves stress accumulated on the forehead and alleviates headaches."
+            },
+            "radiantAppearance": {
+                "title": "Radiant Appearance",
+                "description": "Boosts blood circulation to give the skin a glow."
+            },
+            "dePuffing": {
+                "title": "De-Puffing",
+                "description": "Reduces facial puffiness through its lymphatic drainage effect."
+            }
+        }
+    },
+    "courseDetail": {
+        "title": "Course Detail",
+        "getStarted": "Get Started",
+        "noExercisesFound": "No exercises found for this category",
+        "instructions": {
+            "instruction1": {
+                "title": "Wash Your Hands and Face",
+                "description": "A clean skin allows the massage to be more effective."
+            },
+            "instruction2": {
+                "title": "Apply Face Oil or Moisturizer",
+                "description": "Smoothly glide without pulling your skin."
+            }
+        }
+    },
+    "courses": {
+        "title": "All Courses",
+        "error": "Error loading exercises",
+        "personalCoursesTitle": "Personal Courses"
+    },
+    "personalProgram": {
+        "dailyGoalTitle": "Set Your Daily Goal",
+        "dailyGoalDescription": "Choose a pace that fits your schedule",
+        "personalizing": "Personalizing Your Plan...",
+        "readyMessage": "Your personal 30-day face yoga program is ready✨",
+        "minutes": "Min"
+    },
+    "editProfile": {
+        "title": "Edit Profile",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "email": "E-mail",
+        "age": "Age",
+        "gender": "Gender",
+        "skinType": "Skin Type",
+        "focusArea": "Focus Area",
+        "focusAreaHint": "Forehead, Eyes, Nose, Mouth, Cheeks...",
+        "save": "Save",
+        "saving": "Saving...",
+        "updateSuccess": "Profile updated successfully",
+        "updateError": "An error occurred while updating profile",
+        "deleteAccount": "Delete Account"
+    },
+    "notifications": {
+        "title": "Notifications",
+        "emptyTitle": "No notifications yet",
+        "emptyDescription": "We'll notify you when there's an important update about your learning journey.",
+        "premiumBannerTitle": "Don't miss out on\nPremium benefits!",
+        "premiumBannerDescription": "Grab the opportunities as a Premium subscriber.",
+        "sample1Title": "Your daily meditation is ready!",
+        "sample1Description": "Find your calm for the day",
+        "sample1Time": "15 min ago",
+        "sample2Title": "New Exercise: Ocean Breath",
+        "sample2Description": "A new breathing technique has been added",
+        "sample2Time": "1 hour ago",
+        "sample3Title": "You've hit a 7-day streak!",
+        "sample3Description": "Keep up the amazing work on your well-being",
+        "sample3Time": "Yesterday"
+    },
+    "share": {
+        "title": "Share with Friends",
+        "mainTitle": "Share the Peace",
+        "descriptionPart1": "Invite your friends to breathe together.\nFor every invite, you both get ",
+        "descriptionPart2": "1 week Premium",
+        "descriptionPart3": "",
+        "yourReferralCode": "YOUR REFERRAL CODE",
+        "codeCopied": "Code copied!",
+        "copyCode": "Copy Code"
+    },
+    "facialScan": {
+        "title": "Facial Scan",
+        "step": "STEP $current OF $total",
+        "getStarted": "Get Started",
+        "analyzing": {
+            "title": "Analyzing",
+            "description": "Analyzing Your Unique Features",
+            "detail": "Detecting skin texture, muscle tone, and focus area for your personalized routine.",
+            "aiEngineWorking": "AI ENGINE WORKING"
+        },
+        "result": {
+            "title": "Your Analysis is Ready!",
+            "subtitle": "We've tailored a routine based on your results.",
+            "skinType": "SKIN TYPE",
+            "primaryGoal": "PRIMARY GOAL",
+            "recommended": "Recommended for You",
+            "back": "Back"
+        },
+        "instructions": {
+            "front": "Position your face within the frame",
+            "left": "Turn your head to the left",
+            "right": "Turn your head to the right",
+            "lighting": "Ensure you are in a well-lit environment for better results",
+            "tapToCapture": "Tap the camera button to take a photo"
+        },
+        "errors": {
+            "cameraPermission": "Camera permission is required to take photos.",
+            "cameraPermissionRequired": "Camera Permission Required",
+            "cameraPermissionMessage": "Camera permission is required for facial scanning. Please enable it in app settings.",
+            "openSettings": "Open Settings",
+            "cancel": "Cancel",
+            "noFaceDetected": "No face detected. Please try again.",
+            "captureFailed": "Failed to capture image. Please try again."
+        },
+        "positions": {
+            "front": "FRONT",
+            "left": "LEFT",
+            "right": "RIGHT"
+        }
+    },
+    "auth": {
+        "google": "Google",
+        "facebook": "Facebook",
+        "apple": "Apple",
+        "guest": "Continue as Guest",
+        "signInFailed": "Sign-in failed: $error"
     }
 }

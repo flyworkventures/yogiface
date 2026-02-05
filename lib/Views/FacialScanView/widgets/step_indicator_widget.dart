@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
@@ -45,7 +46,7 @@ class StepIndicatorWidget extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'STEP $currentStep OF $totalSteps',
+          context.t.facialScan.step(current: currentStep, total: totalSteps),
           style: AppTextStyles.body(
             12,
             weight: FontWeight.w600,

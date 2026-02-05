@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/Views/FacialScanView/services/face_detection_service.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analysis_result_screen.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analyzing_screen.dart';
@@ -65,26 +66,26 @@ class FacialScanView extends HookWidget {
         final cameraStatus = await Permission.camera.request();
 
         if (!cameraStatus.isGranted) {
-          errorMessage.value = 'Camera permission is required to take photos.';
+          errorMessage.value = context.t.facialScan.errors.cameraPermission;
           isLoading.value = false;
 
           if (cameraStatus.isPermanentlyDenied) {
             final shouldOpenSettings = await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
-                title: const Text('Camera Permission Required'),
-                content: const Text(
-                  'Camera permission is required for facial scanning. '
-                  'Please enable it in app settings.',
+                title:
+                    Text(context.t.facialScan.errors.cameraPermissionRequired),
+                content: Text(
+                  context.t.facialScan.errors.cameraPermissionMessage,
                 ),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(context, false),
-                    child: const Text('Cancel'),
+                    child: Text(context.t.facialScan.errors.cancel),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(context, true),
-                    child: const Text('Open Settings'),
+                    child: Text(context.t.facialScan.errors.openSettings),
                   ),
                 ],
               ),
@@ -111,7 +112,7 @@ class FacialScanView extends HookWidget {
         final hasFace = await faceDetectionService.hasFace(image.path);
 
         if (!hasFace) {
-          errorMessage.value = 'No face detected. Please try again.';
+          errorMessage.value = context.t.facialScan.errors.noFaceDetected;
           isLoading.value = false;
           return;
         }
@@ -133,7 +134,7 @@ class FacialScanView extends HookWidget {
           }
         }
       } catch (e) {
-        errorMessage.value = 'Failed to capture image. Please try again.';
+        errorMessage.value = context.t.facialScan.errors.captureFailed;
       } finally {
         isLoading.value = false;
       }

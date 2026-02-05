@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_border_radius.dart';
 import 'package:yogiface/theme/app_colors.dart';
@@ -78,12 +79,12 @@ class AnalysisResultScreen extends StatelessWidget {
             const SizedBox(height: 24),
             // Title
             Text(
-              'Your Analysis is Ready!',
+              context.t.facialScan.result.title,
               style: AppTextStyles.heading(24, FontWeight.w700),
             ),
             const SizedBox(height: 8),
             Text(
-              "We've tailored a routine based\non your results.",
+              context.t.facialScan.result.subtitle,
               style: AppTextStyles.body(
                 14,
                 color: AppColors.onboardingGreyText,
@@ -96,7 +97,7 @@ class AnalysisResultScreen extends StatelessWidget {
             _ResultCard(
               icon: Icons.spa_outlined,
               iconColor: AppColors.onboardingPurple,
-              label: 'SKIN TYPE',
+              label: context.t.facialScan.result.skinType,
               value: skinType,
             ),
             const SizedBox(height: 12),
@@ -105,7 +106,7 @@ class AnalysisResultScreen extends StatelessWidget {
               icon: Icons.auto_awesome,
               iconColor: Colors.blue,
               iconBgColor: Colors.blue.withValues(alpha: 0.1),
-              label: 'PRIMARY GOAL',
+              label: context.t.facialScan.result.primaryGoal,
               value: primaryGoal,
             ),
             const SizedBox(height: 32),
@@ -114,7 +115,7 @@ class AnalysisResultScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Recommended for You',
+                  context.t.facialScan.result.recommended,
                   style: AppTextStyles.heading(18, FontWeight.w600),
                 ),
               ),
@@ -125,7 +126,7 @@ class AnalysisResultScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: CustomButton(
-                label: 'Back',
+                label: context.t.facialScan.result.back,
                 onPressed: onBackPressed,
                 fullWidth: true,
                 size: CustomButtonSize.large,

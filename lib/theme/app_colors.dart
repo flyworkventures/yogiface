@@ -8,7 +8,7 @@ class AppColors {
   static const Color success = Color(0xFF28B487);
   static const Color danger = Color(0xFFBA1A1A);
 
-  static const Color backgroundLight = Color(0xFFF8F5F2);
+  static const Color backgroundLight = Color(0xFFF2F5FC);
   static const Color surfaceLight = Colors.white;
 
   static const Color overlayDark = Color(0xB30D1F3D);

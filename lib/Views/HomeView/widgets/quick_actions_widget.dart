@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/gen/strings.g.dart';
 
 import '../../../theme/app_colors.dart';
 
@@ -16,7 +17,7 @@ class QuickActionsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Quick Actions',
+            context.t.home.quickActions.title,
             style: AppTextStyles.onboardingBody(
               16,
               weight: FontWeight.w600,
@@ -70,7 +71,7 @@ class QuickActionsWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Your Personal Program',
+                          Text(context.t.home.quickActions.programTitle,
                               style: AppTextStyles.onboardingBody(
                                 16,
                                 letterSpacing: 0.5,
@@ -80,7 +81,7 @@ class QuickActionsWidget extends StatelessWidget {
                               )),
                           const SizedBox(height: 10),
                           Text(
-                            'For your best look\nin 30 days',
+                            context.t.home.quickActions.programSubtitle,
                             style: AppTextStyles.onboardingBody(
                               16,
                               letterSpacing: -0.3,
@@ -96,7 +97,7 @@ class QuickActionsWidget extends StatelessWidget {
                           Navigator.of(context)
                               .pushReplacementNamed('/personal-program');
                         },
-                        label: 'Get Started',
+                        label: context.t.home.quickActions.button,
                         size: CustomButtonSize.small,
                         fullWidth: true,
                         gradientColors: [

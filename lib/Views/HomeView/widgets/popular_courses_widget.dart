@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -12,88 +13,76 @@ class PopularCoursesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Course> courses = [
       Course(
-        title: 'The Forehead Smoother',
+        title: context.t.home.courses.foreheadSmoother.title,
         imagePath: AppImages.focusarea2,
         thumbnailPath: AppImages.popularcourses1,
         benefits: [
           BenefitItem(
-              title: "Natural Ironing:",
-              description:
-                  "Opens horizontal lines on the forehead and prevents them from deepening."),
+              title: context.t.home.benefits.naturalIroning.title,
+              description: context.t.home.benefits.naturalIroning.description),
           BenefitItem(
-              title: "Botox Effect",
-              description:
-                  "Relaxes tense muscles and breaks the habit of frowning."),
+              title: context.t.home.benefits.botoxEffect.title,
+              description: context.t.home.benefits.botoxEffect.description),
           BenefitItem(
-              title: "Stress Relief",
-              description:
-                  "Relieves stress accumulated on the forehead and alleviates headaches."),
+              title: context.t.home.benefits.stressRelief.title,
+              description: context.t.home.benefits.stressRelief.description),
           BenefitItem(
-              title: "Radiant Appearance",
-              description: "Boosts blood circulation to give the skin a glow."),
-          BenefitItem(
-              title: "De-Puffing",
+              title: context.t.home.benefits.radiantAppearance.title,
               description:
-                  "Reduces facial puffiness through its lymphatic drainage effect.")
+                  context.t.home.benefits.radiantAppearance.description),
+          BenefitItem(
+              title: context.t.home.benefits.dePuffing.title,
+              description: context.t.home.benefits.dePuffing.description)
         ],
-        description:
-            'This move releases tension in the forehead muscles and frown lines accumulated...',
+        description: context.t.home.courses.foreheadSmoother.description,
       ),
       Course(
-        title: 'The "V" Move',
+        title: context.t.home.courses.vMove.title,
         imagePath: AppImages.focusarea2,
         benefits: [
           BenefitItem(
-              title: "Natural Ironing:",
-              description:
-                  "Opens horizontal lines on the forehead and prevents them from deepening."),
+              title: context.t.home.benefits.naturalIroning.title,
+              description: context.t.home.benefits.naturalIroning.description),
           BenefitItem(
-              title: "Botox Effect",
-              description:
-                  "Relaxes tense muscles and breaks the habit of frowning."),
+              title: context.t.home.benefits.botoxEffect.title,
+              description: context.t.home.benefits.botoxEffect.description),
           BenefitItem(
-              title: "Stress Relief",
-              description:
-                  "Relieves stress accumulated on the forehead and alleviates headaches."),
+              title: context.t.home.benefits.stressRelief.title,
+              description: context.t.home.benefits.stressRelief.description),
           BenefitItem(
-              title: "Radiant Appearance",
-              description: "Boosts blood circulation to give the skin a glow."),
-          BenefitItem(
-              title: "De-Puffing",
+              title: context.t.home.benefits.radiantAppearance.title,
               description:
-                  "Reduces facial puffiness through its lymphatic drainage effect.")
+                  context.t.home.benefits.radiantAppearance.description),
+          BenefitItem(
+              title: context.t.home.benefits.dePuffing.title,
+              description: context.t.home.benefits.dePuffing.description)
         ],
         thumbnailPath: AppImages.vmove,
-        description:
-            'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
+        description: context.t.home.courses.vMove.description,
       ),
       Course(
-        title: 'The Cheek Lifter',
+        title: context.t.home.courses.cheekLifter.title,
         imagePath: AppImages.focusarea2,
         benefits: [
           BenefitItem(
-              title: "Natural Ironing:",
-              description:
-                  "Opens horizontal lines on the forehead and prevents them from deepening."),
+              title: context.t.home.benefits.naturalIroning.title,
+              description: context.t.home.benefits.naturalIroning.description),
           BenefitItem(
-              title: "Botox Effect",
-              description:
-                  "Relaxes tense muscles and breaks the habit of frowning."),
+              title: context.t.home.benefits.botoxEffect.title,
+              description: context.t.home.benefits.botoxEffect.description),
           BenefitItem(
-              title: "Stress Relief",
-              description:
-                  "Relieves stress accumulated on the forehead and alleviates headaches."),
+              title: context.t.home.benefits.stressRelief.title,
+              description: context.t.home.benefits.stressRelief.description),
           BenefitItem(
-              title: "Radiant Appearance",
-              description: "Boosts blood circulation to give the skin a glow."),
-          BenefitItem(
-              title: "De-Puffing",
+              title: context.t.home.benefits.radiantAppearance.title,
               description:
-                  "Reduces facial puffiness through its lymphatic drainage effect.")
+                  context.t.home.benefits.radiantAppearance.description),
+          BenefitItem(
+              title: context.t.home.benefits.dePuffing.title,
+              description: context.t.home.benefits.dePuffing.description)
         ],
         thumbnailPath: AppImages.cheeflifter,
-        description:
-            'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.',
+        description: context.t.home.courses.cheekLifter.description,
       ),
     ];
 
@@ -107,7 +96,7 @@ class PopularCoursesWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Courses',
+                context.t.home.popularCourses,
                 style: AppTextStyles.onboardingBody(
                   16,
                   weight: FontWeight.w600,
@@ -126,7 +115,7 @@ class PopularCoursesWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'See More',
+                      context.t.home.seeMore,
                       style: AppTextStyles.onboardingBody(
                         16,
                         weight: FontWeight.w600,
@@ -146,27 +135,29 @@ class PopularCoursesWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           // Kurs Listesi
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: courses.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              final course = courses[index];
-              return _CourseCard(
-                title: course.title,
-                description: course.description,
-                imagePath: course.thumbnailPath,
-                onTap: () {
-                  Navigator.push(
+          ...courses.asMap().entries.map((entry) {
+            final course = entry.value;
+            final isLast = entry.key == courses.length - 1;
+
+            return Column(
+              children: [
+                _CourseCard(
+                  title: course.title,
+                  description: course.description,
+                  imagePath: course.thumbnailPath,
+                  onTap: () {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              CourseDetailView(course: course)));
-                },
-              );
-            },
-          ),
+                        builder: (context) => CourseDetailView(course: course),
+                      ),
+                    );
+                  },
+                ),
+                if (!isLast) const SizedBox(height: 12),
+              ],
+            );
+          }),
         ],
       ),
     );
@@ -230,7 +221,7 @@ class _CourseCard extends StatelessWidget {
                         weight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 10),
                     Text(
                       description,
                       maxLines: 2,
@@ -238,7 +229,7 @@ class _CourseCard extends StatelessWidget {
                       style: AppTextStyles.onboardingBody(
                         12,
                         letterSpacing: 0.2,
-                        height: 1.2,
+                        height: 1.3,
                         weight: FontWeight.w300,
                       ),
                     ),

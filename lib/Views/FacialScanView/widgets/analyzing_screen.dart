@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_border_radius.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -45,7 +46,7 @@ class AnalyzingScreen extends HookWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  'Analyzing',
+                  context.t.facialScan.analyzing.title,
                   style: AppTextStyles.heading(18, FontWeight.w600),
                 ),
               ],
@@ -125,13 +126,13 @@ class AnalyzingScreen extends HookWidget {
             ),
             const SizedBox(height: 48),
             Text(
-              'Analyzing Your Unique\nFeatures',
+              context.t.facialScan.analyzing.description,
               style: AppTextStyles.heading(22, FontWeight.w600),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
             Text(
-              'Detecting skin texture, muscle tone, and\nfocus area for your personalized routine.',
+              context.t.facialScan.analyzing.detail,
               style: AppTextStyles.body(
                 14,
                 color: AppColors.onboardingGreyText,
@@ -218,7 +219,7 @@ class AnalyzingScreen extends HookWidget {
                   }),
                   const SizedBox(width: 8),
                   Text(
-                    'AI ENGINE WORKING',
+                    context.t.facialScan.analyzing.aiEngineWorking,
                     style: AppTextStyles.body(
                       12,
                       weight: FontWeight.w500,

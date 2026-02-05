@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
@@ -19,9 +20,9 @@ class ShareWithFriendsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Arkadaşlarınla Paylaş',
-          style: TextStyle(
+        title: Text(
+          context.t.share.title,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -55,7 +56,7 @@ class ShareWithFriendsPage extends StatelessWidget {
                   const SizedBox(height: 32),
                   // Başlık
                   Text(
-                    'Huzuru Paylaş',
+                    context.t.share.mainTitle,
                     style: AppTextStyles.latoBody(
                       24,
                       weight: FontWeight.bold,
@@ -74,18 +75,16 @@ class ShareWithFriendsPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                       children: [
+                        TextSpan(text: context.t.share.descriptionPart1),
                         TextSpan(
-                            text:
-                                'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de '),
-                        TextSpan(
-                            text: '1 hafta Premium\n',
+                            text: context.t.share.descriptionPart2,
                             style: AppTextStyles.latoBody(
                               16,
                               height: 1.3,
                               weight: FontWeight.w700,
                               color: Colors.black,
                             )),
-                        TextSpan(text: ' kazanın'),
+                        TextSpan(text: context.t.share.descriptionPart3),
                       ],
                     ),
                   ),
@@ -99,9 +98,9 @@ class ShareWithFriendsPage extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        const Text(
-                          'REFERANS KODUN',
-                          style: TextStyle(
+                        Text(
+                          context.t.share.yourReferralCode,
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
                             letterSpacing: 1,
@@ -132,7 +131,8 @@ class ShareWithFriendsPage extends StatelessWidget {
                             Clipboard.setData(
                                 const ClipboardData(text: 'X8Y-92Z'));
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Kod kopyalandı!')),
+                              SnackBar(
+                                  content: Text(context.t.share.codeCopied)),
                             );
                           },
                           child: Container(
@@ -152,8 +152,8 @@ class ShareWithFriendsPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  'Kodu Kopyala',
-                                  style: TextStyle(
+                                  context.t.share.copyCode,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                   ),

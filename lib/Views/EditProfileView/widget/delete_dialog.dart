@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class DeleteDialog extends StatelessWidget {
+class DeleteDialog extends ConsumerWidget {
   const DeleteDialog({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -53,13 +55,34 @@ class DeleteDialog extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop(true);
+                onPressed: () async {
+                  try {
+                    final success = await ref
+                        .read(AllProviders.userProvider.notifier)
+                        .deleteAccount();
+                    if (context.mounted) {
+                      if (success) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            '/login', (route) => false);
+                      } else {
+                        Navigator.of(context).pop(false);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text(
+                                  'Hesap silinirken bir hata oluştu. Lütfen tekrar deneyiniz.')),
+                        );
+                      }
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      Navigator.of(context).pop(false);
+                    }
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE94560),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),

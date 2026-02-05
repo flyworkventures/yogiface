@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yogiface/theme/app_border_radius.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
 enum CustomButtonType { filled, outlined, text, icon }
@@ -212,7 +211,9 @@ class CustomButton extends StatelessWidget {
         textStyle: WidgetStateProperty.all(textStyle),
         padding: WidgetStateProperty.all(padding),
         shape: WidgetStateProperty.all(
-          AppBorderRadius.rounded(borderRadius ?? AppBorderRadius.lg),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 50),
+          ),
         ),
         minimumSize: WidgetStateProperty.all(
           Size(
@@ -300,16 +301,16 @@ class CustomButton extends StatelessWidget {
               color: !_isEnabled
                   ? colorScheme.onSurface.withValues(alpha: 0.1)
                   : null,
-              borderRadius: BorderRadius.circular(AppBorderRadius.lg),
+              borderRadius: BorderRadius.circular(borderRadius ?? 50),
             ),
             child: Material(
               color: Colors.transparent,
-              borderRadius: BorderRadius.circular(AppBorderRadius.lg),
+              borderRadius: BorderRadius.circular(borderRadius ?? 50),
               clipBehavior: Clip.antiAlias,
               child: InkWell(
                 onTap: _isEnabled ? onPressed : null,
                 onLongPress: _isEnabled ? onLongPress : null,
-                borderRadius: BorderRadius.circular(AppBorderRadius.lg),
+                borderRadius: BorderRadius.circular(borderRadius ?? 50),
                 child: Container(
                   padding: padding,
                   alignment: Alignment.center,

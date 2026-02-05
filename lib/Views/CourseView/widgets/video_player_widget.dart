@@ -5,6 +5,7 @@ import 'package:video_player/video_player.dart';
 import 'package:yogiface/theme/app_border_radius.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
+import 'package:yogiface/utils/app_assets.dart';
 
 class VideoPlayerWidget extends HookWidget {
   const VideoPlayerWidget({
@@ -120,25 +121,19 @@ class VideoPlayerWidget extends HookWidget {
       return null;
     }, [isPlaying]);
     return SizedBox(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.75,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.5,
       child: Stack(
         children: [
           if (isInitialized.value && chewieController.value != null)
             Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    AppColors.onboardingButtonGradientStart,
-                    AppColors.onboardingButtonGradientEnd,
-                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                ),
-                child: Center(
-                  child: AspectRatio(
-                    aspectRatio: videoController.value!.value.aspectRatio,
-                    child: Chewie(
-                      controller: chewieController.value!,
-                    ),
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: SizedBox(
+                  width: videoController.value!.value.size.width,
+                  height: videoController.value!.value.size.height,
+                  child: Chewie(
+                    controller: chewieController.value!,
                   ),
                 ),
               ),
@@ -162,11 +157,11 @@ class VideoPlayerWidget extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _CircleButton(
-                  icon: Icons.arrow_back,
+                  icon: Image.asset(AppIcons.backarrow),
                   onPressed: onBackPressed,
                 ),
                 _CircleButton(
-                  icon: isMuted ? Icons.volume_off : Icons.volume_up,
+                  icon: Image.asset(AppIcons.sound),
                   onPressed: onVolumePressed,
                 ),
               ],
@@ -207,7 +202,7 @@ class _CircleButton extends StatelessWidget {
     required this.onPressed,
   });
 
-  final IconData icon;
+  final Widget icon;
   final VoidCallback onPressed;
 
   @override
@@ -218,14 +213,24 @@ class _CircleButton extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: AppColors.onboardingPurple.withValues(alpha: 0.8),
           shape: BoxShape.circle,
+          gradient: const LinearGradient(
+            colors: [
+              AppColors.onboardingButtonGradientStart,
+              AppColors.onboardingButtonGradientEnd,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.onboardingPurple.withValues(alpha: 0.3),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: 20,
-        ),
+        child: icon,
       ),
     );
   }

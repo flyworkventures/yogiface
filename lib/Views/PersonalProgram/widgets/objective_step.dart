@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/OnboardingView/widgets/checkbox_option.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
@@ -13,14 +14,20 @@ class ObjectiveStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final objectives = [
-      'Kırışıklıkları azalt',
-      'Cildi sıklaştır',
-      'Düşük göz kapaklarını toparla',
-      'Gıdıyı yok et',
-      'Cilt tonunu aydınlat',
-      'Yukarıdakilerin hepsi',
-    ];
+    // Objectives map to maintain localized labels but consistent keys/values logic if needed
+    // However, original code used the string label as the value.
+    // To minimize breakage, we might need to use the localized string as value
+    // BUT best practice is using keys.
+    // Since PersonalProgramView seems detached (no backend save visible),
+    // we should use keys for values and localized strings for labels similar to BasicInfoStep3.
+    final objectivesMap = {
+      'reduce_wrinkles': context.t.onboarding.reduceWrinkles,
+      'tighten_skin': context.t.onboarding.tightenSkin,
+      'lift_eyelids': context.t.onboarding.liftDroopyEyelids,
+      'eliminate_double_chin': context.t.onboarding.eliminateDoubleChin,
+      'brighten_tone': context.t.onboarding.brightenSkinTone,
+      'all': context.t.onboarding.allOfTheAbove,
+    };
 
     return Padding(
       padding: AppPaddings.horizontalPage,
@@ -32,7 +39,7 @@ class ObjectiveStep extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                'What is the main objective?',
+                context.t.onboarding.whatIsMainObjective,
                 style: AppTextStyles.onboardingBody(
                   24,
                   weight: FontWeight.w600,
@@ -44,7 +51,7 @@ class ObjectiveStep extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                'A short bio helps others know the real you.\nKeep it fun and genuine',
+                context.t.onboarding.shortBioDescription,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.onboardingBody(
                   15,
@@ -54,24 +61,36 @@ class ObjectiveStep extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.xl),
-            ...objectives.map((objective) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                  child: CheckboxOption(
-                    label: objective,
-                    isSelected: selectedObjectives.value.contains(objective),
-                    showRadio: true,
-                    showMoreButton: false,
-                    onTap: () {
-                      final newSet = Set<String>.from(selectedObjectives.value);
-                      if (newSet.contains(objective)) {
-                        newSet.remove(objective);
-                      } else {
-                        newSet.add(objective);
-                      }
-                      selectedObjectives.value = newSet;
-                    },
-                  ),
-                )),
+            ...objectivesMap.entries.map((entry) {
+              final objectiveKey = entry
+                  .key; // or entry.value if we want to mimic old behavior of storing the label
+              // To avoid issues if backend expects turkish strings (unlikely but possible),
+              // we will use the key 'reduce_wrinkles' etc which is safer for logic.
+              final objectiveLabel = entry.value;
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                child: CheckboxOption(
+                  label: objectiveLabel,
+                  isSelected: selectedObjectives.value.contains(objectiveKey),
+                  showRadio: true,
+                  showMoreButton: false,
+                  onTap: () {
+                    final newSet = Set<String>.from(selectedObjectives.value);
+                    if (newSet.contains(objectiveKey)) {
+                      newSet.remove(objectiveKey);
+                    } else {
+                      // Radio behavior (single select) implied by showRadio?
+                      // The original code used contains/remove/add, implying multi-select logic
+                      // but showRadio: true usually implies single select visually.
+                      // Let's keep original logic.
+                      newSet.add(objectiveKey);
+                    }
+                    selectedObjectives.value = newSet;
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
 class CourseHeader extends StatelessWidget {
@@ -25,7 +26,7 @@ class CourseHeader extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Text(
-            'Personal Courses',
+            context.t.courses.personalCoursesTitle,
             style: AppTextStyles.onboardingBody(
               20,
               weight: FontWeight.w600,

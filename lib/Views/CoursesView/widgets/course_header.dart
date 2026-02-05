@@ -28,8 +28,8 @@ class CourseHeader extends StatelessWidget {
                 size: 24,
               ),
             ),
-            const SizedBox(width: 8),
           ],
+          const SizedBox(width: 20),
           Text(
             title,
             style: AppTextStyles.onboardingBody(

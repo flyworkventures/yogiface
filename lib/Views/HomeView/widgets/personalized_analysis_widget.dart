@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/gen/strings.g.dart';
 
 class PersonalizedAnalysisWidget extends StatelessWidget {
   const PersonalizedAnalysisWidget({super.key});
@@ -38,7 +39,7 @@ class PersonalizedAnalysisWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Personalized\nFacial Analysis\nReport',
+                context.t.home.personalized.title,
                 style: AppTextStyles.onboardingBody(
                   18,
                   height: 1.2,
@@ -47,7 +48,7 @@ class PersonalizedAnalysisWidget extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                'Please analyze your skin\nto find out what type it is.',
+                context.t.home.personalized.description,
                 style: AppTextStyles.onboardingBody(12,
                     weight: FontWeight.w500, height: 1.4),
               ),
@@ -73,7 +74,7 @@ class PersonalizedAnalysisWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Text(
-                    'Try it now',
+                    context.t.home.personalized.button,
                     style: AppTextStyles.onboardingBody(
                       14,
                       color: AppColors.backgroundLight,

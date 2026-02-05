@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/Views/FacialScanView/services/face_detection_service.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/face_position_selector.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/photo_capture_widget.dart';
@@ -53,7 +54,7 @@ class CaptureScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 Text(
-                  'Facial Scan',
+                  context.t.facialScan.title,
                   style: AppTextStyles.heading(18, FontWeight.w600),
                 ),
               ],
@@ -69,9 +70,8 @@ class CaptureScreen extends StatelessWidget {
                 imagePath: capturedImages[currentPosition],
                 onCapturePressed: onCapturePressed,
                 isLoading: isLoading,
-                instructionTitle: _getInstructionTitle(),
-                instructionSubtitle:
-                    'Ensure you are in a well-lit environment for better results',
+                instructionTitle: _getInstructionTitle(context),
+                instructionSubtitle: context.t.facialScan.instructions.lighting,
                 frontFaceImagePath: capturedImages[FacePosition.front],
               ),
             ),
@@ -117,7 +117,7 @@ class CaptureScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: CustomButton(
-                  label: 'Get Started',
+                  label: context.t.facialScan.getStarted,
                   onPressed: onGetStarted,
                   fullWidth: true,
                   size: CustomButtonSize.large,
@@ -179,14 +179,14 @@ class CaptureScreen extends StatelessWidget {
     );
   }
 
-  String _getInstructionTitle() {
+  String _getInstructionTitle(BuildContext context) {
     switch (currentPosition) {
       case FacePosition.front:
-        return 'Position your face within the frame';
+        return context.t.facialScan.instructions.front;
       case FacePosition.left:
-        return 'Turn your head to the left';
+        return context.t.facialScan.instructions.left;
       case FacePosition.right:
-        return 'Turn your head to the right';
+        return context.t.facialScan.instructions.right;
     }
   }
 }

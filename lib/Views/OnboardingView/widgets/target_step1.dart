@@ -8,7 +8,7 @@ import 'package:yogiface/utils/print.dart';
 import 'chip_button.dart';
 
 class TargetStep1 extends StatelessWidget {
-  final ValueNotifier<String?> selectedArea;
+  final ValueNotifier<Set<String>> selectedArea;
   final VoidCallback onBack;
   final VoidCallback onNext;
 
@@ -21,90 +21,108 @@ class TargetStep1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final areas = [
-      context.t.onboarding.forehead,
-      context.t.onboarding.eyes,
-      context.t.onboarding.nose,
-      context.t.onboarding.cheeks,
-      context.t.onboarding.lips,
-      context.t.onboarding.jawline,
-      context.t.onboarding.neck,
-    ];
+    final areasMap = {
+      'forehead': context.t.onboarding.forehead,
+      'eyes': context.t.onboarding.eyes,
+      'nose': context.t.onboarding.nose,
+      'cheeks': context.t.onboarding.cheeks,
+      'lips': context.t.onboarding.lips,
+      'jawline': context.t.onboarding.jawline,
+      'neck': context.t.onboarding.neck,
+    };
 
     return SingleChildScrollView(
-      child: Padding(
-        padding: AppPaddings.horizontalPage,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: AppSpacing.xl),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                context.t.onboarding.whichAreaToImprove,
-                style: AppTextStyles.onboardingBody(
-                  24,
-                  height: 1.3,
-                  weight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: AppSpacing.xl),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              context.t.onboarding.whichAreaToImprove,
+              style: AppTextStyles.onboardingBody(
+                24,
+                height: 1.3,
+                weight: FontWeight.w600,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: AppSpacing.xl),
-            Stack(
-              children: [
-                Image.asset(AppImages.yuz),
-                Positioned.fill(
-                  right: 28,
-                  bottom: 28,
-                  child: ValueListenableBuilder(
-                    valueListenable: selectedArea,
-                    builder: (context, value, child) {
-                      Print.info('Selected area image: $value');
-                      if (value == context.t.onboarding.forehead) {
-                        return Image.asset(AppImages.alin);
-                      } else if (value == context.t.onboarding.eyes) {
-                        return Image.asset(AppImages.goz);
-                      } else if (value == context.t.onboarding.cheeks) {
-                        return Image.asset(AppImages.yanak);
-                      } else if (value == context.t.onboarding.lips) {
-                        return Image.asset(AppImages.dudak);
-                      } else if (value == context.t.onboarding.nose) {
-                        return Image.asset(AppImages.burun);
-                      } else if (value == context.t.onboarding.jawline) {
-                        return Image.asset(AppImages.cene);
-                      } else if (value == context.t.onboarding.neck) {
-                        return Image.asset(AppImages.boyun);
-                      } else {
-                        return Image.asset(AppImages.alin);
-                      }
-                    },
-                  ),
+          ),
+          const SizedBox(height: AppSpacing.xl),
+          Stack(
+            children: [
+              Image.asset(AppImages.yuz),
+              Positioned.fill(
+                left: 45,
+                top: 35,
+                child: ValueListenableBuilder<Set<String>>(
+                  valueListenable: selectedArea,
+                  builder: (context, selectedAreas, child) {
+                    Print.info('Selected areas: $selectedAreas');
+
+                    // Map to store area keys and their corresponding images
+                    final areaImages = {
+                      'forehead': AppImages.alin,
+                      'eyes': AppImages.goz,
+                      'cheeks': AppImages.yanak,
+                      'lips': AppImages.dudak,
+                      'nose': AppImages.burun,
+                      'jawline': AppImages.cene,
+                      'neck': AppImages.boyun,
+                    };
+
+                    // If no areas selected, return empty container
+                    if (selectedAreas.isEmpty) {
+                      return const SizedBox.shrink();
+                    }
+
+                    // Stack all selected area images
+                    return Stack(
+                      children: selectedAreas.map((area) {
+                        final imagePath = areaImages[area];
+                        if (imagePath != null) {
+                          return Image.asset(imagePath);
+                        }
+                        return const SizedBox.shrink();
+                      }).toList(),
+                    );
+                  },
                 ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.lg),
-            Wrap(
-              spacing: AppSpacing.sm,
-              runSpacing: AppSpacing.md,
-              alignment: WrapAlignment.center,
-              children: areas.map((area) {
-                final isSelected = selectedArea.value == area;
-                return SizedBox(
-                  width: (MediaQuery.of(context).size.width -
-                          AppPaddings.horizontalPage.horizontal -
-                          AppSpacing.sm * 2) /
-                      3,
-                  child: ChipButton(
-                    label: area,
-                    isSelected: isSelected,
-                    onTap: () => selectedArea.value = area,
-                  ),
-                );
-              }).toList(),
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.md,
+            alignment: WrapAlignment.center,
+            children: areasMap.entries.map((entry) {
+              final backendValue = entry.key;
+              final displayLabel = entry.value;
+              final isSelected = selectedArea.value.contains(backendValue);
+
+              return SizedBox(
+                width: (MediaQuery.of(context).size.width -
+                        AppPaddings.horizontalPage.horizontal -
+                        AppSpacing.sm * 2) /
+                    3,
+                child: ChipButton(
+                  label: displayLabel,
+                  isSelected: isSelected,
+                  onTap: () {
+                    final updatedSet = Set<String>.from(selectedArea.value);
+                    if (updatedSet.contains(backendValue)) {
+                      updatedSet.remove(backendValue);
+                    } else {
+                      updatedSet.add(backendValue);
+                    }
+                    selectedArea.value = updatedSet;
+                  },
+                ),
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }

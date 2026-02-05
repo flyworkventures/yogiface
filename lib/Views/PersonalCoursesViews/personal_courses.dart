@@ -1,26 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CoursesView/widgets/course_header.dart';
 import 'package:yogiface/Views/CoursesView/widgets/courses_list.dart';
 import 'package:yogiface/Views/CoursesView/widgets/focus_areas_list.dart';
+import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/shared/custom_overlay.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/utils/print.dart';
 
-class PersonalCourses extends HookWidget {
+class PersonalCourses extends HookConsumerWidget {
   const PersonalCourses({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final focusAreas = [
-      {'name': 'Ağız', 'image': AppImages.focusarea1},
-      {'name': 'Gözler', 'image': AppImages.focusareaeyes},
-      {'name': 'Burun', 'image': AppImages.focusareanoise},
-      {'name': 'Yanak', 'image': AppImages.focusareacheek},
-      {'name': 'Alın', 'image': AppImages.focusareaforehead},
+      {'name': t.full_face, 'image': AppImages.yuz, 'type': 'full_face'},
+      {
+        'name': t.eye_area,
+        'image': AppImages.focusareaeyes,
+        'type': 'eye_area'
+      },
+      {
+        'name': t.nose_area,
+        'image': AppImages.focusareanoise,
+        'type': 'nose_area'
+      },
+      {
+        'name': t.cheeks_mid_face,
+        'image': AppImages.focusareacheek,
+        'type': 'cheeks_mid_face'
+      },
+      {'name': t.lip_area, 'image': AppImages.focusarea1, 'type': 'lip_area'},
+      {'name': t.jawline_chin, 'image': AppImages.cene, 'type': 'jawline_chin'},
+      {
+        'name': t.forehead_brow,
+        'image': AppImages.focusareaforehead,
+        'type': 'forehead_brow'
+      },
+      {
+        'name': t.neck_decollete,
+        'image': AppImages.boyun,
+        'type': 'neck_decollete'
+      },
     ];
 
     final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
+
+    // Fetch exercises
+    final exerciseRepository =
+        ref.watch(AllProviders.exerciseRepositoryProvider);
+    final exercisesSnapshot = useFuture(
+      useMemoized(() => exerciseRepository.getAllExercises(lang: 'en'),
+          []), // TODO: dynamic lang
+    );
+
+    // Local favorite state
     final favoriteCourses = useState<Set<int>>({});
+
     useEffect(() {
       void listener() {
         selectedIndex.value = tabController.index;
@@ -30,99 +69,29 @@ class PersonalCourses extends HookWidget {
       return () => tabController.removeListener(listener);
     }, [tabController]);
 
-    // Her focus area için kurslar
-    final coursesByArea = useMemoized(
-        () => <int, List<Map<String, String>>>{
-              0: [
-                // Ağız
-                {
-                  'title': 'Lip Plumper',
-                  'description':
-                      'Naturally plumps and defines lips through targeted exercises.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Smile Lifter',
-                  'description':
-                      'Lifts the corners of the mouth and reduces nasolabial folds.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              1: [
-                // Gözler
-                {
-                  'title': 'The "V" Move',
-                  'description':
-                      'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Eye Brightener',
-                  'description':
-                      'Reduces puffiness and dark circles, giving a refreshed look.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Crow\'s Feet Eraser',
-                  'description':
-                      'Smooths fine lines around the eyes for a youthful appearance.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              2: [
-                // Burun
-                {
-                  'title': 'Nose Refiner',
-                  'description':
-                      'Tones the muscles around the nose for a more defined appearance.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              3: [
-                // Yanak
-                {
-                  'title': 'The Cheek Lifter',
-                  'description':
-                      'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Cheek Sculptor',
-                  'description':
-                      'Defines and contours cheekbones for a more sculpted look.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-              4: [
-                // Alın
-                {
-                  'title': 'The Forehead Smoother',
-                  'description':
-                      'This move releases tension in the forehead muscles and frown lines accumulated.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-                {
-                  'title': 'Brow Lifter',
-                  'description':
-                      'Lifts drooping brows and opens up the eye area naturally.',
-                  'image': AppImages.focusarea2,
-                  'thumbnail': AppImages.popularcourses1,
-                },
-              ],
-            },
-        []);
+    // Initial favorite population
+    useEffect(() {
+      if (exercisesSnapshot.hasData && exercisesSnapshot.data != null) {
+        final favorites = exercisesSnapshot.data!.data.exercises
+            ?.where((e) => e.isFavorited)
+            .map((e) => e.id)
+            .toSet();
+        if (favorites != null) {
+          favoriteCourses.value = favorites;
+        }
+      }
+      return null;
+    }, [exercisesSnapshot.hasData]);
 
-    // Mevcut seçili tab'a göre kursları al
-    final currentCourses = coursesByArea[selectedIndex.value] ?? [];
+    final currentType = focusAreas[selectedIndex.value]['type'];
+    final allExercises = exercisesSnapshot.data?.data.exercises ?? [];
+
+    final currentCourses = useMemoized(() {
+      if (currentType == 'full_face') {
+        return allExercises.where((e) => e.type == 'full_face').toList();
+      }
+      return allExercises.where((e) => e.type == currentType).toList();
+    }, [allExercises, currentType]);
 
     return PopScope(
       canPop: false,
@@ -137,7 +106,7 @@ class PersonalCourses extends HookWidget {
               // Header
               CourseHeader(
                 showBackButton: true,
-                title: 'Personal Courses',
+                title: context.t.courses.personalCoursesTitle,
                 onBackPressed: () {
                   Navigator.of(context).pushReplacementNamed('/main');
                 },
@@ -154,7 +123,12 @@ class PersonalCourses extends HookWidget {
 
                         // Focus Areas - TabBar olarak
                         FocusAreasList(
-                          focusAreas: focusAreas,
+                          focusAreas: focusAreas
+                              .map((e) => {
+                                    'name': e['name'] as String,
+                                    'image': e['image'] as String
+                                  })
+                              .toList(),
                           selectedIndex: selectedIndex.value,
                           onAreaSelected: (index) {
                             tabController.animateTo(index);
@@ -164,25 +138,55 @@ class PersonalCourses extends HookWidget {
 
                         const SizedBox(height: 24),
 
-                        // Kurs Kartları Listesi - Seçili tab'a göre
-                        AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-                          child: CoursesList(
-                            key: ValueKey(selectedIndex.value),
-                            courses: currentCourses,
-                            favoriteCourses: favoriteCourses.value,
-                            onFavoriteToggle: (index) {
-                              final newSet =
-                                  Set<int>.from(favoriteCourses.value);
-                              if (newSet.contains(index)) {
-                                newSet.remove(index);
-                              } else {
-                                newSet.add(index);
-                              }
-                              favoriteCourses.value = newSet;
-                            },
+                        if (exercisesSnapshot.connectionState ==
+                            ConnectionState.waiting)
+                          const Center(child: CircularProgressIndicator())
+                        else if (exercisesSnapshot.hasError)
+                          Center(
+                              child: Text(
+                                  '${context.t.courses.error}: ${exercisesSnapshot.error}'))
+                        else
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 300),
+                            child: CoursesList(
+                              key: ValueKey(selectedIndex.value),
+                              courses: currentCourses,
+                              favoriteCourses: favoriteCourses.value,
+                              onFavoriteToggle: (id) async {
+                                final newSet =
+                                    Set<int>.from(favoriteCourses.value);
+                                final isFav = newSet.contains(id);
+
+                                if (isFav) {
+                                  newSet.remove(id);
+                                  CustomOverlay.show(
+                                    context,
+                                    title: t.removedFromFavoritesTitle,
+                                    message: t.removedFromFavorites,
+                                    icon: AppIcons.heart2,
+                                    type: OverlayType.favoriteRemoved,
+                                  );
+                                } else {
+                                  newSet.add(id);
+                                  CustomOverlay.show(
+                                    context,
+                                    message: t.addedToFavoritesTitle,
+                                    icon: AppIcons.heart2,
+                                    type: OverlayType.success,
+                                  );
+                                }
+                                favoriteCourses.value = newSet;
+
+                                try {
+                                  await exerciseRepository.toggleFavorite(
+                                      id: id, isFavorited: isFav);
+                                } catch (e) {
+                                  Print.error("Failed to toggle favorite: $e");
+                                  // Revert on error could be implemented here
+                                }
+                              },
+                            ),
                           ),
-                        ),
 
                         const SizedBox(height: 100), // Bottom nav için boşluk
                       ],

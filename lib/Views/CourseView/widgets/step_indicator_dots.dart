@@ -21,10 +21,10 @@ class StepIndicatorDots extends StatelessWidget {
 
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: isCurrent ? 24 : 8,
-          height: 8,
+          width: 28,
+          height: 3,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(1.5),
             gradient: (isCompleted || isCurrent)
                 ? const LinearGradient(
                     colors: [

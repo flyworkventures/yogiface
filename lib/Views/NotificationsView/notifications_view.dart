@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:yogiface/Views/NotificationsView/widgets/deletebottomsheet.dart';
 import 'package:yogiface/Views/NotificationsView/widgets/notifications_card.dart';
 import 'package:yogiface/Views/NotificationsView/widgets/premium_card.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -13,26 +14,32 @@ class NotificationsView extends StatefulWidget {
 }
 
 class _NotificationsViewState extends State<NotificationsView> {
-  List<Map<String, String>> notifications = [
-    {
-      'title': 'Your daily meditation is ready!',
-      'description': 'Find your calm for the day',
-      'time': '15 min ago',
-      'icon': AppIcons.leaf,
-    },
-    {
-      'title': 'New Exercise: Ocean Breath',
-      'description': 'A new breathing technique has been added',
-      'time': '1 hour ago',
-      'icon': AppIcons.person2,
-    },
-    {
-      'title': "You've hit a 7-day streak!",
-      'description': 'Keep up the amazing work on your well-being',
-      'time': 'Yesterday',
-      'icon': AppIcons.trophy,
-    },
-  ];
+  late List<Map<String, String>> notifications;
+
+  @override
+  void initState() {
+    super.initState();
+    notifications = [
+      {
+        'title': t.notifications.sample1Title,
+        'description': t.notifications.sample1Description,
+        'time': t.notifications.sample1Time,
+        'icon': AppIcons.leaf,
+      },
+      {
+        'title': t.notifications.sample2Title,
+        'description': t.notifications.sample2Description,
+        'time': t.notifications.sample2Time,
+        'icon': AppIcons.person2,
+      },
+      {
+        'title': t.notifications.sample3Title,
+        'description': t.notifications.sample3Description,
+        'time': t.notifications.sample3Time,
+        'icon': AppIcons.trophy,
+      },
+    ];
+  }
 
   void _deleteAllNotifications() {
     setState(() {
@@ -51,7 +58,7 @@ class _NotificationsViewState extends State<NotificationsView> {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: const Text('Notifications'),
+        title: Text(t.notifications.title),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
@@ -105,7 +112,7 @@ class _NotificationsViewState extends State<NotificationsView> {
 
             // Başlık
             Text(
-              'Henüz bildirim yok',
+              t.notifications.emptyTitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.onboardingBody(
                 20,
@@ -115,7 +122,7 @@ class _NotificationsViewState extends State<NotificationsView> {
             ),
             const SizedBox(height: 12),
             Text(
-              'Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.',
+              t.notifications.emptyDescription,
               textAlign: TextAlign.center,
               style: AppTextStyles.onboardingBody(
                 14,
@@ -135,8 +142,8 @@ class _NotificationsViewState extends State<NotificationsView> {
       child: Column(
         children: [
           PremiumBannerCard(
-            title: 'Premium avantajlarını\nkaçırma!',
-            description: 'Premium abonesi olarak fırsatları yakala.',
+            title: t.notifications.premiumBannerTitle,
+            description: t.notifications.premiumBannerDescription,
             iconPath: AppIcons.premiumaward,
             onTap: () {
               // Premium sayfasına yönlendir

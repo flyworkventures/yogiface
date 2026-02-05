@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -77,7 +78,7 @@ class CompletionStep extends HookWidget {
           ),
           const SizedBox(height: 48),
           Text(
-            'Personalizing Your Plan...',
+            context.t.personalProgram.personalizing,
             style: AppTextStyles.heading(
               24,
               FontWeight.w600,
@@ -87,7 +88,7 @@ class CompletionStep extends HookWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            'Your personal 30-day face yoga program is ready✨',
+            context.t.personalProgram.readyMessage,
             style: AppTextStyles.onboardingBody(18,
                 height: 1, weight: FontWeight.w500),
             textAlign: TextAlign.center,

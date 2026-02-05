@@ -1,17 +1,192 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/Services/social_auth_service.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_colors.dart';
+import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends ConsumerWidget {
   const LoginView({
     super.key,
   });
+
+  Future<void> _handleGoogleSignIn(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      // Get ID token from Google Sign-In
+      final socialAuthService = ref.read(socialAuthServiceProvider);
+      final idToken = await socialAuthService.signInWithGoogle();
+
+      if (idToken == null) {
+        // User cancelled sign-in
+        if (context.mounted) Navigator.pop(context);
+        return;
+      }
+
+      // Store pending auth credentials instead of creating user
+      final storageService =
+          ref.read(AllProviders.secureStorageServiceProvider);
+      await storageService.savePendingAuthMethod('google');
+      await storageService.savePendingGoogleIdToken(idToken);
+
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        // Navigate to onboarding - user creation will happen after onboarding
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(context.t.auth.signInFailed(error: e.toString()))),
+        );
+      }
+    }
+  }
+
+  Future<void> _handleFacebookSignIn(
+      BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      // Get access token from Facebook Sign-In
+      final socialAuthService = ref.read(socialAuthServiceProvider);
+      final accessToken = await socialAuthService.signInWithFacebook();
+
+      if (accessToken == null) {
+        // User cancelled sign-in
+        if (context.mounted) Navigator.pop(context);
+        return;
+      }
+
+      // Store pending auth credentials instead of creating user
+      final storageService =
+          ref.read(AllProviders.secureStorageServiceProvider);
+      await storageService.savePendingAuthMethod('facebook');
+      await storageService.savePendingFacebookToken(accessToken);
+
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        // Navigate to onboarding - user creation will happen after onboarding
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(context.t.auth.signInFailed(error: e.toString()))),
+        );
+      }
+    }
+  }
+
+  Future<void> _handleAppleSignIn(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      // Get identity token from Apple Sign-In
+      final socialAuthService = ref.read(socialAuthServiceProvider);
+      final appleCredential = await socialAuthService.signInWithApple();
+
+      if (appleCredential == null) {
+        // User cancelled sign-in
+        if (context.mounted) Navigator.pop(context);
+        return;
+      }
+
+      // Store pending auth credentials instead of creating user
+      final storageService =
+          ref.read(AllProviders.secureStorageServiceProvider);
+      await storageService.savePendingAuthMethod('apple');
+      await storageService
+          .savePendingAppleIdToken(appleCredential['identityToken'] as String);
+
+      // Store user info if available (as JSON string)
+      if (appleCredential['user'] != null) {
+        final userInfo = appleCredential['user'] as Map<String, dynamic>;
+        await storageService.savePendingAppleUserInfo(
+          userInfo.toString(), // You might want to use jsonEncode here
+        );
+      }
+
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        // Navigate to onboarding - user creation will happen after onboarding
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(context.t.auth.signInFailed(error: e.toString()))),
+        );
+      }
+    }
+  }
+
+  Future<void> _handleGuestLogin(BuildContext context, WidgetRef ref) async {
+    try {
+      // Show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      // Store pending auth method instead of creating guest user
+      final storageService =
+          ref.read(AllProviders.secureStorageServiceProvider);
+      await storageService.savePendingAuthMethod('guest');
+
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        // Navigate to onboarding - user creation will happen after onboarding
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context); // Close loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(context.t.auth.signInFailed(error: e.toString()))),
+        );
+      }
+    }
+  }
 
   void _showTermsOfService(BuildContext context) {
     showDialog(
@@ -687,7 +862,7 @@ class LoginView extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       extendBody: true,
       body: Container(
@@ -703,321 +878,310 @@ class LoginView extends StatelessWidget {
             ],
           ),
         ),
-        child: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Spacer(),
-                    Text(
-                      context.t.welcome,
-                      style: AppTextStyles.onboardingBody(
-                        42,
-                        weight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      context.t.logintext,
-                      style: AppTextStyles.onboardingBody(
-                        20,
-                        weight: FontWeight.w500,
-                        color: Colors.black87,
-                        height: 1.4,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    if (Platform.isAndroid) ...[
-                      CustomButton(
-                        label: "Google",
-                        fullWidth: true,
-                        type: CustomButtonType.outlined,
-                        icon: Image.asset(
-                          AppIcons.google,
+        child: Padding(
+          padding: AppPaddings.horizontalPage,
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Spacer(),
+                      Text(
+                        context.t.welcome2,
+                        style: AppTextStyles.onboardingBody(
+                          42,
+                          weight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black87,
-                        borderColor: const Color(0xFFD9D9D9),
-                        iconPadding: 8,
-                        borderWidth: 1.0,
-                        borderRadius: 50.0,
-                        labelStyle: AppTextStyles.onboardingBody(
-                          18,
-                          weight: FontWeight.w400,
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/main');
-                        },
                       ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomButton(
-                              label: "Facebook",
-                              type: CustomButtonType.outlined,
-                              icon: Image.asset(
-                                AppIcons.facebook,
-                              ),
-                              fullWidth: true,
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black87,
-                              borderColor: const Color(0xFFD9D9D9),
-                              iconPadding: 8,
-                              borderWidth: 1.0,
-                              borderRadius: 50.0,
-                              labelStyle: AppTextStyles.onboardingBody(
-                                16,
-                                weight: FontWeight.w400,
-                              ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/main');
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: CustomButton(
-                              label: "Apple",
-                              type: CustomButtonType.outlined,
-                              icon: Image.asset(
-                                AppIcons.apple,
-                              ),
-                              fullWidth: true,
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black87,
-                              borderColor: const Color(0xFFD9D9D9),
-                              borderWidth: 1.0,
-                              iconPadding: 8,
-                              borderRadius: 50.0,
-                              labelStyle: AppTextStyles.onboardingBody(
-                                16,
-                                weight: FontWeight.w400,
-                              ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/main');
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ] else ...[
-                      CustomButton(
-                        label: "Apple",
-                        fullWidth: true,
-                        type: CustomButtonType.outlined,
-                        icon: Image.asset(
-                          AppIcons.apple,
-                        ),
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black87,
-                        borderColor: const Color(0xFFD9D9D9),
-                        iconPadding: 8,
-                        borderWidth: 1.0,
-                        borderRadius: 50.0,
-                        labelStyle: AppTextStyles.onboardingBody(
-                          14,
-                          weight: FontWeight.w400,
+                      const SizedBox(height: 8),
+                      Text(
+                        context.t.logintext,
+                        style: AppTextStyles.onboardingBody(
+                          20,
+                          weight: FontWeight.w500,
                           color: Colors.black87,
+                          height: 1.4,
                         ),
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/main');
-                        },
                       ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomButton(
-                              label: "Google",
-                              type: CustomButtonType.outlined,
-                              icon: Image.asset(
-                                AppIcons.google,
-                              ),
-                              fullWidth: true,
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black87,
-                              borderColor: const Color(0xFFD9D9D9),
-                              borderWidth: 1.0,
-                              iconPadding: 8,
-                              borderRadius: 50.0,
-                              labelStyle: AppTextStyles.onboardingBody(
-                                14,
-                                weight: FontWeight.w400,
-                                color: Colors.black87,
-                              ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/main');
-                              },
-                            ),
+                      const SizedBox(height: 32),
+                      //TODO: check for buttonss
+                      if (Platform.isAndroid) ...[
+                        CustomButton(
+                          label: context.t.auth.google,
+                          fullWidth: true,
+                          type: CustomButtonType.outlined,
+                          icon: Image.asset(
+                            AppIcons.google,
                           ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: CustomButton(
-                              label: "Facebook",
-                              type: CustomButtonType.outlined,
-                              icon: Image.asset(
-                                AppIcons.facebook,
-                              ),
-                              fullWidth: true,
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black87,
-                              borderColor: const Color(0xFFD9D9D9),
-                              borderWidth: 1.0,
-                              iconPadding: 8,
-                              borderRadius: 50.0,
-                              labelStyle: AppTextStyles.onboardingBody(
-                                14,
-                                weight: FontWeight.w400,
-                                color: Colors.black87,
-                              ),
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/main');
-                              },
-                            ),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87,
+                          borderColor: const Color(0xFFD9D9D9),
+                          iconPadding: 8,
+                          borderWidth: 1.0,
+                          borderRadius: 50.0,
+                          labelStyle: AppTextStyles.onboardingBody(
+                            18,
+                            weight: FontWeight.w400,
                           ),
-                        ],
-                      ),
-                    ],
-                    const SizedBox(height: 16),
-                    Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color(0xFFC9A8FF),
-                            Color(0xFFE8A7F2),
+                          onPressed: () => _handleGoogleSignIn(context, ref),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton(
+                                label: context.t.auth.facebook,
+                                type: CustomButtonType.outlined,
+                                icon: Image.asset(
+                                  AppIcons.facebook,
+                                ),
+                                fullWidth: true,
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.black87,
+                                borderColor: const Color(0xFFD9D9D9),
+                                iconPadding: 8,
+                                borderWidth: 1.0,
+                                borderRadius: 50.0,
+                                labelStyle: AppTextStyles.onboardingBody(
+                                  16,
+                                  weight: FontWeight.w400,
+                                ),
+                                onPressed: () =>
+                                    _handleFacebookSignIn(context, ref),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: CustomButton(
+                                label: context.t.auth.apple,
+                                type: CustomButtonType.outlined,
+                                icon: Image.asset(
+                                  AppIcons.apple,
+                                ),
+                                fullWidth: true,
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.black87,
+                                borderColor: const Color(0xFFD9D9D9),
+                                borderWidth: 1.0,
+                                iconPadding: 8,
+                                borderRadius: 50.0,
+                                labelStyle: AppTextStyles.onboardingBody(
+                                  16,
+                                  weight: FontWeight.w400,
+                                ),
+                                onPressed: () =>
+                                    _handleAppleSignIn(context, ref),
+                              ),
+                            ),
                           ],
                         ),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
+                      ] else ...[
+                        CustomButton(
+                          label: context.t.auth.apple,
+                          fullWidth: true,
+                          type: CustomButtonType.outlined,
+                          icon: Image.asset(
+                            AppIcons.apple,
+                          ),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black87,
+                          borderColor: const Color(0xFFD9D9D9),
+                          iconPadding: 8,
+                          borderWidth: 1.0,
+                          borderRadius: 50.0,
+                          labelStyle: AppTextStyles.onboardingBody(
+                            14,
+                            weight: FontWeight.w400,
+                            color: Colors.black87,
+                          ),
+                          onPressed: () => _handleAppleSignIn(context, ref),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton(
+                                label: context.t.auth.google,
+                                type: CustomButtonType.outlined,
+                                icon: Image.asset(
+                                  AppIcons.google,
+                                ),
+                                fullWidth: true,
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.black87,
+                                borderColor: const Color(0xFFD9D9D9),
+                                borderWidth: 1.0,
+                                iconPadding: 8,
+                                borderRadius: 50.0,
+                                labelStyle: AppTextStyles.onboardingBody(
+                                  14,
+                                  weight: FontWeight.w400,
+                                  color: Colors.black87,
+                                ),
+                                onPressed: () =>
+                                    _handleGoogleSignIn(context, ref),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: CustomButton(
+                                label: context.t.auth.facebook,
+                                type: CustomButtonType.outlined,
+                                icon: Image.asset(
+                                  AppIcons.facebook,
+                                ),
+                                fullWidth: true,
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.black87,
+                                borderColor: const Color(0xFFD9D9D9),
+                                borderWidth: 1.0,
+                                iconPadding: 8,
+                                borderRadius: 50.0,
+                                labelStyle: AppTextStyles.onboardingBody(
+                                  14,
+                                  weight: FontWeight.w400,
+                                  color: Colors.black87,
+                                ),
+                                onPressed: () =>
+                                    _handleFacebookSignIn(context, ref),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                      const SizedBox(height: 16),
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFFC9A8FF),
+                              Color(0xFFE8A7F2),
+                            ],
+                          ),
                           borderRadius: BorderRadius.circular(30),
-                          onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, '/onboarding');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            child: Center(
-                              child: Text(
-                                "Continue as Guest",
-                                style: AppTextStyles.button(
-                                  size: 16,
-                                  color: Colors.white,
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(30),
+                            onTap: () => _handleGuestLogin(context, ref),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              child: Center(
+                                child: Text(
+                                  context.t.auth.guest,
+                                  style: AppTextStyles.button(
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 40),
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                SizedBox(
-                  height: 350,
-                  child: Image.asset(
-                    AppImages.login,
-                    fit: BoxFit.contain,
-                    width: double.infinity,
-                  ),
-                ),
-                Positioned(
-                  bottom: 60,
-                  left: 20,
-                  right: 20,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: GoogleFonts.poppins(
-                        color: AppColors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: context.t.termOfService.text1,
-                        ),
-                        WidgetSpan(
-                          child: GestureDetector(
-                            onTap: () => _showTermsOfService(context),
-                            child: Text(
-                              context.t.termOfService.link1,
-                              style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ),
-                        TextSpan(
-                          text: context.t.termOfService.text2,
-                        ),
-                        WidgetSpan(
-                          child: GestureDetector(
-                            onTap: () => _showPrivacyPolicy(context),
-                            child: Text(
-                              context.t.termOfService.link2,
-                              style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ),
-                        TextSpan(
-                          text: context.t.termOfService.text3,
-                        ),
-                        WidgetSpan(
-                          child: GestureDetector(
-                            onTap: () => _showCookiesPolicy(context),
-                            child: Text(
-                              context.t.termOfService.link3,
-                              style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ),
-                        if (TranslationProvider.of(context)
-                                .locale
-                                .languageCode ==
-                            'tr')
-                          TextSpan(
-                            text: context.t.termOfService.text4,
-                          ),
-                      ],
+              const SizedBox(height: 40),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  SizedBox(
+                    height: 350,
+                    child: Image.asset(
+                      AppImages.login,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  Positioned(
+                    bottom: 60,
+                    left: 20,
+                    right: 20,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: GoogleFonts.poppins(
+                          color: AppColors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: context.t.termOfService.text1,
+                          ),
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () => _showTermsOfService(context),
+                              child: Text(
+                                context.t.termOfService.link1,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextSpan(
+                            text: context.t.termOfService.text2,
+                          ),
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () => _showPrivacyPolicy(context),
+                              child: Text(
+                                context.t.termOfService.link2,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextSpan(
+                            text: context.t.termOfService.text3,
+                          ),
+                          WidgetSpan(
+                            child: GestureDetector(
+                              onTap: () => _showCookiesPolicy(context),
+                              child: Text(
+                                context.t.termOfService.link3,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ),
+                          if (TranslationProvider.of(context)
+                                  .locale
+                                  .languageCode ==
+                              'tr')
+                            TextSpan(
+                              text: context.t.termOfService.text4,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

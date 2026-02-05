@@ -1,4 +1,3 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:yogiface/utils/app_assets.dart';
@@ -15,94 +14,129 @@ class BottomNavBarWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CurvedNavigationBar(
-      index: currentIndex,
-      height: 65,
-      maxWidth: double.infinity,
-      backgroundColor: Colors.transparent,
-      color: Colors.white,
-      buttonBackgroundColor: Colors.transparent,
-      animationDuration: const Duration(milliseconds: 300),
-      animationCurve: Curves.easeInOut,
-      items: [
-        _buildSideItem(
-          iconAsset: AppIcons.menustars,
-          label: 'Courses',
-          isSelected: currentIndex == 0,
-        ),
-        _buildCenterItem(),
-        _buildSideItem(
-          iconAsset: AppIcons.menuperson,
-          label: 'Profile',
-          isSelected: currentIndex == 2,
-        ),
-      ],
-      onTap: onTap,
-    );
-  }
-
-  // Ortadaki Home butonu - gradient daire içinde
-  Widget _buildCenterItem() {
-    return Transform.translate(
-      offset: const Offset(0, 12),
-      child: Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFFD8A8E8), // Açık mor/pembe
-              Color(0xFFB67CDC), // Orta mor
-            ],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: const Color(0xFFB67CDC).withValues(alpha: 0.3),
-              blurRadius: 8,
-              spreadRadius: 1,
-              offset: const Offset(0, 2),
+    return Container(
+      margin: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+      height: 90, // Increased height to accommodate the floating button
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.bottomCenter,
+        children: [
+          // Background Image
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: SizedBox(
+              height: 75, // Increased height for the background bar
+              child: Stack(
+                children: [
+                  // The image itself
+                  Positioned.fill(
+                    child: Image.asset(
+                      AppIcons.bottomNavBar,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  // Nav items on top of the image
+                  Positioned(
+                    top: 12,
+                    left: 24,
+                    right: 24,
+                    bottom: 24, // Add some padding from the absolute bottom
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        _buildNavItem(
+                          index: 0,
+                          icon: AppIcons.menustars,
+                          label: "Courses",
+                          isSelected: currentIndex == 0,
+                        ),
+                        const SizedBox(width: 48), // Reduced space for center
+                        _buildNavItem(
+                          index: 2,
+                          icon: AppIcons.menuperson,
+                          label: "Profile",
+                          isSelected: currentIndex == 2,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-        child: Image.asset(
-          AppIcons.menuhome,
-          width: 28,
-          height: 28,
-          color: Colors.white,
-        ),
+          ),
+          // Center Floating Button
+          Positioned(
+            top: 0, // Floats at the top of the container
+            child: GestureDetector(
+              onTap: () => onTap(1),
+              child: Container(
+                width: 55,
+                height: 55,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFE5B2FA), Color(0xFFC68BF0)],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFC68BF0).withValues(alpha: 0.5),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Image.asset(
+                    AppIcons.menuhome,
+                    width: 24,
+                    height: 24,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  // Yan butonlar - ikon ve yazı yanyana
-  Widget _buildSideItem({
-    required String iconAsset,
+  Widget _buildNavItem({
+    required int index,
+    required String icon,
     required String label,
     required bool isSelected,
   }) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          iconAsset,
-          // width: 20,
-          // height: 20,
-          color: const Color(0xFF2D2D2D),
-        ),
-        const SizedBox(width: 6),
-        if (!isSelected)
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF2D2D2D),
+    return GestureDetector(
+      onTap: () => onTap(index),
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Row(
+          children: [
+            Image.asset(
+              icon,
+              width: 24,
+              height: 24,
+              color: const Color(0xFF333333),
             ),
-          ),
-      ],
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Color(0xFF333333),
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

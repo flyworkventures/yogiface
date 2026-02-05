@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/theme/app_colors.dart';
+import 'package:yogiface/utils/app_assets.dart';
 
 class PlaybackControls extends StatelessWidget {
   const PlaybackControls({
@@ -25,7 +26,7 @@ class PlaybackControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _ControlButton(
-          icon: Icons.skip_previous_rounded,
+          icon: Image.asset(AppIcons.backwards),
           onPressed: canGoPrevious ? onPrevious : null,
           size: 48,
           iconSize: 28,
@@ -37,7 +38,7 @@ class PlaybackControls extends StatelessWidget {
         ),
         const SizedBox(width: 32),
         _ControlButton(
-          icon: Icons.skip_next_rounded,
+          icon: Image.asset(AppIcons.forwards),
           onPressed: canGoNext ? onNext : null,
           size: 48,
           iconSize: 28,
@@ -55,7 +56,7 @@ class _ControlButton extends StatelessWidget {
     required this.iconSize,
   });
 
-  final IconData icon;
+  final Widget icon;
   final VoidCallback? onPressed;
   final double size;
   final double iconSize;
@@ -69,13 +70,7 @@ class _ControlButton extends StatelessWidget {
       child: SizedBox(
         width: size,
         height: size,
-        child: Icon(
-          icon,
-          size: iconSize,
-          color: isEnabled
-              ? AppColors.onboardingPurple
-              : AppColors.onboardingGreyText.withValues(alpha: 0.5),
-        ),
+        child: icon,
       ),
     );
   }
@@ -97,6 +92,7 @@ class _PlayPauseButton extends StatelessWidget {
       child: Container(
         width: 72,
         height: 72,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: const LinearGradient(
@@ -115,10 +111,10 @@ class _PlayPauseButton extends StatelessWidget {
             ),
           ],
         ),
-        child: Icon(
-          isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-          color: Colors.white,
-          size: 36,
+        child: Image.asset(
+          isPlaying ? AppIcons.play : AppIcons.play,
+          width: 36,
+          height: 36,
         ),
       ),
     );

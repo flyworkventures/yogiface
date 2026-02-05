@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
@@ -119,12 +120,12 @@ class PersonalProgramView extends HookWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 32, right: 32, bottom: 80, top: 0),
+                      left: 50, right: 50, bottom: 80, top: 0),
                   child: Row(
                     children: [
                       Expanded(
                         child: CustomButton(
-                          label: 'Back',
+                          label: context.t.back,
                           labelStyle: AppTextStyles.onboardingBody(
                             18,
                             weight: FontWeight.w600,
@@ -138,8 +139,9 @@ class PersonalProgramView extends HookWidget {
                       const SizedBox(width: 12),
                       Expanded(
                         child: CustomButton(
-                          label:
-                              currentStep.value == 2 ? 'Get Started' : 'Next',
+                          label: currentStep.value == 2
+                              ? context.t.courseDetail.getStarted
+                              : context.t.next,
                           onPressed:
                               isNextButtonEnabled() ? goToNextPage : null,
                           type: CustomButtonType.filled,

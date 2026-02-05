@@ -1,21 +1,43 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:yogiface/Views/CourseView/providers/exercise_state.dart';
+import 'package:yogiface/Riverpod/Controllers/exercise_state.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 
-/// Provider for exercise state
-final exerciseProvider =
-    StateNotifierProvider.autoDispose<ExerciseNotifier, ExerciseState>((ref) {
-  return ExerciseNotifier();
-});
+class ToggleFavoriteNotifier extends StateNotifier<AsyncValue<void>> {
+  ToggleFavoriteNotifier(this.ref) : super(const AsyncValue.data(null));
+  final Ref ref;
 
-/// Notifier for managing exercise state
+  Future<void> toggleFavorite({
+    required int id,
+    required bool isFavorited,
+  }) async {
+    state = const AsyncValue.loading();
+    try {
+      final repository = ref.read(AllProviders.exerciseRepositoryProvider);
+      await repository.toggleFavorite(id: id, isFavorited: isFavorited);
+
+      // Invalidate the exercises providers to refresh the data
+      ref.invalidate(AllProviders.allExercisesProvider);
+      ref.invalidate(AllProviders.favoriteExercisesProvider);
+      ref.invalidate(AllProviders.exerciseByIdProvider);
+
+      state = const AsyncValue.data(null);
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
+  }
+}
+
+// ============================================================================
+// Exercise Session Providers (for in-app exercise tracking)
+// ============================================================================
+
 class ExerciseNotifier extends StateNotifier<ExerciseState> {
   ExerciseNotifier() : super(const ExerciseState(exercises: []));
 
   Timer? _timer;
 
-  /// Initialize with exercises
   void initialize(List<Exercise> exercises) {
     _timer?.cancel();
     state = ExerciseState(
@@ -28,7 +50,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     );
   }
 
-  /// Start the exercise session (begins with countdown)
   void start() {
     if (state.exercises.isEmpty) return;
 
@@ -40,7 +61,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     _startCountdown();
   }
 
-  /// Start 3-2-1 countdown
   void _startCountdown() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -53,7 +73,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     });
   }
 
-  /// Start the exercise phase
   void _startExercise() {
     final current = state.currentExercise;
     if (current == null) return;
@@ -66,7 +85,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     _startExerciseTimer();
   }
 
-  /// Exercise countdown timer
   void _startExerciseTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -92,7 +110,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     });
   }
 
-  /// Start rest phase
   void _startRest() {
     final current = state.currentExercise;
     if (current == null) return;
@@ -104,7 +121,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     _startRestTimer();
   }
 
-  /// Rest countdown timer
   void _startRestTimer() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -121,7 +137,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     });
   }
 
-  /// Move to next exercise or complete
   void _moveToNextExercise() {
     if (state.isLastExercise) {
       state = state.copyWith(
@@ -144,12 +159,10 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     }
   }
 
-  /// Toggle play/pause
   void togglePlayPause() {
     state = state.copyWith(isPlaying: !state.isPlaying);
 
     if (state.isPlaying) {
-      // Resume the appropriate timer
       switch (state.phase) {
         case ExercisePhase.countdown:
           _startCountdown();
@@ -168,7 +181,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     }
   }
 
-  /// Go to next exercise
   void nextExercise() {
     _timer?.cancel();
     if (!state.isLastExercise) {
@@ -187,7 +199,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     }
   }
 
-  /// Go to previous exercise
   void previousExercise() {
     _timer?.cancel();
     if (!state.isFirstExercise) {
@@ -206,7 +217,6 @@ class ExerciseNotifier extends StateNotifier<ExerciseState> {
     }
   }
 
-  /// Toggle mute
   void toggleMute() {
     state = state.copyWith(isMuted: !state.isMuted);
   }

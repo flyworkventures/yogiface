@@ -1,78 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:yogiface/Views/HomeView/widgets/featured_course_card.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Models/exercise_model.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/Views/CoursesView/widgets/courses_list.dart';
+import 'package:yogiface/Views/CoursesView/widgets/focus_areas_list.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_overlay.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/utils/print.dart';
 
-class FavoriteExerciseView extends HookWidget {
+class FavoriteExerciseView extends HookConsumerWidget {
   const FavoriteExerciseView({super.key});
 
-  static const List<String> _tabs = [
-    'Alın',
-    'Gözler',
-    'Burun',
-    'Dudaklar',
-    'Yanaklar'
-  ];
-
   @override
-  Widget build(BuildContext context) {
-    final tabController = useTabController(initialLength: _tabs.length);
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Focus Areas configuration matching AllCoursesView
+    final focusAreas = [
+      {
+        'name': t.onboarding.fullface,
+        'image': AppImages.yuz,
+        'type': 'full_face'
+      },
+      {
+        'name': t.onboarding.eyes,
+        'image': AppImages.focusareaeyes,
+        'type': 'eye_area'
+      },
+      {
+        'name': t.onboarding.nose,
+        'image': AppImages.focusareanoise,
+        'type': 'nose_area'
+      },
+      {
+        'name': t.onboarding.cheeks,
+        'image': AppImages.focusareacheek,
+        'type': 'cheeks_mid_face'
+      },
+      {
+        'name': t.onboarding.lips,
+        'image': AppImages.focusarea1,
+        'type': 'lip_area'
+      },
+      {
+        'name': t.onboarding.jawline,
+        'image': AppImages.cene,
+        'type': 'jawline_chin'
+      },
+      {
+        'name': t.onboarding.forehead,
+        'image': AppImages.focusareaforehead,
+        'type': 'forehead_brow'
+      },
+      {
+        'name': t.onboarding.neck,
+        'image': AppImages.boyun,
+        'type': 'neck_decollete'
+      },
+    ];
+
+    final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
 
-    final favoritesByCategory = useState<Map<String, List<FavoriteExercise>>>({
-      'Alın': [
-        FavoriteExercise(
-          id: '1',
-          imagePath: AppImages.maincheeflifter,
-          title: 'The Forehead Smoother',
-          description:
-              'This move relaxes tension in the forehead muscles and helps smooth horizontal lines.',
-          thumbnailPath: AppImages.popularcourses1,
-        ),
-      ],
-      'Gözler': [
-        FavoriteExercise(
-          id: '2',
-          imagePath: AppImages.focusarea2,
-          title: 'The "V" Move',
-          description:
-              'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
-          thumbnailPath: AppImages.popularcourses1,
-        ),
-        FavoriteExercise(
-          id: '3',
-          imagePath: AppImages.focusarea2,
-          title: 'The Eye Lift',
-          description:
-              'Targets the muscles around your eyes to reduce puffiness and dark circles.',
-          thumbnailPath: AppImages.popularcourses1,
-        ),
-      ],
-      'Burun': [],
-      'Dudaklar': [
-        FavoriteExercise(
-          id: '4',
-          imagePath: AppImages.focusarea2,
-          title: 'The Lip Plumper',
-          description:
-              'Enhances lip fullness naturally by exercising the orbicularis oris muscle.',
-          thumbnailPath: AppImages.popularcourses1,
-        ),
-      ],
-      'Yanaklar': [
-        FavoriteExercise(
-          id: '5',
-          imagePath: AppImages.maincheeflifter,
-          title: 'The Cheek Lifter',
-          description:
-              'Lifts the cheek muscles (Zygomaticus) which are most prone to gravity, restoring the facial oval.',
-          thumbnailPath: AppImages.cheeflifter,
-        ),
-      ],
-    });
+    // Repository and Data Fetching
+    final exerciseRepository =
+        ref.watch(AllProviders.exerciseRepositoryProvider);
+    final refreshTrigger = useState(0); // To force refresh when needed
+
+    // Fetch user favorites
+    final favoritesSnapshot = useFuture(
+      useMemoized(() => exerciseRepository.getFavorites(lang: 'en'),
+          [refreshTrigger.value]),
+    );
+
+    // Local state to manage favorites list for immediate UI updates
+    // We store the full list of Exercise objects here
+    final favoritesList = useState<List<Exercise>>([]);
+
+    // Populate local list when data is fetched
+    useEffect(() {
+      if (favoritesSnapshot.hasData && favoritesSnapshot.data != null) {
+        favoritesList.value = favoritesSnapshot.data!.data.exercises ?? [];
+      }
+      return null;
+    }, [favoritesSnapshot.hasData, favoritesSnapshot.data]);
 
     useEffect(() {
       void listener() {
@@ -83,14 +95,24 @@ class FavoriteExerciseView extends HookWidget {
       return () => tabController.removeListener(listener);
     }, [tabController]);
 
-    void toggleFavorite(String category, String id) {
-      final updated = Map<String, List<FavoriteExercise>>.from(
-        favoritesByCategory.value,
-      );
-      updated[category] =
-          updated[category]?.where((exercise) => exercise.id != id).toList() ??
-              [];
-      favoritesByCategory.value = updated;
+    // Filtering logic
+    final currentType = focusAreas[selectedIndex.value]['type'];
+
+    final currentExercises = useMemoized(() {
+      if (currentType == 'full_face') {
+        return favoritesList.value.where((e) => e.type == 'full_face').toList();
+      }
+      return favoritesList.value.where((e) => e.type == currentType).toList();
+    }, [favoritesList.value, currentType]);
+
+    // Toggle/Remove Favorite handler
+    Future<void> handleRemoveFavorite(int id) async {
+      // Optimistic update
+      final originalList = List<Exercise>.from(favoritesList.value);
+
+      // Remove from local list immediately
+      final updatedList = favoritesList.value.where((e) => e.id != id).toList();
+      favoritesList.value = updatedList;
 
       CustomOverlay.show(
         context,
@@ -99,6 +121,15 @@ class FavoriteExerciseView extends HookWidget {
         icon: AppIcons.heart2,
         type: OverlayType.favoriteRemoved,
       );
+
+      try {
+        await exerciseRepository.removeFromFavorites(id: id);
+      } catch (e) {
+        Print.error("Failed to remove favorite: $e");
+        // Revert optimization if failed
+        favoritesList.value = originalList;
+        // Optionally show error overlay
+      }
     }
 
     return Scaffold(
@@ -113,13 +144,8 @@ class FavoriteExerciseView extends HookWidget {
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text(
+        title: const Text(
           'Favori Egzersizler',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
         ),
         centerTitle: false,
         actions: [
@@ -131,61 +157,42 @@ class FavoriteExerciseView extends HookWidget {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: 36,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              itemCount: _tabs.length,
-              separatorBuilder: (_, __) => const SizedBox(width: 8),
-              itemBuilder: (context, index) {
-                final isSelected = selectedIndex.value == index;
-                return GestureDetector(
-                  onTap: () => tabController.animateTo(index),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      color:
-                          isSelected ? const Color(0xFFCB9EF6) : Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: isSelected
-                            ? const Color(0xFFCB9EF6)
-                            : const Color(0xFFE0E0E0),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        _tabs[index],
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight:
-                              isSelected ? FontWeight.w500 : FontWeight.w400,
-                          color: isSelected ? Colors.white : Colors.black87,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+          FocusAreasList(
+            focusAreas: focusAreas
+                .map((e) => {
+                      'name': e['name'] as String,
+                      'image': e['image'] as String
+                    })
+                .toList(),
+            selectedIndex: selectedIndex.value,
+            onAreaSelected: (index) {
+              tabController.animateTo(index);
+              selectedIndex.value = index;
+            },
           ),
           const SizedBox(height: 16),
           Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: _tabs.map((tab) {
-                final exercises = favoritesByCategory.value[tab] ?? [];
-                if (exercises.isEmpty) {
-                  return _buildEmptyState();
-                }
-                return _buildExerciseList(
-                  exercises,
-                  (id) => toggleFavorite(tab, id),
-                );
-              }).toList(),
-            ),
+            child: favoritesSnapshot.connectionState == ConnectionState.waiting
+                ? const Center(child: CircularProgressIndicator())
+                : favoritesSnapshot.hasError
+                    ? Center(child: Text('Error: ${favoritesSnapshot.error}'))
+                    : favoritesList.value.isEmpty
+                        ? _buildEmptyState()
+                        : currentExercises.isEmpty
+                            ? Center(
+                                child: Text('No favorites in this category'))
+                            : Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                child: CoursesList(
+                                  courses: currentExercises,
+                                  // For favorites view, all displayed items are by definition favorites
+                                  favoriteCourses:
+                                      currentExercises.map((e) => e.id).toSet(),
+                                  onFavoriteToggle: (id) =>
+                                      handleRemoveFavorite(id),
+                                ),
+                              ),
           ),
         ],
       ),
@@ -238,44 +245,4 @@ class FavoriteExerciseView extends HookWidget {
       ),
     );
   }
-
-  Widget _buildExerciseList(
-    List<FavoriteExercise> exercises,
-    Function(String) onFavoriteTap,
-  ) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(16),
-      itemCount: exercises.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 16),
-      itemBuilder: (context, index) {
-        final exercise = exercises[index];
-        return FeaturedCourseCard(
-          imagePath: exercise.imagePath,
-          title: exercise.title,
-          description: exercise.description,
-          thumbnailPath: exercise.thumbnailPath,
-          isFavorite: true,
-          showFavoriteButton: true,
-          onFavoriteTap: () => onFavoriteTap(exercise.id),
-          onTap: () {},
-        );
-      },
-    );
-  }
-}
-
-class FavoriteExercise {
-  final String id;
-  final String imagePath;
-  final String title;
-  final String description;
-  final String thumbnailPath;
-
-  FavoriteExercise({
-    required this.id,
-    required this.imagePath,
-    required this.title,
-    required this.description,
-    required this.thumbnailPath,
-  });
 }

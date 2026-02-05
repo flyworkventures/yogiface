@@ -27,7 +27,8 @@ class OnboardingView extends HookWidget {
   Widget build(BuildContext context) {
     final pageController = usePageController();
     final currentStep = useState<int>(0);
-    final currentSection = useState<String>('BASIC INFORMATION');
+    final currentSection =
+        useState<String>(context.t.onboarding.basicInformation);
     final currentSectionStep = useState<int>(1);
     final currentSectionTotal = useState<int>(3);
 
@@ -38,7 +39,7 @@ class OnboardingView extends HookWidget {
     final selectedWeight = useState<int>(60);
     final selectedHeight = useState<int>(173);
     final selectedObjectives = useState<Set<String>>({});
-    final selectedArea = useState<String?>(null);
+    final selectedArea = useState<Set<String>>({});
     final selectedFaceShape = useState<String?>(null);
     final selectedSkinType = useState<String?>(null);
     final selectedConcerns = useState<Set<String>>({});
@@ -61,7 +62,7 @@ class OnboardingView extends HookWidget {
         case 2: // Basic Info Step 3
           return selectedObjectives.value.isNotEmpty;
         case 3: // Target Step 1
-          return selectedArea.value != null;
+          return selectedArea.value.isNotEmpty;
         case 4: // Target Step 2
           return selectedFaceShape.value != null;
         case 5: // Target Step 3
@@ -167,33 +168,52 @@ class OnboardingView extends HookWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
-      body: Column(
-        children: [
-          if (shouldShowTopBar && currentSection.value.isNotEmpty)
-            const SizedBox(height: AppSpacing.xxxl),
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 200),
-            opacity:
-                shouldShowTopBar && currentSection.value.isNotEmpty ? 1.0 : 0.0,
-            child: IgnorePointer(
-              ignoring: !(shouldShowTopBar && currentSection.value.isNotEmpty),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: AppSpacing.xl,
-                  right: AppSpacing.xl,
-                  top: AppSpacing.md,
-                  bottom: AppSpacing.lg,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            currentSection.value.isNotEmpty
-                                ? currentSection.value
+      body: Padding(
+        padding: AppPaddings.horizontalPage,
+        child: Column(
+          children: [
+            if (shouldShowTopBar && currentSection.value.isNotEmpty)
+              const SizedBox(height: AppSpacing.xxxl),
+            AnimatedOpacity(
+              duration: const Duration(milliseconds: 200),
+              opacity: shouldShowTopBar && currentSection.value.isNotEmpty
+                  ? 1.0
+                  : 0.0,
+              child: IgnorePointer(
+                ignoring:
+                    !(shouldShowTopBar && currentSection.value.isNotEmpty),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: AppSpacing.xl,
+                    right: AppSpacing.xl,
+                    top: AppSpacing.md,
+                    bottom: AppSpacing.lg,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              currentSection.value.isNotEmpty
+                                  ? currentSection.value
+                                  : ' ',
+                              style: AppTextStyles.onboardingBody(
+                                14,
+                                color: AppColors.onboardingButtonGradientStart,
+                                weight: FontWeight.w800,
+                                letterSpacing: 1.2,
+                                height: 1,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Text(
+                            currentSectionTotal.value > 0
+                                ? '${context.t.onboarding.step} ${currentSectionStep.value} ${context.t.onboarding.of} ${currentSectionTotal.value}'
                                 : ' ',
                             style: AppTextStyles.onboardingBody(
                               14,
@@ -202,138 +222,140 @@ class OnboardingView extends HookWidget {
                               letterSpacing: 1.2,
                               height: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        const SizedBox(width: AppSpacing.sm),
-                        Text(
-                          currentSectionTotal.value > 0
-                              ? '${context.t.onboarding.step} ${currentSectionStep.value} ${context.t.onboarding.of} ${currentSectionTotal.value}'
-                              : ' ',
-                          style: AppTextStyles.onboardingBody(
-                            14,
-                            color: AppColors.onboardingButtonGradientStart,
-                            weight: FontWeight.w800,
-                            letterSpacing: 1.2,
-                            height: 1,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-                    SectionProgressBar(
-                      current: currentSectionStep.value > 0
-                          ? currentSectionStep.value
-                          : 1,
-                      total: currentSectionTotal.value > 0
-                          ? currentSectionTotal.value
-                          : 3,
-                    ),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      SectionProgressBar(
+                        current: currentSectionStep.value > 0
+                            ? currentSectionStep.value
+                            : 1,
+                        total: currentSectionTotal.value > 0
+                            ? currentSectionTotal.value
+                            : 3,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
 
-          // 2) MIDDLE (değişen içerik)
-          Expanded(
-            child: PageView(
-              controller: pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                // Basic Info Step 1
-                BasicInfoStep1(
-                  fullName: fullName,
-                  selectedGender: selectedGender,
-                  selectedAge: selectedAge,
-                  onNext: nextPage,
+            // 2) MIDDLE (değişen içerik)
+            Expanded(
+              child: PageView(
+                controller: pageController,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  // Basic Info Step 1
+                  BasicInfoStep1(
+                    fullName: fullName,
+                    selectedGender: selectedGender,
+                    selectedAge: selectedAge,
+                    onNext: nextPage,
+                  ),
+                  // Basic Info Step 2
+                  BasicInfoStep2(
+                    selectedWeight: selectedWeight,
+                    selectedHeight: selectedHeight,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Basic Info Step 3
+                  BasicInfoStep3(
+                    selectedObjectives: selectedObjectives,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Target Step 1
+                  TargetStep1(
+                    selectedArea: selectedArea,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Target Step 2
+                  TargetStep2(
+                    selectedFaceShape: selectedFaceShape,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Target Step 3
+                  TargetStep3(
+                    selectedSkinType: selectedSkinType,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Habits Step 1
+                  HabitsStep1(
+                    selectedConcerns: selectedConcerns,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Habits Step 2
+                  HabitsStep2(
+                    makeupFrequency: makeupFrequency,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Habits Step 3
+                  HabitsStep3(
+                    hasBotox: hasBotox,
+                    onBack: previousPage,
+                    onNext: nextPage,
+                  ),
+                  // Loading Screen
+                  LoadingScreen(
+                    onComplete: nextPage,
+                    onProgressChanged: (progress) {
+                      loadingProgress.value = progress;
+                    },
+                    onboardingData: {
+                      'full_name':
+                          fullName.value.isNotEmpty ? fullName.value : null,
+                      'gender': selectedGender.value ?? 'other',
+                      'age': selectedAge.value,
+                      'weight': selectedWeight.value,
+                      'height': selectedHeight.value,
+                      'skin_type': selectedSkinType.value ?? 'normal',
+                      'has_botox': hasBotox.value ?? false,
+                      'target_face_shape': selectedFaceShape.value ?? 'oval',
+                      'makeup_frequency': makeupFrequency.value ?? 'never',
+                      'skin_concerns': selectedConcerns.value.toList(),
+                      'objectives': selectedObjectives.value.toList(),
+                      'improvement_areas': selectedArea.value.toList(),
+                    },
+                  ),
+                  // Final Screen
+                  const FinalScreen(),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: AppSpacing.lg),
+            SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppSpacing.xl,
+                  right: AppSpacing.xl,
+                  bottom: AppSpacing.lg,
                 ),
-                // Basic Info Step 2
-                BasicInfoStep2(
-                  selectedWeight: selectedWeight,
-                  selectedHeight: selectedHeight,
+                child: OnboardingBottomBar(
+                  currentStep: currentStep.value,
+                  isLoadingScreen: isLoadingScreen,
+                  isFinalScreen: isFinalScreen,
+                  loadingProgress: loadingProgress.value,
+                  canProceed: canProceed.value,
                   onBack: previousPage,
                   onNext: nextPage,
-                ),
-                // Basic Info Step 3
-                BasicInfoStep3(
-                  selectedObjectives: selectedObjectives,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Target Step 1
-                TargetStep1(
-                  selectedArea: selectedArea,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Target Step 2
-                TargetStep2(
-                  selectedFaceShape: selectedFaceShape,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Target Step 3
-                TargetStep3(
-                  selectedSkinType: selectedSkinType,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Habits Step 1
-                HabitsStep1(
-                  selectedConcerns: selectedConcerns,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Habits Step 2
-                HabitsStep2(
-                  makeupFrequency: makeupFrequency,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Habits Step 3
-                HabitsStep3(
-                  hasBotox: hasBotox,
-                  onBack: previousPage,
-                  onNext: nextPage,
-                ),
-                // Loading Screen
-                LoadingScreen(
-                  onComplete: nextPage,
-                  onProgressChanged: (progress) {
-                    loadingProgress.value = progress;
+                  onGetStarted: () {
+                    Navigator.of(context).pushReplacementNamed('/main');
                   },
                 ),
-                // Final Screen
-                const FinalScreen(),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: AppSpacing.lg),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: AppSpacing.xl,
-                right: AppSpacing.xl,
-                bottom: AppSpacing.lg,
-              ),
-              child: OnboardingBottomBar(
-                currentStep: currentStep.value,
-                isLoadingScreen: isLoadingScreen,
-                isFinalScreen: isFinalScreen,
-                loadingProgress: loadingProgress.value,
-                canProceed: canProceed.value,
-                onBack: previousPage,
-                onNext: nextPage,
-                onGetStarted: () {
-                  Navigator.of(context).pushReplacementNamed('/main');
-                },
               ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-        ],
+            const SizedBox(height: AppSpacing.lg),
+          ],
+        ),
       ),
     );
   }

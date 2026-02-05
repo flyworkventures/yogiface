@@ -19,14 +19,14 @@ class BasicInfoStep3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final objectives = [
-      context.t.onboarding.reduceWrinkles,
-      context.t.onboarding.tightenSkin,
-      context.t.onboarding.liftDroopyEyelids,
-      context.t.onboarding.eliminateDoubleChin,
-      context.t.onboarding.brightenSkinTone,
-      context.t.onboarding.allOfTheAbove,
-    ];
+    final objectivesMap = {
+      'reduce_wrinkles': context.t.onboarding.reduceWrinkles,
+      'tighten_skin': context.t.onboarding.tightenSkin,
+      'lift_eyelids': context.t.onboarding.liftDroopyEyelids,
+      'eliminate_double_chin': context.t.onboarding.eliminateDoubleChin,
+      'brighten_tone': context.t.onboarding.brightenSkinTone,
+      'all': context.t.onboarding.allOfTheAbove,
+    };
 
     return Padding(
       padding: AppPaddings.horizontalPage,
@@ -39,6 +39,7 @@ class BasicInfoStep3 extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 context.t.onboarding.whatIsMainObjective,
+                textAlign: TextAlign.center,
                 style: AppTextStyles.onboardingBody(
                   24,
                   weight: FontWeight.w600,
@@ -59,22 +60,27 @@ class BasicInfoStep3 extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.xl),
-            ...objectives.map((objective) => Padding(
-                  padding: const EdgeInsets.only(bottom: AppSpacing.xl),
-                  child: CheckboxOption(
-                    label: objective,
-                    isSelected: selectedObjectives.value.contains(objective),
-                    onTap: () {
-                      final newSet = Set<String>.from(selectedObjectives.value);
-                      if (newSet.contains(objective)) {
-                        newSet.remove(objective);
-                      } else {
-                        newSet.add(objective);
-                      }
-                      selectedObjectives.value = newSet;
-                    },
-                  ),
-                )),
+            ...objectivesMap.entries.map((entry) {
+              final backendValue = entry.key;
+              final displayLabel = entry.value;
+
+              return Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.xl),
+                child: CheckboxOption(
+                  label: displayLabel,
+                  isSelected: selectedObjectives.value.contains(backendValue),
+                  onTap: () {
+                    final newSet = Set<String>.from(selectedObjectives.value);
+                    if (newSet.contains(backendValue)) {
+                      newSet.remove(backendValue);
+                    } else {
+                      newSet.add(backendValue);
+                    }
+                    selectedObjectives.value = newSet;
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),

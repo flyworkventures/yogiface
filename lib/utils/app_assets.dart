@@ -37,13 +37,14 @@ class AppImages {
   static const String oval = 'assets/images/oval.png';
   static const String kalp = 'assets/images/kalp.png';
   static const String yuz = 'assets/images/yuz.png';
-  static const String alin = 'assets/images/alın.png';
+  static const String alin = 'assets/images/alin.png';
   static const String goz = 'assets/images/goz.png';
   static const String yanak = 'assets/images/yanak.png';
   static const String dudak = 'assets/images/dudak.png';
   static const String burun = 'assets/images/burun.png';
   static const String cene = 'assets/images/cene.png';
   static const String boyun = 'assets/images/boyun.png';
+  static const String courseBackground = 'assets/images/background.png';
 }
 
 class AppIcons {
@@ -110,4 +111,10 @@ class AppIcons {
   static const String menuperson = 'assets/icons/menuperson.png';
   static const String clock = 'assets/icons/clock.png';
   static const String tick = 'assets/icons/tick.png';
+  static const String bottomNavBar = 'assets/icons/bottomnavbar.png';
+  static const String backwards = 'assets/icons/backwards.png';
+  static const String play = 'assets/icons/play.png';
+  static const String forwards = 'assets/icons/forwards.png';
+  static const String sound = 'assets/icons/sound.png';
+  static const String backarrow = 'assets/icons/backarrow.png';
 }

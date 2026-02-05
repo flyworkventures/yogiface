@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:yogiface/Views/CourseDetailView/course_start_view.dart';
 import 'package:yogiface/Views/CourseDetailView/widgets/course_detail_card_widget.dart';
+import 'package:yogiface/Views/MainView/widgets/bottomnavbar.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -63,7 +65,7 @@ class CourseDetailView extends HookWidget {
                   ),
                   Expanded(
                     child: Text(
-                      'Course Detail',
+                      context.t.courseDetail.title,
                       style: AppTextStyles.onboardingBody(
                         20,
                         weight: FontWeight.w600,
@@ -84,22 +86,24 @@ class CourseDetailView extends HookWidget {
                       CourseDetailCardWidget(course: course),
                       const SizedBox(height: 32),
                       CustomButton(
-                        label: 'Get Started',
+                        label: context.t.courseDetail.getStarted,
                         fullWidth: true,
                         onPressed: () {
                           // Talimat sayfasına git
                           final instructions = [
                             Instruction(
                               number: '01',
-                              title: 'Wash Your Hands and Face',
-                              description:
-                                  'A clean skin allows the massage to be more effective.',
+                              title: context.t.courseDetail.instructions
+                                  .instruction1.title,
+                              description: context.t.courseDetail.instructions
+                                  .instruction1.description,
                             ),
                             Instruction(
                               number: '02',
-                              title: 'Apply Face Oil or Moisturizer',
-                              description:
-                                  'Smoothly glide without pulling your skin.',
+                              title: context.t.courseDetail.instructions
+                                  .instruction2.title,
+                              description: context.t.courseDetail.instructions
+                                  .instruction2.description,
                             ),
                           ];
                           Navigator.push(
@@ -127,6 +131,34 @@ class CourseDetailView extends HookWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavBarWidget(
+          currentIndex: 0,
+          onTap: (index) {
+            if (index == 0) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/main',
+                (route) => false,
+                arguments: {'initialIndex': 0},
+              );
+            }
+            if (index == 1) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/main',
+                (route) => false,
+                arguments: {'initialIndex': 1},
+              );
+            }
+            if (index == 2) {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                '/main',
+                (route) => false,
+                arguments: {'initialIndex': 2},
+              );
+            }
+          }),
     );
   }
 }

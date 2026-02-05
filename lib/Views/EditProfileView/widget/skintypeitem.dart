@@ -7,6 +7,7 @@ class SkinTypeItem extends StatelessWidget {
   final String icon;
   final String title;
   final VoidCallback? onTap;
+  final bool isSelected;
 
   final Color? iconBackgroundColor;
   final Color? backgroundColor;
@@ -16,6 +17,7 @@ class SkinTypeItem extends StatelessWidget {
     required this.icon,
     required this.title,
     this.onTap,
+    this.isSelected = false,
     this.iconBackgroundColor,
     this.backgroundColor,
   });
@@ -40,7 +42,12 @@ class SkinTypeItem extends StatelessWidget {
           ],
           color: backgroundColor ?? Colors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.onboardingGreyLight, width: 1),
+          border: Border.all(
+            color: isSelected
+                ? AppColors.onboardingButtonGradientStart
+                : AppColors.onboardingGreyLight,
+            width: isSelected ? 2 : 1,
+          ),
         ),
         child: Row(
           children: [

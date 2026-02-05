@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yogiface/Views/CourseView/providers/exercise_provider.dart';
-import 'package:yogiface/Views/CourseView/providers/exercise_state.dart';
+import 'package:yogiface/Riverpod/Controllers/exercise_state.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CourseView/widgets/countdown_overlay.dart';
 import 'package:yogiface/Views/CourseView/widgets/playback_controls.dart';
 import 'package:yogiface/Views/CourseView/widgets/rest_timer_widget.dart';
@@ -78,13 +78,15 @@ class CourseView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
       Future.microtask(() {
-        ref.read(exerciseProvider.notifier).initialize(_sampleExercises);
+        ref
+            .read(AllProviders.exerciseProvider.notifier)
+            .initialize(_sampleExercises);
       });
       return null;
     }, []);
 
-    final state = ref.watch(exerciseProvider);
-    final notifier = ref.read(exerciseProvider.notifier);
+    final state = ref.watch(AllProviders.exerciseProvider);
+    final notifier = ref.read(AllProviders.exerciseProvider.notifier);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -143,7 +145,7 @@ class CourseView extends HookConsumerWidget {
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 5,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
@@ -153,13 +155,14 @@ class CourseView extends HookConsumerWidget {
                       totalSteps: state.totalExercises,
                       currentStep: state.currentExerciseIndex,
                     ),
-                    const SizedBox(height: 24),
+                    const Spacer(),
                     Text(
                       state.currentExercise?.title ?? '',
-                      style: AppTextStyles.heading(18, FontWeight.w600),
+                      style: AppTextStyles.onboardingBody(22,
+                          weight: FontWeight.w600),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 16),
+                    const Spacer(),
                     Text(
                       state.phase == ExercisePhase.rest
                           ? '00:${state.restTimeRemaining.toString().padLeft(2, '0')}'
@@ -185,7 +188,7 @@ class CourseView extends HookConsumerWidget {
                       canGoPrevious: !state.isFirstExercise,
                       canGoNext: !state.isLastExercise,
                     ),
-                    const SizedBox(height: 32),
+                    const Spacer(flex: 3),
                   ],
                 ),
               ),

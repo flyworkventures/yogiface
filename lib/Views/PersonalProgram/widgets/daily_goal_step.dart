@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -19,14 +20,28 @@ class DailyGoalStep extends StatefulWidget {
 }
 
 class _DailyGoalStepState extends State<DailyGoalStep> {
-  final List<Map<String, String>> goals = [
-    {'id': '10', 'title': '10 Min', 'icon': AppIcons.coffee},
-    {'id': '20', 'title': '20 Min', 'icon': AppIcons.timefast},
-    {'id': '30', 'title': '30 Min', 'icon': AppIcons.mountains},
-  ];
+  // Goals now defined in build to access context.t
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, String>> goals = [
+      {
+        'id': '10',
+        'title': '10 ${context.t.personalProgram.minutes}',
+        'icon': AppIcons.coffee
+      },
+      {
+        'id': '20',
+        'title': '20 ${context.t.personalProgram.minutes}',
+        'icon': AppIcons.timefast
+      },
+      {
+        'id': '30',
+        'title': '30 ${context.t.personalProgram.minutes}',
+        'icon': AppIcons.mountains
+      },
+    ];
+
     return Padding(
       padding: AppPaddings.horizontalPage,
       child: Column(
@@ -38,7 +53,7 @@ class _DailyGoalStepState extends State<DailyGoalStep> {
             children: [
               const SizedBox(height: 100),
               Text(
-                'Set Your Daily Goal',
+                context.t.personalProgram.dailyGoalTitle,
                 style: AppTextStyles.onboardingBody(
                   24,
                   weight: FontWeight.w600,
@@ -47,7 +62,7 @@ class _DailyGoalStepState extends State<DailyGoalStep> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Choose a pace that fits your schedule',
+                context.t.personalProgram.dailyGoalDescription,
                 style: AppTextStyles.onboardingBody(16, height: 1.5),
               ),
               const SizedBox(height: 32),

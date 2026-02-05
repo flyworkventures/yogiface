@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class LogoutDialog extends StatelessWidget {
+class LogoutDialog extends ConsumerWidget {
   const LogoutDialog({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -33,7 +36,7 @@ class LogoutDialog extends StatelessWidget {
             const SizedBox(height: 20),
             // Title
             Text(
-              'Çıkış yapmak üzeresiniz',
+              context.t.profile.logoutDialog.title,
               style: AppTextStyles.latoBody(
                 18,
                 weight: FontWeight.w700,
@@ -43,7 +46,7 @@ class LogoutDialog extends StatelessWidget {
             const SizedBox(height: 24),
             // Subtitle
             Text(
-              'Tekrar görüşmek üzere! Nefes egzersizleriniz ziyleyeceğiz.',
+              context.t.profile.logoutDialog.message,
               textAlign: TextAlign.center,
               style: AppTextStyles.latoBody(
                 14,
@@ -57,17 +60,19 @@ class LogoutDialog extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
+                  ref.read(AllProviders.authRepositoryProvider).logout();
                   Navigator.of(context).pop(true);
+                  Navigator.of(context).pushReplacementNamed('/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE94560),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
                 child: Text(
-                  'Çıkış Yap',
+                  context.t.profile.logoutDialog.logoutButton,
                   style: AppTextStyles.latoBody(
                     14,
                     weight: FontWeight.w500,
@@ -85,7 +90,7 @@ class LogoutDialog extends StatelessWidget {
                   Navigator.of(context).pop(false);
                 },
                 child: Text(
-                  'Vazgeç',
+                  context.t.profile.logoutDialog.cancelButton,
                   style: AppTextStyles.latoBody(
                     14,
                     weight: FontWeight.w500,

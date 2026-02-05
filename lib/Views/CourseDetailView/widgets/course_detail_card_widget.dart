@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
+import 'package:yogiface/shared/custom_cached_network_image.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
@@ -44,18 +45,11 @@ class CourseDetailCardWidget extends StatelessWidget {
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-                child: Image.asset(
-                  course.imagePath,
+                child: CustomCachedNetworkImage(
+                  imageUrl: course.imagePath,
+                  backgroundImage: AppImages.background,
+                  height: 220,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      color: const Color(0xFFF5F5F5),
-                      child: const Icon(
-                        Icons.image_not_supported,
-                        color: Color(0xFFBDBDBD),
-                      ),
-                    );
-                  },
                 ),
               ),
             ),
@@ -82,8 +76,8 @@ class CourseDetailCardWidget extends StatelessWidget {
                     course.description,
                     style: AppTextStyles.onboardingBody(
                       14,
+                      height: 1.3,
                       weight: FontWeight.w400,
-                      color: const Color(0xFF666666),
                     ),
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
@@ -193,6 +187,7 @@ class _BenefitItem extends StatelessWidget {
                       style: AppTextStyles.onboardingBody(
                         14,
                         weight: FontWeight.w600,
+                        height: 1.3,
                       ),
                     ),
                     const TextSpan(
@@ -202,6 +197,7 @@ class _BenefitItem extends StatelessWidget {
                       style: AppTextStyles.onboardingBody(
                         14,
                         weight: FontWeight.w400,
+                        height: 1.3,
                       ),
                     ),
                   ],

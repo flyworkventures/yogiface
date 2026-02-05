@@ -8,20 +8,30 @@ import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
 class FocusareaBottomsheet extends HookWidget {
-  const FocusareaBottomsheet({super.key});
+  final Set<String> initialValues;
+  final Function(Set<String>) onSelected;
+
+  const FocusareaBottomsheet({
+    super.key,
+    this.initialValues = const {},
+    required this.onSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final areas = [
-      context.t.onboarding.forehead,
-      context.t.onboarding.eyes,
-      context.t.onboarding.nose,
-      context.t.onboarding.cheeks,
-      context.t.onboarding.lips,
-      context.t.onboarding.jawline,
-      context.t.onboarding.neck,
-    ];
-    final selectedArea = useState<String?>(null);
+    // Map backend values to display labels
+    final areasMap = {
+      'forehead': context.t.onboarding.forehead,
+      'eyes': context.t.onboarding.eyes,
+      'nose': context.t.onboarding.nose,
+      'cheeks': context.t.onboarding.cheeks,
+      'lips': context.t.onboarding.lips,
+      'jawline': context.t.onboarding.jawline,
+      'neck': context.t.onboarding.neck,
+    };
+
+    final selectedAreas = useState<Set<String>>(initialValues);
+
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -39,37 +49,92 @@ class FocusareaBottomsheet extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.asset(AppImages.female),
+                // Face image with overlays
+                Stack(
+                  children: [
+                    Image.asset(AppImages.yuz),
+                    Positioned.fill(
+                      left: 45,
+                      top: 35,
+                      child: ValueListenableBuilder<Set<String>>(
+                        valueListenable: selectedAreas,
+                        builder: (context, selectedAreasValue, child) {
+                          // Map to store area keys and their corresponding images
+                          final areaImages = {
+                            'forehead': AppImages.alin,
+                            'eyes': AppImages.goz,
+                            'cheeks': AppImages.yanak,
+                            'lips': AppImages.dudak,
+                            'nose': AppImages.burun,
+                            'jawline': AppImages.cene,
+                            'neck': AppImages.boyun,
+                          };
+
+                          // If no areas selected, return empty container
+                          if (selectedAreasValue.isEmpty) {
+                            return const SizedBox.shrink();
+                          }
+
+                          // Stack all selected area images
+                          return Stack(
+                            children: selectedAreasValue.map((area) {
+                              final imagePath = areaImages[area];
+                              if (imagePath != null) {
+                                return Image.asset(imagePath);
+                              }
+                              return const SizedBox.shrink();
+                            }).toList(),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: AppSpacing.lg),
+                // Convert map to list for iteration
                 for (int rowIndex = 0;
-                    rowIndex < (areas.length / 3).ceil();
+                    rowIndex < (areasMap.length / 3).ceil();
                     rowIndex++)
                   Padding(
                     padding: const EdgeInsets.only(bottom: AppSpacing.md),
                     child: Builder(
                       builder: (context) {
+                        final entries = areasMap.entries.toList();
                         final startIndex = rowIndex * 3;
                         final endIndex =
-                            (startIndex + 3).clamp(0, areas.length);
-                        final rowItems = areas.sublist(startIndex, endIndex);
+                            (startIndex + 3).clamp(0, entries.length);
+                        final rowItems = entries.sublist(startIndex, endIndex);
                         final isLastRow =
-                            rowIndex == (areas.length / 3).ceil() - 1;
-                        final hasIncompleteRow = areas.length % 3 != 0;
+                            rowIndex == (entries.length / 3).ceil() - 1;
+                        final hasIncompleteRow = entries.length % 3 != 0;
 
                         return Row(
                           mainAxisAlignment: (isLastRow && hasIncompleteRow)
                               ? MainAxisAlignment.center
                               : MainAxisAlignment.spaceEvenly,
-                          children: rowItems.map((area) {
-                            final isSelected = selectedArea.value == area;
+                          children: rowItems.map((entry) {
+                            final backendValue = entry.key;
+                            final displayLabel = entry.value;
+                            final isSelected =
+                                selectedAreas.value.contains(backendValue);
+
                             return Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 5,
                               ),
                               child: ChipButton(
-                                label: area,
+                                label: displayLabel,
                                 isSelected: isSelected,
-                                onTap: () => selectedArea.value = area,
+                                onTap: () {
+                                  final updatedSet =
+                                      Set<String>.from(selectedAreas.value);
+                                  if (updatedSet.contains(backendValue)) {
+                                    updatedSet.remove(backendValue);
+                                  } else {
+                                    updatedSet.add(backendValue);
+                                  }
+                                  selectedAreas.value = updatedSet;
+                                },
                               ),
                             );
                           }).toList(),
@@ -79,13 +144,14 @@ class FocusareaBottomsheet extends HookWidget {
                   ),
                 const SizedBox(height: AppSpacing.xl),
                 CustomButton(
-                  label: 'Kaydet',
+                  label: context.t.editProfile.save,
                   fullWidth: true,
                   size: CustomButtonSize.large,
                   foregroundColor: AppColors.onboardingButtonGradientStart,
                   backgroundColor: AppColors.onboardingButtonGradientStart,
                   labelColor: Colors.white,
                   onPressed: () {
+                    onSelected(selectedAreas.value);
                     Navigator.of(context).pop();
                   },
                 ),
