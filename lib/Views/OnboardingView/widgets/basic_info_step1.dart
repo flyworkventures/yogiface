@@ -36,6 +36,7 @@ class BasicInfoStep1 extends StatelessWidget {
             const SizedBox(height: AppSpacing.xxl),
             Text(
               context.t.onboarding.tellUsAboutYourself,
+              textAlign: TextAlign.center,
               style: AppTextStyles.onboardingBody(
                 28,
                 weight: FontWeight.w600,

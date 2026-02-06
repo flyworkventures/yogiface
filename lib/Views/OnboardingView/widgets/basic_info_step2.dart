@@ -31,6 +31,7 @@ class BasicInfoStep2 extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Text(
+              textAlign: TextAlign.center,
               context.t.onboarding.tellUsAboutYourself,
               style: AppTextStyles.onboardingBody(
                 28,
