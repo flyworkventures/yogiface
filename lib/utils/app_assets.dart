@@ -28,6 +28,9 @@ class AppImages {
   static const String focusareanoise = 'assets/images/focusareanoise.png';
   static const String focusareacheek = 'assets/images/focusareacheek.png';
   static const String focusareaeyes = 'assets/images/focusareaeyes.png';
+  static const String focusareafullface = 'assets/images/focusareaallface.png';
+  static const String focusareajawline = 'assets/images/focusareajawline.png';
+  static const String focusareaneck = 'assets/images/focusareaneck.png';
   static const String vmove = 'assets/images/vmove.png';
   static const String cheeflifter = 'assets/images/cheeflifter.png';
   static const String maincheeflifter = 'assets/images/maincheeflefter.png';

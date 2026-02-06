@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/CourseDetailView/course_start_view.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
@@ -34,7 +35,7 @@ class CourseInstructionsCardWidget extends StatelessWidget {
             children: [
               // Title
               Text(
-                'Before You Begin',
+                context.t.beforeBegin,
                 style: AppTextStyles.onboardingBody(
                   20,
                   weight: FontWeight.w600,

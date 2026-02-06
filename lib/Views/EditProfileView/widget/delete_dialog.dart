@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -33,7 +34,7 @@ class DeleteDialog extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              'Hesabınızı silmek istediğinizden emin misiniz?',
+              context.t.deleteDialogTitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.latoBody(
                 18,
@@ -43,7 +44,7 @@ class DeleteDialog extends ConsumerWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              'Bu işlem geri alınamaz ve tüm egzersiz geçmişiniz ile verileriniz kalıcı olarak silinecektir.',
+              context.t.deleteDialogDescription,
               textAlign: TextAlign.center,
               style: AppTextStyles.latoBody(
                 14,
@@ -67,9 +68,9 @@ class DeleteDialog extends ConsumerWidget {
                       } else {
                         Navigator.of(context).pop(false);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text(
-                                  'Hesap silinirken bir hata oluştu. Lütfen tekrar deneyiniz.')),
+                          SnackBar(
+                            content: Text(context.t.deleteError),
+                          ),
                         );
                       }
                     }
@@ -87,7 +88,7 @@ class DeleteDialog extends ConsumerWidget {
                   padding: const EdgeInsets.symmetric(vertical: 14),
                 ),
                 child: Text(
-                  'Hesabı Sil',
+                  context.t.deleteAccount,
                   style: AppTextStyles.latoBody(
                     14,
                     weight: FontWeight.w500,
@@ -104,7 +105,7 @@ class DeleteDialog extends ConsumerWidget {
                   Navigator.of(context).pop(false);
                 },
                 child: Text(
-                  'Vazgeç',
+                  context.t.cancel,
                   style: AppTextStyles.latoBody(
                     14,
                     weight: FontWeight.w500,

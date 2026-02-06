@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/shared/custom_form_text_field.dart';
 import 'package:yogiface/theme/app_colors.dart';
@@ -27,7 +28,7 @@ class InvitationCode extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
-          'Davet Kodu Gir',
+          context.t.enterInvitationCode,
           style: AppTextStyles.latoBody(
             16,
             weight: FontWeight.w600,
@@ -43,7 +44,7 @@ class InvitationCode extends StatelessWidget {
               // const Spacer(flex: 1),
               const SizedBox(height: AppSpacing.xxxl),
               Text(
-                'Huzura Ortak Ol',
+                context.t.bePartOfPeace,
                 style: AppTextStyles.latoBody(
                   24,
                   weight: FontWeight.w700,
@@ -60,19 +61,16 @@ class InvitationCode extends StatelessWidget {
                     height: 1.4,
                   ),
                   children: [
-                    const TextSpan(
-                        text:
-                            'Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak '),
+                    TextSpan(text: context.t.inviteFriends),
                     TextSpan(
-                      text: '2 günlük Premium',
+                      text: context.t.twoDaysPremium,
                       style: AppTextStyles.latoBody(
                         14,
                         weight: FontWeight.w700,
                         height: 1,
                       ),
                     ),
-                    const TextSpan(
-                        text: '\navantajlarından yararlanabilirsiniz.'),
+                    TextSpan(text: context.t.advantage),
                   ],
                 ),
               ),
@@ -92,7 +90,7 @@ class InvitationCode extends StatelessWidget {
               ),
               const Spacer(flex: 3),
               CustomButton(
-                label: 'Gönder',
+                label: context.t.send,
                 fullWidth: true,
                 size: CustomButtonSize.large,
                 backgroundColor: AppColors.onboardingButtonGradientStart,

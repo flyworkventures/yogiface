@@ -78,6 +78,34 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsShareTr share = _TranslationsShareTr._(_root);
 	@override late final _TranslationsFacialScanTr facialScan = _TranslationsFacialScanTr._(_root);
 	@override late final _TranslationsAuthTr auth = _TranslationsAuthTr._(_root);
+	@override String get benefits => 'Faydalar';
+	@override String get minutes => 'Dk';
+	@override String get cancel => 'İptal';
+	@override String get beforeBegin => 'Başlamadan Önce';
+	@override String get rest => 'Dinlen';
+	@override String get courseCompleted => 'Kurs Tamamlandı';
+	@override String get courseCompletedDescription => 'Bugünkü kursu tamamladığınız için harika bir iş çıkardınız.';
+	@override String get deleteAccount => 'Hesabı Sil';
+	@override String get deleteDialogTitle => 'Hesabınızı silmek istediğinize emin misiniz?';
+	@override String get deleteDialogDescription => 'Bu işlem geri alınamaz ve tüm egzersiz geçmişinizi ve verilerinizi kalıcı olarak silecektir.';
+	@override String get deleteError => 'Hesabınızı silerken bir hata oluştu. Lütfen tekrar deneyin.';
+	@override String get favoriteExercises => 'Favori Egzersizler';
+	@override String get noFavoritesInCategory => 'Bu kategoride hiç favori yok';
+	@override String get noFavoritesAdded => 'Henüz favori eklenmedi.';
+	@override String get favoriteExercisesDescription => 'Favori egzersizlerini belirlemek istiyorsan egzersizlerim sayfasından beğendiğin egzersizleri ekleyebilirsin.';
+	@override String get enterInvitationCode => 'Davet Kodu Gir';
+	@override String get bePartOfPeace => 'Huzura Ortak Ol';
+	@override String get inviteFriends => 'Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak';
+	@override String get twoDaysPremium => '2 Günlük Premium';
+	@override String get advantage => '\navantajlarından yararlanabilirsiniz.';
+	@override String get send => 'Gönder';
+	@override String get deleteNotifications => 'Bildirimleri Sil';
+	@override String get deleteNotificationsDescription => 'Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.';
+	@override String get deleteAll => 'Tümünü Sil';
+	@override String get appLanguage => 'Uygulama Dili';
+	@override String get selectLanguage => 'Tercih Ettiğiniz Dili Seçin';
+	@override String get save => 'Kaydet';
+	@override late final _TranslationsLanguageOptionsTr languageOptions = _TranslationsLanguageOptionsTr._(_root);
 }
 
 // Path: termOfService
@@ -418,6 +446,26 @@ class _TranslationsAuthTr implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Misafir Olarak Devam Et';
 	@override String signInFailed({required Object error}) => 'Giriş başarısız: ${error}';
+}
+
+// Path: languageOptions
+class _TranslationsLanguageOptionsTr implements TranslationsLanguageOptionsEn {
+	_TranslationsLanguageOptionsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get english => 'İngilizce';
+	@override String get german => 'Almanca';
+	@override String get italian => 'İtalyanca';
+	@override String get french => 'Fransızca';
+	@override String get japanese => 'Japonca';
+	@override String get spanish => 'İspanyolca';
+	@override String get russian => 'Rusça';
+	@override String get turkish => 'Türkçe';
+	@override String get korean => 'Korece';
+	@override String get hindi => 'Hintçe';
+	@override String get portuguese => 'Portekizce';
 }
 
 // Path: termsOfService.section1
@@ -1659,6 +1707,44 @@ extension on TranslationsTr {
 			'auth.apple' => 'Apple',
 			'auth.guest' => 'Misafir Olarak Devam Et',
 			'auth.signInFailed' => ({required Object error}) => 'Giriş başarısız: ${error}',
+			'benefits' => 'Faydalar',
+			'minutes' => 'Dk',
+			'cancel' => 'İptal',
+			'beforeBegin' => 'Başlamadan Önce',
+			'rest' => 'Dinlen',
+			'courseCompleted' => 'Kurs Tamamlandı',
+			'courseCompletedDescription' => 'Bugünkü kursu tamamladığınız için harika bir iş çıkardınız.',
+			'deleteAccount' => 'Hesabı Sil',
+			'deleteDialogTitle' => 'Hesabınızı silmek istediğinize emin misiniz?',
+			'deleteDialogDescription' => 'Bu işlem geri alınamaz ve tüm egzersiz geçmişinizi ve verilerinizi kalıcı olarak silecektir.',
+			'deleteError' => 'Hesabınızı silerken bir hata oluştu. Lütfen tekrar deneyin.',
+			'favoriteExercises' => 'Favori Egzersizler',
+			'noFavoritesInCategory' => 'Bu kategoride hiç favori yok',
+			'noFavoritesAdded' => 'Henüz favori eklenmedi.',
+			'favoriteExercisesDescription' => 'Favori egzersizlerini belirlemek istiyorsan egzersizlerim sayfasından beğendiğin egzersizleri ekleyebilirsin.',
+			'enterInvitationCode' => 'Davet Kodu Gir',
+			'bePartOfPeace' => 'Huzura Ortak Ol',
+			'inviteFriends' => 'Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak',
+			'twoDaysPremium' => '2 Günlük Premium',
+			'advantage' => '\navantajlarından yararlanabilirsiniz.',
+			'send' => 'Gönder',
+			'deleteNotifications' => 'Bildirimleri Sil',
+			'deleteNotificationsDescription' => 'Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.',
+			'deleteAll' => 'Tümünü Sil',
+			'appLanguage' => 'Uygulama Dili',
+			'selectLanguage' => 'Tercih Ettiğiniz Dili Seçin',
+			'save' => 'Kaydet',
+			'languageOptions.english' => 'İngilizce',
+			'languageOptions.german' => 'Almanca',
+			'languageOptions.italian' => 'İtalyanca',
+			'languageOptions.french' => 'Fransızca',
+			'languageOptions.japanese' => 'Japonca',
+			'languageOptions.spanish' => 'İspanyolca',
+			'languageOptions.russian' => 'Rusça',
+			'languageOptions.turkish' => 'Türkçe',
+			'languageOptions.korean' => 'Korece',
+			'languageOptions.hindi' => 'Hintçe',
+			'languageOptions.portuguese' => 'Portekizce',
 			_ => null,
 		};
 	}

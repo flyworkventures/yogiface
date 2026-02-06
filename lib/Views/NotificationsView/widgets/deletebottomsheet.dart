@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -56,7 +57,7 @@ class DeleteNotificationsBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Delete All\nNotifications?',
+              context.t.deleteNotifications,
               textAlign: TextAlign.center,
               style: AppTextStyles.latoBody(
                 20,
@@ -67,7 +68,7 @@ class DeleteNotificationsBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Are you sure you want to delete all \nyour notifications? This action \ncannot be undone',
+              context.t.deleteNotificationsDescription,
               textAlign: TextAlign.center,
               style: AppTextStyles.latoBody(
                 16,
@@ -90,7 +91,7 @@ class DeleteNotificationsBottomSheet extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Cancel',
+                          context.t.cancel,
                           style: AppTextStyles.latoBody(
                             16,
                             height: 1.3,
@@ -112,9 +113,9 @@ class DeleteNotificationsBottomSheet extends StatelessWidget {
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          'Delete all',
+                          context.t.deleteAll,
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

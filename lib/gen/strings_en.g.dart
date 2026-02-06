@@ -133,6 +133,89 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsShareEn share = TranslationsShareEn._(_root);
 	late final TranslationsFacialScanEn facialScan = TranslationsFacialScanEn._(_root);
 	late final TranslationsAuthEn auth = TranslationsAuthEn._(_root);
+
+	/// en: 'Benefits'
+	String get benefits => 'Benefits';
+
+	/// en: 'Min'
+	String get minutes => 'Min';
+
+	/// en: 'Cancel'
+	String get cancel => 'Cancel';
+
+	/// en: 'Before You Begin'
+	String get beforeBegin => 'Before You Begin';
+
+	/// en: 'Rest'
+	String get rest => 'Rest';
+
+	/// en: 'Course Completed'
+	String get courseCompleted => 'Course Completed';
+
+	/// en: 'Great job finishing today's session.'
+	String get courseCompletedDescription => 'Great job finishing today\'s session.';
+
+	/// en: 'Delete Account'
+	String get deleteAccount => 'Delete Account';
+
+	/// en: 'Are you sure you want to delete your account?'
+	String get deleteDialogTitle => 'Are you sure you want to delete your account?';
+
+	/// en: 'This action is irreversible and will permanently delete all your exercise history and data.'
+	String get deleteDialogDescription => 'This action is irreversible and will permanently delete all your exercise history and data.';
+
+	/// en: 'An error occurred while deleting your account. Please try again.'
+	String get deleteError => 'An error occurred while deleting your account. Please try again.';
+
+	/// en: 'Favorite Exercises'
+	String get favoriteExercises => 'Favorite Exercises';
+
+	/// en: 'No favorites in this category'
+	String get noFavoritesInCategory => 'No favorites in this category';
+
+	/// en: 'No favorites added yet.'
+	String get noFavoritesAdded => 'No favorites added yet.';
+
+	/// en: 'To set your favorite exercises, you can add the exercises you like from the My Exercises page.'
+	String get favoriteExercisesDescription => 'To set your favorite exercises, you can add the exercises you like from the My Exercises page.';
+
+	/// en: 'Enter Invitation Code'
+	String get enterInvitationCode => 'Enter Invitation Code';
+
+	/// en: 'Be Part of Peace'
+	String get bePartOfPeace => 'Be Part of Peace';
+
+	/// en: 'Enter the invitation code you received from a friend. Type it into the designated field'
+	String get inviteFriends => 'Enter the invitation code you received from a friend.\nType it into the designated field';
+
+	/// en: '2-Day Premium'
+	String get twoDaysPremium => '2-Day Premium';
+
+	/// en: ' to enjoy its benefits.'
+	String get advantage => '\nto enjoy its benefits.';
+
+	/// en: 'Send'
+	String get send => 'Send';
+
+	/// en: 'Delete Notifications'
+	String get deleteNotifications => 'Delete Notifications';
+
+	/// en: 'Are you sure you want to delete all your notifications? This action is irreversible and cannot be undone.'
+	String get deleteNotificationsDescription => 'Are you sure you want to delete all \nyour notifications? This action is irreversible and cannot be undone.';
+
+	/// en: 'Delete All'
+	String get deleteAll => 'Delete All';
+
+	/// en: 'App Language'
+	String get appLanguage => 'App Language';
+
+	/// en: 'Select Your Preferred Language'
+	String get selectLanguage => 'Select Your Preferred Language';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	late final TranslationsLanguageOptionsEn languageOptions = TranslationsLanguageOptionsEn._(_root);
 }
 
 // Path: termOfService
@@ -768,6 +851,48 @@ class TranslationsAuthEn {
 
 	/// en: 'Sign-in failed: $error'
 	String signInFailed({required Object error}) => 'Sign-in failed: ${error}';
+}
+
+// Path: languageOptions
+class TranslationsLanguageOptionsEn {
+	TranslationsLanguageOptionsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'English'
+	String get english => 'English';
+
+	/// en: 'German'
+	String get german => 'German';
+
+	/// en: 'Italian'
+	String get italian => 'Italian';
+
+	/// en: 'French'
+	String get french => 'French';
+
+	/// en: 'Japanese'
+	String get japanese => 'Japanese';
+
+	/// en: 'Spanish'
+	String get spanish => 'Spanish';
+
+	/// en: 'Russian'
+	String get russian => 'Russian';
+
+	/// en: 'Turkish'
+	String get turkish => 'Turkish';
+
+	/// en: 'Korean'
+	String get korean => 'Korean';
+
+	/// en: 'Hindi'
+	String get hindi => 'Hindi';
+
+	/// en: 'Portuguese'
+	String get portuguese => 'Portuguese';
 }
 
 // Path: termsOfService.section1
@@ -2339,6 +2464,44 @@ extension on Translations {
 			'auth.apple' => 'Apple',
 			'auth.guest' => 'Continue as Guest',
 			'auth.signInFailed' => ({required Object error}) => 'Sign-in failed: ${error}',
+			'benefits' => 'Benefits',
+			'minutes' => 'Min',
+			'cancel' => 'Cancel',
+			'beforeBegin' => 'Before You Begin',
+			'rest' => 'Rest',
+			'courseCompleted' => 'Course Completed',
+			'courseCompletedDescription' => 'Great job finishing today\'s session.',
+			'deleteAccount' => 'Delete Account',
+			'deleteDialogTitle' => 'Are you sure you want to delete your account?',
+			'deleteDialogDescription' => 'This action is irreversible and will permanently delete all your exercise history and data.',
+			'deleteError' => 'An error occurred while deleting your account. Please try again.',
+			'favoriteExercises' => 'Favorite Exercises',
+			'noFavoritesInCategory' => 'No favorites in this category',
+			'noFavoritesAdded' => 'No favorites added yet.',
+			'favoriteExercisesDescription' => 'To set your favorite exercises, you can add the exercises you like from the My Exercises page.',
+			'enterInvitationCode' => 'Enter Invitation Code',
+			'bePartOfPeace' => 'Be Part of Peace',
+			'inviteFriends' => 'Enter the invitation code you received from a friend.\nType it into the designated field',
+			'twoDaysPremium' => '2-Day Premium',
+			'advantage' => '\nto enjoy its benefits.',
+			'send' => 'Send',
+			'deleteNotifications' => 'Delete Notifications',
+			'deleteNotificationsDescription' => 'Are you sure you want to delete all \nyour notifications? This action is irreversible and cannot be undone.',
+			'deleteAll' => 'Delete All',
+			'appLanguage' => 'App Language',
+			'selectLanguage' => 'Select Your Preferred Language',
+			'save' => 'Save',
+			'languageOptions.english' => 'English',
+			'languageOptions.german' => 'German',
+			'languageOptions.italian' => 'Italian',
+			'languageOptions.french' => 'French',
+			'languageOptions.japanese' => 'Japanese',
+			'languageOptions.spanish' => 'Spanish',
+			'languageOptions.russian' => 'Russian',
+			'languageOptions.turkish' => 'Turkish',
+			'languageOptions.korean' => 'Korean',
+			'languageOptions.hindi' => 'Hindi',
+			'languageOptions.portuguese' => 'Portuguese',
 			_ => null,
 		};
 	}

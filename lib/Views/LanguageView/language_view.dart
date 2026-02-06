@@ -1,34 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class LanguageViewPage extends StatefulWidget {
+class LanguageViewPage extends HookWidget {
   const LanguageViewPage({super.key});
 
   @override
-  State<LanguageViewPage> createState() => _LanguageViewPageState();
-}
-
-class _LanguageViewPageState extends State<LanguageViewPage> {
-  String selectedLanguage = 'English';
-
-  final List<Map<String, String>> languages = [
-    {'name': 'English', 'icon': AppIcons.eng},
-    {'name': 'German', 'icon': AppIcons.ger},
-    {'name': 'Italian', 'icon': AppIcons.italy},
-    {'name': 'French', 'icon': AppIcons.fr},
-    {'name': 'Japanese', 'icon': AppIcons.jp},
-    {'name': 'Spanish', 'icon': AppIcons.tr},
-    {'name': 'Russian', 'icon': AppIcons.rus},
-    {'name': 'Turkish', 'icon': AppIcons.tr},
-    {'name': 'Korean', 'icon': AppIcons.kr},
-    {'name': 'Hindi', 'icon': AppIcons.en},
-    {'name': 'Portuguese', 'icon': AppIcons.pr},
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    // Current locale'i al ve state olarak tut
+    final currentLocale = LocaleSettings.currentLocale;
+    final selectedLanguage = useState(currentLocale);
+
+    final List<Map<String, dynamic>> languages = [
+      {
+        'name': context.t.languageOptions.english,
+        'icon': AppIcons.eng,
+        'value': AppLocale.en,
+      },
+      {
+        'name': context.t.languageOptions.german,
+        'icon': AppIcons.ger,
+        'value': AppLocale.de,
+      },
+      {
+        'name': context.t.languageOptions.italian,
+        'icon': AppIcons.italy,
+        'value': AppLocale.it,
+      },
+      {
+        'name': context.t.languageOptions.french,
+        'icon': AppIcons.fr,
+        'value': AppLocale.fr,
+      },
+      {
+        'name': context.t.languageOptions.japanese,
+        'icon': AppIcons.jp,
+        'value': AppLocale.ja,
+      },
+      {
+        'name': context.t.languageOptions.spanish,
+        'icon': AppIcons.tr, // TODO: Spanish flag asset needed
+        'value': AppLocale.es,
+      },
+      {
+        'name': context.t.languageOptions.russian,
+        'icon': AppIcons.rus,
+        'value': AppLocale.ru,
+      },
+      {
+        'name': context.t.languageOptions.turkish,
+        'icon': AppIcons.tr,
+        'value': AppLocale.tr,
+      },
+      {
+        'name': context.t.languageOptions.korean,
+        'icon': AppIcons.kr,
+        'value': AppLocale.ko,
+      },
+      {
+        'name': context.t.languageOptions.hindi,
+        'icon': AppIcons.en, // TODO: Hindi flag asset needed
+        'value': AppLocale.hi,
+      },
+      {
+        'name': context.t.languageOptions.portuguese,
+        'icon': AppIcons.pr, // TODO: Portuguese flag asset needed
+        'value': AppLocale.pt,
+      },
+    ];
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
@@ -39,8 +82,8 @@ class _LanguageViewPageState extends State<LanguageViewPage> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Uygulama Dili',
+        title: Text(
+          context.t.appLanguage,
           style: TextStyle(
             color: Colors.black,
             fontSize: 16,
@@ -67,7 +110,7 @@ class _LanguageViewPageState extends State<LanguageViewPage> {
                 const SizedBox(height: 16),
                 // Başlık
                 Text(
-                  'Select the application\nlanguage',
+                  context.t.selectLanguage,
                   textAlign: TextAlign.center,
                   style: AppTextStyles.latoBody(
                     24,
@@ -84,16 +127,16 @@ class _LanguageViewPageState extends State<LanguageViewPage> {
                         const SizedBox(height: 8),
                     itemBuilder: (context, index) {
                       final language = languages[index];
-                      final isSelected = language['name'] == selectedLanguage;
+                      final isSelected =
+                          language['value'] == selectedLanguage.value;
 
                       return LanguageMenuItem(
                         icon: language['icon']!,
                         title: language['name']!,
                         isSelected: isSelected,
                         onTap: () {
-                          setState(() {
-                            selectedLanguage = language['name']!;
-                          });
+                          selectedLanguage.value =
+                              language['value'] as AppLocale;
                         },
                       );
                     },
@@ -102,8 +145,16 @@ class _LanguageViewPageState extends State<LanguageViewPage> {
                 Padding(
                   padding: const EdgeInsets.all(24),
                   child: GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context, selectedLanguage);
+                    onTap: () async {
+                      // Dili güncelle
+                      LocaleSettings.setLocale(selectedLanguage.value);
+
+                      // TODO: Backend'e dil değişikliğini bildir (User API update)
+                      // await UserService.updateLanguage(selectedLanguage.value.languageTag);
+
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
                     },
                     child: Container(
                       width: double.infinity,
@@ -114,8 +165,8 @@ class _LanguageViewPageState extends State<LanguageViewPage> {
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: const Text(
-                        'Save',
+                      child: Text(
+                        context.t.save,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,

@@ -28,9 +28,9 @@ class PremiumBannerCard extends StatelessWidget {
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [
-              Color(0xFFB8A5E3), // Açık mor
-              Color(0xFFE8B5D5), // Pembe-mor
-              Color(0xFFF5C5D5), // Açık pembe
+              Color(0xFFB8A5E3),
+              Color(0xFFE8B5D5),
+              Color(0xFFF5C5D5),
             ],
           ),
         ),

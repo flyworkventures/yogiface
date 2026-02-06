@@ -39,31 +39,31 @@ class SkintypeBottomsheet extends HookWidget {
               children: <Widget>[
                 const SizedBox(height: AppSpacing.xl),
                 SkintypeCard(
-                  skintype: 'Normal',
+                  skintype: context.t.onboarding.normal,
                   imagePath: 'assets/icons/editleaf.png',
                   isSelected: selectedSkinType.value == 'normal',
                   onTap: () => selectedSkinType.value = 'normal',
                 ),
                 SkintypeCard(
-                  skintype: 'Dry',
+                  skintype: context.t.onboarding.dry,
                   imagePath: 'assets/icons/dry.png',
                   isSelected: selectedSkinType.value == 'dry',
                   onTap: () => selectedSkinType.value = 'dry',
                 ),
                 SkintypeCard(
-                  skintype: 'Oily',
+                  skintype: context.t.onboarding.oily,
                   imagePath: 'assets/icons/oily.png',
                   isSelected: selectedSkinType.value == 'oily',
                   onTap: () => selectedSkinType.value = 'oily',
                 ),
                 SkintypeCard(
-                  skintype: 'Combination',
+                  skintype: context.t.onboarding.combination,
                   imagePath: 'assets/icons/combination.png',
                   isSelected: selectedSkinType.value == 'combination',
                   onTap: () => selectedSkinType.value = 'combination',
                 ),
                 SkintypeCard(
-                  skintype: 'Sensitive',
+                  skintype: context.t.onboarding.sensitive,
                   imagePath: 'assets/icons/sensitive.png',
                   isSelected: selectedSkinType.value == 'sensitive',
                   onTap: () => selectedSkinType.value = 'sensitive',

@@ -91,108 +91,114 @@ class CourseView extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              flex: 6,
-              child: Stack(
-                children: [
-                  if (state.currentExercise != null)
-                    VideoPlayerWidget(
-                      key: ValueKey(state.currentExercise!.id),
-                      videoUrl: state.currentExercise!.videoUrl,
-                      stepNumber: state.currentExerciseIndex + 1,
-                      totalSteps: state.totalExercises,
-                      onBackPressed: () => Navigator.of(context).pop(),
-                      onVolumePressed: notifier.toggleMute,
-                      isMuted: state.isMuted,
-                      isPlaying: state.isPlaying &&
-                          state.phase == ExercisePhase.exercise,
-                    ),
-                  if (state.phase == ExercisePhase.countdown)
-                    Positioned.fill(
-                      child: Container(
-                        color: Colors.black.withValues(alpha: 0.5),
-                        child: CountdownOverlay(value: state.countdownValue),
-                      ),
-                    ),
-                  if (state.phase == ExercisePhase.rest)
-                    Positioned.fill(
-                      child: Container(
-                        color: Colors.white.withValues(alpha: 0.9),
-                        child: RestTimerWidget(
-                          remainingSeconds: state.restTimeRemaining,
-                          progress: state.restProgress,
+            // The UI column (video area + controls)
+            Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Container(
+                    // Only show the video here; overlays moved to the top-level stack
+                    child: state.currentExercise != null
+                        ? VideoPlayerWidget(
+                            key: ValueKey(state.currentExercise!.id),
+                            videoUrl: state.currentExercise!.videoUrl,
+                            stepNumber: state.currentExerciseIndex + 1,
+                            totalSteps: state.totalExercises,
+                            onBackPressed: () => Navigator.of(context).pop(),
+                            onVolumePressed: notifier.toggleMute,
+                            isMuted: state.isMuted,
+                            isPlaying: state.isPlaying &&
+                                state.phase == ExercisePhase.exercise,
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 16),
+                        StepIndicatorDots(
+                          totalSteps: state.totalExercises,
+                          currentStep: state.currentExerciseIndex,
                         ),
-                      ),
-                    ),
-                  if (state.phase == ExercisePhase.completed)
-                    Positioned.fill(
-                      child: SuccessOverlay(
-                        onAnimationComplete: () {
-                          Future.delayed(const Duration(seconds: 1), () {
-                            if (context.mounted) {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/main',
-                                (route) => false,
-                              );
+                        const Spacer(),
+                        Text(
+                          state.currentExercise?.title ?? '',
+                          style: AppTextStyles.onboardingBody(22,
+                              weight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                        const Spacer(),
+                        Text(
+                          state.phase == ExercisePhase.rest
+                              ? '00:${state.restTimeRemaining.toString().padLeft(2, '0')}'
+                              : state.formattedExerciseTime,
+                          style: AppTextStyles.heading(
+                            48,
+                            FontWeight.w600,
+                            color: AppColors.black,
+                          ),
+                        ),
+                        const Spacer(),
+                        PlaybackControls(
+                          isPlaying: state.isPlaying,
+                          onPlayPause: () {
+                            if (state.phase == ExercisePhase.idle) {
+                              notifier.start();
+                            } else {
+                              notifier.togglePlayPause();
                             }
-                          });
-                        },
-                      ),
+                          },
+                          onPrevious: notifier.previousExercise,
+                          onNext: notifier.nextExercise,
+                          canGoPrevious: !state.isFirstExercise,
+                          canGoNext: !state.isLastExercise,
+                        ),
+                        const Spacer(flex: 3),
+                      ],
                     ),
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 16),
-                    StepIndicatorDots(
-                      totalSteps: state.totalExercises,
-                      currentStep: state.currentExerciseIndex,
-                    ),
-                    const Spacer(),
-                    Text(
-                      state.currentExercise?.title ?? '',
-                      style: AppTextStyles.onboardingBody(22,
-                          weight: FontWeight.w600),
-                      textAlign: TextAlign.center,
-                    ),
-                    const Spacer(),
-                    Text(
-                      state.phase == ExercisePhase.rest
-                          ? '00:${state.restTimeRemaining.toString().padLeft(2, '0')}'
-                          : state.formattedExerciseTime,
-                      style: AppTextStyles.heading(
-                        48,
-                        FontWeight.w600,
-                        color: AppColors.black,
-                      ),
-                    ),
-                    const Spacer(),
-                    PlaybackControls(
-                      isPlaying: state.isPlaying,
-                      onPlayPause: () {
-                        if (state.phase == ExercisePhase.idle) {
-                          notifier.start();
-                        } else {
-                          notifier.togglePlayPause();
-                        }
-                      },
-                      onPrevious: notifier.previousExercise,
-                      onNext: notifier.nextExercise,
-                      canGoPrevious: !state.isFirstExercise,
-                      canGoNext: !state.isLastExercise,
-                    ),
-                    const Spacer(flex: 3),
-                  ],
+            // Overlays moved here so they cover the whole SafeArea (entire screen)
+            if (state.phase == ExercisePhase.countdown)
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  child: CountdownOverlay(value: state.countdownValue),
                 ),
               ),
-            ),
+            if (state.phase == ExercisePhase.rest)
+              Positioned.fill(
+                child: Container(
+                  color: Colors.white.withValues(alpha: 0.9),
+                  child: RestTimerWidget(
+                    remainingSeconds: state.restTimeRemaining,
+                    progress: state.restProgress,
+                  ),
+                ),
+              ),
+            if (state.phase == ExercisePhase.completed)
+              Positioned.fill(
+                child: SuccessOverlay(
+                  onAnimationComplete: () {
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (context.mounted) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/main',
+                          (route) => false,
+                        );
+                      }
+                    });
+                  },
+                ),
+              ),
           ],
         ),
       ),

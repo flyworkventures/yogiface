@@ -16,13 +16,19 @@ class FocusAreasWidget extends StatelessWidget {
       {'name': context.t.onboarding.eyes, 'image': AppImages.focusareaeyes},
       {'name': context.t.onboarding.nose, 'image': AppImages.focusareanoise},
       {'name': context.t.onboarding.cheeks, 'image': AppImages.focusareacheek},
-      {'name': context.t.onboarding.jawline, 'image': AppImages.cene},
+      {
+        'name': context.t.onboarding.jawline,
+        'image': AppImages.focusareajawline
+      },
       {
         'name': context.t.onboarding.forehead,
         'image': AppImages.focusareaforehead
       },
-      {'name': context.t.onboarding.neck, 'image': AppImages.boyun},
-      {'name': context.t.full_face, 'image': AppImages.yuz},
+      {'name': context.t.onboarding.neck, 'image': AppImages.focusareaneck},
+      {
+        'name': context.t.onboarding.fullface,
+        'image': AppImages.focusareafullface
+      },
     ];
     final course = Course(
       title: context.t.home.courses.vMove.title,

@@ -37,10 +37,11 @@ class LogoutDialog extends ConsumerWidget {
             // Title
             Text(
               context.t.profile.logoutDialog.title,
-              style: AppTextStyles.latoBody(
+              style: AppTextStyles.onboardingBody(
                 18,
                 weight: FontWeight.w700,
                 color: Colors.black,
+                height: 1,
               ),
             ),
             const SizedBox(height: 24),
@@ -48,7 +49,7 @@ class LogoutDialog extends ConsumerWidget {
             Text(
               context.t.profile.logoutDialog.message,
               textAlign: TextAlign.center,
-              style: AppTextStyles.latoBody(
+              style: AppTextStyles.onboardingBody(
                 14,
                 weight: FontWeight.w300,
                 height: 1,
@@ -73,10 +74,11 @@ class LogoutDialog extends ConsumerWidget {
                 ),
                 child: Text(
                   context.t.profile.logoutDialog.logoutButton,
-                  style: AppTextStyles.latoBody(
+                  style: AppTextStyles.onboardingBody(
                     14,
                     weight: FontWeight.w500,
                     color: Colors.white,
+                    height: 1,
                   ),
                 ),
               ),
@@ -91,10 +93,11 @@ class LogoutDialog extends ConsumerWidget {
                 },
                 child: Text(
                   context.t.profile.logoutDialog.cancelButton,
-                  style: AppTextStyles.latoBody(
+                  style: AppTextStyles.onboardingBody(
                     14,
                     weight: FontWeight.w500,
                     color: Colors.black,
+                    height: 1,
                   ),
                 ),
               ),

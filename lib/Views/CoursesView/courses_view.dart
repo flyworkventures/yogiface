@@ -18,7 +18,7 @@ class AllCoursesView extends HookConsumerWidget {
     final focusAreas = [
       {
         'name': t.onboarding.fullface,
-        'image': AppImages.yuz,
+        'image': AppImages.focusareafullface,
         'type': 'full_face'
       },
       {
@@ -43,7 +43,7 @@ class AllCoursesView extends HookConsumerWidget {
       },
       {
         'name': t.onboarding.jawline,
-        'image': AppImages.cene,
+        'image': AppImages.focusareajawline,
         'type': 'jawline_chin'
       },
       {
@@ -53,7 +53,7 @@ class AllCoursesView extends HookConsumerWidget {
       },
       {
         'name': t.onboarding.neck,
-        'image': AppImages.boyun,
+        'image': AppImages.focusareaneck,
         'type': 'neck_decollete'
       },
     ];
@@ -61,13 +61,18 @@ class AllCoursesView extends HookConsumerWidget {
     final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
 
+    final deviceLocale = AppLocaleUtils.findDeviceLocale();
+
     // Fetch exercises
     final exerciseRepository =
         ref.watch(AllProviders.exerciseRepositoryProvider);
     // Using simple useFuture for now. In a real app, define a FutureProvider for caching.
     final exercisesSnapshot = useFuture(
-      useMemoized(() => exerciseRepository.getAllExercises(lang: 'en'),
-          []), // TODO: dynamic lang
+      useMemoized(
+          () => exerciseRepository.getAllExercises(
+                lang: deviceLocale.languageCode,
+              ),
+          []),
     );
 
     // Local favorite state - eventually should be sync with backend or provider

@@ -1,0 +1,593 @@
+{
+  "welcome": "Bienvenue $name",
+  "welcome2": "Bienvenue",
+  "get_started": "Commencer",
+  "next": "Suivant",
+  "back": "Retour",
+  "skip": "Passer",
+  "logintext": "Je suis heureux de vous voir. Vous pouvez continuer là où vous vous êtes arrêté en vous connectant à votre compte.",
+  "termOfService": {
+    "text1": "En vous inscrivant à swipe, vous acceptez nos ",
+    "link1": "Conditions d'utilisation",
+    "text2": ". Découvrez comment nous traitons vos données dans notre ",
+    "link2": "Politique de confidentialité",
+    "text3": " et ",
+    "link3": "Politique relative aux cookies",
+    "text4": ""
+  },
+  "cookies": "Politique relative aux cookies",
+  "privacy": "Politique de confidentialité",
+  "termsOfService": {
+    "title": "Yogiface – Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : 2025",
+    "principle": "Yogiface est une application de bien-être qui propose des exercices de yoga facial et du contenu guidé visant à soutenir les muscles faciaux. L'application ne fournit pas de services médicaux, cliniques, esthétiques ou de santé professionnels.",
+    "intro": "Ces Conditions d'utilisation (\"Conditions\") contiennent les règles applicables à votre utilisation de l'application mobile Yogiface (\"Application\"). En utilisant l'Application, vous acceptez ces Conditions. Si vous n'acceptez pas les Conditions, vous ne devez pas utiliser l'Application.",
+    "section1": {
+      "title": "1. Portée du service",
+      "content": "Yogiface offre aux utilisateurs une expérience guidée de yoga facial et d'exercices. L'application comprend :",
+      "items": [
+        "Guides de yoga facial et d'exercices",
+        "Routines d'exercices quotidiennes et hebdomadaires",
+        "Recommandations ciblées pour des zones faciales spécifiques",
+        "Plans personnalisables et suivi des progrès"
+      ],
+      "note": "Le contenu fourni ne constitue pas un conseil, un diagnostic ou un traitement professionnel, médical ou esthétique."
+    },
+    "section2": {
+      "title": "2. Conditions d'utilisation",
+      "items": [
+        "Vous devez avoir au moins 13 ans.",
+        "Vous devez fournir des informations de compte exactes et à jour.",
+        "Vous reconnaissez que les exercices ne sont pas un service médical."
+      ]
+    },
+    "section3": {
+      "title": "3. Utilisations interdites",
+      "items": [
+        "Utiliser l'application pour des activités illégales.",
+        "Vendre, reproduire ou distribuer du contenu sans autorisation.",
+        "Accès non autorisé, piratage ou tentatives de rétro-ingénierie."
+      ]
+    },
+    "section4": {
+      "title": "4. Compte et adhésion",
+      "content": "Vous êtes responsable de la sécurité de votre compte. Yogiface se réserve le droit de suspendre ou de fermer les comptes en cas d'utilisation contraire aux Conditions."
+    },
+    "section5": {
+      "title": "5. Services Premium et payants",
+      "items": [
+        "Les prix sont basés sur les politiques de l'App Store et de Google Play.",
+        "Les abonnements peuvent se renouveler automatiquement ; les annulations se font via les paramètres du magasin."
+      ]
+    },
+    "section6": {
+      "title": "6. Clause de non-responsabilité",
+      "content": "Les utilisateurs effectuent les exercices à leurs propres risques. En cas de problèmes de santé, les utilisateurs doivent consulter un professionnel de la santé. L'application ne doit pas être utilisée pour le diagnostic ou le traitement."
+    },
+    "section7": {
+      "title": "7. Propriété intellectuelle",
+      "content": "La conception, le logiciel, les images et le contenu des exercices appartiennent à Yogiface. La copie non autorisée ou la modification du code source est interdite."
+    },
+    "section12": {
+      "title": "12. Droit applicable",
+      "content": "Ces Conditions sont régies par les lois de la République de Turquie. Les tribunaux centraux d'Istanbul ont compétence sur les litiges."
+    },
+    "section13": {
+      "title": "13. Contact",
+      "email": "📩 Email : support@fly-work.com"
+    }
+  },
+  "cookiesPolicy": {
+    "title": "Yogiface – Politique relative aux cookies",
+    "lastUpdated": "Dernière mise à jour : 2025",
+    "intro": "Bienvenue sur Yogiface ! Chaque fois que vous visitez l'application, nous utilisons des assistants numériques (cookies) pour améliorer et personnaliser votre expérience. Cette politique explique comment vous pouvez gérer vos préférences.",
+    "section1": {
+      "title": "1. Que sont les cookies ?",
+      "content": "Les cookies sont de petits fichiers de données placés sur votre appareil. Ils nous aident à comprendre comment vous utilisez l'application et rendent votre expérience plus fluide. Les cookies ne contiennent pas directement votre identité ; ils agissent comme des assistants numériques qui se souviennent de vos préférences et habitudes d'utilisation."
+    },
+    "section2": {
+      "title": "2. Quels cookies utilisons-nous ?",
+      "essential": {
+        "title": "Cookies strictement nécessaires",
+        "content": "Requis pour les fonctions de base de l'application. Ils prennent en charge les processus essentiels tels que la gestion des sessions, la sécurité et la navigation de base."
+      },
+      "performance": {
+        "title": "Cookies de performance et d'analyse",
+        "content": "Nous aide à comprendre quelles zones sont les plus fréquemment utilisées et quelles sections nécessitent des améliorations."
+      },
+      "personalization": {
+        "title": "Cookies de personnalisation",
+        "content": "Offre une expérience plus personnelle en mémorisant des paramètres tels que la langue, le thème et les préférences d'exercice."
+      },
+      "marketing": {
+        "title": "Cookies de marketing et de publicité",
+        "content": "Peut être utilisé pour fournir du contenu et des promotions plus adaptés à vos intérêts et fonctionne parfois avec des services tiers."
+      }
+    },
+    "section3": {
+      "title": "3. Pourquoi utilisons-nous des cookies ?",
+      "items": [
+        "Pour garantir que l'application fonctionne rapidement et en douceur",
+        "Pour réduire les actions répétitives en mémorisant les préférences de l'utilisateur",
+        "Pour rendre l'expérience plus personnelle et utile",
+        "Pour améliorer l'application en analysant les données d'utilisation"
+      ]
+    },
+    "section4": {
+      "title": "4. Cookies tiers",
+      "content": "Certains cookies peuvent être placés par des partenaires tiers fournissant des services d'analyse et de publicité. Ceux-ci sont soumis aux politiques de confidentialité et de cookies des fournisseurs."
+    },
+    "section5": {
+      "title": "5. Contrôle et gestion des cookies",
+      "content": "Vous pouvez gérer les cookies via les paramètres de l'appareil, les autorisations de l'application ou les paramètres système. La désactivation des cookies nécessaires peut entraîner un dysfonctionnement de certaines parties de l'application."
+    },
+    "section6": {
+      "title": "6. Utilisation des données",
+      "content": "Les données obtenues via les cookies, si elles sont qualifiées de données personnelles, sont traitées dans le cadre juridique conformément à la Politique de confidentialité."
+    },
+    "section7": {
+      "title": "7. Mises à jour de la politique",
+      "content": "Cette politique peut être mise à jour en fonction des changements technologiques et juridiques. La version actuelle entre en vigueur dès sa publication."
+    },
+    "section8": {
+      "title": "8. Contact",
+      "email": "📩 Email : support@fly-work.com"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Yogiface – Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : 2025",
+    "intro": "Cette Politique de confidentialité explique les principes concernant la collecte, l'utilisation, le stockage et la protection des données personnelles de tous les utilisateurs qui utilisent l'application mobile Yogiface (\"App\"). En utilisant l'App, vous acceptez cette politique.",
+    "principle": "Yogiface adopte la confidentialité des utilisateurs et la sécurité des données comme principe fondamental. Toutes les données personnelles sont traitées conformément au RGPD et à la législation pertinente.",
+    "section1": {
+      "title": "1. Informations collectées",
+      "sub1": {
+        "title": "1.1. Données fournies par l'utilisateur",
+        "items": [
+          "Nom, surnom ou informations de profil",
+          "Adresse e-mail (pour l'inscription, l'achat et le support)",
+          "Plans d'exercices, préférences et paramètres de personnalisation",
+          "Commentaires, demandes et messages de support"
+        ]
+      },
+      "sub2": {
+        "title": "1.2. Données collectées automatiquement",
+        "items": [
+          "Type d'appareil, système d'exploitation et informations techniques",
+          "Données de localisation approximatives (niveau ville/pays)",
+          "Informations d'utilisation telles que la durée de session et les interactions à l'écran",
+          "Journaux de performances, d'erreurs et de plantages"
+        ]
+      }
+    },
+    "section2": {
+      "title": "2. Finalités d'utilisation des données",
+      "items": [
+        "Pour assurer le fonctionnement ininterrompu de l'application",
+        "Pour personnaliser et optimiser l'expérience de yoga facial",
+        "Pour effectuer la détection d'erreurs et l'analyse des performances",
+        "Pour répondre aux demandes des utilisateurs et aux demandes de support"
+      ],
+      "note": "Important : les données des utilisateurs ne sont jamais vendues à des tiers."
+    },
+    "section3": {
+      "title": "3. Conservation des données",
+      "items": [
+        "Les données sont stockées tant que le compte utilisateur est actif.",
+        "Lorsqu'un compte est supprimé, les données personnelles sont supprimées de manière irréversible.",
+        "Les enregistrements de support sont conservés pendant un maximum de 12 mois après l'achèvement."
+      ]
+    },
+    "section4": {
+      "title": "4. Partage des données",
+      "content": "Vos données ne sont partagées qu'en cas d'exigences légales (demandes officielles), de fournisseurs de services (infrastructure cloud, analyse) ou avec le consentement explicite de l'utilisateur."
+    },
+    "section5": {
+      "title": "5. Cookies et sécurité",
+      "content": "Yogiface peut utiliser des cookies pour améliorer les performances et l'expérience. Vos données sont protégées par un cryptage SSL/TLS et des audits de sécurité réguliers."
+    },
+    "section6": {
+      "title": "6. Droits de l'utilisateur",
+      "content": "Vous avez le droit d'accéder, de corriger, de supprimer et de restreindre le traitement des données.",
+      "contact": "Pour les demandes :",
+      "email": "support@fly-work.com"
+    },
+    "section8": {
+      "title": "8. Confidentialité des enfants",
+      "content": "Yogiface n'est pas destiné aux personnes de moins de 13 ans. Toutes les données collectées auprès de ce groupe d'âge seront supprimées immédiatement si elles sont détectées."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "email": "📩 Email : support@fly-work.com"
+    }
+  },
+  "onboarding": {
+    "basicInformation": "INFORMATIONS DE BASE",
+    "target": "OBJECTIF",
+    "habits": "HABITUDES",
+    "step": "ÉTAPE",
+    "of": "SUR",
+    "tellUsAboutYourself": "Parlez-nous de vous",
+    "shortBioDescription": "Une courte biographie aide les autres à vous connaître vraiment. Gardez-la amusante et authentique",
+    "enterYourFullname": "Entrez votre nom complet",
+    "fullName": "Nom complet",
+    "male": "Homme",
+    "female": "Femme",
+    "dontWantToMention": "Je ne veux pas le mentionner",
+    "whatIsMainObjective": "Quel est l'objectif principal ?",
+    "reduceWrinkles": "Réduire les rides",
+    "tightenSkin": "Raffermir la peau",
+    "liftDroopyEyelids": "Soulever les paupières tombantes",
+    "eliminateDoubleChin": "Éliminer le double menton",
+    "brightenSkinTone": "Éclaircir le teint",
+    "allOfTheAbove": "Tout ce qui précède",
+    "whichAreaToImprove": "Quelle zone souhaitez-vous améliorer ?",
+    "forehead": "Front",
+    "eyes": "Yeux",
+    "nose": "Nez",
+    "cheeks": "Joues",
+    "lips": "Lèvres",
+    "jawline": "Ligne de mâchoire",
+    "neck": "Cou",
+    "fullface": "Visage complet",
+    "whatFaceShapeAiming": "Quelle forme de visage visez-vous ?",
+    "heart": "Cœur",
+    "oval": "Ovale",
+    "square": "Carré",
+    "round": "Rond",
+    "diamond": "Diamant",
+    "whatIsYourSkinType": "Quel est votre type de peau ?",
+    "normal": "Normale",
+    "oily": "Grasse",
+    "dry": "Sèche",
+    "combination": "Mixte",
+    "sensitive": "Sensible",
+    "whichOfThemDoYouHave": "Lequel avez-vous ?",
+    "acneAndPimples": "Acné et boutons",
+    "redness": "Rougeurs",
+    "swelling": "Gonflement",
+    "wrinkles": "Rides",
+    "neckLines": "Lignes du cou",
+    "howOftenWearMakeup": "À quelle fréquence vous maquillez-vous ?",
+    "everyDay": "Tous les jours",
+    "fewDaysAWeek": "Quelques jours par semaine",
+    "occasionally": "Occasionnellement",
+    "never": "Jamais",
+    "haveYouHadBotox": "Avez-vous eu du Botox ?",
+    "yes": "Oui",
+    "no": "Non",
+    "creatingPersonalizedProfile": "Création de votre profil personnalisé",
+    "tailoringExperience": "Nous adaptons votre expérience en fonction de vos préférences...",
+    "gender": "Genre",
+    "age": "Âge",
+    "weight": "Poids",
+    "height": "Taille",
+    "matchingPersonalities": "CORRESPONDANCE DES PERSONNALITÉS"
+  },
+  "pressBackAgainToExit": "Appuyez à nouveau sur retour pour quitter",
+  "addedToFavoritesTitle": "Exercice ajouté avec succès aux favoris !",
+  "removedFromFavoritesTitle": "Exercice supprimé avec succès des favoris !",
+  "removedFromFavorites": "Vous pouvez accéder à d'autres exercices que vous souhaitez ajouter à partir des cours",
+  "faq": {
+    "title": "Questions fréquemment posées",
+    "questions": {
+      "q1": {
+        "question": "Qu'est-ce que YogiFace ?",
+        "answer": "YogiFace est une application de soins personnels alimentée par l'IA qui propose des exercices de yoga facial pour améliorer l'apparence de la peau en travaillant les muscles faciaux."
+      },
+      "q2": {
+        "question": "L'application fonctionne-t-elle vraiment ?",
+        "answer": "Oui. Le yoga facial active les muscles faciaux pour augmenter la fermeté de la peau, accélérer la circulation et fournir une apparence plus jeune avec une utilisation régulière."
+      },
+      "q3": {
+        "question": "Que fait l'intelligence artificielle ici ?",
+        "answer": "YogiFace analyse les caractéristiques faciales, identifie les zones cibles et crée un plan d'exercices personnalisé. De cette façon, chaque mouvement est optimisé en fonction des besoins personnels."
+      },
+      "q4": {
+        "question": "Combien de temps dois-je consacrer chaque jour ?",
+        "answer": "Seulement 5 à 10 minutes par jour suffisent. Avec une pratique régulière, des changements visibles commencent en quelques semaines."
+      },
+      "q5": {
+        "question": "Quand verrai-je des résultats ?",
+        "answer": "Avec une utilisation régulière, une amélioration du teint est visible en 2-3 semaines, et les traits du visage deviennent plus définis en 4-6 semaines. Les résultats peuvent varier d'une personne à l'autre."
+      },
+      "q6": {
+        "question": "Cela fonctionne-t-il pour des problèmes comme le double menton ou l'affaissement ?",
+        "answer": "Oui. YogiFace propose des exercices ciblés pour la ligne de mâchoire, les muscles des joues et la zone du cou. Lorsqu'ils sont effectués régulièrement, ces exercices assurent un raffermissement significatif dans ces zones."
+      },
+      "q7": {
+        "question": "Comment savoir si je fais les mouvements correctement ?",
+        "answer": "L'application utilise l'IA pour analyser l'angle de votre visage, l'expression et le modèle de mouvement ; elle vous informe de tout point incorrect."
+      },
+      "q8": {
+        "question": "Est-ce adapté à tous les âges ?",
+        "answer": "Oui. Le yoga facial est une méthode naturelle non invasive. Tout le monde peut le pratiquer en toute sécurité dès le plus jeune âge."
+      },
+      "q9": {
+        "question": "YogiFace est-il gratuit ?",
+        "answer": "Les exercices de base sont gratuits. Les programmes personnels, l'analyse faciale avancée et les recommandations IA spéciales sont inclus dans le forfait premium."
+      },
+      "q10": {
+        "question": "Les personnes ayant subi une chirurgie esthétique peuvent-elles l'utiliser ?",
+        "answer": "De nombreux utilisateurs l'utilisent en toute sécurité, mais il est recommandé de consulter un médecin pendant la période de récupération post-opératoire."
+      }
+    }
+  },
+  "full_face": "Visage complet / Revitalisation générale",
+  "eye_area": "Yeux et zone oculaire",
+  "nose_area": "Nez et zone nasale",
+  "cheeks_mid_face": "Joues et milieu du visage",
+  "lip_area": "Lèvres et zone buccale",
+  "jawline_chin": "Ligne de mâchoire, menton et double menton",
+  "forehead_brow": "Front et zone des sourcils",
+  "neck_decollete": "Cou et décolleté",
+  "good_morning": "Bonjour",
+  "good_afternoon": "Bon après-midi",
+  "good_evening": "Bonsoir",
+  "splash": {
+    "screen1": {
+      "title": "Sculptez votre visage naturellement",
+      "description": "Travaillez vos muscles faciaux avec seulement quelques minutes d'exercices faciaux quotidiens. Créez une routine de beauté naturelle, esthétique et non invasive."
+    },
+    "screen2": {
+      "title": "Plan d'exercices personnalisé avec l'IA",
+      "description": "L'IA analyse vos caractéristiques faciales, détermine vos besoins et recommande des exercices adaptés à vous. Elle suit quels muscles ont besoin de plus de travail."
+    },
+    "screen3": {
+      "title": "Résultats visibles",
+      "description": "Avec une utilisation régulière, les contours du visage deviennent plus définis, la circulation s'améliore et la peau paraît plus éclatante. De petits pas chaque jour apportent de grands changements."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "freeVersion": "Version gratuite",
+    "error": "Erreur",
+    "sections": {
+      "accountSettings": "PARAMÈTRES DU COMPTE",
+      "supportAndOther": "SUPPORT ET AUTRE"
+    },
+    "menu": {
+      "editProfile": "Modifier le profil",
+      "notifications": "Notifications",
+      "premium": "Premium",
+      "favoriteExercises": "Exercices favoris",
+      "appLanguage": "Langue de l'application",
+      "shareWithFriends": "Partager avec des amis",
+      "enterInviteCode": "Entrer le code d'invitation",
+      "rateUs": "Évaluez-nous",
+      "faq": "FAQ",
+      "logout": "Se déconnecter"
+    },
+    "manage": "GÉRER",
+    "logoutDialog": {
+      "title": "Vous êtes sur le point de vous déconnecter",
+      "message": "À bientôt ! Nous continuerons à suivre vos exercices de respiration.",
+      "logoutButton": "Se déconnecter",
+      "cancelButton": "Annuler"
+    }
+  },
+  "home": {
+    "premium": "Premium !",
+    "focusAreas": "Zones de focus",
+    "popularCourses": "Cours populaires",
+    "seeMore": "Voir plus",
+    "personalized": {
+      "title": "Rapport d'analyse\\nfaciale\\npersonnalisé",
+      "description": "Veuillez analyser votre peau\\npour découvrir son type.",
+      "button": "Essayez maintenant"
+    },
+    "premiumPlan": {
+      "title": "Plan Premium",
+      "description": "Débloquez votre chatbot IA et\\nobtenez toutes les fonctionnalités premium",
+      "button": "Obtenir Premium",
+      "dialog": {
+        "title": "Fonctionnalité non disponible",
+        "message": "Cette fonctionnalité n'est actuellement pas disponible.",
+        "button": "OK"
+      }
+    },
+    "quickActions": {
+      "title": "Actions rapides",
+      "programTitle": "Votre programme personnel",
+      "programSubtitle": "Pour votre meilleur look\\nen 30 jours",
+      "button": "Commencer"
+    },
+    "todaysExercise": {
+      "title": "Exercice du jour",
+      "recommended": "Routine recommandée",
+      "forToday": "pour aujourd'hui"
+    },
+    "courses": {
+      "foreheadSmoother": {
+        "title": "Le lisseur de front",
+        "description": "Ce mouvement libère la tension dans les muscles du front et les rides d'expression accumulées..."
+      },
+      "vMove": {
+        "title": "Le mouvement \"V\"",
+        "description": "Renforce la peau délicate autour des yeux, soulève les paupières tombantes et efface les signes de fatigue."
+      },
+      "cheekLifter": {
+        "title": "Le releveur de joues",
+        "description": "Soulève les muscles des joues (Zygomatique) qui sont les plus sujets à la gravité, restaurant l'ovale du visage."
+      }
+    },
+    "benefits": {
+      "naturalIroning": {
+        "title": "Lissage naturel :",
+        "description": "Ouvre les lignes horizontales sur le front et les empêche de s'approfondir."
+      },
+      "botoxEffect": {
+        "title": "Effet Botox",
+        "description": "Détend les muscles tendus et brise l'habitude de froncer les sourcils."
+      },
+      "stressRelief": {
+        "title": "Soulagement du stress",
+        "description": "Soulage le stress accumulé sur le front et atténue les maux de tête."
+      },
+      "radiantAppearance": {
+        "title": "Apparence radieuse",
+        "description": "Stimule la circulation sanguine pour donner à la peau un éclat."
+      },
+      "dePuffing": {
+        "title": "Dégonflement",
+        "description": "Réduit le gonflement facial grâce à son effet de drainage lymphatique."
+      }
+    }
+  },
+  "courseDetail": {
+    "title": "Détails du cours",
+    "getStarted": "Commencer",
+    "noExercisesFound": "Aucun exercice trouvé pour cette catégorie",
+    "instructions": {
+      "instruction1": {
+        "title": "Lavez vos mains et votre visage",
+        "description": "Une peau propre permet au massage d'être plus efficace."
+      },
+      "instruction2": {
+        "title": "Appliquez de l'huile pour le visage ou une crème hydratante",
+        "description": "Glissez en douceur sans tirer votre peau."
+      }
+    }
+  },
+  "courses": {
+    "title": "Tous les cours",
+    "error": "Erreur lors du chargement des exercices",
+    "personalCoursesTitle": "Cours personnels"
+  },
+  "personalProgram": {
+    "dailyGoalTitle": "Définissez votre objectif quotidien",
+    "dailyGoalDescription": "Choisissez un rythme qui correspond à votre emploi du temps",
+    "personalizing": "Personnalisation de votre plan...",
+    "readyMessage": "Votre programme personnel de yoga facial de 30 jours est prêt✨",
+    "minutes": "Min"
+  },
+  "editProfile": {
+    "title": "Modifier le profil",
+    "changePhoto": "Changer la photo",
+    "fullName": "Nom complet",
+    "email": "E-mail",
+    "age": "Âge",
+    "gender": "Genre",
+    "skinType": "Type de peau",
+    "focusArea": "Zone de focus",
+    "focusAreaHint": "Front, Yeux, Nez, Bouche, Joues...",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Une erreur s'est produite lors de la mise à jour du profil",
+    "deleteAccount": "Supprimer le compte"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "emptyTitle": "Pas encore de notifications",
+    "emptyDescription": "Nous vous informerons lorsqu'il y aura une mise à jour importante concernant votre parcours d'apprentissage.",
+    "premiumBannerTitle": "Ne manquez pas les\\navantages Premium !",
+    "premiumBannerDescription": "Profitez des opportunités en tant qu'abonné Premium.",
+    "sample1Title": "Votre méditation quotidienne est prête !",
+    "sample1Description": "Trouvez votre calme pour la journée",
+    "sample1Time": "Il y a 15 min",
+    "sample2Title": "Nouvel exercice : Respiration océanique",
+    "sample2Description": "Une nouvelle technique de respiration a été ajoutée",
+    "sample2Time": "Il y a 1 heure",
+    "sample3Title": "Vous avez atteint une série de 7 jours !",
+    "sample3Description": "Continuez votre excellent travail sur votre bien-être",
+    "sample3Time": "Hier"
+  },
+  "share": {
+    "title": "Partager avec des amis",
+    "mainTitle": "Partagez la paix",
+    "descriptionPart1": "Invitez vos amis à respirer ensemble.\\nPour chaque invitation, vous obtenez tous les deux ",
+    "descriptionPart2": "1 semaine Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "VOTRE CODE DE PARRAINAGE",
+    "codeCopied": "Code copié !",
+    "copyCode": "Copier le code"
+  },
+  "facialScan": {
+    "title": "Scan facial",
+    "step": "ÉTAPE $current SUR $total",
+    "getStarted": "Commencer",
+    "analyzing": {
+      "title": "Analyse en cours",
+      "description": "Analyse de vos caractéristiques uniques",
+      "detail": "Détection de la texture de la peau, du tonus musculaire et de la zone de focus pour votre routine personnalisée.",
+      "aiEngineWorking": "MOTEUR IA EN FONCTIONNEMENT"
+    },
+    "result": {
+      "title": "Votre analyse est prête !",
+      "subtitle": "Nous avons créé une routine basée sur vos résultats.",
+      "skinType": "TYPE DE PEAU",
+      "primaryGoal": "OBJECTIF PRINCIPAL",
+      "recommended": "Recommandé pour vous",
+      "back": "Retour"
+    },
+    "instructions": {
+      "front": "Positionnez votre visage dans le cadre",
+      "left": "Tournez votre tête vers la gauche",
+      "right": "Tournez votre tête vers la droite",
+      "lighting": "Assurez-vous d'être dans un environnement bien éclairé pour de meilleurs résultats",
+      "tapToCapture": "Appuyez sur le bouton de l'appareil photo pour prendre une photo"
+    },
+    "errors": {
+      "cameraPermission": "L'autorisation de la caméra est requise pour prendre des photos.",
+      "cameraPermissionRequired": "Autorisation de caméra requise",
+      "cameraPermissionMessage": "L'autorisation de la caméra est requise pour le scan facial. Veuillez l'activer dans les paramètres de l'application.",
+      "openSettings": "Ouvrir les paramètres",
+      "cancel": "Annuler",
+      "noFaceDetected": "Aucun visage détecté. Veuillez réessayer.",
+      "captureFailed": "Échec de la capture de l'image. Veuillez réessayer."
+    },
+    "positions": {
+      "front": "AVANT",
+      "left": "GAUCHE",
+      "right": "DROITE"
+    }
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "Continuer en tant qu'invité",
+    "signInFailed": "Échec de la connexion : $error"
+  },
+  "benefits": "Avantages",
+  "minutes": "Min",
+  "cancel": "Annuler",
+  "beforeBegin": "Avant de commencer",
+  "rest": "Repos",
+  "courseCompleted": "Cours terminé",
+  "courseCompletedDescription": "Excellent travail pour avoir terminé la session d'aujourd'hui.",
+  "deleteAccount": "Supprimer le compte",
+  "deleteDialogTitle": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "deleteDialogDescription": "Cette action est irréversible et supprimera définitivement tout votre historique d'exercices et vos données.",
+  "deleteError": "Une erreur s'est produite lors de la suppression de votre compte. Veuillez réessayer.",
+  "favoriteExercises": "Exercices favoris",
+  "noFavoritesInCategory": "Aucun favori dans cette catégorie",
+  "noFavoritesAdded": "Aucun favori ajouté pour le moment.",
+  "favoriteExercisesDescription": "Pour définir vos exercices favoris, vous pouvez ajouter les exercices que vous aimez depuis la page Mes exercices.",
+  "enterInvitationCode": "Entrer le code d'invitation",
+  "bePartOfPeace": "Faites partie de la paix",
+  "inviteFriends": "Entrez le code d'invitation que vous avez reçu d'un ami.\\nTapez-le dans le champ désigné",
+  "twoDaysPremium": "2 jours Premium",
+  "advantage": "\\npour profiter de ses avantages.",
+  "send": "Envoyer",
+  "deleteNotifications": "Supprimer les notifications",
+  "deleteNotificationsDescription": "Êtes-vous sûr de vouloir supprimer toutes\\nvos notifications ? Cette action est irréversible et ne peut pas être annulée.",
+  "deleteAll": "Tout supprimer",
+  "appLanguage": "Langue de l'application",
+  "selectLanguage": "Sélectionnez votre langue préférée",
+  "save": "Enregistrer",
+  "languageOptions": {
+    "english": "Anglais",
+    "german": "Allemand",
+    "italian": "Italien",
+    "french": "Français",
+    "japanese": "Japonais",
+    "spanish": "Espagnol",
+    "russian": "Russe",
+    "turkish": "Turc",
+    "korean": "Coréen",
+    "hindi": "Hindi",
+    "portuguese": "Portugais"
+  }
+}

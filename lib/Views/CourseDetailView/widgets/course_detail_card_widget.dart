@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_cached_network_image.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -87,7 +88,7 @@ class CourseDetailCardWidget extends StatelessWidget {
 
                   // Benefits Section
                   Text(
-                    'Benefits',
+                    context.t.benefits,
                     style: AppTextStyles.onboardingBody(
                       16,
                       weight: FontWeight.w600,
@@ -130,7 +131,7 @@ class CourseDetailCardWidget extends StatelessWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            '5 min.',
+                            '5 ${context.t.minutes}',
                             style: AppTextStyles.onboardingBody(
                               14,
                               weight: FontWeight.w600,

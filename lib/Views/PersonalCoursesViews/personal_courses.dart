@@ -16,32 +16,44 @@ class PersonalCourses extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final focusAreas = [
-      {'name': t.full_face, 'image': AppImages.yuz, 'type': 'full_face'},
       {
-        'name': t.eye_area,
+        'name': context.t.onboarding.fullface,
+        'image': AppImages.focusareafullface,
+        'type': 'full_face'
+      },
+      {
+        'name': context.t.onboarding.eyes,
         'image': AppImages.focusareaeyes,
         'type': 'eye_area'
       },
       {
-        'name': t.nose_area,
+        'name': context.t.onboarding.nose,
         'image': AppImages.focusareanoise,
         'type': 'nose_area'
       },
       {
-        'name': t.cheeks_mid_face,
+        'name': context.t.onboarding.cheeks,
         'image': AppImages.focusareacheek,
         'type': 'cheeks_mid_face'
       },
-      {'name': t.lip_area, 'image': AppImages.focusarea1, 'type': 'lip_area'},
-      {'name': t.jawline_chin, 'image': AppImages.cene, 'type': 'jawline_chin'},
       {
-        'name': t.forehead_brow,
+        'name': context.t.onboarding.lips,
+        'image': AppImages.focusarea1,
+        'type': 'lip_area'
+      },
+      {
+        'name': context.t.onboarding.jawline,
+        'image': AppImages.focusareajawline,
+        'type': 'jawline_chin'
+      },
+      {
+        'name': context.t.onboarding.forehead,
         'image': AppImages.focusareaforehead,
         'type': 'forehead_brow'
       },
       {
-        'name': t.neck_decollete,
-        'image': AppImages.boyun,
+        'name': context.t.onboarding.neck,
+        'image': AppImages.focusareaneck,
         'type': 'neck_decollete'
       },
     ];

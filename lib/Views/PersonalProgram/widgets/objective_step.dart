@@ -14,12 +14,6 @@ class ObjectiveStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Objectives map to maintain localized labels but consistent keys/values logic if needed
-    // However, original code used the string label as the value.
-    // To minimize breakage, we might need to use the localized string as value
-    // BUT best practice is using keys.
-    // Since PersonalProgramView seems detached (no backend save visible),
-    // we should use keys for values and localized strings for labels similar to BasicInfoStep3.
     final objectivesMap = {
       'reduce_wrinkles': context.t.onboarding.reduceWrinkles,
       'tighten_skin': context.t.onboarding.tightenSkin,
@@ -62,10 +56,8 @@ class ObjectiveStep extends StatelessWidget {
             ),
             const SizedBox(height: AppSpacing.xl),
             ...objectivesMap.entries.map((entry) {
-              final objectiveKey = entry
-                  .key; // or entry.value if we want to mimic old behavior of storing the label
-              // To avoid issues if backend expects turkish strings (unlikely but possible),
-              // we will use the key 'reduce_wrinkles' etc which is safer for logic.
+              final objectiveKey = entry.key;
+
               final objectiveLabel = entry.value;
 
               return Padding(
@@ -80,10 +72,6 @@ class ObjectiveStep extends StatelessWidget {
                     if (newSet.contains(objectiveKey)) {
                       newSet.remove(objectiveKey);
                     } else {
-                      // Radio behavior (single select) implied by showRadio?
-                      // The original code used contains/remove/add, implying multi-select logic
-                      // but showRadio: true usually implies single select visually.
-                      // Let's keep original logic.
                       newSet.add(objectiveKey);
                     }
                     selectedObjectives.value = newSet;

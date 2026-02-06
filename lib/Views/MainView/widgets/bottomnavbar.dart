@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
 class BottomNavBarWidget extends HookWidget {
@@ -50,14 +51,14 @@ class BottomNavBarWidget extends HookWidget {
                         _buildNavItem(
                           index: 0,
                           icon: AppIcons.menustars,
-                          label: "Courses",
+                          label: context.t.courses.title,
                           isSelected: currentIndex == 0,
                         ),
                         const SizedBox(width: 48), // Reduced space for center
                         _buildNavItem(
                           index: 2,
                           icon: AppIcons.menuperson,
-                          label: "Profile",
+                          label: context.t.profile.title, //TODO:Check here
                           isSelected: currentIndex == 2,
                         ),
                       ],

@@ -63,8 +63,6 @@ class _ControlButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isEnabled = onPressed != null;
-
     return GestureDetector(
       onTap: onPressed,
       child: SizedBox(

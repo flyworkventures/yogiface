@@ -1,0 +1,593 @@
+{
+  "welcome": "ようこそ $name",
+  "welcome2": "ようこそ",
+  "get_started": "始める",
+  "next": "次へ",
+  "back": "戻る",
+  "skip": "スキップ",
+  "logintext": "お会いできて嬉しいです。アカウントにログインして、中断したところから続けることができます。",
+  "termOfService": {
+    "text1": "swipeに登録することで、",
+    "link1": "利用規約",
+    "text2": "に同意したことになります。",
+    "link2": "プライバシーポリシー",
+    "text3": "および",
+    "link3": "クッキーポリシー",
+    "text4": "でデータの処理方法をご確認ください"
+  },
+  "cookies": "クッキーポリシー",
+  "privacy": "プライバシーポリシー",
+  "termsOfService": {
+    "title": "Yogiface – 利用規約",
+    "lastUpdated": "最終更新：2025年",
+    "principle": "Yogifaceは、顔の筋肉をサポートすることを目的としたフェイシャルヨガエクササイズとガイド付きコンテンツを提供するウェルネスアプリケーションです。このアプリケーションは、医療、臨床、美容、または専門的な健康サービスを提供するものではありません。",
+    "intro": "この利用規約（「規約」）には、Yogifaceモバイルアプリケーション（「アプリケーション」）の使用に適用されるルールが含まれています。アプリケーションを使用することにより、これらの規約に同意したことになります。規約に同意しない場合は、アプリケーションを使用しないでください。",
+    "section1": {
+      "title": "1. サービスの範囲",
+      "content": "Yogifaceは、ユーザーにガイド付きフェイシャルヨガとエクササイズの体験を提供します。アプリケーションには以下が含まれます：",
+      "items": [
+        "フェイシャルヨガとエクササイズのガイド",
+        "毎日および毎週のエクササイズルーチン",
+        "特定の顔の領域に対する的を絞った推奨事項",
+        "カスタマイズ可能なプランと進捗追跡"
+      ],
+      "note": "提供されるコンテンツは、専門的、医療的、または美容的なアドバイス、診断、または治療を構成するものではありません。"
+    },
+    "section2": {
+      "title": "2. 使用条件",
+      "items": [
+        "13歳以上である必要があります。",
+        "正確で最新のアカウント情報を提供する必要があります。",
+        "エクササイズは医療サービスではないことを認識します。"
+      ]
+    },
+    "section3": {
+      "title": "3. 禁止事項",
+      "items": [
+        "違法な活動のためにアプリを使用すること。",
+        "許可なくコンテンツを販売、複製、または配布すること。",
+        "不正アクセス、ハッキング、またはリバースエンジニアリングの試み。"
+      ]
+    },
+    "section4": {
+      "title": "4. アカウントとメンバーシップ",
+      "content": "アカウントのセキュリティはお客様の責任です。Yogifaceは、規約に反する使用が検出された場合、アカウントを一時停止または閉鎖する権利を留保します。"
+    },
+    "section5": {
+      "title": "5. プレミアムおよび有料サービス",
+      "items": [
+        "価格設定はApp StoreおよびGoogle Playのポリシーに基づいています。",
+        "サブスクリプションは自動更新される場合があります。キャンセルはストアの設定から行います。"
+      ]
+    },
+    "section6": {
+      "title": "6. 免責事項",
+      "content": "ユーザーは自己責任でエクササイズを実行します。健康上の問題がある場合は、医療専門家に相談してください。アプリは診断や治療に使用しないでください。"
+    },
+    "section7": {
+      "title": "7. 知的財産",
+      "content": "デザイン、ソフトウェア、画像、エクササイズコンテンツはYogifaceに帰属します。無断でのコピーまたはソースコードの変更は禁止されています。"
+    },
+    "section12": {
+      "title": "12. 準拠法",
+      "content": "これらの規約は、トルコ共和国の法律に準拠します。イスタンブール中央裁判所が紛争に対する管轄権を有します。"
+    },
+    "section13": {
+      "title": "13. お問い合わせ",
+      "email": "📩 メール：support@fly-work.com"
+    }
+  },
+  "cookiesPolicy": {
+    "title": "Yogiface – クッキーポリシー",
+    "lastUpdated": "最終更新：2025年",
+    "intro": "Yogifaceへようこそ！アプリを訪問するたびに、デジタルヘルパー（クッキー）を使用して、エクスペリエンスを向上させ、パーソナライズします。このポリシーでは、設定を管理する方法について説明します。",
+    "section1": {
+      "title": "1. クッキーとは？",
+      "content": "クッキーは、デバイスに配置される小さなデータファイルです。アプリの使用方法を理解し、エクスペリエンスをよりスムーズにするのに役立ちます。クッキーには直接的にあなたのIDは含まれません。設定や使用習慣を記憶するデジタルヘルパーとして機能します。"
+    },
+    "section2": {
+      "title": "2. 使用するクッキーは？",
+      "essential": {
+        "title": "必須クッキー",
+        "content": "基本的なアプリ機能に必要です。セッション管理、セキュリティ、基本的なナビゲーションなどのコアプロセスをサポートします。"
+      },
+      "performance": {
+        "title": "パフォーマンスと分析クッキー",
+        "content": "最も頻繁に使用される領域と改善が必要なセクションを理解するのに役立ちます。"
+      },
+      "personalization": {
+        "title": "パーソナライゼーションクッキー",
+        "content": "言語、テーマ、エクササイズの設定などの設定を記憶することで、よりパーソナルなエクスペリエンスを提供します。"
+      },
+      "marketing": {
+        "title": "マーケティングおよび広告クッキー",
+        "content": "興味に合ったコンテンツやプロモーションを提供するために使用され、サードパーティのサービスと連携することがあります。"
+      }
+    },
+    "section3": {
+      "title": "3. クッキーを使用する理由",
+      "items": [
+        "アプリが高速かつスムーズに動作することを保証するため",
+        "ユーザーの設定を記憶することで繰り返しのアクションを減らすため",
+        "エクスペリエンスをよりパーソナルで有用にするため",
+        "使用データを分析してアプリを改善するため"
+      ]
+    },
+    "section4": {
+      "title": "4. サードパーティのクッキー",
+      "content": "一部のクッキーは、分析および広告サービスを提供するサードパーティパートナーによって配置される場合があります。これらは、プロバイダー独自のプライバシーおよびクッキーポリシーの対象となります。"
+    },
+    "section5": {
+      "title": "5. クッキーの制御と管理",
+      "content": "デバイスの設定、アプリの権限、またはシステム設定からクッキーを管理できます。必要なクッキーを無効にすると、アプリの一部が正しく機能しなくなる可能性があります。"
+    },
+    "section6": {
+      "title": "6. データの使用",
+      "content": "クッキーを通じて取得されたデータは、個人データとして認定される場合、プライバシーポリシーに従って法的枠組み内で処理されます。"
+    },
+    "section7": {
+      "title": "7. ポリシーの更新",
+      "content": "このポリシーは、技術的および法的変更に応じて更新される場合があります。現在のバージョンは公開されるとすぐに有効になります。"
+    },
+    "section8": {
+      "title": "8. お問い合わせ",
+      "email": "📩 メール：support@fly-work.com"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Yogiface – プライバシーポリシー",
+    "lastUpdated": "最終更新：2025年",
+    "intro": "このプライバシーポリシーは、Yogifaceモバイルアプリケーション（「アプリ」）を使用するすべてのユーザーの個人データの収集、使用、保存、保護に関する原則を説明します。アプリを使用することにより、このポリシーに同意したことになります。",
+    "principle": "Yogifaceは、ユーザーのプライバシーとデータセキュリティを基本原則として採用しています。すべての個人データは、GDPRおよび関連法規に従って処理されます。",
+    "section1": {
+      "title": "1. 収集される情報",
+      "sub1": {
+        "title": "1.1. ユーザー提供データ",
+        "items": [
+          "名前、ニックネーム、またはプロフィール情報",
+          "メールアドレス（登録、購入、サポート用）",
+          "エクササイズプラン、設定、パーソナライゼーション設定",
+          "フィードバック、リクエスト、サポートメッセージ"
+        ]
+      },
+      "sub2": {
+        "title": "1.2. 自動収集データ",
+        "items": [
+          "デバイスタイプ、オペレーティングシステム、技術情報",
+          "おおよその位置データ（市/国レベル）",
+          "セッション時間や画面操作などの使用情報",
+          "パフォーマンス、エラー、クラッシュログ"
+        ]
+      }
+    },
+    "section2": {
+      "title": "2. データ使用目的",
+      "items": [
+        "アプリの中断のない動作を保証するため",
+        "フェイシャルヨガエクスペリエンスをパーソナライズおよび最適化するため",
+        "エラー検出とパフォーマンス分析を実行するため",
+        "ユーザーの要求とサポートリクエストに応答するため"
+      ],
+      "note": "重要：ユーザーデータは第三者に販売されることはありません。"
+    },
+    "section3": {
+      "title": "3. データ保持",
+      "items": [
+        "データは、ユーザーアカウントがアクティブである限り保存されます。",
+        "アカウントが削除されると、個人データは不可逆的に削除されます。",
+        "サポート記録は、完了後最大12か月間保持されます。"
+      ]
+    },
+    "section4": {
+      "title": "4. データ共有",
+      "content": "データは、法的要件（公式リクエスト）、サービスプロバイダー（クラウドインフラストラクチャ、分析）、またはユーザーの明示的な同意がある場合にのみ共有されます。"
+    },
+    "section5": {
+      "title": "5. クッキーとセキュリティ",
+      "content": "Yogifaceは、パフォーマンスとエクスペリエンスの向上のためにクッキーを使用する場合があります。データはSSL/TLS暗号化と定期的なセキュリティ監査によって保護されています。"
+    },
+    "section6": {
+      "title": "6. ユーザーの権利",
+      "content": "アクセス、修正、削除、データ処理の制限の権利があります。",
+      "contact": "リクエストについて：",
+      "email": "support@fly-work.com"
+    },
+    "section8": {
+      "title": "8. 子供のプライバシー",
+      "content": "Yogifaceは13歳未満の個人を対象としていません。この年齢層から収集されたデータは、検出された場合直ちに削除されます。"
+    },
+    "section10": {
+      "title": "10. お問い合わせ",
+      "email": "📩 メール：support@fly-work.com"
+    }
+  },
+  "onboarding": {
+    "basicInformation": "基本情報",
+    "target": "目標",
+    "habits": "習慣",
+    "step": "ステップ",
+    "of": "/",
+    "tellUsAboutYourself": "あなたについて教えてください",
+    "shortBioDescription": "短い自己紹介は、他の人があなたを本当に知るのに役立ちます。楽しく本物に保ちましょう",
+    "enterYourFullname": "フルネームを入力してください",
+    "fullName": "フルネーム",
+    "male": "男性",
+    "female": "女性",
+    "dontWantToMention": "言いたくない",
+    "whatIsMainObjective": "主な目的は何ですか？",
+    "reduceWrinkles": "しわを減らす",
+    "tightenSkin": "肌を引き締める",
+    "liftDroopyEyelids": "たるんだまぶたを持ち上げる",
+    "eliminateDoubleChin": "二重あごを解消する",
+    "brightenSkinTone": "肌のトーンを明るくする",
+    "allOfTheAbove": "上記のすべて",
+    "whichAreaToImprove": "どの領域を改善したいですか？",
+    "forehead": "額",
+    "eyes": "目",
+    "nose": "鼻",
+    "cheeks": "頬",
+    "lips": "唇",
+    "jawline": "フェイスライン",
+    "neck": "首",
+    "fullface": "顔全体",
+    "whatFaceShapeAiming": "どの顔の形を目指していますか？",
+    "heart": "ハート",
+    "oval": "オーバル",
+    "square": "スクエア",
+    "round": "ラウンド",
+    "diamond": "ダイヤモンド",
+    "whatIsYourSkinType": "あなたの肌タイプは何ですか？",
+    "normal": "普通肌",
+    "oily": "脂性肌",
+    "dry": "乾燥肌",
+    "combination": "混合肌",
+    "sensitive": "敏感肌",
+    "whichOfThemDoYouHave": "どれを持っていますか？",
+    "acneAndPimples": "ニキビと吹き出物",
+    "redness": "赤み",
+    "swelling": "腫れ",
+    "wrinkles": "しわ",
+    "neckLines": "首のしわ",
+    "howOftenWearMakeup": "どのくらいの頻度でメイクをしますか？",
+    "everyDay": "毎日",
+    "fewDaysAWeek": "週に数日",
+    "occasionally": "時々",
+    "never": "しない",
+    "haveYouHadBotox": "ボトックスをしたことがありますか？",
+    "yes": "はい",
+    "no": "いいえ",
+    "creatingPersonalizedProfile": "パーソナライズされたプロフィールを作成中",
+    "tailoringExperience": "あなたの好みに基づいてエクスペリエンスをカスタマイズしています...",
+    "gender": "性別",
+    "age": "年齢",
+    "weight": "体重",
+    "height": "身長",
+    "matchingPersonalities": "パーソナリティのマッチング"
+  },
+  "pressBackAgainToExit": "もう一度戻るを押して終了",
+  "addedToFavoritesTitle": "エクササイズがお気に入りに追加されました！",
+  "removedFromFavoritesTitle": "エクササイズがお気に入りから削除されました！",
+  "removedFromFavorites": "追加したい他のエクササイズはコースからアクセスできます",
+  "faq": {
+    "title": "よくある質問",
+    "questions": {
+      "q1": {
+        "question": "YogiFaceとは何ですか？",
+        "answer": "YogiFaceは、顔の筋肉を鍛えることで肌の見た目を改善するフェイシャルヨガエクササイズを提供するAI搭載のパーソナルケアアプリです。"
+      },
+      "q2": {
+        "question": "アプリは本当に効果がありますか？",
+        "answer": "はい。フェイシャルヨガは顔の筋肉を活性化し、肌の引き締めを高め、循環を加速し、定期的な使用でより若々しい外観を提供します。"
+      },
+      "q3": {
+        "question": "人工知能はここで何をしますか？",
+        "answer": "YogiFaceは顔の特徴を分析し、ターゲット領域を特定し、パーソナライズされたエクササイズプランを作成します。このようにして、各動きは個人のニーズに応じて最適化されます。"
+      },
+      "q4": {
+        "question": "毎日どのくらいの時間が必要ですか？",
+        "answer": "1日わずか5〜10分で十分です。定期的な練習により、数週間以内に目に見える変化が始まります。"
+      },
+      "q5": {
+        "question": "いつ結果が見えますか？",
+        "answer": "定期的な使用で、2〜3週間以内に肌のトーンの改善が見られ、4〜6週間以内に顔の特徴がより明確になります。結果は人によって異なる場合があります。"
+      },
+      "q6": {
+        "question": "二重あごやたるみなどの問題に効果がありますか？",
+        "answer": "はい。YogiFaceは、フェイスライン、頬の筋肉、首の領域に対する的を絞ったエクササイズを提供します。定期的に行うと、これらのエクササイズはこれらの領域で顕著な引き締めを提供します。"
+      },
+      "q7": {
+        "question": "動きを正しく行っているかどうかをどうやって知ることができますか？",
+        "answer": "アプリはAIを使用して顔の角度、表情、動きのパターンを分析し、間違った点を通知します。"
+      },
+      "q8": {
+        "question": "すべての年齢に適していますか？",
+        "answer": "はい。フェイシャルヨガは非侵襲的な自然な方法です。若い年齢から誰でも安全に練習できます。"
+      },
+      "q9": {
+        "question": "YogiFaceは無料ですか？",
+        "answer": "基本的なエクササイズは無料です。パーソナルプログラム、高度な顔分析、特別なAI推奨事項はプレミアムパッケージに含まれています。"
+      },
+      "q10": {
+        "question": "美容整形を受けた人は使用できますか？",
+        "answer": "多くのユーザーが安全に使用していますが、術後の回復期間中は医師に相談することをお勧めします。"
+      }
+    }
+  },
+  "full_face": "顔全体/全体的な活性化",
+  "eye_area": "目と目の周り",
+  "nose_area": "鼻と鼻の周り",
+  "cheeks_mid_face": "頬と顔の中央",
+  "lip_area": "唇と口の周り",
+  "jawline_chin": "フェイスライン、あご、二重あご",
+  "forehead_brow": "額と眉の領域",
+  "neck_decollete": "首とデコルテ",
+  "good_morning": "おはようございます",
+  "good_afternoon": "こんにちは",
+  "good_evening": "こんばんは",
+  "splash": {
+    "screen1": {
+      "title": "自然に顔を形作る",
+      "description": "毎日わずか数分のフェイシャルエクササイズで顔の筋肉を鍛えましょう。自然で美的で非侵襲的な美容ルーチンを作成します。"
+    },
+    "screen2": {
+      "title": "AIによるパーソナライズされたエクササイズプラン",
+      "description": "AIがあなたの顔の特徴を分析し、ニーズを決定し、あなたに合わせたエクササイズを推奨します。どの筋肉がより多くの作業を必要とするかを追跡します。"
+    },
+    "screen3": {
+      "title": "目に見える結果",
+      "description": "定期的な使用により、顔の輪郭がより明確になり、循環が改善され、肌がより活気に満ちて見えます。毎日の小さな一歩が大きな変化をもたらします。"
+    }
+  },
+  "profile": {
+    "title": "プロフィール",
+    "freeVersion": "無料版",
+    "error": "エラー",
+    "sections": {
+      "accountSettings": "アカウント設定",
+      "supportAndOther": "サポートとその他"
+    },
+    "menu": {
+      "editProfile": "プロフィールを編集",
+      "notifications": "通知",
+      "premium": "プレミアム",
+      "favoriteExercises": "お気に入りのエクササイズ",
+      "appLanguage": "アプリの言語",
+      "shareWithFriends": "友達と共有",
+      "enterInviteCode": "招待コードを入力",
+      "rateUs": "評価する",
+      "faq": "FAQ",
+      "logout": "ログアウト"
+    },
+    "manage": "管理",
+    "logoutDialog": {
+      "title": "ログアウトしようとしています",
+      "message": "またお会いしましょう！呼吸エクササイズを追跡し続けます。",
+      "logoutButton": "ログアウト",
+      "cancelButton": "キャンセル"
+    }
+  },
+  "home": {
+    "premium": "プレミアム！",
+    "focusAreas": "フォーカスエリア",
+    "popularCourses": "人気のコース",
+    "seeMore": "もっと見る",
+    "personalized": {
+      "title": "パーソナライズされた\\n顔分析\\nレポート",
+      "description": "肌のタイプを見つけるために\\n肌を分析してください。",
+      "button": "今すぐ試す"
+    },
+    "premiumPlan": {
+      "title": "プレミアムプラン",
+      "description": "AIチャットボットのロックを解除し、\\nすべてのプレミアム機能を取得",
+      "button": "プレミアムを取得",
+      "dialog": {
+        "title": "機能は利用できません",
+        "message": "この機能は現在利用できません。",
+        "button": "OK"
+      }
+    },
+    "quickActions": {
+      "title": "クイックアクション",
+      "programTitle": "あなたのパーソナルプログラム",
+      "programSubtitle": "30日間で\\n最高の見た目のために",
+      "button": "始める"
+    },
+    "todaysExercise": {
+      "title": "今日のエクササイズ",
+      "recommended": "推奨ルーチン",
+      "forToday": "今日のために"
+    },
+    "courses": {
+      "foreheadSmoother": {
+        "title": "額のスムーザー",
+        "description": "この動きは、額の筋肉の緊張と蓄積されたしわを解放します..."
+      },
+      "vMove": {
+        "title": "「V」ムーブ",
+        "description": "目の周りの繊細な肌を強化し、たるんだまぶたを持ち上げ、疲労の兆候を消します。"
+      },
+      "cheekLifter": {
+        "title": "頬のリフター",
+        "description": "重力に最も影響を受けやすい頬の筋肉（頬骨筋）を持ち上げ、顔のオーバルを回復します。"
+      }
+    },
+    "benefits": {
+      "naturalIroning": {
+        "title": "自然なアイロン：",
+        "description": "額の水平線を開き、深くなるのを防ぎます。"
+      },
+      "botoxEffect": {
+        "title": "ボトックス効果",
+        "description": "緊張した筋肉をリラックスさせ、しかめっ面の習慣を断ち切ります。"
+      },
+      "stressRelief": {
+        "title": "ストレス解消",
+        "description": "額に蓄積されたストレスを和らげ、頭痛を軽減します。"
+      },
+      "radiantAppearance": {
+        "title": "輝く外観",
+        "description": "血液循環を促進して肌に輝きを与えます。"
+      },
+      "dePuffing": {
+        "title": "むくみ取り",
+        "description": "リンパドレナージュ効果により顔のむくみを軽減します。"
+      }
+    }
+  },
+  "courseDetail": {
+    "title": "コースの詳細",
+    "getStarted": "始める",
+    "noExercisesFound": "このカテゴリのエクササイズが見つかりません",
+    "instructions": {
+      "instruction1": {
+        "title": "手と顔を洗う",
+        "description": "清潔な肌はマッサージをより効果的にします。"
+      },
+      "instruction2": {
+        "title": "フェイスオイルまたは保湿剤を塗る",
+        "description": "肌を引っ張らずにスムーズに滑らせます。"
+      }
+    }
+  },
+  "courses": {
+    "title": "すべてのコース",
+    "error": "エクササイズの読み込みエラー",
+    "personalCoursesTitle": "パーソナルコース"
+  },
+  "personalProgram": {
+    "dailyGoalTitle": "毎日の目標を設定",
+    "dailyGoalDescription": "スケジュールに合ったペースを選択してください",
+    "personalizing": "プランをパーソナライズしています...",
+    "readyMessage": "あなたのパーソナル30日間フェイシャルヨガプログラムの準備ができました✨",
+    "minutes": "分"
+  },
+  "editProfile": {
+    "title": "プロフィールを編集",
+    "changePhoto": "写真を変更",
+    "fullName": "フルネーム",
+    "email": "メール",
+    "age": "年齢",
+    "gender": "性別",
+    "skinType": "肌タイプ",
+    "focusArea": "フォーカスエリア",
+    "focusAreaHint": "額、目、鼻、口、頬...",
+    "save": "保存",
+    "saving": "保存中...",
+    "updateSuccess": "プロフィールが正常に更新されました",
+    "updateError": "プロフィールの更新中にエラーが発生しました",
+    "deleteAccount": "アカウントを削除"
+  },
+  "notifications": {
+    "title": "通知",
+    "emptyTitle": "まだ通知はありません",
+    "emptyDescription": "学習の旅に関する重要な更新があるときにお知らせします。",
+    "premiumBannerTitle": "プレミアム特典を\\nお見逃しなく！",
+    "premiumBannerDescription": "プレミアム購読者として機会をつかみましょう。",
+    "sample1Title": "今日の瞑想の準備ができました！",
+    "sample1Description": "今日の落ち着きを見つけてください",
+    "sample1Time": "15分前",
+    "sample2Title": "新しいエクササイズ：オーシャンブレス",
+    "sample2Description": "新しい呼吸法が追加されました",
+    "sample2Time": "1時間前",
+    "sample3Title": "7日間のストリークを達成しました！",
+    "sample3Description": "あなたの幸福のための素晴らしい仕事を続けてください",
+    "sample3Time": "昨日"
+  },
+  "share": {
+    "title": "友達と共有",
+    "mainTitle": "平和を共有する",
+    "descriptionPart1": "友達を招待して一緒に呼吸しましょう。\\n招待ごとに、両方が ",
+    "descriptionPart2": "1週間プレミアム",
+    "descriptionPart3": "を取得",
+    "yourReferralCode": "あなたの紹介コード",
+    "codeCopied": "コードがコピーされました！",
+    "copyCode": "コードをコピー"
+  },
+  "facialScan": {
+    "title": "顔スキャン",
+    "step": "ステップ $current / $total",
+    "getStarted": "始める",
+    "analyzing": {
+      "title": "分析中",
+      "description": "あなたのユニークな特徴を分析しています",
+      "detail": "パーソナライズされたルーチンのために、肌の質感、筋肉のトーン、フォーカスエリアを検出しています。",
+      "aiEngineWorking": "AIエンジン作動中"
+    },
+    "result": {
+      "title": "分析の準備ができました！",
+      "subtitle": "結果に基づいてルーチンを作成しました。",
+      "skinType": "肌タイプ",
+      "primaryGoal": "主な目標",
+      "recommended": "あなたにおすすめ",
+      "back": "戻る"
+    },
+    "instructions": {
+      "front": "フレーム内に顔を配置してください",
+      "left": "頭を左に向けてください",
+      "right": "頭を右に向けてください",
+      "lighting": "より良い結果を得るために、明るい環境にいることを確認してください",
+      "tapToCapture": "カメラボタンをタップして写真を撮ります"
+    },
+    "errors": {
+      "cameraPermission": "写真を撮るにはカメラの許可が必要です。",
+      "cameraPermissionRequired": "カメラの許可が必要です",
+      "cameraPermissionMessage": "顔スキャンにはカメラの許可が必要です。アプリの設定で有効にしてください。",
+      "openSettings": "設定を開く",
+      "cancel": "キャンセル",
+      "noFaceDetected": "顔が検出されませんでした。もう一度お試しください。",
+      "captureFailed": "画像のキャプチャに失敗しました。もう一度お試しください。"
+    },
+    "positions": {
+      "front": "正面",
+      "left": "左",
+      "right": "右"
+    }
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "ゲストとして続行",
+    "signInFailed": "サインインに失敗しました：$error"
+  },
+  "benefits": "メリット",
+  "minutes": "分",
+  "cancel": "キャンセル",
+  "beforeBegin": "始める前に",
+  "rest": "休憩",
+  "courseCompleted": "コース完了",
+  "courseCompletedDescription": "今日のセッションを完了した素晴らしい仕事。",
+  "deleteAccount": "アカウントを削除",
+  "deleteDialogTitle": "アカウントを削除してもよろしいですか？",
+  "deleteDialogDescription": "このアクションは元に戻せず、すべてのエクササイズ履歴とデータが永久に削除されます。",
+  "deleteError": "アカウントの削除中にエラーが発生しました。もう一度お試しください。",
+  "favoriteExercises": "お気に入りのエクササイズ",
+  "noFavoritesInCategory": "このカテゴリにお気に入りはありません",
+  "noFavoritesAdded": "まだお気に入りが追加されていません。",
+  "favoriteExercisesDescription": "お気に入りのエクササイズを設定するには、マイエクササイズページから好きなエクササイズを追加できます。",
+  "enterInvitationCode": "招待コードを入力",
+  "bePartOfPeace": "平和の一部になる",
+  "inviteFriends": "友達から受け取った招待コードを入力してください。\\n指定されたフィールドに入力してください",
+  "twoDaysPremium": "2日間プレミアム",
+  "advantage": "\\nその利点を享受するために。",
+  "send": "送信",
+  "deleteNotifications": "通知を削除",
+  "deleteNotificationsDescription": "すべての通知を削除してもよろしいですか？\\nこのアクションは元に戻せず、取り消すことはできません。",
+  "deleteAll": "すべて削除",
+  "appLanguage": "アプリの言語",
+  "selectLanguage": "希望する言語を選択してください",
+  "save": "保存",
+  "languageOptions": {
+    "english": "英語",
+    "german": "ドイツ語",
+    "italian": "イタリア語",
+    "french": "フランス語",
+    "japanese": "日本語",
+    "spanish": "スペイン語",
+    "russian": "ロシア語",
+    "turkish": "トルコ語",
+    "korean": "韓国語",
+    "hindi": "ヒンディー語",
+    "portuguese": "ポルトガル語"
+  }
+}

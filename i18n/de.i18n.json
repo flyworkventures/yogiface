@@ -1,0 +1,593 @@
+{
+  "welcome": "Willkommen $name",
+  "welcome2": "Willkommen",
+  "get_started": "Loslegen",
+  "next": "Weiter",
+  "back": "Zurück",
+  "skip": "Überspringen",
+  "logintext": "Ich freue mich, Sie zu sehen. Sie können dort weitermachen, wo Sie aufgehört haben, indem Sie sich in Ihr Konto einloggen.",
+  "termOfService": {
+    "text1": "Durch die Anmeldung bei Swipe stimmen Sie unseren ",
+    "link1": "Nutzungsbedingungen",
+    "text2": " zu. Erfahren Sie, wie wir Ihre Daten in unserer ",
+    "link2": "Datenschutzrichtlinie",
+    "text3": " und ",
+    "link3": "Cookie-Richtlinie",
+    "text4": " verarbeiten"
+  },
+  "cookies": "Cookie-Richtlinie",
+  "privacy": "Datenschutzrichtlinie",
+  "termsOfService": {
+    "title": "Yogiface – Nutzungsbedingungen",
+    "lastUpdated": "Zuletzt aktualisiert: 2025",
+    "principle": "Yogiface ist eine Wellness-Anwendung, die Gesichtsyoga-Übungen und geführte Inhalte zur Unterstützung der Gesichtsmuskulatur bietet. Die Anwendung bietet keine medizinischen, klinischen, ästhetischen oder professionellen Gesundheitsdienste.",
+    "intro": "Diese Nutzungsbedingungen (\"Bedingungen\") enthalten die Regeln für Ihre Nutzung der Yogiface-Mobilanwendung (\"Anwendung\"). Durch die Nutzung der Anwendung stimmen Sie diesen Bedingungen zu. Wenn Sie den Bedingungen nicht zustimmen, sollten Sie die Anwendung nicht nutzen.",
+    "section1": {
+      "title": "1. Umfang der Dienstleistung",
+      "content": "Yogiface bietet Benutzern ein geführtes Gesichtsyoga- und Übungserlebnis. Die Anwendung umfasst:",
+      "items": [
+        "Gesichtsyoga- und Übungsanleitungen",
+        "Tägliche und wöchentliche Übungsroutinen",
+        "Gezielte Empfehlungen für bestimmte Gesichtsbereiche",
+        "Anpassbare Pläne und Fortschrittsverfolgung"
+      ],
+      "note": "Die bereitgestellten Inhalte stellen keine professionelle, medizinische oder ästhetische Beratung, Diagnose oder Behandlung dar."
+    },
+    "section2": {
+      "title": "2. Nutzungsbedingungen",
+      "items": [
+        "Sie müssen mindestens 13 Jahre alt sein.",
+        "Sie müssen genaue und aktuelle Kontoinformationen angeben.",
+        "Sie erkennen an, dass die Übungen kein medizinischer Service sind."
+      ]
+    },
+    "section3": {
+      "title": "3. Verbotene Nutzung",
+      "items": [
+        "Nutzung der App für illegale Aktivitäten.",
+        "Verkauf, Vervielfältigung oder Verbreitung von Inhalten ohne Genehmigung.",
+        "Unbefugter Zugriff, Hacking oder Reverse-Engineering-Versuche."
+      ]
+    },
+    "section4": {
+      "title": "4. Konto und Mitgliedschaft",
+      "content": "Sie sind für die Sicherheit Ihres Kontos verantwortlich. Yogiface behält sich das Recht vor, Konten bei Nutzung entgegen den Bedingungen zu sperren oder zu schließen."
+    },
+    "section5": {
+      "title": "5. Premium und kostenpflichtige Dienste",
+      "items": [
+        "Die Preisgestaltung basiert auf den Richtlinien von App Store und Google Play.",
+        "Abonnements können sich automatisch verlängern; Kündigungen erfolgen über die Store-Einstellungen."
+      ]
+    },
+    "section6": {
+      "title": "6. Haftungsausschluss",
+      "content": "Benutzer führen Übungen auf eigene Verantwortung durch. Bei gesundheitlichen Problemen sollten Benutzer einen Arzt konsultieren. Die App sollte nicht zur Diagnose oder Behandlung verwendet werden."
+    },
+    "section7": {
+      "title": "7. Geistiges Eigentum",
+      "content": "Design, Software, Bilder und Übungsinhalte gehören Yogiface. Unbefugtes Kopieren oder Ändern des Quellcodes ist verboten."
+    },
+    "section12": {
+      "title": "12. Anwendbares Recht",
+      "content": "Diese Bedingungen unterliegen den Gesetzen der Republik Türkei. Die Zentralgerichte von Istanbul haben die Zuständigkeit für Streitigkeiten."
+    },
+    "section13": {
+      "title": "13. Kontakt",
+      "email": "📩 E-Mail: support@fly-work.com"
+    }
+  },
+  "cookiesPolicy": {
+    "title": "Yogiface – Cookie-Richtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 2025",
+    "intro": "Willkommen bei Yogiface! Bei jedem Besuch der App verwenden wir digitale Helfer (Cookies), um Ihr Erlebnis zu verbessern und zu personalisieren. Diese Richtlinie erklärt, wie Sie Ihre Präferenzen verwalten können.",
+    "section1": {
+      "title": "1. Was sind Cookies?",
+      "content": "Cookies sind kleine Datendateien, die auf Ihrem Gerät platziert werden. Sie helfen uns zu verstehen, wie Sie die App nutzen, und machen Ihr Erlebnis reibungsloser. Cookies enthalten nicht direkt Ihre Identität; sie fungieren als digitale Helfer, die sich Ihre Präferenzen und Nutzungsgewohnheiten merken."
+    },
+    "section2": {
+      "title": "2. Welche Cookies verwenden wir?",
+      "essential": {
+        "title": "Unbedingt erforderliche Cookies",
+        "content": "Erforderlich für grundlegende App-Funktionen. Sie unterstützen Kernprozesse wie Sitzungsverwaltung, Sicherheit und grundlegende Navigation."
+      },
+      "performance": {
+        "title": "Leistungs- und Analyse-Cookies",
+        "content": "Hilft uns zu verstehen, welche Bereiche am häufigsten genutzt werden und welche Abschnitte verbessert werden müssen."
+      },
+      "personalization": {
+        "title": "Personalisierungs-Cookies",
+        "content": "Bietet ein persönlicheres Erlebnis, indem Einstellungen wie Sprache, Theme und Übungspräferenzen gespeichert werden."
+      },
+      "marketing": {
+        "title": "Marketing- und Werbe-Cookies",
+        "content": "Kann verwendet werden, um Inhalte und Werbeaktionen bereitzustellen, die besser zu Ihren Interessen passen, und funktioniert manchmal mit Drittanbieterdiensten."
+      }
+    },
+    "section3": {
+      "title": "3. Warum verwenden wir Cookies?",
+      "items": [
+        "Um sicherzustellen, dass die App schnell und reibungslos läuft",
+        "Um wiederholte Aktionen zu reduzieren, indem Benutzerpräferenzen gespeichert werden",
+        "Um das Erlebnis persönlicher und nützlicher zu gestalten",
+        "Um die App durch Analyse von Nutzungsdaten zu verbessern"
+      ]
+    },
+    "section4": {
+      "title": "4. Cookies von Drittanbietern",
+      "content": "Einige Cookies können von Drittanbieter-Partnern platziert werden, die Analyse- und Werbedienste bereitstellen. Diese unterliegen den eigenen Datenschutz- und Cookie-Richtlinien der Anbieter."
+    },
+    "section5": {
+      "title": "5. Cookie-Kontrolle und -Verwaltung",
+      "content": "Sie können Cookies über Geräteeinstellungen, App-Berechtigungen oder Systemeinstellungen verwalten. Das Deaktivieren notwendiger Cookies kann dazu führen, dass Teile der App nicht richtig funktionieren."
+    },
+    "section6": {
+      "title": "6. Verwendung von Daten",
+      "content": "Über Cookies erhaltene Daten werden, wenn sie als personenbezogene Daten qualifiziert sind, im rechtlichen Rahmen gemäß der Datenschutzrichtlinie verarbeitet."
+    },
+    "section7": {
+      "title": "7. Richtlinien-Updates",
+      "content": "Diese Richtlinie kann je nach technologischen und rechtlichen Änderungen aktualisiert werden. Die aktuelle Version tritt in Kraft, sobald sie veröffentlicht wird."
+    },
+    "section8": {
+      "title": "8. Kontakt",
+      "email": "📩 E-Mail: support@fly-work.com"
+    }
+  },
+  "privacyPolicy": {
+    "title": "Yogiface – Datenschutzrichtlinie",
+    "lastUpdated": "Zuletzt aktualisiert: 2025",
+    "intro": "Diese Datenschutzrichtlinie erklärt die Grundsätze bezüglich der Erfassung, Nutzung, Speicherung und des Schutzes personenbezogener Daten aller Benutzer, die die Yogiface-Mobilanwendung (\"App\") nutzen. Durch die Nutzung der App akzeptieren Sie diese Richtlinie.",
+    "principle": "Yogiface übernimmt Benutzerdatenschutz und Datensicherheit als Grundprinzip. Alle personenbezogenen Daten werden in Übereinstimmung mit der DSGVO und den einschlägigen Rechtsvorschriften verarbeitet.",
+    "section1": {
+      "title": "1. Erfasste Informationen",
+      "sub1": {
+        "title": "1.1. Vom Benutzer bereitgestellte Daten",
+        "items": [
+          "Name, Spitzname oder Profilinformationen",
+          "E-Mail-Adresse (für Registrierung, Kauf und Support)",
+          "Übungspläne, Präferenzen und Personalisierungseinstellungen",
+          "Feedback, Anfragen und Support-Nachrichten"
+        ]
+      },
+      "sub2": {
+        "title": "1.2. Automatisch erfasste Daten",
+        "items": [
+          "Gerätetyp, Betriebssystem und technische Informationen",
+          "Ungefähre Standortdaten (Stadt-/Länderebene)",
+          "Nutzungsinformationen wie Sitzungsdauer und Bildschirminteraktionen",
+          "Leistungs-, Fehler- und Absturzprotokolle"
+        ]
+      }
+    },
+    "section2": {
+      "title": "2. Zwecke der Datennutzung",
+      "items": [
+        "Um den ununterbrochenen Betrieb der App sicherzustellen",
+        "Um das Gesichtsyoga-Erlebnis zu personalisieren und zu optimieren",
+        "Um Fehlererkennungen und Leistungsanalysen durchzuführen",
+        "Um auf Benutzeranforderungen und Support-Anfragen zu reagieren"
+      ],
+      "note": "Wichtig: Benutzerdaten werden niemals an Dritte verkauft."
+    },
+    "section3": {
+      "title": "3. Datenspeicherung",
+      "items": [
+        "Daten werden gespeichert, solange das Benutzerkonto aktiv ist.",
+        "Wenn ein Konto gelöscht wird, werden personenbezogene Daten unwiderruflich entfernt.",
+        "Support-Aufzeichnungen werden maximal 12 Monate nach Abschluss aufbewahrt."
+      ]
+    },
+    "section4": {
+      "title": "4. Datenweitergabe",
+      "content": "Ihre Daten werden nur bei gesetzlichen Anforderungen (offizielle Anfragen), Dienstleistern (Cloud-Infrastruktur, Analytik) oder mit ausdrücklicher Zustimmung des Benutzers weitergegeben."
+    },
+    "section5": {
+      "title": "5. Cookies und Sicherheit",
+      "content": "Yogiface kann Cookies zur Leistungs- und Erlebnisverbesserung verwenden. Ihre Daten werden durch SSL/TLS-Verschlüsselung und regelmäßige Sicherheitsüberprüfungen geschützt."
+    },
+    "section6": {
+      "title": "6. Benutzerrechte",
+      "content": "Sie haben das Recht auf Zugriff, Berichtigung, Löschung und Einschränkung der Datenverarbeitung.",
+      "contact": "Für Anfragen:",
+      "email": "support@fly-work.com"
+    },
+    "section8": {
+      "title": "8. Datenschutz für Kinder",
+      "content": "Yogiface ist nicht für Personen unter 13 Jahren bestimmt. Alle von dieser Altersgruppe erfassten Daten werden sofort gelöscht, wenn sie erkannt werden."
+    },
+    "section10": {
+      "title": "10. Kontakt",
+      "email": "📩 E-Mail: support@fly-work.com"
+    }
+  },
+  "onboarding": {
+    "basicInformation": "GRUNDINFORMATIONEN",
+    "target": "ZIEL",
+    "habits": "GEWOHNHEITEN",
+    "step": "SCHRITT",
+    "of": "VON",
+    "tellUsAboutYourself": "Erzählen Sie uns von sich",
+    "shortBioDescription": "Eine kurze Biografie hilft anderen, Sie wirklich kennenzulernen. Halten Sie es lustig und authentisch",
+    "enterYourFullname": "Geben Sie Ihren vollständigen Namen ein",
+    "fullName": "Vollständiger Name",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "dontWantToMention": "Ich möchte es nicht erwähnen",
+    "whatIsMainObjective": "Was ist das Hauptziel?",
+    "reduceWrinkles": "Falten reduzieren",
+    "tightenSkin": "Haut straffen",
+    "liftDroopyEyelids": "Hängende Augenlider anheben",
+    "eliminateDoubleChin": "Doppelkinn beseitigen",
+    "brightenSkinTone": "Hautton aufhellen",
+    "allOfTheAbove": "Alle oben genannten",
+    "whichAreaToImprove": "Welchen Bereich möchten Sie verbessern?",
+    "forehead": "Stirn",
+    "eyes": "Augen",
+    "nose": "Nase",
+    "cheeks": "Wangen",
+    "lips": "Lippen",
+    "jawline": "Kieferlinie",
+    "neck": "Hals",
+    "fullface": "Ganzes Gesicht",
+    "whatFaceShapeAiming": "Welche Gesichtsform streben Sie an?",
+    "heart": "Herz",
+    "oval": "Oval",
+    "square": "Quadratisch",
+    "round": "Rund",
+    "diamond": "Diamant",
+    "whatIsYourSkinType": "Was ist Ihr Hauttyp?",
+    "normal": "Normal",
+    "oily": "Ölig",
+    "dry": "Trocken",
+    "combination": "Kombination",
+    "sensitive": "Empfindlich",
+    "whichOfThemDoYouHave": "Welche davon haben Sie?",
+    "acneAndPimples": "Akne und Pickel",
+    "redness": "Rötungen",
+    "swelling": "Schwellungen",
+    "wrinkles": "Falten",
+    "neckLines": "Halslinien",
+    "howOftenWearMakeup": "Wie oft tragen Sie Make-up?",
+    "everyDay": "Jeden Tag",
+    "fewDaysAWeek": "Ein paar Tage pro Woche",
+    "occasionally": "Gelegentlich",
+    "never": "Nie",
+    "haveYouHadBotox": "Hatten Sie Botox?",
+    "yes": "Ja",
+    "no": "Nein",
+    "creatingPersonalizedProfile": "Ihr personalisiertes Profil wird erstellt",
+    "tailoringExperience": "Wir passen Ihr Erlebnis basierend auf Ihren Präferenzen an...",
+    "gender": "Geschlecht",
+    "age": "Alter",
+    "weight": "Gewicht",
+    "height": "Größe",
+    "matchingPersonalities": "PERSÖNLICHKEITEN ABGLEICHEN"
+  },
+  "pressBackAgainToExit": "Drücken Sie erneut zurück, um zu beenden",
+  "addedToFavoritesTitle": "Übung erfolgreich zu Favoriten hinzugefügt!",
+  "removedFromFavoritesTitle": "Übung erfolgreich aus Favoriten entfernt!",
+  "removedFromFavorites": "Sie können auf andere Übungen, die Sie hinzufügen möchten, über Kurse zugreifen",
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "questions": {
+      "q1": {
+        "question": "Was ist YogiFace?",
+        "answer": "YogiFace ist eine KI-gestützte persönliche Pflege-App, die Gesichtsyoga-Übungen anbietet, um das Hautbild durch Training der Gesichtsmuskulatur zu verbessern."
+      },
+      "q2": {
+        "question": "Funktioniert die App wirklich?",
+        "answer": "Ja. Gesichtsyoga aktiviert die Gesichtsmuskulatur, um die Hautfestigkeit zu erhöhen, die Durchblutung zu beschleunigen und bei regelmäßiger Anwendung ein jugendlicheres Aussehen zu verleihen."
+      },
+      "q3": {
+        "question": "Was macht die künstliche Intelligenz hier?",
+        "answer": "YogiFace analysiert Gesichtsmerkmale, identifiziert Zielbereiche und erstellt einen personalisierten Übungsplan. Auf diese Weise wird jede Bewegung entsprechend den persönlichen Bedürfnissen optimiert."
+      },
+      "q4": {
+        "question": "Wie viel Zeit muss ich jeden Tag aufwenden?",
+        "answer": "Nur 5-10 Minuten pro Tag sind ausreichend. Bei regelmäßiger Praxis beginnen sichtbare Veränderungen innerhalb weniger Wochen."
+      },
+      "q5": {
+        "question": "Wann werde ich Ergebnisse sehen?",
+        "answer": "Bei regelmäßiger Anwendung ist eine Verbesserung des Hauttons innerhalb von 2-3 Wochen sichtbar, und Gesichtszüge werden innerhalb von 4-6 Wochen definierter. Die Ergebnisse können von Person zu Person variieren."
+      },
+      "q6": {
+        "question": "Funktioniert es bei Problemen wie Doppelkinn oder Erschlaffung?",
+        "answer": "Ja. YogiFace bietet gezielte Übungen für die Kieferlinie, Wangenmuskulatur und den Halsbereich. Bei regelmäßiger Durchführung sorgen diese Übungen für eine deutliche Straffung in diesen Bereichen."
+      },
+      "q7": {
+        "question": "Woher weiß ich, ob ich die Bewegungen richtig mache?",
+        "answer": "Die App verwendet KI, um Ihren Gesichtswinkel, Ausdruck und Bewegungsmuster zu analysieren; sie benachrichtigt Sie über falsche Punkte."
+      },
+      "q8": {
+        "question": "Ist es für alle Altersgruppen geeignet?",
+        "answer": "Ja. Gesichtsyoga ist eine nicht-invasive natürliche Methode. Jeder kann es von jungem Alter an sicher praktizieren."
+      },
+      "q9": {
+        "question": "Ist YogiFace kostenlos?",
+        "answer": "Grundübungen sind kostenlos. Persönliche Programme, erweiterte Gesichtsanalyse und spezielle KI-Empfehlungen sind im Premium-Paket enthalten."
+      },
+      "q10": {
+        "question": "Können Menschen, die sich einer kosmetischen Operation unterzogen haben, es verwenden?",
+        "answer": "Viele Benutzer verwenden es sicher, aber es wird empfohlen, während der postoperativen Erholungsphase einen Arzt zu konsultieren."
+      }
+    }
+  },
+  "full_face": "Ganzes Gesicht / Allgemeine Revitalisierung",
+  "eye_area": "Augen & Augenbereich",
+  "nose_area": "Nase & Nasenbereich",
+  "cheeks_mid_face": "Wangen & Mittelgesicht",
+  "lip_area": "Lippen & Mundbereich",
+  "jawline_chin": "Kieferlinie, Kinn & Doppelkinn",
+  "forehead_brow": "Stirn & Augenbrauenbereich",
+  "neck_decollete": "Hals & Dekolleté",
+  "good_morning": "Guten Morgen",
+  "good_afternoon": "Guten Tag",
+  "good_evening": "Guten Abend",
+  "splash": {
+    "screen1": {
+      "title": "Formen Sie Ihr Gesicht auf natürliche Weise",
+      "description": "Trainieren Sie Ihre Gesichtsmuskulatur mit nur wenigen Minuten täglicher Gesichtsübungen. Erstellen Sie eine natürliche, ästhetische und nicht-invasive Schönheitsroutine."
+    },
+    "screen2": {
+      "title": "Personalisierter Übungsplan mit KI",
+      "description": "KI analysiert Ihre Gesichtsmerkmale, bestimmt Ihre Bedürfnisse und empfiehlt auf Sie zugeschnittene Übungen. Sie verfolgt, welche Muskeln mehr Arbeit benötigen."
+    },
+    "screen3": {
+      "title": "Sichtbare Ergebnisse",
+      "description": "Bei regelmäßiger Anwendung werden Gesichtskonturen definierter, die Durchblutung verbessert sich und die Haut erscheint lebendiger. Kleine Schritte jeden Tag bringen große Veränderungen."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "freeVersion": "Kostenlose Version",
+    "error": "Fehler",
+    "sections": {
+      "accountSettings": "KONTOEINSTELLUNGEN",
+      "supportAndOther": "SUPPORT & SONSTIGES"
+    },
+    "menu": {
+      "editProfile": "Profil bearbeiten",
+      "notifications": "Benachrichtigungen",
+      "premium": "Premium",
+      "favoriteExercises": "Lieblingsübungen",
+      "appLanguage": "App-Sprache",
+      "shareWithFriends": "Mit Freunden teilen",
+      "enterInviteCode": "Einladungscode eingeben",
+      "rateUs": "Bewerten Sie uns",
+      "faq": "FAQ",
+      "logout": "Abmelden"
+    },
+    "manage": "VERWALTEN",
+    "logoutDialog": {
+      "title": "Sie sind dabei, sich abzumelden",
+      "message": "Bis bald! Wir werden Ihre Atemübungen weiter verfolgen.",
+      "logoutButton": "Abmelden",
+      "cancelButton": "Abbrechen"
+    }
+  },
+  "home": {
+    "premium": "Premium!",
+    "focusAreas": "Fokusbereiche",
+    "popularCourses": "Beliebte Kurse",
+    "seeMore": "Mehr sehen",
+    "personalized": {
+      "title": "Personalisierter\\nGesichtsanalyse\\nBericht",
+      "description": "Bitte analysieren Sie Ihre Haut,\\num herauszufinden, welcher Typ sie ist.",
+      "button": "Jetzt ausprobieren"
+    },
+    "premiumPlan": {
+      "title": "Premium-Plan",
+      "description": "Schalten Sie Ihren KI-Chatbot frei &\\nerhalten Sie alle Premium-Funktionen",
+      "button": "Premium erhalten",
+      "dialog": {
+        "title": "Funktion nicht verfügbar",
+        "message": "Diese Funktion ist derzeit nicht verfügbar.",
+        "button": "OK"
+      }
+    },
+    "quickActions": {
+      "title": "Schnellaktionen",
+      "programTitle": "Ihr persönliches Programm",
+      "programSubtitle": "Für Ihr bestes Aussehen\\nin 30 Tagen",
+      "button": "Loslegen"
+    },
+    "todaysExercise": {
+      "title": "Heutige Übung",
+      "recommended": "Empfohlene Routine",
+      "forToday": "für heute"
+    },
+    "courses": {
+      "foreheadSmoother": {
+        "title": "Der Stirnglätter",
+        "description": "Diese Bewegung löst Spannungen in den Stirnmuskeln und angesammelten Stirnrunzeln..."
+      },
+      "vMove": {
+        "title": "Die \"V\"-Bewegung",
+        "description": "Stärkt die empfindliche Haut um die Augen, hebt hängende Augenlider und löscht Zeichen der Müdigkeit."
+      },
+      "cheekLifter": {
+        "title": "Der Wangenheber",
+        "description": "Hebt die Wangenmuskeln (Zygomaticus), die am anfälligsten für die Schwerkraft sind, und stellt das Gesichtsoval wieder her."
+      }
+    },
+    "benefits": {
+      "naturalIroning": {
+        "title": "Natürliches Glätten:",
+        "description": "Öffnet horizontale Linien auf der Stirn und verhindert deren Vertiefung."
+      },
+      "botoxEffect": {
+        "title": "Botox-Effekt",
+        "description": "Entspannt angespannte Muskeln und bricht die Gewohnheit des Stirnrunzelns."
+      },
+      "stressRelief": {
+        "title": "Stressabbau",
+        "description": "Lindert angesammelten Stress auf der Stirn und lindert Kopfschmerzen."
+      },
+      "radiantAppearance": {
+        "title": "Strahlendes Aussehen",
+        "description": "Fördert die Durchblutung, um der Haut ein Leuchten zu verleihen."
+      },
+      "dePuffing": {
+        "title": "Entpuffung",
+        "description": "Reduziert Gesichtsschwellungen durch seine lymphatische Drainage-Wirkung."
+      }
+    }
+  },
+  "courseDetail": {
+    "title": "Kursdetails",
+    "getStarted": "Loslegen",
+    "noExercisesFound": "Keine Übungen für diese Kategorie gefunden",
+    "instructions": {
+      "instruction1": {
+        "title": "Waschen Sie Ihre Hände und Ihr Gesicht",
+        "description": "Eine saubere Haut ermöglicht eine effektivere Massage."
+      },
+      "instruction2": {
+        "title": "Gesichtsöl oder Feuchtigkeitscreme auftragen",
+        "description": "Gleiten Sie sanft, ohne Ihre Haut zu ziehen."
+      }
+    }
+  },
+  "courses": {
+    "title": "Alle Kurse",
+    "error": "Fehler beim Laden der Übungen",
+    "personalCoursesTitle": "Persönliche Kurse"
+  },
+  "personalProgram": {
+    "dailyGoalTitle": "Setzen Sie Ihr tägliches Ziel",
+    "dailyGoalDescription": "Wählen Sie ein Tempo, das zu Ihrem Zeitplan passt",
+    "personalizing": "Ihr Plan wird personalisiert...",
+    "readyMessage": "Ihr persönliches 30-Tage-Gesichtsyoga-Programm ist bereit✨",
+    "minutes": "Min"
+  },
+  "editProfile": {
+    "title": "Profil bearbeiten",
+    "changePhoto": "Foto ändern",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "age": "Alter",
+    "gender": "Geschlecht",
+    "skinType": "Hauttyp",
+    "focusArea": "Fokusbereich",
+    "focusAreaHint": "Stirn, Augen, Nase, Mund, Wangen...",
+    "save": "Speichern",
+    "saving": "Wird gespeichert...",
+    "updateSuccess": "Profil erfolgreich aktualisiert",
+    "updateError": "Beim Aktualisieren des Profils ist ein Fehler aufgetreten",
+    "deleteAccount": "Konto löschen"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "emptyTitle": "Noch keine Benachrichtigungen",
+    "emptyDescription": "Wir benachrichtigen Sie, wenn es ein wichtiges Update zu Ihrer Lernreise gibt.",
+    "premiumBannerTitle": "Verpassen Sie nicht die\\nPremium-Vorteile!",
+    "premiumBannerDescription": "Nutzen Sie die Möglichkeiten als Premium-Abonnent.",
+    "sample1Title": "Ihre tägliche Meditation ist bereit!",
+    "sample1Description": "Finden Sie Ihre Ruhe für den Tag",
+    "sample1Time": "Vor 15 Min.",
+    "sample2Title": "Neue Übung: Ozeanatmung",
+    "sample2Description": "Eine neue Atemtechnik wurde hinzugefügt",
+    "sample2Time": "Vor 1 Stunde",
+    "sample3Title": "Sie haben eine 7-Tage-Serie erreicht!",
+    "sample3Description": "Machen Sie weiter so mit Ihrem Wohlbefinden",
+    "sample3Time": "Gestern"
+  },
+  "share": {
+    "title": "Mit Freunden teilen",
+    "mainTitle": "Teilen Sie den Frieden",
+    "descriptionPart1": "Laden Sie Ihre Freunde ein, gemeinsam zu atmen.\\nFür jede Einladung erhalten Sie beide ",
+    "descriptionPart2": "1 Woche Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "IHR EMPFEHLUNGSCODE",
+    "codeCopied": "Code kopiert!",
+    "copyCode": "Code kopieren"
+  },
+  "facialScan": {
+    "title": "Gesichtsscan",
+    "step": "SCHRITT $current VON $total",
+    "getStarted": "Loslegen",
+    "analyzing": {
+      "title": "Wird analysiert",
+      "description": "Ihre einzigartigen Merkmale werden analysiert",
+      "detail": "Hauttextur, Muskeltonus und Fokusbereich für Ihre personalisierte Routine werden erkannt.",
+      "aiEngineWorking": "KI-ENGINE ARBEITET"
+    },
+    "result": {
+      "title": "Ihre Analyse ist fertig!",
+      "subtitle": "Wir haben eine Routine basierend auf Ihren Ergebnissen erstellt.",
+      "skinType": "HAUTTYP",
+      "primaryGoal": "HAUPTZIEL",
+      "recommended": "Für Sie empfohlen",
+      "back": "Zurück"
+    },
+    "instructions": {
+      "front": "Positionieren Sie Ihr Gesicht im Rahmen",
+      "left": "Drehen Sie Ihren Kopf nach links",
+      "right": "Drehen Sie Ihren Kopf nach rechts",
+      "lighting": "Stellen Sie sicher, dass Sie sich in einer gut beleuchteten Umgebung befinden, um bessere Ergebnisse zu erzielen",
+      "tapToCapture": "Tippen Sie auf die Kamera-Schaltfläche, um ein Foto aufzunehmen"
+    },
+    "errors": {
+      "cameraPermission": "Kameraberechtigung ist erforderlich, um Fotos aufzunehmen.",
+      "cameraPermissionRequired": "Kameraberechtigung erforderlich",
+      "cameraPermissionMessage": "Kameraberechtigung ist für das Gesichtsscannen erforderlich. Bitte aktivieren Sie sie in den App-Einstellungen.",
+      "openSettings": "Einstellungen öffnen",
+      "cancel": "Abbrechen",
+      "noFaceDetected": "Kein Gesicht erkannt. Bitte versuchen Sie es erneut.",
+      "captureFailed": "Bild konnte nicht aufgenommen werden. Bitte versuchen Sie es erneut."
+    },
+    "positions": {
+      "front": "VORNE",
+      "left": "LINKS",
+      "right": "RECHTS"
+    }
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "Als Gast fortfahren",
+    "signInFailed": "Anmeldung fehlgeschlagen: $error"
+  },
+  "benefits": "Vorteile",
+  "minutes": "Min",
+  "cancel": "Abbrechen",
+  "beforeBegin": "Bevor Sie beginnen",
+  "rest": "Ruhe",
+  "courseCompleted": "Kurs abgeschlossen",
+  "courseCompletedDescription": "Großartige Arbeit beim Abschluss der heutigen Sitzung.",
+  "deleteAccount": "Konto löschen",
+  "deleteDialogTitle": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?",
+  "deleteDialogDescription": "Diese Aktion ist irreversibel und löscht dauerhaft alle Ihre Übungshistorie und Daten.",
+  "deleteError": "Beim Löschen Ihres Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+  "favoriteExercises": "Lieblingsübungen",
+  "noFavoritesInCategory": "Keine Favoriten in dieser Kategorie",
+  "noFavoritesAdded": "Noch keine Favoriten hinzugefügt.",
+  "favoriteExercisesDescription": "Um Ihre Lieblingsübungen festzulegen, können Sie die Übungen, die Ihnen gefallen, von der Seite Meine Übungen hinzufügen.",
+  "enterInvitationCode": "Einladungscode eingeben",
+  "bePartOfPeace": "Teil des Friedens sein",
+  "inviteFriends": "Geben Sie den Einladungscode ein, den Sie von einem Freund erhalten haben.\\nGeben Sie ihn in das dafür vorgesehene Feld ein",
+  "twoDaysPremium": "2-Tage-Premium",
+  "advantage": "\\num seine Vorteile zu genießen.",
+  "send": "Senden",
+  "deleteNotifications": "Benachrichtigungen löschen",
+  "deleteNotificationsDescription": "Sind Sie sicher, dass Sie alle\\nIhre Benachrichtigungen löschen möchten? Diese Aktion ist irreversibel und kann nicht rückgängig gemacht werden.",
+  "deleteAll": "Alle löschen",
+  "appLanguage": "App-Sprache",
+  "selectLanguage": "Wählen Sie Ihre bevorzugte Sprache",
+  "save": "Speichern",
+  "languageOptions": {
+    "english": "Englisch",
+    "german": "Deutsch",
+    "italian": "Italienisch",
+    "french": "Französisch",
+    "japanese": "Japanisch",
+    "spanish": "Spanisch",
+    "russian": "Russisch",
+    "turkish": "Türkisch",
+    "korean": "Koreanisch",
+    "hindi": "Hindi",
+    "portuguese": "Portugiesisch"
+  }
+}

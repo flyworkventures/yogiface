@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
@@ -63,7 +64,7 @@ class RestTimerWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Rest',
+                  context.t.rest,
                   style: AppTextStyles.body(
                     18,
                     color: AppColors.onboardingGreyText,

@@ -144,8 +144,8 @@ class FavoriteExerciseView extends HookConsumerWidget {
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text(
-          'Favori Egzersizler',
+        title: Text(
+          context.t.favoriteExercises,
         ),
         centerTitle: false,
         actions: [
@@ -175,12 +175,13 @@ class FavoriteExerciseView extends HookConsumerWidget {
             child: favoritesSnapshot.connectionState == ConnectionState.waiting
                 ? const Center(child: CircularProgressIndicator())
                 : favoritesSnapshot.hasError
-                    ? Center(child: Text('Error: ${favoritesSnapshot.error}'))
+                    ? Center(child: Text('${favoritesSnapshot.error}'))
                     : favoritesList.value.isEmpty
-                        ? _buildEmptyState()
+                        ? _buildEmptyState(context)
                         : currentExercises.isEmpty
                             ? Center(
-                                child: Text('No favorites in this category'))
+                                child: Text(context.t.noFavoritesInCategory),
+                              )
                             : Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 16),
@@ -199,7 +200,7 @@ class FavoriteExerciseView extends HookConsumerWidget {
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -221,7 +222,7 @@ class FavoriteExerciseView extends HookConsumerWidget {
             ),
             const SizedBox(height: 32),
             Text(
-              'Henüz Favori Egzersiz Eklemediniz',
+              context.t.noFavoritesAdded,
               textAlign: TextAlign.center,
               style: AppTextStyles.onboardingBody(
                 18,
@@ -230,7 +231,7 @@ class FavoriteExerciseView extends HookConsumerWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Favori egzersizlerini belirlemek istiyorsan egzersizlerim sayfasından beğendiğin egzersizleri ekleyebilirsin.',
+              context.t.favoriteExercisesDescription,
               textAlign: TextAlign.center,
               style: AppTextStyles.onboardingBody(
                 14,
