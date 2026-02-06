@@ -7,6 +7,7 @@ class SecureStorageService {
   static const String _refreshTokenKey = 'refresh_token';
   static const String _userIdKey = 'user_id';
   static const String _isGuestKey = 'is_guest';
+  static const String _languageKey = 'app_language';
 
   // Pending auth credentials (used during onboarding)
   static const String _pendingAuthMethodKey = 'pending_auth_method';
@@ -115,6 +116,27 @@ class SecureStorageService {
     } catch (e) {
       Print.error('Error getting guest status: $e');
       return false;
+    }
+  }
+
+  /// Save app language
+  Future<void> saveAppLanguage(String languageCode) async {
+    try {
+      await _storage.write(key: _languageKey, value: languageCode);
+      Print.info('App language saved: $languageCode');
+    } catch (e) {
+      Print.error('Error saving app language: $e');
+      rethrow;
+    }
+  }
+
+  /// Get app language
+  Future<String?> getAppLanguage() async {
+    try {
+      return await _storage.read(key: _languageKey);
+    } catch (e) {
+      Print.error('Error getting app language: $e');
+      return null;
     }
   }
 
@@ -286,6 +308,26 @@ class SecureStorageService {
     } catch (e) {
       Print.error('Error checking key existence: $e');
       return false;
+    }
+  }
+
+  Future<void> saveLanguage(String languageCode) async {
+    try {
+      await _storage.write(key: _languageKey, value: languageCode);
+      Print.info('Language saved securely: $languageCode');
+    } catch (e) {
+      Print.error('Error saving language: $e');
+      rethrow;
+    }
+  }
+
+  /// Get saved app language
+  Future<String?> getLanguage() async {
+    try {
+      return await _storage.read(key: _languageKey);
+    } catch (e) {
+      Print.error('Error getting language: $e');
+      return null;
     }
   }
 }
