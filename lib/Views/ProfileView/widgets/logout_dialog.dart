@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
@@ -37,7 +38,7 @@ class LogoutDialog extends ConsumerWidget {
             // Title
             Text(
               context.t.profile.logoutDialog.title,
-              style: AppTextStyles.onboardingBody(
+              style: AppTextStyles.latoBody(
                 18,
                 weight: FontWeight.w700,
                 color: Colors.black,
@@ -49,10 +50,11 @@ class LogoutDialog extends ConsumerWidget {
             Text(
               context.t.profile.logoutDialog.message,
               textAlign: TextAlign.center,
-              style: AppTextStyles.onboardingBody(
+              style: AppTextStyles.latoBody(
                 14,
-                weight: FontWeight.w300,
+                weight: FontWeight.w400,
                 height: 1,
+                // color: AppColors.editprofiledelete,
               ),
             ),
             const SizedBox(height: 24),
@@ -74,7 +76,7 @@ class LogoutDialog extends ConsumerWidget {
                 ),
                 child: Text(
                   context.t.profile.logoutDialog.logoutButton,
-                  style: AppTextStyles.onboardingBody(
+                  style: AppTextStyles.latoBody(
                     14,
                     weight: FontWeight.w500,
                     color: Colors.white,
@@ -93,9 +95,9 @@ class LogoutDialog extends ConsumerWidget {
                 },
                 child: Text(
                   context.t.profile.logoutDialog.cancelButton,
-                  style: AppTextStyles.onboardingBody(
+                  style: AppTextStyles.latoBody(
                     14,
-                    weight: FontWeight.w500,
+                    weight: FontWeight.w600,
                     color: Colors.black,
                     height: 1,
                   ),
