@@ -17,13 +17,20 @@ class ExerciseRepository {
     CancelToken? cancelToken,
   }) async {
     try {
+      Print.info('🌍 getAllExercises called with lang: $lang');
       final response = await _dioService.get(
         'exercises',
         queryParameters: {'lang': lang},
         cancelToken: cancelToken,
       );
-      Print.info('Exercises: ${response.data}');
-      return ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      Print.info('📦 Exercises Response: ${response.data}');
+      final result =
+          ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      if (result.data.exercises?.isNotEmpty ?? false) {
+        Print.info(
+            '📝 First exercise title: ${result.data.exercises!.first.title}');
+      }
+      return result;
     } catch (e) {
       Print.error('Error fetching all exercises: $e');
       rethrow;
@@ -58,13 +65,20 @@ class ExerciseRepository {
     CancelToken? cancelToken,
   }) async {
     try {
+      Print.info('🌍 getFavorites called with lang: $lang');
       final response = await _dioService.get(
         'exercises/favorites',
         queryParameters: {'lang': lang},
         cancelToken: cancelToken,
       );
-
-      return ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      Print.info('📦 Favorites Response: ${response.data}');
+      final result =
+          ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      if (result.data.exercises?.isNotEmpty ?? false) {
+        Print.info(
+            '📝 First favorite title: ${result.data.exercises!.first.title}');
+      }
+      return result;
     } catch (e) {
       Print.error('Error fetching favorites: $e');
       rethrow;

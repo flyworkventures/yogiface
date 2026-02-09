@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -123,67 +125,137 @@ class VideoPlayerWidget extends HookWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.5,
-      child: Stack(
-        children: [
-          if (isInitialized.value && chewieController.value != null)
+      child: ClipRect(
+        child: Stack(
+          children: [
+            // Background gradient circles - BOTTOM LAYER
             Positioned.fill(
-              child: FittedBox(
-                fit: BoxFit.fill,
-                child: SizedBox(
-                  width: videoController.value!.value.size.width,
-                  height: videoController.value!.value.size.height,
+              child: Container(
+                color: const Color(0xFFF4F6F0),
+              ),
+            ),
+            Positioned(
+              left: -103,
+              top: 191,
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Container(
+                  width: 341,
+                  height: 341,
+                  decoration: const ShapeDecoration(
+                    color: Colors.white,
+                    shape: OvalBorder(),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 149,
+              top: -42,
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Container(
+                  width: 341,
+                  height: 341,
+                  decoration: const ShapeDecoration(
+                    color: Colors.white,
+                    shape: OvalBorder(),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 38,
+              top: -46,
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Opacity(
+                  opacity: 0.50,
+                  child: Container(
+                    width: 341,
+                    height: 341,
+                    decoration: const ShapeDecoration(
+                      color: Color(0xFFE8A7F2),
+                      shape: OvalBorder(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 29,
+              top: 220,
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Opacity(
+                  opacity: 0.50,
+                  child: Container(
+                    width: 341,
+                    height: 341,
+                    decoration: const ShapeDecoration(
+                      color: Color(0xFFC9A8FF),
+                      shape: OvalBorder(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // Video player - MIDDLE LAYER
+            if (isInitialized.value && chewieController.value != null)
+              Center(
+                child: AspectRatio(
+                  aspectRatio: videoController.value!.value.aspectRatio,
                   child: Chewie(
                     controller: chewieController.value!,
                   ),
                 ),
+              )
+            else
+              Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.onboardingPurple,
+                ),
               ),
-            )
-          else
-            Positioned.fill(
-              child: Container(
-                color: AppColors.onboardingGreyLight,
-                child: Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.onboardingPurple,
+
+            // UI Controls - TOP LAYER
+            Positioned(
+              top: 16,
+              left: 16,
+              right: 16,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _CircleButton(
+                    icon: Image.asset(AppIcons.backarrow),
+                    onPressed: onBackPressed,
                   ),
-                ),
+                  _CircleButton(
+                    icon: Image.asset(AppIcons.sound),
+                    onPressed: onVolumePressed,
+                  ),
+                ],
               ),
             ),
-          Positioned(
-            top: 16,
-            left: 16,
-            right: 16,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _CircleButton(
-                  icon: Image.asset(AppIcons.backarrow),
-                  onPressed: onBackPressed,
-                ),
-                _CircleButton(
-                  icon: Image.asset(AppIcons.sound),
-                  onPressed: onVolumePressed,
-                ),
-              ],
+            Positioned(
+              bottom: 16,
+              left: 16,
+              right: 16,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _InfoBadge(
+                    text: '$stepNumber/$totalSteps',
+                  ),
+                  _InfoBadge(
+                    text:
+                        _formatDuration(videoController.value?.value.position),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 16,
-            left: 16,
-            right: 16,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _InfoBadge(
-                  text: '$stepNumber/$totalSteps',
-                ),
-                _InfoBadge(
-                  text: _formatDuration(videoController.value?.value.position),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

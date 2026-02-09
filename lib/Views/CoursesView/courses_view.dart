@@ -61,7 +61,8 @@ class AllCoursesView extends HookConsumerWidget {
     final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
 
-    final deviceLocale = AppLocaleUtils.findDeviceLocale();
+    // Use app's current locale (user selected), not device locale
+    final currentLocale = LocaleSettings.currentLocale;
 
     // Fetch exercises
     final exerciseRepository =
@@ -70,7 +71,7 @@ class AllCoursesView extends HookConsumerWidget {
     final exercisesSnapshot = useFuture(
       useMemoized(
           () => exerciseRepository.getAllExercises(
-                lang: deviceLocale.languageCode,
+                lang: currentLocale.languageCode,
               ),
           []),
     );

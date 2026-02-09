@@ -68,9 +68,15 @@ class FavoriteExerciseView extends HookConsumerWidget {
         ref.watch(AllProviders.exerciseRepositoryProvider);
     final refreshTrigger = useState(0); // To force refresh when needed
 
-    // Fetch user favorites
+    // Use app's current locale (user selected), not device locale
+    final currentLocale = LocaleSettings.currentLocale;
+
+    // Fetch user favorites with user's selected language
+    // Supports: en, tr, de, hi, ru, es, fr, it, pt, ja, ko
     final favoritesSnapshot = useFuture(
-      useMemoized(() => exerciseRepository.getFavorites(lang: 'en'),
+      useMemoized(
+          () =>
+              exerciseRepository.getFavorites(lang: currentLocale.languageCode),
           [refreshTrigger.value]),
     );
 
