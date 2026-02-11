@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +11,7 @@ import 'package:yogiface/Core/Routes/app_routes.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Services/secure_storage_service.dart';
 import 'package:yogiface/Views/SplashView/splash_view.dart';
+import 'package:yogiface/firebase_options.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/utils/print.dart' hide LogLevel;
 
@@ -33,6 +35,9 @@ Future<void> initPlatformState() async {
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

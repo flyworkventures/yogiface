@@ -38,7 +38,20 @@ class LoginView extends ConsumerWidget {
         return;
       }
 
-      // Store pending auth credentials instead of creating user
+      // Check user status with backend
+      final authRepo = ref.read(AllProviders.authRepositoryProvider);
+      final response = await authRepo.signInWithGoogle(idToken: idToken);
+
+      if (response.user != null && response.user!.onboardingCompleted) {
+        // User exists and has completed onboarding - go explicitly to MainView
+        if (context.mounted) {
+          Navigator.pop(context); // Close loading dialog
+          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+        }
+        return;
+      }
+
+      // User needs onboarding - save pending credentials
       final storageService =
           ref.read(AllProviders.secureStorageServiceProvider);
       await storageService.savePendingAuthMethod('google');
@@ -46,7 +59,7 @@ class LoginView extends ConsumerWidget {
 
       if (context.mounted) {
         Navigator.pop(context); // Close loading dialog
-        // Navigate to onboarding - user creation will happen after onboarding
+        // Navigate to onboarding
         Navigator.pushReplacementNamed(context, '/onboarding');
       }
     } catch (e) {
@@ -60,49 +73,63 @@ class LoginView extends ConsumerWidget {
     }
   }
 
-  Future<void> _handleFacebookSignIn(
-      BuildContext context, WidgetRef ref) async {
-    try {
-      // Show loading
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
+  // Future<void> _handleFacebookSignIn(
+  //     BuildContext context, WidgetRef ref) async {
+  //   try {
+  //     // Show loading
+  //     showDialog(
+  //       context: context,
+  //       barrierDismissible: false,
+  //       builder: (context) => const Center(
+  //         child: CircularProgressIndicator(),
+  //       ),
+  //     );
 
-      // Get access token from Facebook Sign-In
-      final socialAuthService = ref.read(socialAuthServiceProvider);
-      final accessToken = await socialAuthService.signInWithFacebook();
+  //     // Get access token from Facebook Sign-In
+  //     final socialAuthService = ref.read(socialAuthServiceProvider);
+  //     final accessToken = await socialAuthService.signInWithFacebook();
 
-      if (accessToken == null) {
-        // User cancelled sign-in
-        if (context.mounted) Navigator.pop(context);
-        return;
-      }
+  //     if (accessToken == null) {
+  //       // User cancelled sign-in
+  //       if (context.mounted) Navigator.pop(context);
+  //       return;
+  //     }
 
-      // Store pending auth credentials instead of creating user
-      final storageService =
-          ref.read(AllProviders.secureStorageServiceProvider);
-      await storageService.savePendingAuthMethod('facebook');
-      await storageService.savePendingFacebookToken(accessToken);
+  //     // Check user status with backend
+  //     final authRepo = ref.read(AllProviders.authRepositoryProvider);
+  //     final response =
+  //         await authRepo.signInWithFacebook(accessToken: accessToken);
 
-      if (context.mounted) {
-        Navigator.pop(context); // Close loading dialog
-        // Navigate to onboarding - user creation will happen after onboarding
-        Navigator.pushReplacementNamed(context, '/onboarding');
-      }
-    } catch (e) {
-      if (context.mounted) {
-        Navigator.pop(context); // Close loading dialog
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text(context.t.auth.signInFailed(error: e.toString()))),
-        );
-      }
-    }
-  }
+  //     if (response.user != null && response.user!.onboardingCompleted) {
+  //       // User exists and has completed onboarding - go explicitly to MainView
+  //       if (context.mounted) {
+  //         Navigator.pop(context); // Close loading dialog
+  //         Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+  //       }
+  //       return;
+  //     }
+
+  //     // User needs onboarding - save pending credentials
+  //     final storageService =
+  //         ref.read(AllProviders.secureStorageServiceProvider);
+  //     await storageService.savePendingAuthMethod('facebook');
+  //     await storageService.savePendingFacebookToken(accessToken);
+
+  //     if (context.mounted) {
+  //       Navigator.pop(context); // Close loading dialog
+  //       // Navigate to onboarding
+  //       Navigator.pushReplacementNamed(context, '/onboarding');
+  //     }
+  //   } catch (e) {
+  //     if (context.mounted) {
+  //       Navigator.pop(context); // Close loading dialog
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(
+  //             content: Text(context.t.auth.signInFailed(error: e.toString()))),
+  //       );
+  //     }
+  //   }
+  // }
 
   Future<void> _handleAppleSignIn(BuildContext context, WidgetRef ref) async {
     try {
@@ -125,7 +152,24 @@ class LoginView extends ConsumerWidget {
         return;
       }
 
-      // Store pending auth credentials instead of creating user
+      // Check user status with backend
+      final authRepo = ref.read(AllProviders.authRepositoryProvider);
+      // Apple sometimes provides user info only on first login, so we pass it if available
+      final response = await authRepo.signInWithApple(
+        identityToken: appleCredential['identityToken'] as String,
+        appleUserInfo: appleCredential['user'] as Map<String, dynamic>?,
+      );
+
+      if (response.user != null && response.user!.onboardingCompleted) {
+        // User exists and has completed onboarding - go explicitly to MainView
+        if (context.mounted) {
+          Navigator.pop(context); // Close loading dialog
+          Navigator.pushNamedAndRemoveUntil(context, '/main', (route) => false);
+        }
+        return;
+      }
+
+      // User needs onboarding - save pending credentials
       final storageService =
           ref.read(AllProviders.secureStorageServiceProvider);
       await storageService.savePendingAuthMethod('apple');
@@ -142,7 +186,7 @@ class LoginView extends ConsumerWidget {
 
       if (context.mounted) {
         Navigator.pop(context); // Close loading dialog
-        // Navigate to onboarding - user creation will happen after onboarding
+        // Navigate to onboarding
         Navigator.pushReplacementNamed(context, '/onboarding');
       }
     } catch (e) {
@@ -932,51 +976,52 @@ class LoginView extends ConsumerWidget {
                         const SizedBox(height: 12),
                         Row(
                           children: [
-                            Expanded(
-                              child: CustomButton(
-                                label: context.t.auth.facebook,
-                                type: CustomButtonType.outlined,
-                                icon: Image.asset(
-                                  AppIcons.facebook,
+                            // Expanded(
+                            //   child: CustomButton(
+                            //     label: context.t.auth.facebook,
+                            //     type: CustomButtonType.outlined,
+                            //     icon: Image.asset(
+                            //       AppIcons.facebook,
+                            //     ),
+                            //     fullWidth: true,
+                            //     backgroundColor: Colors.white,
+                            //     foregroundColor: Colors.black87,
+                            //     borderColor: const Color(0xFFD9D9D9),
+                            //     iconPadding: 8,
+                            //     borderWidth: 1.0,
+                            //     borderRadius: 50.0,
+                            //     labelStyle: AppTextStyles.onboardingBody(
+                            //       16,
+                            //       weight: FontWeight.w400,
+                            //     ),
+                            //     onPressed: () =>
+                            //         _handleFacebookSignIn(context, ref),
+                            //   ),
+                            // ),
+                            // const SizedBox(width: 12),
+                            if (Platform.isIOS)
+                              Expanded(
+                                child: CustomButton(
+                                  label: context.t.auth.apple,
+                                  type: CustomButtonType.outlined,
+                                  icon: Image.asset(
+                                    AppIcons.apple,
+                                  ),
+                                  fullWidth: true,
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black87,
+                                  borderColor: const Color(0xFFD9D9D9),
+                                  borderWidth: 1.0,
+                                  iconPadding: 8,
+                                  borderRadius: 50.0,
+                                  labelStyle: AppTextStyles.onboardingBody(
+                                    16,
+                                    weight: FontWeight.w400,
+                                  ),
+                                  onPressed: () =>
+                                      _handleAppleSignIn(context, ref),
                                 ),
-                                fullWidth: true,
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black87,
-                                borderColor: const Color(0xFFD9D9D9),
-                                iconPadding: 8,
-                                borderWidth: 1.0,
-                                borderRadius: 50.0,
-                                labelStyle: AppTextStyles.onboardingBody(
-                                  16,
-                                  weight: FontWeight.w400,
-                                ),
-                                onPressed: () =>
-                                    _handleFacebookSignIn(context, ref),
                               ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: CustomButton(
-                                label: context.t.auth.apple,
-                                type: CustomButtonType.outlined,
-                                icon: Image.asset(
-                                  AppIcons.apple,
-                                ),
-                                fullWidth: true,
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black87,
-                                borderColor: const Color(0xFFD9D9D9),
-                                borderWidth: 1.0,
-                                iconPadding: 8,
-                                borderRadius: 50.0,
-                                labelStyle: AppTextStyles.onboardingBody(
-                                  16,
-                                  weight: FontWeight.w400,
-                                ),
-                                onPressed: () =>
-                                    _handleAppleSignIn(context, ref),
-                              ),
-                            ),
                           ],
                         ),
                       ] else ...[
@@ -1027,29 +1072,29 @@ class LoginView extends ConsumerWidget {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            Expanded(
-                              child: CustomButton(
-                                label: context.t.auth.facebook,
-                                type: CustomButtonType.outlined,
-                                icon: Image.asset(
-                                  AppIcons.facebook,
-                                ),
-                                fullWidth: true,
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black87,
-                                borderColor: const Color(0xFFD9D9D9),
-                                borderWidth: 1.0,
-                                iconPadding: 8,
-                                borderRadius: 50.0,
-                                labelStyle: AppTextStyles.onboardingBody(
-                                  14,
-                                  weight: FontWeight.w400,
-                                  color: Colors.black87,
-                                ),
-                                onPressed: () =>
-                                    _handleFacebookSignIn(context, ref),
-                              ),
-                            ),
+                            // Expanded(
+                            //   child: CustomButton(
+                            //     label: context.t.auth.facebook,
+                            //     type: CustomButtonType.outlined,
+                            //     icon: Image.asset(
+                            //       AppIcons.facebook,
+                            //     ),
+                            //     fullWidth: true,
+                            //     backgroundColor: Colors.white,
+                            //     foregroundColor: Colors.black87,
+                            //     borderColor: const Color(0xFFD9D9D9),
+                            //     borderWidth: 1.0,
+                            //     iconPadding: 8,
+                            //     borderRadius: 50.0,
+                            //     labelStyle: AppTextStyles.onboardingBody(
+                            //       14,
+                            //       weight: FontWeight.w400,
+                            //       color: Colors.black87,
+                            //     ),
+                            //     onPressed: () =>
+                            //         _handleFacebookSignIn(context, ref),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ],
@@ -1091,28 +1136,28 @@ class LoginView extends ConsumerWidget {
                   ),
                 ),
               ),
-              CustomButton(
-                label: 'Bypass',
-                type: CustomButtonType.outlined,
-                icon: Image.asset(
-                  AppIcons.apple,
-                ),
-                fullWidth: true,
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
-                borderColor: const Color(0xFFD9D9D9),
-                borderWidth: 1.0,
-                iconPadding: 8,
-                borderRadius: 50.0,
-                labelStyle: AppTextStyles.onboardingBody(
-                  14,
-                  weight: FontWeight.w400,
-                  color: Colors.black87,
-                ),
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, '/main'),
-              ),
-              const SizedBox(height: 40),
+              // CustomButton(
+              //   label: 'Bypass',
+              //   type: CustomButtonType.outlined,
+              //   icon: Image.asset(
+              //     AppIcons.apple,
+              //   ),
+              //   fullWidth: true,
+              //   backgroundColor: Colors.white,
+              //   foregroundColor: Colors.black87,
+              //   borderColor: const Color(0xFFD9D9D9),
+              //   borderWidth: 1.0,
+              //   iconPadding: 8,
+              //   borderRadius: 50.0,
+              //   labelStyle: AppTextStyles.onboardingBody(
+              //     14,
+              //     weight: FontWeight.w400,
+              //     color: Colors.black87,
+              //   ),
+              //   onPressed: () =>
+              //       Navigator.pushReplacementNamed(context, '/main'),
+              // ),
+              // const SizedBox(height: 40),
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [

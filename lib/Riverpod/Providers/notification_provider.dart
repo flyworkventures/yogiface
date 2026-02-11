@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogiface/Models/notification_model.dart';
 import 'package:yogiface/Repositories/notification_repository.dart';
-import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/utils/print.dart';
 
 // ============================================

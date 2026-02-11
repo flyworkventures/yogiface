@@ -63,8 +63,9 @@ dependencies:
   onesignal_flutter: ^5.4.0
   purchases_flutter: ^9.11.0
   purchases_ui_flutter: ^9.11.0
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
 
-  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -92,7 +93,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/videos/
 
 flutter_native_splash:
   color: "#E8A7F2"
