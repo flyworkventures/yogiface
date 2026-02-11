@@ -670,6 +670,22 @@ class TranslationsPersonalProgramEn {
 
 	/// en: 'Min'
 	String get minutes => 'Min';
+
+	/// en: 'When you look in the mirror, which expression bothers you the most?'
+	String get objectiveTitle => 'When you look in the mirror, which expression bothers you the most?';
+
+	/// en: 'Program balance is adjusted according to facial expression'
+	String get objectiveSubtitle => 'Program balance is adjusted according to facial expression';
+
+	/// en: 'How would you like to feel when doing face yoga?'
+	String get feelingTitle => 'How would you like to feel when doing face yoga?';
+
+	/// en: 'When is it easier for you to do face yoga?'
+	String get timeTitle => 'When is it easier for you to do face yoga?';
+
+	late final TranslationsPersonalProgramObjectivesEn objectives = TranslationsPersonalProgramObjectivesEn._(_root);
+	late final TranslationsPersonalProgramFeelingsEn feelings = TranslationsPersonalProgramFeelingsEn._(_root);
+	late final TranslationsPersonalProgramTimesEn times = TranslationsPersonalProgramTimesEn._(_root);
 }
 
 // Path: editProfile
@@ -1581,6 +1597,72 @@ class TranslationsCourseDetailInstructionsEn {
 	// Translations
 	late final TranslationsCourseDetailInstructionsInstruction1En instruction1 = TranslationsCourseDetailInstructionsInstruction1En._(_root);
 	late final TranslationsCourseDetailInstructionsInstruction2En instruction2 = TranslationsCourseDetailInstructionsInstruction2En._(_root);
+}
+
+// Path: personalProgram.objectives
+class TranslationsPersonalProgramObjectivesEn {
+	TranslationsPersonalProgramObjectivesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Tired and worn-out appearance'
+	String get tired => 'Tired and worn-out appearance';
+
+	/// en: 'Harsh and tense expression'
+	String get harsh => 'Harsh and tense expression';
+
+	/// en: 'Pale and lifeless skin'
+	String get pale => 'Pale and lifeless skin';
+
+	/// en: 'Asymmetrical facial features'
+	String get asymmetrical => 'Asymmetrical facial features';
+
+	/// en: 'No obvious problem, I want general care'
+	String get general => 'No obvious problem, I want general care';
+}
+
+// Path: personalProgram.feelings
+class TranslationsPersonalProgramFeelingsEn {
+	TranslationsPersonalProgramFeelingsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Lightened'
+	String get lightened => 'Lightened';
+
+	/// en: 'Revitalized'
+	String get revitalized => 'Revitalized';
+
+	/// en: 'Refreshed'
+	String get refreshed => 'Refreshed';
+
+	/// en: 'More energetic'
+	String get energetic => 'More energetic';
+}
+
+// Path: personalProgram.times
+class TranslationsPersonalProgramTimesEn {
+	TranslationsPersonalProgramTimesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Morning'
+	String get morning => 'Morning';
+
+	/// en: 'During the day'
+	String get duringDay => 'During the day';
+
+	/// en: 'Evening'
+	String get evening => 'Evening';
+
+	/// en: 'The time doesn't matter, a reminder is enough'
+	String get anytime => 'The time doesn\'t matter, a reminder is enough';
 }
 
 // Path: facialScan.analyzing
@@ -2535,6 +2617,23 @@ extension on Translations {
 			'personalProgram.personalizing' => 'Personalizing Your Plan...',
 			'personalProgram.readyMessage' => 'Your personal 30-day face yoga program is ready✨',
 			'personalProgram.minutes' => 'Min',
+			'personalProgram.objectiveTitle' => 'When you look in the mirror, which expression bothers you the most?',
+			'personalProgram.objectiveSubtitle' => 'Program balance is adjusted according to facial expression',
+			'personalProgram.feelingTitle' => 'How would you like to feel when doing face yoga?',
+			'personalProgram.timeTitle' => 'When is it easier for you to do face yoga?',
+			'personalProgram.objectives.tired' => 'Tired and worn-out appearance',
+			'personalProgram.objectives.harsh' => 'Harsh and tense expression',
+			'personalProgram.objectives.pale' => 'Pale and lifeless skin',
+			'personalProgram.objectives.asymmetrical' => 'Asymmetrical facial features',
+			'personalProgram.objectives.general' => 'No obvious problem, I want general care',
+			'personalProgram.feelings.lightened' => 'Lightened',
+			'personalProgram.feelings.revitalized' => 'Revitalized',
+			'personalProgram.feelings.refreshed' => 'Refreshed',
+			'personalProgram.feelings.energetic' => 'More energetic',
+			'personalProgram.times.morning' => 'Morning',
+			'personalProgram.times.duringDay' => 'During the day',
+			'personalProgram.times.evening' => 'Evening',
+			'personalProgram.times.anytime' => 'The time doesn\'t matter, a reminder is enough',
 			'editProfile.title' => 'Edit Profile',
 			'editProfile.changePhoto' => 'Change Photo',
 			'editProfile.fullName' => 'Full Name',

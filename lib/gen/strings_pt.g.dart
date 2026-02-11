@@ -353,6 +353,13 @@ class _TranslationsPersonalProgramPt implements TranslationsPersonalProgramEn {
 	@override String get personalizing => 'Personalizando seu plano...';
 	@override String get readyMessage => 'Seu programa pessoal de ioga facial de 30 dias está pronto✨';
 	@override String get minutes => 'min';
+	@override String get objectiveTitle => 'Que expressão mais te incomoda quando te olhas ao espelho?';
+	@override String get objectiveSubtitle => 'O equilíbrio do programa é ajustado de acordo com a expressão facial';
+	@override String get feelingTitle => 'Como gostarias de te sentir ao fazer ioga facial?';
+	@override String get timeTitle => 'Quando é mais fácil para ti fazer ioga facial?';
+	@override late final _TranslationsPersonalProgramObjectivesPt objectives = _TranslationsPersonalProgramObjectivesPt._(_root);
+	@override late final _TranslationsPersonalProgramFeelingsPt feelings = _TranslationsPersonalProgramFeelingsPt._(_root);
+	@override late final _TranslationsPersonalProgramTimesPt times = _TranslationsPersonalProgramTimesPt._(_root);
 }
 
 // Path: editProfile
@@ -976,6 +983,46 @@ class _TranslationsCourseDetailInstructionsPt implements TranslationsCourseDetai
 	// Translations
 	@override late final _TranslationsCourseDetailInstructionsInstruction1Pt instruction1 = _TranslationsCourseDetailInstructionsInstruction1Pt._(_root);
 	@override late final _TranslationsCourseDetailInstructionsInstruction2Pt instruction2 = _TranslationsCourseDetailInstructionsInstruction2Pt._(_root);
+}
+
+// Path: personalProgram.objectives
+class _TranslationsPersonalProgramObjectivesPt implements TranslationsPersonalProgramObjectivesEn {
+	_TranslationsPersonalProgramObjectivesPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get tired => 'Aparência cansada e desgastada';
+	@override String get harsh => 'Expressão dura e tensa';
+	@override String get pale => 'Pele pálida e sem vida';
+	@override String get asymmetrical => 'Traços faciais assimétricos';
+	@override String get general => 'Sem problema óbvio, quero cuidados gerais';
+}
+
+// Path: personalProgram.feelings
+class _TranslationsPersonalProgramFeelingsPt implements TranslationsPersonalProgramFeelingsEn {
+	_TranslationsPersonalProgramFeelingsPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get lightened => 'Aliviado';
+	@override String get revitalized => 'Revitalizado';
+	@override String get refreshed => 'Refrescado';
+	@override String get energetic => 'Mais energético';
+}
+
+// Path: personalProgram.times
+class _TranslationsPersonalProgramTimesPt implements TranslationsPersonalProgramTimesEn {
+	_TranslationsPersonalProgramTimesPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get morning => 'Manhã';
+	@override String get duringDay => 'Durante o dia';
+	@override String get evening => 'Noite';
+	@override String get anytime => 'A hora não importa, um lembrete é suficiente';
 }
 
 // Path: facialScan.analyzing
@@ -1744,6 +1791,23 @@ extension on TranslationsPt {
 			'personalProgram.personalizing' => 'Personalizando seu plano...',
 			'personalProgram.readyMessage' => 'Seu programa pessoal de ioga facial de 30 dias está pronto✨',
 			'personalProgram.minutes' => 'min',
+			'personalProgram.objectiveTitle' => 'Que expressão mais te incomoda quando te olhas ao espelho?',
+			'personalProgram.objectiveSubtitle' => 'O equilíbrio do programa é ajustado de acordo com a expressão facial',
+			'personalProgram.feelingTitle' => 'Como gostarias de te sentir ao fazer ioga facial?',
+			'personalProgram.timeTitle' => 'Quando é mais fácil para ti fazer ioga facial?',
+			'personalProgram.objectives.tired' => 'Aparência cansada e desgastada',
+			'personalProgram.objectives.harsh' => 'Expressão dura e tensa',
+			'personalProgram.objectives.pale' => 'Pele pálida e sem vida',
+			'personalProgram.objectives.asymmetrical' => 'Traços faciais assimétricos',
+			'personalProgram.objectives.general' => 'Sem problema óbvio, quero cuidados gerais',
+			'personalProgram.feelings.lightened' => 'Aliviado',
+			'personalProgram.feelings.revitalized' => 'Revitalizado',
+			'personalProgram.feelings.refreshed' => 'Refrescado',
+			'personalProgram.feelings.energetic' => 'Mais energético',
+			'personalProgram.times.morning' => 'Manhã',
+			'personalProgram.times.duringDay' => 'Durante o dia',
+			'personalProgram.times.evening' => 'Noite',
+			'personalProgram.times.anytime' => 'A hora não importa, um lembrete é suficiente',
 			'editProfile.title' => 'Editar Perfil',
 			'editProfile.changePhoto' => 'Alterar Foto',
 			'editProfile.fullName' => 'Nome Completo',

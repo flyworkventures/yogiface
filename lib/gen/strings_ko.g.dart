@@ -352,7 +352,14 @@ class _TranslationsPersonalProgramKo implements TranslationsPersonalProgramEn {
 	@override String get dailyGoalDescription => '일정에 맞는 속도를 선택하세요';
 	@override String get personalizing => '계획 개인화 중...';
 	@override String get readyMessage => '당신의 개인 30일 페이스 요가 프로그램이 준비되었습니다✨';
-	@override String get minutes => '분';
+	@override String get minutes => 'min';
+	@override String get objectiveTitle => 'Which expression bothers you most when you look in the mirror?';
+	@override String get objectiveSubtitle => 'Program balance is adjusted according to facial expression';
+	@override String get feelingTitle => 'How would you like to feel by doing face yoga?';
+	@override String get timeTitle => 'When is it easier for you to do face yoga?';
+	@override late final _TranslationsPersonalProgramObjectivesKo objectives = _TranslationsPersonalProgramObjectivesKo._(_root);
+	@override late final _TranslationsPersonalProgramFeelingsKo feelings = _TranslationsPersonalProgramFeelingsKo._(_root);
+	@override late final _TranslationsPersonalProgramTimesKo times = _TranslationsPersonalProgramTimesKo._(_root);
 }
 
 // Path: editProfile
@@ -976,6 +983,46 @@ class _TranslationsCourseDetailInstructionsKo implements TranslationsCourseDetai
 	// Translations
 	@override late final _TranslationsCourseDetailInstructionsInstruction1Ko instruction1 = _TranslationsCourseDetailInstructionsInstruction1Ko._(_root);
 	@override late final _TranslationsCourseDetailInstructionsInstruction2Ko instruction2 = _TranslationsCourseDetailInstructionsInstruction2Ko._(_root);
+}
+
+// Path: personalProgram.objectives
+class _TranslationsPersonalProgramObjectivesKo implements TranslationsPersonalProgramObjectivesEn {
+	_TranslationsPersonalProgramObjectivesKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get tired => 'Tired and worn-out look';
+	@override String get harsh => 'Harsh and tense expression';
+	@override String get pale => 'Pale and lifeless skin';
+	@override String get asymmetrical => 'Asymmetrical facial features';
+	@override String get general => 'No obvious problem, I want general care';
+}
+
+// Path: personalProgram.feelings
+class _TranslationsPersonalProgramFeelingsKo implements TranslationsPersonalProgramFeelingsEn {
+	_TranslationsPersonalProgramFeelingsKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get lightened => 'Lightened';
+	@override String get revitalized => 'Revitalized';
+	@override String get refreshed => 'Refreshed';
+	@override String get energetic => 'More energetic';
+}
+
+// Path: personalProgram.times
+class _TranslationsPersonalProgramTimesKo implements TranslationsPersonalProgramTimesEn {
+	_TranslationsPersonalProgramTimesKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get morning => 'Morning';
+	@override String get duringDay => 'During the day';
+	@override String get evening => 'Evening';
+	@override String get anytime => 'Time doesn\'t matter, a reminder is enough';
 }
 
 // Path: facialScan.analyzing
@@ -1743,7 +1790,24 @@ extension on TranslationsKo {
 			'personalProgram.dailyGoalDescription' => '일정에 맞는 속도를 선택하세요',
 			'personalProgram.personalizing' => '계획 개인화 중...',
 			'personalProgram.readyMessage' => '당신의 개인 30일 페이스 요가 프로그램이 준비되었습니다✨',
-			'personalProgram.minutes' => '분',
+			'personalProgram.minutes' => 'min',
+			'personalProgram.objectiveTitle' => 'Which expression bothers you most when you look in the mirror?',
+			'personalProgram.objectiveSubtitle' => 'Program balance is adjusted according to facial expression',
+			'personalProgram.feelingTitle' => 'How would you like to feel by doing face yoga?',
+			'personalProgram.timeTitle' => 'When is it easier for you to do face yoga?',
+			'personalProgram.objectives.tired' => 'Tired and worn-out look',
+			'personalProgram.objectives.harsh' => 'Harsh and tense expression',
+			'personalProgram.objectives.pale' => 'Pale and lifeless skin',
+			'personalProgram.objectives.asymmetrical' => 'Asymmetrical facial features',
+			'personalProgram.objectives.general' => 'No obvious problem, I want general care',
+			'personalProgram.feelings.lightened' => 'Lightened',
+			'personalProgram.feelings.revitalized' => 'Revitalized',
+			'personalProgram.feelings.refreshed' => 'Refreshed',
+			'personalProgram.feelings.energetic' => 'More energetic',
+			'personalProgram.times.morning' => 'Morning',
+			'personalProgram.times.duringDay' => 'During the day',
+			'personalProgram.times.evening' => 'Evening',
+			'personalProgram.times.anytime' => 'Time doesn\'t matter, a reminder is enough',
 			'editProfile.title' => '프로필 편집',
 			'editProfile.changePhoto' => '사진 변경',
 			'editProfile.fullName' => '성명',

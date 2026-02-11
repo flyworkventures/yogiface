@@ -459,8 +459,31 @@
         "dailyGoalDescription": "Escolha um ritmo que se adapte à sua agenda",
         "personalizing": "Personalizando seu plano...",
         "readyMessage": "Seu programa pessoal de ioga facial de 30 dias está pronto✨",
-        "minutes": "min"
+    "minutes": "min",
+    "objectiveTitle": "Que expressão mais te incomoda quando te olhas ao espelho?",
+    "objectiveSubtitle": "O equilíbrio do programa é ajustado de acordo com a expressão facial",
+    "feelingTitle": "Como gostarias de te sentir ao fazer ioga facial?",
+    "timeTitle": "Quando é mais fácil para ti fazer ioga facial?",
+    "objectives": {
+      "tired": "Aparência cansada e desgastada",
+      "harsh": "Expressão dura e tensa",
+      "pale": "Pele pálida e sem vida",
+      "asymmetrical": "Traços faciais assimétricos",
+      "general": "Sem problema óbvio, quero cuidados gerais"
     },
+    "feelings": {
+      "lightened": "Aliviado",
+      "revitalized": "Revitalizado",
+      "refreshed": "Refrescado",
+      "energetic": "Mais energético"
+    },
+    "times": {
+      "morning": "Manhã",
+      "duringDay": "Durante o dia",
+      "evening": "Noite",
+      "anytime": "A hora não importa, um lembrete é suficiente"
+    }
+  },
     "editProfile": {
         "title": "Editar Perfil",
         "changePhoto": "Alterar Foto",

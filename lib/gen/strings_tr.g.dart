@@ -353,6 +353,13 @@ class _TranslationsPersonalProgramTr implements TranslationsPersonalProgramEn {
 	@override String get personalizing => 'Planınız Kişiselleştiriliyor...';
 	@override String get readyMessage => 'Kişisel 30 günlük yüz yogası programınız hazır✨';
 	@override String get minutes => 'Dk';
+	@override String get objectiveTitle => 'Aynaya baktığında seni en çok rahatsız eden ifade hangisi?';
+	@override String get objectiveSubtitle => 'Program dengesi yüz ifadesine göre ayarlanır';
+	@override String get feelingTitle => 'Yüz yogası yaparken nasıl hissetmek istersin?';
+	@override String get timeTitle => 'Yüz yogası yapmak senin için ne zaman daha kolay?';
+	@override late final _TranslationsPersonalProgramObjectivesTr objectives = _TranslationsPersonalProgramObjectivesTr._(_root);
+	@override late final _TranslationsPersonalProgramFeelingsTr feelings = _TranslationsPersonalProgramFeelingsTr._(_root);
+	@override late final _TranslationsPersonalProgramTimesTr times = _TranslationsPersonalProgramTimesTr._(_root);
 }
 
 // Path: editProfile
@@ -976,6 +983,46 @@ class _TranslationsCourseDetailInstructionsTr implements TranslationsCourseDetai
 	// Translations
 	@override late final _TranslationsCourseDetailInstructionsInstruction1Tr instruction1 = _TranslationsCourseDetailInstructionsInstruction1Tr._(_root);
 	@override late final _TranslationsCourseDetailInstructionsInstruction2Tr instruction2 = _TranslationsCourseDetailInstructionsInstruction2Tr._(_root);
+}
+
+// Path: personalProgram.objectives
+class _TranslationsPersonalProgramObjectivesTr implements TranslationsPersonalProgramObjectivesEn {
+	_TranslationsPersonalProgramObjectivesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get tired => 'Yorgun ve yıpranmış görünüm';
+	@override String get harsh => 'Sert ve gergin ifade';
+	@override String get pale => 'Solgun ve cansız cilt';
+	@override String get asymmetrical => 'Asimetrik yüz hatları';
+	@override String get general => 'Belirgin bir sorun yok, genel bakım istiyorum';
+}
+
+// Path: personalProgram.feelings
+class _TranslationsPersonalProgramFeelingsTr implements TranslationsPersonalProgramFeelingsEn {
+	_TranslationsPersonalProgramFeelingsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get lightened => 'Hafiflemiş';
+	@override String get revitalized => 'Canlanmış';
+	@override String get refreshed => 'Yenilenmiş';
+	@override String get energetic => 'Daha enerjik';
+}
+
+// Path: personalProgram.times
+class _TranslationsPersonalProgramTimesTr implements TranslationsPersonalProgramTimesEn {
+	_TranslationsPersonalProgramTimesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get morning => 'Sabah';
+	@override String get duringDay => 'Gün içinde';
+	@override String get evening => 'Akşam';
+	@override String get anytime => 'Zaman fark etmez, hatırlatıcı yeterli';
 }
 
 // Path: facialScan.analyzing
@@ -1744,6 +1791,23 @@ extension on TranslationsTr {
 			'personalProgram.personalizing' => 'Planınız Kişiselleştiriliyor...',
 			'personalProgram.readyMessage' => 'Kişisel 30 günlük yüz yogası programınız hazır✨',
 			'personalProgram.minutes' => 'Dk',
+			'personalProgram.objectiveTitle' => 'Aynaya baktığında seni en çok rahatsız eden ifade hangisi?',
+			'personalProgram.objectiveSubtitle' => 'Program dengesi yüz ifadesine göre ayarlanır',
+			'personalProgram.feelingTitle' => 'Yüz yogası yaparken nasıl hissetmek istersin?',
+			'personalProgram.timeTitle' => 'Yüz yogası yapmak senin için ne zaman daha kolay?',
+			'personalProgram.objectives.tired' => 'Yorgun ve yıpranmış görünüm',
+			'personalProgram.objectives.harsh' => 'Sert ve gergin ifade',
+			'personalProgram.objectives.pale' => 'Solgun ve cansız cilt',
+			'personalProgram.objectives.asymmetrical' => 'Asimetrik yüz hatları',
+			'personalProgram.objectives.general' => 'Belirgin bir sorun yok, genel bakım istiyorum',
+			'personalProgram.feelings.lightened' => 'Hafiflemiş',
+			'personalProgram.feelings.revitalized' => 'Canlanmış',
+			'personalProgram.feelings.refreshed' => 'Yenilenmiş',
+			'personalProgram.feelings.energetic' => 'Daha enerjik',
+			'personalProgram.times.morning' => 'Sabah',
+			'personalProgram.times.duringDay' => 'Gün içinde',
+			'personalProgram.times.evening' => 'Akşam',
+			'personalProgram.times.anytime' => 'Zaman fark etmez, hatırlatıcı yeterli',
 			'editProfile.title' => 'Profil Düzenle',
 			'editProfile.changePhoto' => 'Fotoğrafı Değiştir',
 			'editProfile.fullName' => 'Ad Soyad',

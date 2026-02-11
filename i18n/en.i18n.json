@@ -459,7 +459,30 @@
         "dailyGoalDescription": "Choose a pace that fits your schedule",
         "personalizing": "Personalizing Your Plan...",
         "readyMessage": "Your personal 30-day face yoga program is ready✨",
-        "minutes": "Min"
+        "minutes": "Min",
+        "objectiveTitle": "When you look in the mirror, which expression bothers you the most?",
+        "objectiveSubtitle": "Program balance is adjusted according to facial expression",
+        "feelingTitle": "How would you like to feel when doing face yoga?",
+        "timeTitle": "When is it easier for you to do face yoga?",
+        "objectives": {
+            "tired": "Tired and worn-out appearance",
+            "harsh": "Harsh and tense expression",
+            "pale": "Pale and lifeless skin",
+            "asymmetrical": "Asymmetrical facial features",
+            "general": "No obvious problem, I want general care"
+        },
+        "feelings": {
+            "lightened": "Lightened",
+            "revitalized": "Revitalized",
+            "refreshed": "Refreshed",
+            "energetic": "More energetic"
+        },
+        "times": {
+            "morning": "Morning",
+            "duringDay": "During the day",
+            "evening": "Evening",
+            "anytime": "The time doesn't matter, a reminder is enough"
+        }
     },
     "editProfile": {
         "title": "Edit Profile",

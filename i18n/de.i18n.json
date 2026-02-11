@@ -459,7 +459,30 @@
     "dailyGoalDescription": "Wählen Sie ein Tempo, das zu Ihrem Zeitplan passt",
     "personalizing": "Ihr Plan wird personalisiert...",
     "readyMessage": "Ihr persönliches 30-Tage-Gesichtsyoga-Programm ist bereit✨",
-    "minutes": "Min"
+    "minutes": "Min",
+    "objectiveTitle": "Welcher Ausdruck stört Sie am meisten, wenn Sie in den Spiegel schauen?",
+    "objectiveSubtitle": "Die Programmbalance wird an den Gesichtsausdruck angepasst",
+    "feelingTitle": "Wie möchten Sie sich beim Gesichtsyoga fühlen?",
+    "timeTitle": "Wann fällt es Ihnen leichter, Gesichtsyoga zu machen?",
+    "objectives": {
+        "tired": "Müdes und erschöpftes Aussehen",
+        "harsh": "Harter und angespannter Ausdruck",
+        "pale": "Fahle und leblose Haut",
+        "asymmetrical": "Asymmetrische Gesichtszüge",
+        "general": "Kein offensichtliches Problem, ich möchte allgemeine Pflege"
+    },
+    "feelings": {
+        "lightened": "Erleichtert",
+        "revitalized": "Revitalisiert",
+        "refreshed": "Erfrischt",
+        "energetic": "Energiegeladener"
+    },
+    "times": {
+        "morning": "Morgen",
+        "duringDay": "Tagsüber",
+        "evening": "Abend",
+        "anytime": "Die Zeit spielt keine Rolle, eine Erinnerung genügt"
+    }
   },
   "editProfile": {
     "title": "Profil bearbeiten",

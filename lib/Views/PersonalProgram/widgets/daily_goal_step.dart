@@ -54,7 +54,9 @@ class _DailyGoalStepState extends State<DailyGoalStep> {
               const SizedBox(height: 100),
               Text(
                 context.t.personalProgram.dailyGoalTitle,
+                textAlign: TextAlign.center,
                 style: AppTextStyles.onboardingBody(
+                  height: 1.2,
                   24,
                   weight: FontWeight.w600,
                   color: Colors.black,
@@ -63,9 +65,11 @@ class _DailyGoalStepState extends State<DailyGoalStep> {
               const SizedBox(height: 8),
               Text(
                 context.t.personalProgram.dailyGoalDescription,
-                style: AppTextStyles.onboardingBody(16, height: 1.5),
+                textAlign: TextAlign.center,
+                style: AppTextStyles.onboardingBody(14,
+                    height: 1, weight: FontWeight.w400),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 50),
               ...goals.map((goal) {
                 final isSelected = widget.selectedGoal == goal['id'];
 

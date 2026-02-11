@@ -61,17 +61,6 @@ class PersonalCourses extends HookConsumerWidget {
     final tabController = useTabController(initialLength: focusAreas.length);
     final selectedIndex = useState(0);
 
-    // Fetch exercises
-    final exerciseRepository =
-        ref.watch(AllProviders.exerciseRepositoryProvider);
-    final exercisesSnapshot = useFuture(
-      useMemoized(() => exerciseRepository.getAllExercises(lang: 'en'),
-          []), // TODO: dynamic lang
-    );
-
-    // Local favorite state
-    final favoriteCourses = useState<Set<int>>({});
-
     useEffect(() {
       void listener() {
         selectedIndex.value = tabController.index;
@@ -81,24 +70,39 @@ class PersonalCourses extends HookConsumerWidget {
       return () => tabController.removeListener(listener);
     }, [tabController]);
 
+    // Fetch personal program
+    final personalProgramRepository =
+        ref.watch(AllProviders.personalProgramRepositoryProvider);
+    final exerciseRepository =
+        ref.watch(AllProviders.exerciseRepositoryProvider);
+
+    // Use memoized future to fetch data once
+    final programSnapshot = useFuture(
+      useMemoized(
+          () => personalProgramRepository.getPersonalProgram(
+              languageCode: LocaleSettings.currentLocale.languageCode),
+          [LocaleSettings.currentLocale.languageCode]),
+    );
+
+    // Local favorite state
+    final favoriteCourses = useState<Set<int>>({});
+
     // Initial favorite population
     useEffect(() {
-      if (exercisesSnapshot.hasData && exercisesSnapshot.data != null) {
-        final favorites = exercisesSnapshot.data!.data.exercises
-            ?.where((e) => e.isFavorited)
+      if (programSnapshot.hasData && programSnapshot.data != null) {
+        final favorites = programSnapshot.data!.exercises
+            .where((e) => e.isFavorited)
             .map((e) => e.id)
             .toSet();
-        if (favorites != null) {
-          favoriteCourses.value = favorites;
-        }
+        favoriteCourses.value = favorites;
       }
       return null;
-    }, [exercisesSnapshot.hasData]);
+    }, [programSnapshot.hasData]);
+
+    final allExercises = programSnapshot.data?.exercises ?? [];
 
     final currentType = focusAreas[selectedIndex.value]['type'];
-    final allExercises = exercisesSnapshot.data?.data.exercises ?? [];
-
-    final currentCourses = useMemoized(() {
+    final filteredExercises = useMemoized(() {
       if (currentType == 'full_face') {
         return allExercises.where((e) => e.type == 'full_face').toList();
       }
@@ -124,7 +128,7 @@ class PersonalCourses extends HookConsumerWidget {
                 },
               ),
 
-              // İçerik
+              // Content
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
@@ -133,7 +137,7 @@ class PersonalCourses extends HookConsumerWidget {
                       children: [
                         const SizedBox(height: 16),
 
-                        // Focus Areas - TabBar olarak
+                        // Focus Areas List
                         FocusAreasList(
                           focusAreas: focusAreas
                               .map((e) => {
@@ -150,57 +154,56 @@ class PersonalCourses extends HookConsumerWidget {
 
                         const SizedBox(height: 24),
 
-                        if (exercisesSnapshot.connectionState ==
+                        if (programSnapshot.connectionState ==
                             ConnectionState.waiting)
                           const Center(child: CircularProgressIndicator())
-                        else if (exercisesSnapshot.hasError)
+                        else if (programSnapshot.hasError)
                           Center(
                               child: Text(
-                                  '${context.t.courses.error}: ${exercisesSnapshot.error}'))
+                                  '${context.t.courses.error}: ${programSnapshot.error}'))
+                        else if (filteredExercises.isEmpty)
+                          Center(
+                              child:
+                                  Text(context.t.courseDetail.noExercisesFound))
                         else
-                          AnimatedSwitcher(
-                            duration: const Duration(milliseconds: 300),
-                            child: CoursesList(
-                              key: ValueKey(selectedIndex.value),
-                              courses: currentCourses,
-                              favoriteCourses: favoriteCourses.value,
-                              onFavoriteToggle: (id) async {
-                                final newSet =
-                                    Set<int>.from(favoriteCourses.value);
-                                final isFav = newSet.contains(id);
+                          CoursesList(
+                            key: ValueKey(selectedIndex.value),
+                            courses: filteredExercises,
+                            favoriteCourses: favoriteCourses.value,
+                            onFavoriteToggle: (id) async {
+                              final newSet =
+                                  Set<int>.from(favoriteCourses.value);
+                              final isFav = newSet.contains(id);
 
-                                if (isFav) {
-                                  newSet.remove(id);
-                                  CustomOverlay.show(
-                                    context,
-                                    title: t.removedFromFavoritesTitle,
-                                    message: t.removedFromFavorites,
-                                    icon: AppIcons.heart2,
-                                    type: OverlayType.favoriteRemoved,
-                                  );
-                                } else {
-                                  newSet.add(id);
-                                  CustomOverlay.show(
-                                    context,
-                                    message: t.addedToFavoritesTitle,
-                                    icon: AppIcons.heart2,
-                                    type: OverlayType.success,
-                                  );
-                                }
-                                favoriteCourses.value = newSet;
+                              if (isFav) {
+                                newSet.remove(id);
+                                CustomOverlay.show(
+                                  context,
+                                  title: t.removedFromFavoritesTitle,
+                                  message: t.removedFromFavorites,
+                                  icon: AppIcons.heart2,
+                                  type: OverlayType.favoriteRemoved,
+                                );
+                              } else {
+                                newSet.add(id);
+                                CustomOverlay.show(
+                                  context,
+                                  message: t.addedToFavoritesTitle,
+                                  icon: AppIcons.heart2,
+                                  type: OverlayType.success,
+                                );
+                              }
+                              favoriteCourses.value = newSet;
 
-                                try {
-                                  await exerciseRepository.toggleFavorite(
-                                      id: id, isFavorited: isFav);
-                                } catch (e) {
-                                  Print.error("Failed to toggle favorite: $e");
-                                  // Revert on error could be implemented here
-                                }
-                              },
-                            ),
+                              try {
+                                await exerciseRepository.toggleFavorite(
+                                    id: id, isFavorited: isFav);
+                              } catch (e) {
+                                Print.error("Failed to toggle favorite: $e");
+                              }
+                            },
                           ),
-
-                        const SizedBox(height: 100), // Bottom nav için boşluk
+                        const SizedBox(height: 100),
                       ],
                     ),
                   ),

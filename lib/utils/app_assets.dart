@@ -120,4 +120,13 @@ class AppIcons {
   static const String forwards = 'assets/icons/forwards.png';
   static const String sound = 'assets/icons/sound.png';
   static const String backarrow = 'assets/icons/backarrow.png';
+  static const String moreenergetic = 'assets/icons/moreenergetic.png';
+  static const String moonpng = 'assets/icons/moon.png';
+  static const String moreenergy = 'assets/icons/more_energetic.png';
+  static const String morning = 'assets/icons/morning.png';
+  static const String refreshed = 'assets/icons/refreshed.png';
+  static const String reminderclock = 'assets/icons/reminderclock.png';
+  static const String revitalized = 'assets/icons/revitalized.png';
+  static const String sunny = 'assets/icons/sunny.png';
+  static const String lightened = 'assets/icons/lightened.png';
 }

@@ -459,7 +459,30 @@
         "dailyGoalDescription": "Programınıza uyan bir tempo seçin",
         "personalizing": "Planınız Kişiselleştiriliyor...",
         "readyMessage": "Kişisel 30 günlük yüz yogası programınız hazır✨",
-        "minutes": "Dk"
+        "minutes": "Dk",
+        "objectiveTitle": "Aynaya baktığında seni en çok rahatsız eden ifade hangisi?",
+        "objectiveSubtitle": "Program dengesi yüz ifadesine göre ayarlanır",
+        "feelingTitle": "Yüz yogası yaparken nasıl hissetmek istersin?",
+        "timeTitle": "Yüz yogası yapmak senin için ne zaman daha kolay?",
+        "objectives": {
+            "tired": "Yorgun ve yıpranmış görünüm",
+            "harsh": "Sert ve gergin ifade",
+            "pale": "Solgun ve cansız cilt",
+            "asymmetrical": "Asimetrik yüz hatları",
+            "general": "Belirgin bir sorun yok, genel bakım istiyorum"
+        },
+        "feelings": {
+            "lightened": "Hafiflemiş",
+            "revitalized": "Canlanmış",
+            "refreshed": "Yenilenmiş",
+            "energetic": "Daha enerjik"
+        },
+        "times": {
+            "morning": "Sabah",
+            "duringDay": "Gün içinde",
+            "evening": "Akşam",
+            "anytime": "Zaman fark etmez, hatırlatıcı yeterli"
+        }
     },
     "editProfile": {
         "title": "Profil Düzenle",

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/utils/print.dart';
 
 import '../../../theme/app_colors.dart';
 
-class QuickActionsWidget extends StatelessWidget {
+class QuickActionsWidget extends ConsumerWidget {
   const QuickActionsWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Column(
@@ -93,9 +96,31 @@ class QuickActionsWidget extends StatelessWidget {
                         ],
                       ),
                       CustomButton(
-                        onPressed: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed('/personal-program');
+                        onPressed: () async {
+                          // Check if user has personal program
+                          try {
+                            final repo = ref.read(
+                                AllProviders.personalProgramRepositoryProvider);
+
+                            // Check if program exists
+                            final program = await repo.getPersonalProgram();
+                            if (program.exercises.isNotEmpty) {
+                              if (context.mounted) {
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/personal-courses');
+                              }
+                              return;
+                            }
+                          } catch (e) {
+                            // If error (e.g. 404 or "no program"), proceed to creation
+                            Print.info(
+                                "No personal program found or error: $e");
+                          }
+
+                          if (context.mounted) {
+                            Navigator.of(context)
+                                .pushReplacementNamed('/personal-program');
+                          }
                         },
                         label: context.t.home.quickActions.button,
                         size: CustomButtonSize.small,

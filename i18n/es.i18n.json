@@ -459,7 +459,30 @@
     "dailyGoalDescription": "Elige un ritmo que se ajuste a tu horario",
     "personalizing": "Personalizando tu plan...",
     "readyMessage": "Tu programa personal de yoga facial de 30 días está listo✨",
-    "minutes": "Min"
+    "minutes": "Min",
+    "objectiveTitle": "¿Qué expresión te molesta más cuando te miras al espejo?",
+    "objectiveSubtitle": "El equilibrio del programa se ajusta según la expresión facial",
+    "feelingTitle": "¿Cómo te gustaría sentirte al hacer yoga facial?",
+    "timeTitle": "¿Cuándo te resulta más fácil hacer yoga facial?",
+    "objectives": {
+      "tired": "Apariencia cansada y desgastada",
+      "harsh": "Expresión dura y tensa",
+      "pale": "Piel pálida y sin vida",
+      "asymmetrical": "Rasgos faciales asimétricos",
+      "general": "Sin problema obvio, quiero cuidado general"
+    },
+    "feelings": {
+      "lightened": "Aligerado",
+      "revitalized": "Revitalizado",
+      "refreshed": "Refrescado",
+      "energetic": "Más enérgico"
+    },
+    "times": {
+      "morning": "Mañana",
+      "duringDay": "Durante el día",
+      "evening": "Noche",
+      "anytime": "La hora no importa, un recordatorio es suficiente"
+    }
   },
   "editProfile": {
     "title": "Editar perfil",

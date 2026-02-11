@@ -4,6 +4,7 @@ import 'package:yogiface/Repositories/exercise_repository.dart';
 import 'package:yogiface/Repositories/notification_repository.dart';
 import 'package:yogiface/Repositories/referral_repository.dart';
 import 'package:yogiface/Repositories/user_repository.dart';
+import 'package:yogiface/Repositories/personal_program_repository.dart';
 import 'package:yogiface/Riverpod/Providers/user_provider.dart';
 import 'package:yogiface/Services/dio_service.dart';
 import 'package:yogiface/Riverpod/Controllers/exercise_state.dart';
@@ -91,5 +92,10 @@ class AllProviders {
   static final notificationRepositoryProvider =
       Provider<NotificationRepository>((ref) {
     return NotificationRepository(ref);
+  });
+
+  static final personalProgramRepositoryProvider =
+      Provider<PersonalProgramRepository>((ref) {
+    return PersonalProgramRepository(ref);
   });
 }

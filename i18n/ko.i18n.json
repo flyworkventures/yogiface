@@ -459,7 +459,30 @@
         "dailyGoalDescription": "일정에 맞는 속도를 선택하세요",
         "personalizing": "계획 개인화 중...",
         "readyMessage": "당신의 개인 30일 페이스 요가 프로그램이 준비되었습니다✨",
-        "minutes": "분"
+        "minutes": "min",
+        "objectiveTitle": "Which expression bothers you most when you look in the mirror?",
+        "objectiveSubtitle": "Program balance is adjusted according to facial expression",
+        "feelingTitle": "How would you like to feel by doing face yoga?",
+        "timeTitle": "When is it easier for you to do face yoga?",
+        "objectives": {
+            "tired": "Tired and worn-out look",
+            "harsh": "Harsh and tense expression",
+            "pale": "Pale and lifeless skin",
+            "asymmetrical": "Asymmetrical facial features",
+            "general": "No obvious problem, I want general care"
+        },
+        "feelings": {
+            "lightened": "Lightened",
+            "revitalized": "Revitalized",
+            "refreshed": "Refreshed",
+            "energetic": "More energetic"
+        },
+        "times": {
+            "morning": "Morning",
+            "duringDay": "During the day",
+            "evening": "Evening",
+            "anytime": "Time doesn't matter, a reminder is enough"
+        }
     },
     "editProfile": {
         "title": "프로필 편집",
