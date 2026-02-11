@@ -20,6 +20,7 @@ class CaptureScreen extends StatelessWidget {
     required this.onCapturePressed,
     required this.onGetStarted,
     required this.onDeleteImage,
+    this.onSkipToResult, // DEBUG: Optional skip button
   });
 
   final int currentStep;
@@ -31,6 +32,7 @@ class CaptureScreen extends StatelessWidget {
   final VoidCallback onCapturePressed;
   final VoidCallback onGetStarted;
   final ValueChanged<FacePosition> onDeleteImage;
+  final VoidCallback? onSkipToResult; // DEBUG: Optional skip to result
 
   bool get hasAnyCapturedImage =>
       capturedImages.values.any((path) => path != null);
@@ -57,6 +59,45 @@ class CaptureScreen extends StatelessWidget {
                   context.t.facialScan.title,
                   style: AppTextStyles.heading(18, FontWeight.w600),
                 ),
+                const Spacer(),
+                // DEBUG: Skip to result button
+                if (onSkipToResult != null)
+                  GestureDetector(
+                    onTap: onSkipToResult,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.orange.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Colors.orange,
+                          width: 1,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.skip_next,
+                            size: 16,
+                            color: Colors.orange[800],
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'DEBUG',
+                            style: AppTextStyles.body(
+                              11,
+                              color: Colors.orange[800],
+                              weight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 24),

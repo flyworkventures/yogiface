@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yogiface/Core/Routes/app_routes.dart';
 import 'package:yogiface/Views/CourseDetailView/widgets/course_instructions_card_widget.dart';
-import 'package:yogiface/Views/CourseView/course_view.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -18,11 +18,13 @@ class Instruction {
 }
 
 class CourseStartView extends StatefulWidget {
+  final int courseId;
   final String courseTitle;
   final List<Instruction> instructions;
 
   const CourseStartView({
     super.key,
+    required this.courseId,
     required this.courseTitle,
     required this.instructions,
   });
@@ -97,11 +99,10 @@ class _CourseStartViewState extends State<CourseStartView> {
                     label: context.t.courseDetail.getStarted,
                     fullWidth: true,
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => const CourseView(),
-                        ),
+                        AppRoutes.course,
+                        arguments: widget.courseId,
                       );
                     },
                     backgroundColor: const Color(0xFFCB9EF6),

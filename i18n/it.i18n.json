@@ -566,11 +566,45 @@
   "noFavoritesAdded": "Nessun preferito aggiunto ancora.",
   "favoriteExercisesDescription": "Per impostare i tuoi esercizi preferiti, puoi aggiungere gli esercizi che ti piacciono dalla pagina I miei esercizi.",
   "enterInvitationCode": "Inserisci codice invito",
-  "bePartOfPeace": "Fai parte della pace",
-  "inviteFriends": "Inserisci il codice di invito che hai ricevuto da un amico.\\nDigitalo nel campo designato",
-  "twoDaysPremium": "2 giorni Premium",
-  "advantage": "\\nper godere dei suoi vantaggi.",
+  "bePartOfPeace": "Sii parte della pace",
+  "inviteFriends": "Inserisci il codice di invito ricevuto da un amico.\nScrivilo nel campo designato",
+  "twoDaysPremium": "7 giorni Premium",
+  "advantage": "\nper godere dei suoi benefici.",
   "send": "Invia",
+  "referralCode": {
+    "inputPlaceholder": "Inserisci codice di 8 caratteri",
+    "applying": "Applicazione codice...",
+    "success": {
+      "title": "Successo!",
+      "message": "Codice referral applicato con successo! Sia tu che il tuo amico avete ricevuto 1 settimana di premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Codice richiesto",
+        "message": "Inserisci un codice referral per continuare."
+      },
+      "invalidFormat": {
+        "title": "Formato non valido",
+        "message": "Il codice referral deve essere di esattamente 8 caratteri."
+      },
+      "alreadyUsed": {
+        "title": "Già usato",
+        "message": "Hai già usato un codice referral. Ogni utente può usare un solo codice."
+      },
+      "selfReferral": {
+        "title": "Codice non valido",
+        "message": "Non puoi usare il tuo stesso codice invito. Usa un codice di un amico."
+      },
+      "codeNotFound": {
+        "title": "Codice non trovato",
+        "message": "Il codice referral inserito non esiste. Controlla e riprova."
+      },
+      "genericError": {
+        "title": "Errore",
+        "message": "Si è verificato un errore durante l'applicazione del codice referral. Riprova."
+      }
+    }
+  },
   "deleteNotifications": "Elimina notifiche",
   "deleteNotificationsDescription": "Sei sicuro di voler eliminare tutte\\nle tue notifiche? Questa azione è irreversibile e non può essere annullata.",
   "deleteAll": "Elimina tutto",

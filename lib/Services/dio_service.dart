@@ -228,6 +228,36 @@ class DioService {
     }
   }
 
+  Future<Response> patch(
+    final String path, {
+    final Object? data,
+    final CancelToken? cancelToken,
+    final void Function(int, int)? onReceiveProgress,
+    final void Function(int, int)? onSendProgress,
+    final Options? options,
+    final Map<String, Object?>? queryParameters,
+  }) async {
+    await _logApiRequest(
+      method: 'PATCH',
+      path: path,
+      queryParameters: queryParameters,
+      data: data,
+    );
+    try {
+      return await _dio.patch(
+        _baseUrl + path,
+        data: data,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+        onSendProgress: onSendProgress,
+        options: options,
+        queryParameters: queryParameters,
+      );
+    } on DioException catch (e) {
+      throw CustomException.fromDioError(e);
+    }
+  }
+
   Future<Response> postForm(
     final String path, {
     required final FormData formData,

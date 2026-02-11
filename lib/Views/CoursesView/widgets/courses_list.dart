@@ -54,6 +54,7 @@ class CoursesList extends StatelessWidget {
     // Attempting to map Exercise to Course.
     // Since I don't see Course definition, I stick to the one used in previous file content
     final courseDetail = Course(
+      id: course.id,
       title: course.title ?? '',
       description: course.description ?? '',
       imagePath: course.imageCdnPath,

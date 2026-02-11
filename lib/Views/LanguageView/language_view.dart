@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Services/secure_storage_service.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class LanguageViewPage extends HookWidget {
+class LanguageViewPage extends HookConsumerWidget {
   const LanguageViewPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Current locale'i al ve state olarak tut
     final currentLocale = LocaleSettings.currentLocale;
     final selectedLanguage = useState(currentLocale);
+    final userRepository = ref.read(AllProviders.userRepositoryProvider);
 
     final List<Map<String, dynamic>> languages = [
       {
@@ -147,17 +150,28 @@ class LanguageViewPage extends HookWidget {
                   padding: const EdgeInsets.all(24),
                   child: GestureDetector(
                     onTap: () async {
-                      final storageService = SecureStorageService();
-                      await storageService
-                          .saveLanguage(selectedLanguage.value.languageCode);
+                      try {
+                        final storageService = SecureStorageService();
+                        await storageService
+                            .saveLanguage(selectedLanguage.value.languageCode);
 
-                      LocaleSettings.setLocale(selectedLanguage.value);
+                        LocaleSettings.setLocale(selectedLanguage.value);
 
-                      // TODO: Backend'e dil değişikliğini bildir (User API update)
-                      // await UserService.updateLanguage(selectedLanguage.value.languageTag);
+                        // Backend'e dil değişikliğini bildir
+                        await userRepository.updateUserProfile({
+                          'preferred_language':
+                              selectedLanguage.value.languageCode,
+                        });
 
-                      if (context.mounted) {
-                        Navigator.pop(context);
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
+                      } catch (e) {
+                        print('Error updating language: $e');
+                        // Hata olsa bile local değişikliği yaptık, geri dön
+                        if (context.mounted) {
+                          Navigator.pop(context);
+                        }
                       }
                     },
                     child: Container(

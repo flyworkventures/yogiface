@@ -96,9 +96,10 @@ class TranslationsKo with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => '초대 코드 입력';
 	@override String get bePartOfPeace => '평화의 일부가 되세요';
 	@override String get inviteFriends => '친구에게 받은 초대 코드를 입력하세요.\n지정된 필드에 입력하세요';
-	@override String get twoDaysPremium => '2일 프리미엄';
+	@override String get twoDaysPremium => '7일 프리미엄';
 	@override String get advantage => '\n혜택을 누리세요.';
 	@override String get send => '보내기';
+	@override late final _TranslationsReferralCodeKo referralCode = _TranslationsReferralCodeKo._(_root);
 	@override String get deleteNotifications => '알림 삭제';
 	@override String get deleteNotificationsDescription => '모든 알림을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없으며 실행 취소할 수 없습니다.';
 	@override String get deleteAll => '모두 삭제';
@@ -446,6 +447,19 @@ class _TranslationsAuthKo implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => '게스트로 계속';
 	@override String signInFailed({required Object error}) => '로그인 실패: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeKo implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => '8자리 코드 입력';
+	@override String get applying => '코드 적용 중...';
+	@override late final _TranslationsReferralCodeSuccessKo success = _TranslationsReferralCodeSuccessKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsKo errors = _TranslationsReferralCodeErrorsKo._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsKo implements TranslationsFacialScanPositi
 	@override String get right => '오른쪽';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessKo implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '성공!';
+	@override String get message => '추천 코드가 성공적으로 적용되었습니다! 귀하와 친구 분 모두 1주일 프리미엄을 받았습니다.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsKo implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeKo missingCode = _TranslationsReferralCodeErrorsMissingCodeKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatKo invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedKo alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralKo selfReferral = _TranslationsReferralCodeErrorsSelfReferralKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundKo codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundKo._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorKo genericError = _TranslationsReferralCodeErrorsGenericErrorKo._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialKo implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialKo._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Ko implements Translation
 	// Translations
 	@override String get title => '페이스 오일 또는 모이스처라이저 바르기';
 	@override String get description => '피부를 당기지 않고 부드럽게 미끄러지 듯 바르세요.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeKo implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '코드 필요';
+	@override String get message => '계속하려면 추천 코드를 입력하세요.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatKo implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '잘못된 형식';
+	@override String get message => '추천 코드는 정확히 8자여야 합니다.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedKo implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '이미 사용됨';
+	@override String get message => '이미 추천 코드를 사용했습니다. 각 사용자는 하나의 코드만 사용할 수 있습니다.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralKo implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '잘못된 코드';
+	@override String get message => '자신의 초대 코드는 사용할 수 없습니다. 친구의 코드를 사용해 주세요.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundKo implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '코드를 찾을 수 없음';
+	@override String get message => '입력한 추천 코드가 존재하지 않습니다. 확인 후 다시 시도해 주세요.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorKo implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '오류';
+	@override String get message => '추천 코드를 적용하는 중 오류가 발생했습니다. 다시 시도해 주세요.';
 }
 
 /// The flat map containing all translations for locale <ko>.
@@ -1725,9 +1831,25 @@ extension on TranslationsKo {
 			'enterInvitationCode' => '초대 코드 입력',
 			'bePartOfPeace' => '평화의 일부가 되세요',
 			'inviteFriends' => '친구에게 받은 초대 코드를 입력하세요.\n지정된 필드에 입력하세요',
-			'twoDaysPremium' => '2일 프리미엄',
+			'twoDaysPremium' => '7일 프리미엄',
 			'advantage' => '\n혜택을 누리세요.',
 			'send' => '보내기',
+			'referralCode.inputPlaceholder' => '8자리 코드 입력',
+			'referralCode.applying' => '코드 적용 중...',
+			'referralCode.success.title' => '성공!',
+			'referralCode.success.message' => '추천 코드가 성공적으로 적용되었습니다! 귀하와 친구 분 모두 1주일 프리미엄을 받았습니다.',
+			'referralCode.errors.missingCode.title' => '코드 필요',
+			'referralCode.errors.missingCode.message' => '계속하려면 추천 코드를 입력하세요.',
+			'referralCode.errors.invalidFormat.title' => '잘못된 형식',
+			'referralCode.errors.invalidFormat.message' => '추천 코드는 정확히 8자여야 합니다.',
+			'referralCode.errors.alreadyUsed.title' => '이미 사용됨',
+			'referralCode.errors.alreadyUsed.message' => '이미 추천 코드를 사용했습니다. 각 사용자는 하나의 코드만 사용할 수 있습니다.',
+			'referralCode.errors.selfReferral.title' => '잘못된 코드',
+			'referralCode.errors.selfReferral.message' => '자신의 초대 코드는 사용할 수 없습니다. 친구의 코드를 사용해 주세요.',
+			'referralCode.errors.codeNotFound.title' => '코드를 찾을 수 없음',
+			'referralCode.errors.codeNotFound.message' => '입력한 추천 코드가 존재하지 않습니다. 확인 후 다시 시도해 주세요.',
+			'referralCode.errors.genericError.title' => '오류',
+			'referralCode.errors.genericError.message' => '추천 코드를 적용하는 중 오류가 발생했습니다. 다시 시도해 주세요.',
 			'deleteNotifications' => '알림 삭제',
 			'deleteNotificationsDescription' => '모든 알림을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없으며 실행 취소할 수 없습니다.',
 			'deleteAll' => '모두 삭제',

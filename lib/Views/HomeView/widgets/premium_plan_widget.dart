@@ -1,86 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
-import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/utils/print.dart';
 
 import '../../../theme/app_colors.dart';
 
 class PremiumPlanWidget extends StatelessWidget {
   const PremiumPlanWidget({super.key});
-
-  void _showFeatureNotAvailableDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(24.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 64,
-                  height: 64,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE8A7F2).withValues(alpha: 0.2),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.lock_outline,
-                    size: 32,
-                    color: Color(0xFFE8A7F2),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  context.t.home.premiumPlan.dialog.title,
-                  style: AppTextStyles.onboardingBody(
-                    20,
-                    weight: FontWeight.w700,
-                    color: Colors.black87,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  context.t.home.premiumPlan.dialog.message,
-                  style: AppTextStyles.onboardingBody(
-                    14,
-                    weight: FontWeight.w400,
-                    color: Colors.black54,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 24),
-                CustomButton(
-                  label: context.t.home.premiumPlan.dialog.button,
-                  fullWidth: true,
-                  size: CustomButtonSize.small,
-                  backgroundColor: const Color(0xFFE8A7F2),
-                  labelColor: Colors.white,
-                  labelStyle: AppTextStyles.onboardingBody(
-                    14,
-                    weight: FontWeight.w600,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,8 +70,10 @@ class PremiumPlanWidget extends StatelessWidget {
                     weight: FontWeight.w500,
                     color: AppColors.onboardingButtonGradientEnd,
                   ),
-                  onPressed: () {
-                    _showFeatureNotAvailableDialog(context);
+                  onPressed: () async {
+                    final offerings = await Purchases.getOfferings();
+
+                    Print.info(offerings.toString(), tag: 'PremiumPlanWidget');
                   },
                 ),
               ],

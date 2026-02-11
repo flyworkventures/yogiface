@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class ShareWithFriendsPage extends StatelessWidget {
+class ShareWithFriendsPage extends HookConsumerWidget {
   const ShareWithFriendsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userState = ref.watch(AllProviders.userProvider);
     return Scaffold(
       backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
@@ -43,130 +46,151 @@ class ShareWithFriendsPage extends StatelessWidget {
         ),
         child: SizedBox.expand(
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  const Spacer(flex: 1),
-                  // İllüstrasyon
-                  Image.asset(
-                    'assets/images/sharefriends.png',
-                    height: 200,
-                  ),
-                  const SizedBox(height: 32),
-                  // Başlık
-                  Text(
-                    context.t.share.mainTitle,
-                    style: AppTextStyles.latoBody(
-                      24,
-                      weight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  // Açıklama
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: AppTextStyles.latoBody(
-                        16,
-                        weight: FontWeight.w400,
-                        height: 1.3,
-                        color: Colors.black,
+            child: userState.when(
+              data: (authResponse) {
+                final user = authResponse?.user;
+                if (user == null) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    children: [
+                      const Spacer(flex: 1),
+                      // İllüstrasyon
+                      Image.asset(
+                        'assets/images/sharefriends.png',
+                        height: 200,
                       ),
-                      children: [
-                        TextSpan(text: context.t.share.descriptionPart1),
-                        TextSpan(
-                            text: context.t.share.descriptionPart2,
-                            style: AppTextStyles.latoBody(
-                              16,
-                              height: 1.3,
-                              weight: FontWeight.w700,
-                              color: Colors.black,
-                            )),
-                        TextSpan(text: context.t.share.descriptionPart3),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.border, width: 1),
-                      color: Colors.white.withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          context.t.share.yourReferralCode,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                            letterSpacing: 1,
-                          ),
+                      const SizedBox(height: 32),
+                      // Başlık
+                      Text(
+                        context.t.share.mainTitle,
+                        style: AppTextStyles.latoBody(
+                          24,
+                          weight: FontWeight.bold,
+                          color: Colors.black,
                         ),
-                        const SizedBox(height: 12),
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(color: Colors.grey.shade300),
+                      ),
+                      const SizedBox(height: 16),
+                      // Açıklama
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          style: AppTextStyles.latoBody(
+                            16,
+                            weight: FontWeight.w400,
+                            height: 1.3,
+                            color: Colors.black,
                           ),
-                          child: const Text(
-                            'X8Y-92Z',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 2,
-                            ),
-                          ),
+                          children: [
+                            TextSpan(text: context.t.share.descriptionPart1),
+                            TextSpan(
+                                text: context.t.share.descriptionPart2,
+                                style: AppTextStyles.latoBody(
+                                  16,
+                                  height: 1.3,
+                                  weight: FontWeight.w700,
+                                  color: Colors.black,
+                                )),
+                            TextSpan(text: context.t.share.descriptionPart3),
+                          ],
                         ),
-                        const SizedBox(height: 12),
-                        GestureDetector(
-                          onTap: () {
-                            Clipboard.setData(
-                                const ClipboardData(text: 'X8Y-92Z'));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(context.t.share.codeCopied)),
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFFE991DC), Color(0xFFD56FCB)],
+                      ),
+                      const SizedBox(height: 24),
+                      Container(
+                        padding: const EdgeInsets.all(24),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: AppColors.border, width: 1),
+                          color: Colors.white.withValues(alpha: 0.6),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              context.t.share.yourReferralCode,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                                letterSpacing: 1,
                               ),
-                              borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  AppIcons.copy,
+                            const SizedBox(height: 12),
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                border: Border.all(color: Colors.grey.shade300),
+                              ),
+                              child: Text(
+                                user.invitationCode ?? '',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 2,
                                 ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  context.t.share.copyCode,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            GestureDetector(
+                              onTap: () {
+                                final code = user.invitationCode ?? '';
+                                if (code.isNotEmpty) {
+                                  Clipboard.setData(ClipboardData(text: code));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text(context.t.share.codeCopied)),
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 14),
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xFFE991DC),
+                                      Color(0xFFD56FCB)
+                                    ],
                                   ),
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
-                              ],
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      AppIcons.copy,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      context.t.share.copyCode,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      const Spacer(flex: 2),
+                    ],
                   ),
-                  const Spacer(flex: 2),
-                ],
+                );
+              },
+              error: (error, stack) => Center(
+                child: Text('Error: $error'),
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
               ),
             ),
           ),

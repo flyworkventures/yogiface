@@ -568,9 +568,43 @@
     "enterInvitationCode": "Enter Invitation Code",
     "bePartOfPeace": "Be Part of Peace",
     "inviteFriends": "Enter the invitation code you received from a friend.\nType it into the designated field",
-    "twoDaysPremium": "2-Day Premium",
+    "twoDaysPremium": "7-Day Premium",
     "advantage": "\nto enjoy its benefits.",
     "send": "Send",
+    "referralCode": {
+        "inputPlaceholder": "Enter 8-character code",
+        "applying": "Applying code...",
+        "success": {
+            "title": "Success!",
+            "message": "Referral code applied successfully! Both you and your friend received 1 week of premium."
+        },
+        "errors": {
+            "missingCode": {
+                "title": "Code Required",
+                "message": "Please enter a referral code to continue."
+            },
+            "invalidFormat": {
+                "title": "Invalid Format",
+                "message": "Referral code must be exactly 8 characters long."
+            },
+            "alreadyUsed": {
+                "title": "Already Used",
+                "message": "You have already used a referral code. Each user can only use one code."
+            },
+            "selfReferral": {
+                "title": "Invalid Code",
+                "message": "You cannot use your own invitation code. Please use a code from a friend."
+            },
+            "codeNotFound": {
+                "title": "Code Not Found",
+                "message": "The referral code you entered does not exist. Please double-check and try again."
+            },
+            "genericError": {
+                "title": "Error",
+                "message": "An error occurred while applying the referral code. Please try again."
+            }
+        }
+    },
     "deleteNotifications": "Delete Notifications",
     "deleteNotificationsDescription": "Are you sure you want to delete all \nyour notifications? This action is irreversible and cannot be undone.",
     "deleteAll": "Delete All",

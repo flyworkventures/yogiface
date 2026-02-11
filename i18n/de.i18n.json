@@ -566,11 +566,45 @@
   "noFavoritesAdded": "Noch keine Favoriten hinzugefügt.",
   "favoriteExercisesDescription": "Um Ihre Lieblingsübungen festzulegen, können Sie die Übungen, die Ihnen gefallen, von der Seite Meine Übungen hinzufügen.",
   "enterInvitationCode": "Einladungscode eingeben",
-  "bePartOfPeace": "Teil des Friedens sein",
-  "inviteFriends": "Geben Sie den Einladungscode ein, den Sie von einem Freund erhalten haben.\\nGeben Sie ihn in das dafür vorgesehene Feld ein",
-  "twoDaysPremium": "2-Tage-Premium",
-  "advantage": "\\num seine Vorteile zu genießen.",
+  "bePartOfPeace": "Sei Teil des Friedens",
+  "inviteFriends": "Gib den Einladungscode ein, den du von einem Freund erhalten hast.\nTippe ihn in das vorgesehene Feld",
+  "twoDaysPremium": "7 Tage Premium",
+  "advantage": "\num die Vorteile zu genießen.",
   "send": "Senden",
+  "referralCode": {
+    "inputPlaceholder": "8-stelligen Code eingeben",
+    "applying": "Code wird angewendet...",
+    "success": {
+      "title": "Erfolg!",
+      "message": "Empfehlungscode erfolgreich angewendet! Sowohl du als auch dein Freund haben 1 Woche Premium erhalten."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Code erforderlich",
+        "message": "Bitte gib einen Empfehlungscode ein, um fortzufahren."
+      },
+      "invalidFormat": {
+        "title": "Ungültiges Format",
+        "message": "Der Empfehlungscode muss genau 8 Zeichen lang sein."
+      },
+      "alreadyUsed": {
+        "title": "Bereits verwendet",
+        "message": "Du hast bereits einen Empfehlungscode verwendet. Jeder Benutzer kann nur einen Code verwenden."
+      },
+      "selfReferral": {
+        "title": "Ungültiger Code",
+        "message": "Du kannst deinen eigenen Einladungscode nicht verwenden. Bitte verwende einen Code von einem Freund."
+      },
+      "codeNotFound": {
+        "title": "Code nicht gefunden",
+        "message": "Der eingegebene Empfehlungscode existiert nicht. Bitte überprüfe ihn und versuche es erneut."
+      },
+      "genericError": {
+        "title": "Fehler",
+        "message": "Beim Anwenden des Empfehlungscodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
+      }
+    }
+  },
   "deleteNotifications": "Benachrichtigungen löschen",
   "deleteNotificationsDescription": "Sind Sie sicher, dass Sie alle\\nIhre Benachrichtigungen löschen möchten? Diese Aktion ist irreversibel und kann nicht rückgängig gemacht werden.",
   "deleteAll": "Alle löschen",

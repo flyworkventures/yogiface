@@ -21,7 +21,7 @@ class AppRoutes {
   static const String splash = '/splash';
   static const String main = '/main';
   static const String courses = '/courses';
-  static const String course = '/course';
+  static const String course = '/course/:id';
   static const String facialScan = '/facial-scan';
   static const String login = '/login';
   static const String onboarding = '/onboarding';
@@ -41,7 +41,19 @@ class AppRoutes {
       splash: (context) => const SplashView(),
       main: (context) => const MainNavigationView(),
       courses: (context) => const AllCoursesView(),
-      course: (context) => const CourseView(),
+      course: (context) {
+        final args = ModalRoute.of(context)?.settings.arguments;
+        if (args is int) {
+          return CourseView(
+            courseId: args,
+          );
+        }
+        return const Scaffold(
+          body: Center(
+            child: Text('Error: No courseID provided'),
+          ),
+        );
+      },
       facialScan: (context) => const FacialScanView(),
       login: (context) => const LoginView(),
       onboarding: (context) => const OnboardingView(),

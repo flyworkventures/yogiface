@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/utils/print.dart';
 
 import 'widgets/index.dart';
 
@@ -16,7 +18,26 @@ class ProfileView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(AllProviders.userProvider);
-    final notificationsEnabled = useState(true);
+    final notificationsEnabled = useState<bool?>(null);
+
+    // Initialize notification toggle based on stored player id or pending pref
+    useEffect(() {
+      Future<void> init() async {
+        final storage = ref.read(AllProviders.secureStorageServiceProvider);
+        final pendingPref = await storage.getPendingNotificationPref();
+        if (pendingPref != null) {
+          notificationsEnabled.value = pendingPref;
+          return;
+        }
+
+        final storedId = await storage.getOneSignalPlayerId();
+        notificationsEnabled.value = storedId != null && storedId.isNotEmpty;
+      }
+
+      init();
+      return null;
+    }, []);
+
     return Container(
       decoration: const BoxDecoration(
         gradient: RadialGradient(
@@ -88,9 +109,48 @@ class ProfileView extends HookConsumerWidget {
                         icon: AppIcons.notificationpurple,
                         title: context.t.profile.menu.notifications,
                         iconBackgroundColor: const Color(0xFF9B59B6),
-                        isToggled: notificationsEnabled.value,
-                        onToggleChanged: (value) {
+                        isToggled: notificationsEnabled.value ?? true,
+                        onToggleChanged: (value) async {
                           notificationsEnabled.value = value;
+
+                          final userNotifier =
+                              ref.read(AllProviders.userProvider.notifier);
+                          final storage = ref
+                              .read(AllProviders.secureStorageServiceProvider);
+
+                          if (value) {
+                            // Enable notifications: try to get current OneSignal id
+                            try {
+                              final id = OneSignal.User.pushSubscription.id;
+                              final isOptedIn =
+                                  OneSignal.User.pushSubscription.optedIn;
+
+                              if (id != null &&
+                                  id.isNotEmpty &&
+                                  isOptedIn == true) {
+                                await userNotifier.saveOneSignalId(id);
+                                Print.info(
+                                    'OneSignal id saved: $id (subscribed)');
+                              } else if (id != null && isOptedIn != true) {
+                                Print.info(
+                                    'OneSignal ID exists but user not subscribed');
+                                // Save pending pref - will be processed when user grants permission
+                                await storage.savePendingNotificationPref(true);
+                              } else {
+                                // No id available yet - save pending pref so it will be processed later
+                                await storage.savePendingNotificationPref(true);
+                                Print.info(
+                                    'No OneSignal id available - saved pending notification pref');
+                              }
+                            } catch (e) {
+                              // Fallback: save pending pref
+                              await storage.savePendingNotificationPref(true);
+                              Print.error('Error retrieving OneSignal id: $e');
+                            }
+                          } else {
+                            // Disable notifications
+                            await userNotifier.disableNotifications();
+                          }
                         },
                       ),
                       const SizedBox(height: 12),

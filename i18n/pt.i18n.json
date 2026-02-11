@@ -565,12 +565,46 @@
     "noFavoritesInCategory": "Nenhum favorito nesta categoria",
     "noFavoritesAdded": "Nenhum favorito adicionado ainda.",
     "favoriteExercisesDescription": "Para definir seus exercícios favoritos, você pode adicionar os exercícios que gosta na página Meus Exercícios.",
-    "enterInvitationCode": "Inserir Código de Convite",
-    "bePartOfPeace": "Faça Parte da Paz",
-    "inviteFriends": "Insira o código de convite que você recebeu de um amigo.\\nDigite-o no campo designado",
-    "twoDaysPremium": "2 dias Premium",
-    "advantage": "\\npara aproveitar seus benefícios.",
-    "send": "Enviar",
+    "enterInvitationCode": "Inserir código de convite",
+  "bePartOfPeace": "Faça parte da paz",
+  "inviteFriends": "Insira o código de convite recebido de um amigo.\nDigite-o no campo designado",
+  "twoDaysPremium": "7 dias Premium",
+  "advantage": "\npara aproveitar seus benefícios.",
+  "send": "Enviar",
+  "referralCode": {
+    "inputPlaceholder": "Insira o código de 8 caracteres",
+    "applying": "Aplicando código...",
+    "success": {
+      "title": "Sucesso!",
+      "message": "Código de referência aplicado com sucesso! Você e seu amigo receberam 1 semana de premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Código necessário",
+        "message": "Por favor, insira um código de referência para continuar."
+      },
+      "invalidFormat": {
+        "title": "Formato inválido",
+        "message": "O código de referência deve ter exatamente 8 caracteres."
+      },
+      "alreadyUsed": {
+        "title": "Já utilizado",
+        "message": "Você já usou um código de referência. Cada usuário só pode usar um código."
+      },
+      "selfReferral": {
+        "title": "Código inválido",
+        "message": "Você não pode usar seu próprio código de convite. Por favor, use um código de um amigo."
+      },
+      "codeNotFound": {
+        "title": "Código não encontrado",
+        "message": "O código de referência inserido não existe. Por favor, verifique e tente novamente."
+      },
+      "genericError": {
+        "title": "Erro",
+        "message": "Ocorreu um erro ao aplicar o código de referência. Por favor, tente novamente."
+      }
+    }
+  },
     "deleteNotifications": "Excluir Notificações",
     "deleteNotificationsDescription": "Tem certeza de que deseja excluir todas as\\nsuas notificações? Esta ação é irreversível.",
     "deleteAll": "Excluir Tudo",

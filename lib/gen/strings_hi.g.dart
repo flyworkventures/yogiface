@@ -96,9 +96,10 @@ class TranslationsHi with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => 'निमंत्रण कोड दर्ज करें';
 	@override String get bePartOfPeace => 'शांति का हिस्सा बनें';
 	@override String get inviteFriends => 'किसी मित्र से प्राप्त आमंत्रण कोड दर्ज करें।\nइसे निर्दिष्ट फ़ील्ड में टाइप करें';
-	@override String get twoDaysPremium => '2 दिन प्रीमियम';
+	@override String get twoDaysPremium => '7 दिन प्रीमियम';
 	@override String get advantage => '\nइसके लाभों का आनंद लेने के लिए।';
 	@override String get send => 'भेजें';
+	@override late final _TranslationsReferralCodeHi referralCode = _TranslationsReferralCodeHi._(_root);
 	@override String get deleteNotifications => 'सूचनाएं हटाएं';
 	@override String get deleteNotificationsDescription => 'क्या आप वाकई अपनी सभी\nसूचनाएं हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।';
 	@override String get deleteAll => 'सभी हटाएं';
@@ -446,6 +447,19 @@ class _TranslationsAuthHi implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'अतिथि के रूप में जारी रखें';
 	@override String signInFailed({required Object error}) => 'साइन इन विफल: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeHi implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => '8-अंकीय कोड दर्ज करें';
+	@override String get applying => 'कोड लागू हो रहा है...';
+	@override late final _TranslationsReferralCodeSuccessHi success = _TranslationsReferralCodeSuccessHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsHi errors = _TranslationsReferralCodeErrorsHi._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsHi implements TranslationsFacialScanPositi
 	@override String get right => 'दाएँ';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessHi implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'सफल!';
+	@override String get message => 'रेफरल कोड सफलतापूर्वक लागू किया गया! आपको और आपके मित्र को 1 सप्ताह का प्रीमियम मिला है।';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsHi implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeHi missingCode = _TranslationsReferralCodeErrorsMissingCodeHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatHi invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedHi alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralHi selfReferral = _TranslationsReferralCodeErrorsSelfReferralHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundHi codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundHi._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorHi genericError = _TranslationsReferralCodeErrorsGenericErrorHi._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialHi implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialHi._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Hi implements Translation
 	// Translations
 	@override String get title => 'फेस ऑयल या मॉइस्चराइज़र लगाएं';
 	@override String get description => 'अपनी त्वचा को खींचे बिना आसानी से ग्लाइड करें।';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeHi implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'कोड आवश्यक';
+	@override String get message => 'जारी रखने के लिए कृपया रेफरल कोड दर्ज करें।';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatHi implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'अमान्य प्रारूप';
+	@override String get message => 'रेफरल कोड ठीक 8 वर्णों का होना चाहिए।';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedHi implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'पहले से उपयोग किया गया';
+	@override String get message => 'आपने पहले ही एक रेफरल कोड का उपयोग कर लिया है। प्रत्येक उपयोगकर्ता केवल एक कोड का उपयोग कर सकता है।';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralHi implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'अमान्य कोड';
+	@override String get message => 'आप अपने स्वयं के आमंत्रण कोड का उपयोग नहीं कर सकते। कृपया किसी मित्र के कोड का उपयोग करें।';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundHi implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'कोड नहीं मिला';
+	@override String get message => 'दर्ज किया गया रेफरल कोड मौजूद नहीं है। कृपया जांचें और पुनः प्रयास करें।';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorHi implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'त्रुटि';
+	@override String get message => 'रेफरल कोड लागू करते समय एक त्रुटि हुई। कृपया पुनः प्रयास करें।';
 }
 
 /// The flat map containing all translations for locale <hi>.
@@ -1725,9 +1831,25 @@ extension on TranslationsHi {
 			'enterInvitationCode' => 'निमंत्रण कोड दर्ज करें',
 			'bePartOfPeace' => 'शांति का हिस्सा बनें',
 			'inviteFriends' => 'किसी मित्र से प्राप्त आमंत्रण कोड दर्ज करें।\nइसे निर्दिष्ट फ़ील्ड में टाइप करें',
-			'twoDaysPremium' => '2 दिन प्रीमियम',
+			'twoDaysPremium' => '7 दिन प्रीमियम',
 			'advantage' => '\nइसके लाभों का आनंद लेने के लिए।',
 			'send' => 'भेजें',
+			'referralCode.inputPlaceholder' => '8-अंकीय कोड दर्ज करें',
+			'referralCode.applying' => 'कोड लागू हो रहा है...',
+			'referralCode.success.title' => 'सफल!',
+			'referralCode.success.message' => 'रेफरल कोड सफलतापूर्वक लागू किया गया! आपको और आपके मित्र को 1 सप्ताह का प्रीमियम मिला है।',
+			'referralCode.errors.missingCode.title' => 'कोड आवश्यक',
+			'referralCode.errors.missingCode.message' => 'जारी रखने के लिए कृपया रेफरल कोड दर्ज करें।',
+			'referralCode.errors.invalidFormat.title' => 'अमान्य प्रारूप',
+			'referralCode.errors.invalidFormat.message' => 'रेफरल कोड ठीक 8 वर्णों का होना चाहिए।',
+			'referralCode.errors.alreadyUsed.title' => 'पहले से उपयोग किया गया',
+			'referralCode.errors.alreadyUsed.message' => 'आपने पहले ही एक रेफरल कोड का उपयोग कर लिया है। प्रत्येक उपयोगकर्ता केवल एक कोड का उपयोग कर सकता है।',
+			'referralCode.errors.selfReferral.title' => 'अमान्य कोड',
+			'referralCode.errors.selfReferral.message' => 'आप अपने स्वयं के आमंत्रण कोड का उपयोग नहीं कर सकते। कृपया किसी मित्र के कोड का उपयोग करें।',
+			'referralCode.errors.codeNotFound.title' => 'कोड नहीं मिला',
+			'referralCode.errors.codeNotFound.message' => 'दर्ज किया गया रेफरल कोड मौजूद नहीं है। कृपया जांचें और पुनः प्रयास करें।',
+			'referralCode.errors.genericError.title' => 'त्रुटि',
+			'referralCode.errors.genericError.message' => 'रेफरल कोड लागू करते समय एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
 			'deleteNotifications' => 'सूचनाएं हटाएं',
 			'deleteNotificationsDescription' => 'क्या आप वाकई अपनी सभी\nसूचनाएं हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।',
 			'deleteAll' => 'सभी हटाएं',

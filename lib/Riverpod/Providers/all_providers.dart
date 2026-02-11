@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yogiface/Repositories/auth_repository.dart';
 import 'package:yogiface/Repositories/exercise_repository.dart';
+import 'package:yogiface/Repositories/notification_repository.dart';
+import 'package:yogiface/Repositories/referral_repository.dart';
 import 'package:yogiface/Repositories/user_repository.dart';
 import 'package:yogiface/Riverpod/Providers/user_provider.dart';
 import 'package:yogiface/Services/dio_service.dart';
@@ -80,5 +82,14 @@ class AllProviders {
   static final userProvider =
       StateNotifierProvider<UserNotifier, AsyncValue<AuthResponse?>>((ref) {
     return UserNotifier(ref);
+  });
+
+  static final referralRepositoryProvider = Provider<ReferralRepository>((ref) {
+    return ReferralRepository(ref);
+  });
+
+  static final notificationRepositoryProvider =
+      Provider<NotificationRepository>((ref) {
+    return NotificationRepository(ref);
   });
 }

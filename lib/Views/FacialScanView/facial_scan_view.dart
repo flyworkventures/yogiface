@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/Models/exercise_model.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/FacialScanView/services/face_detection_service.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analysis_result_screen.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analyzing_screen.dart';
@@ -16,11 +20,11 @@ enum FacialScanState {
   result,
 }
 
-class FacialScanView extends HookWidget {
+class FacialScanView extends HookConsumerWidget {
   const FacialScanView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final scanState = useState(FacialScanState.capture);
     final currentPosition = useState(FacePosition.front);
     final capturedImages = useState<Map<FacePosition, String?>>({
@@ -31,8 +35,16 @@ class FacialScanView extends HookWidget {
     final isLoading = useState(false);
     final analyzeProgress = useState(0.0);
     final errorMessage = useState<String?>(null);
+    final recommendations = useState<List<Exercise>?>([]);
 
     final imagePicker = useMemoized(() => ImagePicker());
+
+    // Get the current locale for API calls
+    final currentLocale = LocaleSettings.currentLocale;
+
+    // Get exercise repository
+    final exerciseRepository =
+        ref.watch(AllProviders.exerciseRepositoryProvider);
 
     final faceDetectionService =
         useMemoized(() => FaceDetectionService.instance);
@@ -44,9 +56,55 @@ class FacialScanView extends HookWidget {
       return 3;
     }
 
-    void startAnalysis() {
+    // DEBUG: Skip directly to results for testing
+    Future<void> skipToResult() async {
+      // Fetch recommendations
+      try {
+        final result = await exerciseRepository.getRecommendations(
+          lang: currentLocale.languageCode,
+          limit: 5,
+          minScore: 0,
+        );
+        recommendations.value = result;
+        print('✅ DEBUG: Fetched ${result.length} recommendations');
+        print('📋 Exercise Names:');
+        for (var i = 0; i < result.length; i++) {
+          print(
+              '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
+        }
+      } catch (e) {
+        print('❌ DEBUG: Error fetching recommendations: $e');
+        recommendations.value = [];
+      }
+      // Skip to result screen
+      scanState.value = FacialScanState.result;
+    }
+
+    Future<void> startAnalysis() async {
       scanState.value = FacialScanState.analyzing;
       analyzeProgress.value = 0.0;
+
+      // Fetch recommendations while showing progress
+      exerciseRepository
+          .getRecommendations(
+        lang: currentLocale.languageCode,
+        limit: 5,
+        minScore: 0,
+      )
+          .then((result) {
+        recommendations.value = result;
+        print('✅ Fetched ${result.length} recommendations in facial scan');
+        if (result.isNotEmpty) {
+          print('📋 All Exercise Names:');
+          for (var i = 0; i < result.length; i++) {
+            print(
+                '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
+          }
+        }
+      }).catchError((e) {
+        print('❌ Error fetching recommendations: $e');
+        recommendations.value = [];
+      });
 
       Timer.periodic(const Duration(milliseconds: 100), (timer) {
         if (analyzeProgress.value >= 1.0) {
@@ -125,7 +183,7 @@ class FacialScanView extends HookWidget {
             newImages[FacePosition.right] != null;
 
         if (allCaptured) {
-          startAnalysis();
+          await startAnalysis();
         } else {
           if (currentPosition.value == FacePosition.front) {
             currentPosition.value = FacePosition.left;
@@ -175,6 +233,7 @@ class FacialScanView extends HookWidget {
             onCapturePressed: handleCapture,
             onDeleteImage: handleDeleteImage,
             onGetStarted: startAnalysis,
+            onSkipToResult: skipToResult, // DEBUG: Skip button callback
           ),
         );
       case FacialScanState.analyzing:
@@ -186,6 +245,18 @@ class FacialScanView extends HookWidget {
           ),
         );
       case FacialScanState.result:
+        print(
+            '📊 RESULT SCREEN - Recommendations count: ${recommendations.value?.length ?? 0}');
+        if (recommendations.value != null &&
+            recommendations.value!.isNotEmpty) {
+          print(
+              '📊 First recommendation: ${recommendations.value!.first.title}');
+          // Convert to JSON for better readability
+          final recommendationsJson =
+              recommendations.value!.map((e) => e.toJson()).toList();
+          print('📊 Full recommendations (JSON):');
+          print(jsonEncode(recommendationsJson));
+        }
         return Scaffold(
           backgroundColor: Colors.white,
           body: AnalysisResultScreen(
@@ -193,11 +264,7 @@ class FacialScanView extends HookWidget {
             skinType: 'Balanced / Oily',
             primaryGoal: 'Forehead Smoothing',
             onBackPressed: handleBackFromResult,
-            recommendedExercise: RecommendedExercise(
-              title: 'The "V" Move',
-              description:
-                  'Strengthens the delicate skin around the eyes, lifts drooping eyelids, and erases signs of fatigue.',
-            ),
+            recommendations: recommendations.value ?? [],
           ),
         );
     }

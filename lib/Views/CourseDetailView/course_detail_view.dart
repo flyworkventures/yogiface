@@ -9,6 +9,7 @@ import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 
 class Course {
+  final int id;
   final String title;
   final String description;
   final String imagePath;
@@ -16,6 +17,7 @@ class Course {
   final List<BenefitItem> benefits;
 
   Course({
+    required this.id,
     required this.title,
     required this.description,
     required this.imagePath,
@@ -110,6 +112,7 @@ class CourseDetailView extends HookWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => CourseStartView(
+                                courseId: course.id,
                                 courseTitle: course.title,
                                 instructions: instructions,
                               ),

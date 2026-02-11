@@ -31,6 +31,7 @@ class AuthUser {
   final String? email;
   final String? fullName;
   final String? profilePictureUrl;
+  final String? invitationCode;
   final String authProvider;
   final bool isGuest;
   final bool onboardingCompleted;
@@ -42,6 +43,7 @@ class AuthUser {
     this.email,
     this.fullName,
     this.profilePictureUrl,
+    this.invitationCode,
     required this.authProvider,
     required this.isGuest,
     required this.onboardingCompleted,
@@ -50,6 +52,7 @@ class AuthUser {
   });
 
   factory AuthUser.fromJson(Map<String, dynamic> json) {
+    print('AuthUser.fromJson: $json');
     return AuthUser(
       id: json['id'] as int? ?? 0,
       email: json['email'] as String?,
@@ -71,6 +74,8 @@ class AuthUser {
               false,
       preferredLanguage: json['preferredLanguage'] as String? ??
           json['preferred_language'] as String?,
+      invitationCode: json['invitationCode'] as String? ??
+          json['invitation_code'] as String?,
       createdAt: json['createdAt'] != null
           ? DateTime.tryParse(json['createdAt'] as String)
           : json['created_at'] != null
@@ -89,6 +94,7 @@ class AuthUser {
       'isGuest': isGuest,
       'onboardingCompleted': onboardingCompleted,
       'preferredLanguage': preferredLanguage,
+      'invitationCode': invitationCode,
       'createdAt': createdAt?.toIso8601String(),
     };
   }
@@ -102,6 +108,7 @@ class AuthUser {
     bool? isGuest,
     bool? onboardingCompleted,
     String? preferredLanguage,
+    String? invitationCode,
     DateTime? createdAt,
   }) {
     return AuthUser(
@@ -113,8 +120,14 @@ class AuthUser {
       isGuest: isGuest ?? this.isGuest,
       onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
       preferredLanguage: preferredLanguage ?? this.preferredLanguage,
+      invitationCode: invitationCode ?? this.invitationCode,
       createdAt: createdAt ?? this.createdAt,
     );
+  }
+
+  @override
+  String toString() {
+    return 'AuthUser(id: $id, invitationCode: $invitationCode, preferredLanguage: $preferredLanguage)';
   }
 }
 
@@ -164,6 +177,9 @@ class UserProfile {
               .toList() ??
           [],
       improvementAreas: (json['improvementAreas'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          (json['improvement_areas'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],

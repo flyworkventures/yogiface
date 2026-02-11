@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Repositories/exercise_repository.dart';
 import 'package:yogiface/Riverpod/Controllers/exercise_state.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CourseView/widgets/countdown_overlay.dart';
@@ -9,78 +10,53 @@ import 'package:yogiface/Views/CourseView/widgets/rest_timer_widget.dart';
 import 'package:yogiface/Views/CourseView/widgets/step_indicator_dots.dart';
 import 'package:yogiface/Views/CourseView/widgets/success_overlay.dart';
 import 'package:yogiface/Views/CourseView/widgets/video_player_widget.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
+import 'package:yogiface/utils/print.dart';
 
 class CourseView extends HookConsumerWidget {
-  const CourseView({super.key});
-
-  static const List<Exercise> _sampleExercises = [
-    Exercise(
-      id: '1',
-      title: 'Çift Gıdı Masajı',
-      videoUrl: "assets/videos/ciftgidisample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '2',
-      title: 'Etkinlik Işıltısı',
-      videoUrl: "assets/videos/etkinliksample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '3',
-      title: 'Hangover S.O.S',
-      videoUrl: "assets/videos/hangoversample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '4',
-      title: 'Lifting Masajı',
-      videoUrl: "assets/videos/liftingsample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '5',
-      title: 'Makyaj Masajı',
-      videoUrl: "assets/videos/makyajsample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '6',
-      title: 'Regl Ağrısı Rahatlama',
-      videoUrl: "assets/videos/reglsample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '7',
-      title: 'Sabah Canlanması',
-      videoUrl: "assets/videos/ucretsizsabahsample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-    Exercise(
-      id: '8',
-      title: 'Yanak Masajı',
-      videoUrl: "assets/videos/yanaksample.mp4",
-      durationSeconds: 30,
-      restSeconds: 25,
-    ),
-  ];
+  final int courseId;
+  const CourseView({super.key, required this.courseId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = useState(true);
+    final exerciseRepository = ref.read(exerciseRepositoryProvider);
+
     useEffect(() {
-      Future.microtask(() {
-        ref
-            .read(AllProviders.exerciseProvider.notifier)
-            .initialize(_sampleExercises);
+      Future.microtask(() async {
+        try {
+          // Fetch exercise data from repository
+          final response = await exerciseRepository.getExerciseById(
+            id: courseId,
+            lang: LocaleSettings.currentLocale.languageCode,
+          );
+
+          final exerciseData = response.data.exercise;
+          if (exerciseData != null) {
+            final durationSeconds = exerciseData.durationMinutes * 60;
+            Print.info(durationSeconds, tag: 'durationSeconds');
+            // Create 8 sets of the same exercise with 30s exercise and 25s rest
+            final exercises = List.generate(8, (index) {
+              return Exercise(
+                id: '${exerciseData.id}_set_${index + 1}',
+                title: exerciseData.title ?? 'Exercise',
+                videoUrl: exerciseData.videoCdnPath,
+                durationSeconds: 30,
+                restSeconds: 25,
+              );
+            });
+
+            ref
+                .read(AllProviders.exerciseProvider.notifier)
+                .initialize(exercises);
+          }
+        } catch (e) {
+          print('Error loading exercise: $e');
+        } finally {
+          isLoading.value = false;
+        }
       });
       return null;
     }, []);

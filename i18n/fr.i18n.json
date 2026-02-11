@@ -565,12 +565,46 @@
   "noFavoritesInCategory": "Aucun favori dans cette catégorie",
   "noFavoritesAdded": "Aucun favori ajouté pour le moment.",
   "favoriteExercisesDescription": "Pour définir vos exercices favoris, vous pouvez ajouter les exercices que vous aimez depuis la page Mes exercices.",
-  "enterInvitationCode": "Entrer le code d'invitation",
+  "enterInvitationCode": "Saisir le code d'invitation",
   "bePartOfPeace": "Faites partie de la paix",
-  "inviteFriends": "Entrez le code d'invitation que vous avez reçu d'un ami.\\nTapez-le dans le champ désigné",
-  "twoDaysPremium": "2 jours Premium",
-  "advantage": "\\npour profiter de ses avantages.",
+  "inviteFriends": "Entrez le code d'invitation reçu d'un ami.\nTapez-le dans le champ désigné",
+  "twoDaysPremium": "7 jours Premium",
+  "advantage": "\npour profiter de ses avantages.",
   "send": "Envoyer",
+  "referralCode": {
+    "inputPlaceholder": "Entrez le code à 8 caractères",
+    "applying": "Application du code...",
+    "success": {
+      "title": "Succès !",
+      "message": "Code de parrainage appliqué avec succès ! Vous et votre ami avez reçu 1 semaine de premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Code requis",
+        "message": "Veuillez entrer un code de parrainage pour continuer."
+      },
+      "invalidFormat": {
+        "title": "Format invalide",
+        "message": "Le code de parrainage doit contenir exactement 8 caractères."
+      },
+      "alreadyUsed": {
+        "title": "Déjà utilisé",
+        "message": "Vous avez déjà utilisé un code de parrainage. Chaque utilisateur ne peut utiliser qu'un seul code."
+      },
+      "selfReferral": {
+        "title": "Code invalide",
+        "message": "Vous ne pouvez pas utiliser votre propre code d'invitation. Veuillez utiliser un code d'un ami."
+      },
+      "codeNotFound": {
+        "title": "Code non trouvé",
+        "message": "Le code de parrainage que vous avez saisi n'existe pas. Veuillez vérifier et réessayer."
+      },
+      "genericError": {
+        "title": "Erreur",
+        "message": "Une erreur s'est produite lors de l'application du code de parrainage. Veuillez réessayer."
+      }
+    }
+  },
   "deleteNotifications": "Supprimer les notifications",
   "deleteNotificationsDescription": "Êtes-vous sûr de vouloir supprimer toutes\\nvos notifications ? Cette action est irréversible et ne peut pas être annulée.",
   "deleteAll": "Tout supprimer",

@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:yogiface/Models/exercise_model.dart';
+import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
+import 'package:yogiface/Views/FacialScanView/widgets/recommended_exercises_list_screen.dart';
+import 'package:yogiface/Views/HomeView/widgets/featured_course_card.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_border_radius.dart';
@@ -14,14 +18,14 @@ class AnalysisResultScreen extends StatelessWidget {
     required this.skinType,
     required this.primaryGoal,
     required this.onBackPressed,
-    this.recommendedExercise,
+    required this.recommendations,
   });
 
   final String? profileImagePath;
   final String skinType;
   final String primaryGoal;
   final VoidCallback onBackPressed;
-  final RecommendedExercise? recommendedExercise;
+  final List<Exercise> recommendations;
 
   @override
   Widget build(BuildContext context) {
@@ -111,16 +115,89 @@ class AnalysisResultScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             // Recommended for you section
-            if (recommendedExercise != null) ...[
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  context.t.facialScan.result.recommended,
-                  style: AppTextStyles.heading(18, FontWeight.w600),
-                ),
+            if (recommendations.isNotEmpty) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.t.facialScan.result.recommended,
+                    style: AppTextStyles.heading(18, FontWeight.w600),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RecommendedExercisesListScreen(
+                            recommendations: recommendations,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'See More',
+                      style: AppTextStyles.body(
+                        14,
+                        color: AppColors.onboardingPurple,
+                        weight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
-              _RecommendedExerciseCard(exercise: recommendedExercise!),
+              FeaturedCourseCard(
+                imagePath: recommendations.first.imageCdnPath,
+                title: recommendations.first.title ?? '',
+                description: recommendations.first.description ?? '',
+                thumbnailPath: recommendations.first.imageCdnPath,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CourseDetailView(
+                        course: Course(
+                          id: recommendations.first.id,
+                          title: recommendations.first.title!,
+                          description: recommendations.first.description!,
+                          imagePath: recommendations.first.imageCdnPath,
+                          thumbnailPath: recommendations.first.imageCdnPath,
+                          benefits: [
+                            // Parse course.benefits from backend (now a List<String>)
+                            // Each string format: "Title: Description"
+                            if (recommendations.first.benefits != null &&
+                                recommendations.first.benefits!.isNotEmpty)
+                              ...recommendations.first.benefits!.map((benefit) {
+                                // Remove quotation marks and trim
+                                final cleanBenefit = benefit
+                                    .replaceAll('"', '')
+                                    .replaceAll('[', '')
+                                    .replaceAll(']', '')
+                                    .trim();
+
+                                // Split by colon to get title and description
+                                final parts = cleanBenefit.split(':');
+                                if (parts.length >= 2) {
+                                  return BenefitItem(
+                                    title: parts[0].trim(),
+                                    description:
+                                        parts.sublist(1).join(':').trim(),
+                                  );
+                                } else {
+                                  // If no colon, use the whole string as description
+                                  return BenefitItem(
+                                    title: 'Benefit',
+                                    description: cleanBenefit,
+                                  );
+                                }
+                              })
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ],
             const SizedBox(height: 32),
             SizedBox(
@@ -211,138 +288,4 @@ class _ResultCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _RecommendedExerciseCard extends StatelessWidget {
-  const _RecommendedExerciseCard({required this.exercise});
-
-  final RecommendedExercise exercise;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      decoration: BoxDecoration(
-        borderRadius: AppBorderRadius.lgRadius,
-        image: exercise.imagePath != null
-            ? DecorationImage(
-                image: FileImage(File(exercise.imagePath!)),
-                fit: BoxFit.cover,
-              )
-            : null,
-        color: AppColors.onboardingGreyLight,
-      ),
-      child: Stack(
-        children: [
-          // Gradient overlay
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                borderRadius: AppBorderRadius.lgRadius,
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.7),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // Content
-          Positioned(
-            left: 16,
-            right: 16,
-            bottom: 16,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // Thumbnail
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    borderRadius: AppBorderRadius.smRadius,
-                    color: Colors.white.withValues(alpha: 0.3),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: AppBorderRadius.smRadius,
-                    child: exercise.thumbnailPath != null
-                        ? Image.file(
-                            File(exercise.thumbnailPath!),
-                            fit: BoxFit.cover,
-                          )
-                        : Icon(
-                            Icons.play_arrow,
-                            color: Colors.white,
-                          ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                // Text content
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        exercise.title,
-                        style: AppTextStyles.heading(
-                          15,
-                          FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        exercise.description,
-                        style: AppTextStyles.body(
-                          11,
-                          color: Colors.white.withValues(alpha: 0.85),
-                          height: 1.3,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 12),
-                // Play button
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.25),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                    size: 24,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class RecommendedExercise {
-  final String title;
-  final String description;
-  final String? imagePath;
-  final String? thumbnailPath;
-
-  RecommendedExercise({
-    required this.title,
-    required this.description,
-    this.imagePath,
-    this.thumbnailPath,
-  });
 }

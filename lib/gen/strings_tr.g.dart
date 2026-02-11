@@ -96,9 +96,10 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => 'Davet Kodu Gir';
 	@override String get bePartOfPeace => 'Huzura Ortak Ol';
 	@override String get inviteFriends => 'Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak';
-	@override String get twoDaysPremium => '2 Günlük Premium';
+	@override String get twoDaysPremium => '7 Günlük Premium';
 	@override String get advantage => '\navantajlarından yararlanabilirsiniz.';
 	@override String get send => 'Gönder';
+	@override late final _TranslationsReferralCodeTr referralCode = _TranslationsReferralCodeTr._(_root);
 	@override String get deleteNotifications => 'Bildirimleri Sil';
 	@override String get deleteNotificationsDescription => 'Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.';
 	@override String get deleteAll => 'Tümünü Sil';
@@ -446,6 +447,19 @@ class _TranslationsAuthTr implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Misafir Olarak Devam Et';
 	@override String signInFailed({required Object error}) => 'Giriş başarısız: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeTr implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => '8 karakterli kodu girin';
+	@override String get applying => 'Kod uygulanıyor...';
+	@override late final _TranslationsReferralCodeSuccessTr success = _TranslationsReferralCodeSuccessTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsTr errors = _TranslationsReferralCodeErrorsTr._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsTr implements TranslationsFacialScanPositi
 	@override String get right => 'SAĞ';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessTr implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Başarılı!';
+	@override String get message => 'Referans kodu başarıyla uygulandı! Hem siz hem de arkadaşınız 1 hafta premium kazandınız.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsTr implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeTr missingCode = _TranslationsReferralCodeErrorsMissingCodeTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatTr invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedTr alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralTr selfReferral = _TranslationsReferralCodeErrorsSelfReferralTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundTr codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundTr._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorTr genericError = _TranslationsReferralCodeErrorsGenericErrorTr._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialTr implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialTr._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Tr implements Translation
 	// Translations
 	@override String get title => 'Yüz Yağı veya Nemlendirici Uygulayın';
 	@override String get description => 'Cildinizi çekmeden yumuşakça kaydırın.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeTr implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kod Gerekli';
+	@override String get message => 'Devam etmek için lütfen bir referans kodu girin.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatTr implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Geçersiz Format';
+	@override String get message => 'Referans kodu tam olarak 8 karakter uzunluğunda olmalıdır.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedTr implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Zaten Kullanıldı';
+	@override String get message => 'Zaten bir referans kodu kullandınız. Her kullanıcı yalnızca bir kod kullanabilir.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralTr implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Geçersiz Kod';
+	@override String get message => 'Kendi davet kodunuzu kullanamazsınız. Lütfen bir arkadaşınızın kodunu kullanın.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundTr implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kod Bulunamadı';
+	@override String get message => 'Girdiğiniz referans kodu mevcut değil. Lütfen kontrol edip tekrar deneyin.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorTr implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hata';
+	@override String get message => 'Referans kodu uygulanırken bir hata oluştu. Lütfen tekrar deneyin.';
 }
 
 /// The flat map containing all translations for locale <tr>.
@@ -1725,9 +1831,25 @@ extension on TranslationsTr {
 			'enterInvitationCode' => 'Davet Kodu Gir',
 			'bePartOfPeace' => 'Huzura Ortak Ol',
 			'inviteFriends' => 'Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak',
-			'twoDaysPremium' => '2 Günlük Premium',
+			'twoDaysPremium' => '7 Günlük Premium',
 			'advantage' => '\navantajlarından yararlanabilirsiniz.',
 			'send' => 'Gönder',
+			'referralCode.inputPlaceholder' => '8 karakterli kodu girin',
+			'referralCode.applying' => 'Kod uygulanıyor...',
+			'referralCode.success.title' => 'Başarılı!',
+			'referralCode.success.message' => 'Referans kodu başarıyla uygulandı! Hem siz hem de arkadaşınız 1 hafta premium kazandınız.',
+			'referralCode.errors.missingCode.title' => 'Kod Gerekli',
+			'referralCode.errors.missingCode.message' => 'Devam etmek için lütfen bir referans kodu girin.',
+			'referralCode.errors.invalidFormat.title' => 'Geçersiz Format',
+			'referralCode.errors.invalidFormat.message' => 'Referans kodu tam olarak 8 karakter uzunluğunda olmalıdır.',
+			'referralCode.errors.alreadyUsed.title' => 'Zaten Kullanıldı',
+			'referralCode.errors.alreadyUsed.message' => 'Zaten bir referans kodu kullandınız. Her kullanıcı yalnızca bir kod kullanabilir.',
+			'referralCode.errors.selfReferral.title' => 'Geçersiz Kod',
+			'referralCode.errors.selfReferral.message' => 'Kendi davet kodunuzu kullanamazsınız. Lütfen bir arkadaşınızın kodunu kullanın.',
+			'referralCode.errors.codeNotFound.title' => 'Kod Bulunamadı',
+			'referralCode.errors.codeNotFound.message' => 'Girdiğiniz referans kodu mevcut değil. Lütfen kontrol edip tekrar deneyin.',
+			'referralCode.errors.genericError.title' => 'Hata',
+			'referralCode.errors.genericError.message' => 'Referans kodu uygulanırken bir hata oluştu. Lütfen tekrar deneyin.',
 			'deleteNotifications' => 'Bildirimleri Sil',
 			'deleteNotificationsDescription' => 'Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.',
 			'deleteAll' => 'Tümünü Sil',

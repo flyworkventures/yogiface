@@ -7,6 +7,8 @@ class NotificationsCard extends StatelessWidget {
     required this.description,
     required this.time,
     required this.imagePath,
+    this.isRead = false,
+    this.onTap,
     this.onClose,
     super.key,
   });
@@ -15,86 +17,116 @@ class NotificationsCard extends StatelessWidget {
   final String description;
   final String time;
   final String imagePath;
+  final bool isRead;
+  final VoidCallback? onTap;
   final VoidCallback? onClose;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: isRead ? Colors.white : Colors.blue.shade50,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          border: Border.all(
+            color: isRead ? Colors.transparent : Colors.blue.shade200,
+            width: 1,
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset(
-            imagePath,
-            fit: BoxFit.contain,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                Text(
-                  title,
-                  style: AppTextStyles.latoBody(
-                    16,
-                    height: 1.2,
-                    weight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
+                Image.asset(
+                  imagePath,
+                  fit: BoxFit.contain,
+                  // width: 48,
+                  // height: 48,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: AppTextStyles.latoBody(
-                    14,
-                    height: 1.2,
-                    weight: FontWeight.w300,
-                    color: Colors.black,
+                if (!isRead)
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      width: 10,
+                      height: 10,
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  time,
-                  style: AppTextStyles.latoBody(
-                    12,
-                    height: 1.2,
-                    weight: FontWeight.w400,
-                    color: Colors.grey.shade400,
-                  ),
-                ),
               ],
             ),
-          ),
-          const SizedBox(width: 8),
-          GestureDetector(
-            onTap: onClose,
-            child: Container(
-              width: 24,
-              height: 24,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.close,
-                size: 14,
-                color: Colors.grey.shade500,
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    title,
+                    style: AppTextStyles.latoBody(
+                      16,
+                      height: 1.2,
+                      weight: isRead ? FontWeight.w500 : FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: AppTextStyles.latoBody(
+                      14,
+                      height: 1.2,
+                      weight: FontWeight.w300,
+                      color: Colors.black,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    time,
+                    style: AppTextStyles.latoBody(
+                      12,
+                      height: 1.2,
+                      weight: FontWeight.w400,
+                      color: Colors.grey.shade400,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            GestureDetector(
+              onTap: onClose,
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.close,
+                  size: 14,
+                  color: Colors.grey.shade500,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

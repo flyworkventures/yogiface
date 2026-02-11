@@ -96,9 +96,10 @@ class TranslationsEs with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => 'Ingresar código de invitación';
 	@override String get bePartOfPeace => 'Sé parte de la paz';
 	@override String get inviteFriends => 'Ingresa el código de invitación que recibiste de un amigo.\nEscríbelo en el campo designado';
-	@override String get twoDaysPremium => '2 días Premium';
+	@override String get twoDaysPremium => '7 días Premium';
 	@override String get advantage => '\npara disfrutar de sus beneficios.';
 	@override String get send => 'Enviar';
+	@override late final _TranslationsReferralCodeEs referralCode = _TranslationsReferralCodeEs._(_root);
 	@override String get deleteNotifications => 'Eliminar notificaciones';
 	@override String get deleteNotificationsDescription => '¿Estás seguro de que quieres eliminar todas\ntus notificaciones? Esta acción es irreversible y no se puede deshacer.';
 	@override String get deleteAll => 'Eliminar todo';
@@ -446,6 +447,19 @@ class _TranslationsAuthEs implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Continuar como invitado';
 	@override String signInFailed({required Object error}) => 'Error al iniciar sesión: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeEs implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => 'Ingresa el código de 8 caracteres';
+	@override String get applying => 'Aplicando código...';
+	@override late final _TranslationsReferralCodeSuccessEs success = _TranslationsReferralCodeSuccessEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsEs errors = _TranslationsReferralCodeErrorsEs._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsEs implements TranslationsFacialScanPositi
 	@override String get right => 'DERECHA';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessEs implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '¡Éxito!';
+	@override String get message => '¡Código de referencia aplicado con éxito! Tú y tu amigo recibieron 1 semana de premium.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsEs implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeEs missingCode = _TranslationsReferralCodeErrorsMissingCodeEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatEs invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedEs alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralEs selfReferral = _TranslationsReferralCodeErrorsSelfReferralEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundEs codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundEs._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorEs genericError = _TranslationsReferralCodeErrorsGenericErrorEs._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialEs implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialEs._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Es implements Translation
 	// Translations
 	@override String get title => 'Aplica aceite facial o crema hidratante';
 	@override String get description => 'Desliza suavemente sin tirar de tu piel.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeEs implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Código requerido';
+	@override String get message => 'Por favor, ingresa un código de referencia para continuar.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatEs implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Formato inválido';
+	@override String get message => 'El código de referencia debe tener exactamente 8 caracteres.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedEs implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ya utilizado';
+	@override String get message => 'Ya has utilizado un código de referencia. Cada usuario solo puede usar un código.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralEs implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Código inválido';
+	@override String get message => 'No puedes usar tu propio código de invitación. Por favor usa un código de un amigo.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundEs implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Código no encontrado';
+	@override String get message => 'El código de referencia que ingresaste no existe. Por favor verifica e intenta nuevamente.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorEs implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorEs._(this._root);
+
+	final TranslationsEs _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Error';
+	@override String get message => 'Ocurrió un error al aplicar el código de referencia. Por favor intenta nuevamente.';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -1725,9 +1831,25 @@ extension on TranslationsEs {
 			'enterInvitationCode' => 'Ingresar código de invitación',
 			'bePartOfPeace' => 'Sé parte de la paz',
 			'inviteFriends' => 'Ingresa el código de invitación que recibiste de un amigo.\nEscríbelo en el campo designado',
-			'twoDaysPremium' => '2 días Premium',
+			'twoDaysPremium' => '7 días Premium',
 			'advantage' => '\npara disfrutar de sus beneficios.',
 			'send' => 'Enviar',
+			'referralCode.inputPlaceholder' => 'Ingresa el código de 8 caracteres',
+			'referralCode.applying' => 'Aplicando código...',
+			'referralCode.success.title' => '¡Éxito!',
+			'referralCode.success.message' => '¡Código de referencia aplicado con éxito! Tú y tu amigo recibieron 1 semana de premium.',
+			'referralCode.errors.missingCode.title' => 'Código requerido',
+			'referralCode.errors.missingCode.message' => 'Por favor, ingresa un código de referencia para continuar.',
+			'referralCode.errors.invalidFormat.title' => 'Formato inválido',
+			'referralCode.errors.invalidFormat.message' => 'El código de referencia debe tener exactamente 8 caracteres.',
+			'referralCode.errors.alreadyUsed.title' => 'Ya utilizado',
+			'referralCode.errors.alreadyUsed.message' => 'Ya has utilizado un código de referencia. Cada usuario solo puede usar un código.',
+			'referralCode.errors.selfReferral.title' => 'Código inválido',
+			'referralCode.errors.selfReferral.message' => 'No puedes usar tu propio código de invitación. Por favor usa un código de un amigo.',
+			'referralCode.errors.codeNotFound.title' => 'Código no encontrado',
+			'referralCode.errors.codeNotFound.message' => 'El código de referencia que ingresaste no existe. Por favor verifica e intenta nuevamente.',
+			'referralCode.errors.genericError.title' => 'Error',
+			'referralCode.errors.genericError.message' => 'Ocurrió un error al aplicar el código de referencia. Por favor intenta nuevamente.',
 			'deleteNotifications' => 'Eliminar notificaciones',
 			'deleteNotificationsDescription' => '¿Estás seguro de que quieres eliminar todas\ntus notificaciones? Esta acción es irreversible y no se puede deshacer.',
 			'deleteAll' => 'Eliminar todo',

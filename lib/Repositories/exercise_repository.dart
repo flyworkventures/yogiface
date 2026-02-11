@@ -9,6 +9,44 @@ class ExerciseRepository {
   final Ref ref;
 
   DioService get _dioService => ref.read(dioServiceProvider);
+  // Öneri egzersizlerini getir
+  Future<List<Exercise>> getRecommendations({
+    String lang = 'en',
+    int limit = 10,
+    int minScore = 0,
+  }) async {
+    try {
+      Print.info(
+          '🌍 getRecommendations called with lang: $lang, limit: $limit, minScore: $minScore');
+      final response = await _dioService.get(
+        'exercises/recommendations',
+        queryParameters: {
+          'lang': lang,
+          'limit': limit,
+          'minScore': minScore,
+        },
+      );
+
+      Print.info('📦 Recommendations Response: ${response.data}');
+      final List exercisesJson = response.data['data']['exercises'];
+      final recommendations =
+          exercisesJson.map((json) => Exercise.fromJson(json)).toList();
+
+      if (recommendations.isNotEmpty) {
+        Print.info(
+            '📝 First recommendation: ${recommendations.first.title} (score: ${recommendations.first.toJson()['recommendationScore']})');
+        Print.info(
+            '✅ Total recommendations returned: ${recommendations.length}');
+      } else {
+        Print.info('⚠️ No recommendations found');
+      }
+
+      return recommendations;
+    } catch (e) {
+      Print.error('❌ Failed to load recommendations: $e');
+      throw Exception('Failed to load recommendations: $e');
+    }
+  }
 
   /// Get all exercises with translations
   /// GET /api/exercises?lang=en
@@ -105,6 +143,53 @@ class ExerciseRepository {
     }
   }
 
+  /// Get top 3 most favorited exercises
+  /// GET /api/exercises/popular?lang=en
+  Future<ExerciseResponse> getPopularExercises({
+    String lang = 'en',
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      Print.info('🌍 getPopularExercises called with lang: $lang');
+      final response = await _dioService.get(
+        'exercises/popular',
+        queryParameters: {'lang': lang},
+        cancelToken: cancelToken,
+      );
+      Print.info('📦 Popular Exercises Response: ${response.data}');
+      final result =
+          ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      return result;
+    } catch (e) {
+      Print.error('Error fetching popular exercises: $e');
+      rethrow;
+    }
+  }
+
+  /// Get most favorited exercise for each type
+  /// GET /api/exercises/popular-by-type?lang=en
+  Future<ExerciseResponse> getPopularExercisesByType({
+    String lang = 'en',
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      Print.info('🌍 getPopularExercisesByType called with lang: $lang');
+      final response = await _dioService.get(
+        'exercises/popular-by-type',
+        queryParameters: {'lang': lang},
+        cancelToken: cancelToken,
+      );
+      Print.info('📦 Popular Exercises By Type Response: ${response.data}',
+          tag: 'PopularExercisesByType');
+      final result =
+          ExerciseResponse.fromJson(response.data as Map<String, dynamic>);
+      return result;
+    } catch (e) {
+      Print.error('Error fetching popular exercises by type: $e');
+      rethrow;
+    }
+  }
+
   /// Remove exercise from favorites
   /// DELETE /api/exercises/:id/favorite
   Future<Map<String, dynamic>> removeFromFavorites({
@@ -142,4 +227,8 @@ class ExerciseRepository {
 /// DioService provider (should already exist in your project)
 final dioServiceProvider = Provider<DioService>((ref) {
   return DioService(ref);
+});
+
+final exerciseRepositoryProvider = Provider<ExerciseRepository>((ref) {
+  return ExerciseRepository(ref);
 });

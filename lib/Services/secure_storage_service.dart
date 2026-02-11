@@ -8,6 +8,13 @@ class SecureStorageService {
   static const String _userIdKey = 'user_id';
   static const String _isGuestKey = 'is_guest';
   static const String _languageKey = 'app_language';
+  // OneSignal / notification keys
+  static const String _oneSignalPlayerIdKey = 'onesignal_player_id';
+  static const String _pendingOneSignalPlayerIdKey =
+      'pending_onesignal_player_id';
+  static const String _pendingNotificationPrefKey = 'pending_notification_pref';
+  static const String _notificationPermissionAskedKey =
+      'notification_permission_asked';
 
   // Pending auth credentials (used during onboarding)
   static const String _pendingAuthMethodKey = 'pending_auth_method';
@@ -328,6 +335,132 @@ class SecureStorageService {
     } catch (e) {
       Print.error('Error getting language: $e');
       return null;
+    }
+  }
+
+  // ==================== OneSignal / Notification helpers ====================
+
+  Future<void> saveOneSignalPlayerId(String playerId) async {
+    try {
+      await _storage.write(key: _oneSignalPlayerIdKey, value: playerId);
+      Print.info('OneSignal player id saved locally');
+    } catch (e) {
+      Print.error('Error saving OneSignal player id locally: $e');
+      rethrow;
+    }
+  }
+
+  Future<String?> getOneSignalPlayerId() async {
+    try {
+      return await _storage.read(key: _oneSignalPlayerIdKey);
+    } catch (e) {
+      Print.error('Error getting OneSignal player id: $e');
+      return null;
+    }
+  }
+
+  Future<void> clearOneSignalPlayerId() async {
+    try {
+      await _storage.delete(key: _oneSignalPlayerIdKey);
+      Print.info('OneSignal player id cleared from local storage');
+    } catch (e) {
+      Print.error('Error clearing OneSignal player id: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> savePendingOneSignalId(String playerId) async {
+    try {
+      await _storage.write(key: _pendingOneSignalPlayerIdKey, value: playerId);
+      Print.info('Pending OneSignal player id saved: $playerId');
+    } catch (e) {
+      Print.error('Error saving pending OneSignal id: $e');
+      rethrow;
+    }
+  }
+
+  Future<String?> getPendingOneSignalId() async {
+    try {
+      return await _storage.read(key: _pendingOneSignalPlayerIdKey);
+    } catch (e) {
+      Print.error('Error getting pending OneSignal id: $e');
+      return null;
+    }
+  }
+
+  Future<void> clearPendingOneSignalId() async {
+    try {
+      await _storage.delete(key: _pendingOneSignalPlayerIdKey);
+      Print.info('Pending OneSignal id cleared');
+    } catch (e) {
+      Print.error('Error clearing pending OneSignal id: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> savePendingNotificationPref(bool enabled) async {
+    try {
+      await _storage.write(
+          key: _pendingNotificationPrefKey, value: enabled ? '1' : '0');
+      Print.info('Pending notification pref saved: $enabled');
+    } catch (e) {
+      Print.error('Error saving pending notification pref: $e');
+      rethrow;
+    }
+  }
+
+  Future<bool?> getPendingNotificationPref() async {
+    try {
+      final v = await _storage.read(key: _pendingNotificationPrefKey);
+      if (v == null) return null;
+      return v == '1';
+    } catch (e) {
+      Print.error('Error reading pending notification pref: $e');
+      return null;
+    }
+  }
+
+  Future<void> clearPendingNotificationPref() async {
+    try {
+      await _storage.delete(key: _pendingNotificationPrefKey);
+      Print.info('Pending notification pref cleared');
+    } catch (e) {
+      Print.error('Error clearing pending notification pref: $e');
+      rethrow;
+    }
+  }
+
+  /// Save whether we've already asked the user for system notification permission
+  Future<void> saveNotificationPermissionAsked(bool asked) async {
+    try {
+      await _storage.write(
+          key: _notificationPermissionAskedKey, value: asked ? '1' : '0');
+      Print.info('Notification permission asked flag saved: $asked');
+    } catch (e) {
+      Print.error('Error saving notification permission asked flag: $e');
+      rethrow;
+    }
+  }
+
+  /// Get whether we've already asked the user for notification permission
+  Future<bool> getNotificationPermissionAsked() async {
+    try {
+      final v = await _storage.read(key: _notificationPermissionAskedKey);
+      if (v == null) return false;
+      return v == '1';
+    } catch (e) {
+      Print.error('Error reading notification permission asked flag: $e');
+      return false;
+    }
+  }
+
+  Future<void> clearNotificationPermissionAsked() async {
+    try {
+      await _storage.delete(key: _notificationPermissionAskedKey);
+      Print.info('Notification permission asked flag cleared');
+    } catch (e) {
+      Print.error('Error clearing notification permission asked flag: $e');
+      rethrow;
     }
   }
 }

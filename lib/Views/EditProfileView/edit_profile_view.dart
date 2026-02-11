@@ -408,6 +408,8 @@ class EditProfileView extends HookConsumerWidget {
                                     profile?.age,
                                 'weight': selectedWeight.value,
                                 'height': selectedHeight.value,
+                                'improvement_areas':
+                                    selectedFocusAreas.value.toList(),
                               };
 
                               final profileSuccess =

@@ -1091,6 +1091,27 @@ class LoginView extends ConsumerWidget {
                   ),
                 ),
               ),
+              CustomButton(
+                label: 'Bypass',
+                type: CustomButtonType.outlined,
+                icon: Image.asset(
+                  AppIcons.apple,
+                ),
+                fullWidth: true,
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
+                borderColor: const Color(0xFFD9D9D9),
+                borderWidth: 1.0,
+                iconPadding: 8,
+                borderRadius: 50.0,
+                labelStyle: AppTextStyles.onboardingBody(
+                  14,
+                  weight: FontWeight.w400,
+                  color: Colors.black87,
+                ),
+                onPressed: () =>
+                    Navigator.pushReplacementNamed(context, '/main'),
+              ),
               const SizedBox(height: 40),
               Stack(
                 alignment: Alignment.bottomCenter,

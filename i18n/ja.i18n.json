@@ -567,10 +567,44 @@
   "favoriteExercisesDescription": "お気に入りのエクササイズを設定するには、マイエクササイズページから好きなエクササイズを追加できます。",
   "enterInvitationCode": "招待コードを入力",
   "bePartOfPeace": "平和の一部になる",
-  "inviteFriends": "友達から受け取った招待コードを入力してください。\\n指定されたフィールドに入力してください",
-  "twoDaysPremium": "2日間プレミアム",
-  "advantage": "\\nその利点を享受するために。",
+  "inviteFriends": "友達から受け取った招待コードを入力してください。\n指定されたフィールドに入力してください",
+  "twoDaysPremium": "7日間プレミアム",
+  "advantage": "\nその利点を享受するために。",
   "send": "送信",
+  "referralCode": {
+    "inputPlaceholder": "8桁のコードを入力",
+    "applying": "コードを適用中...",
+    "success": {
+      "title": "成功！",
+      "message": "紹介コードが正常に適用されました！あなたとあなたの友人は1週間のプレミアムを受け取りました。"
+    },
+    "errors": {
+      "missingCode": {
+        "title": "コードが必要です",
+        "message": "続行するには紹介コードを入力してください。"
+      },
+      "invalidFormat": {
+        "title": "無効な形式",
+        "message": "紹介コードは正確に8文字である必要があります。"
+      },
+      "alreadyUsed": {
+        "title": "既に使用済み",
+        "message": "すでに紹介コードを使用しています。各ユーザーは1つのコードのみを使用できます。"
+      },
+      "selfReferral": {
+        "title": "無効なコード",
+        "message": "自分の招待コードは使用できません。友人のコードを使用してください。"
+      },
+      "codeNotFound": {
+        "title": "コードが見つかりません",
+        "message": "入力された紹介コードは存在しません。確認してもう一度お試しください。"
+      },
+      "genericError": {
+        "title": "エラー",
+        "message": "紹介コードの適用中にエラーが発生しました。もう一度お試しください。"
+      }
+    }
+  },
   "deleteNotifications": "通知を削除",
   "deleteNotificationsDescription": "すべての通知を削除してもよろしいですか？\\nこのアクションは元に戻せず、取り消すことはできません。",
   "deleteAll": "すべて削除",

@@ -96,9 +96,10 @@ class TranslationsRu with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => 'Введите код приглашения';
 	@override String get bePartOfPeace => 'Станьте частью мира';
 	@override String get inviteFriends => 'Введите код приглашения, полученный от друга.\nВведите его в соответствующее поле';
-	@override String get twoDaysPremium => '2 дня Премиум';
+	@override String get twoDaysPremium => '7 дней Премиум';
 	@override String get advantage => '\nчтобы воспользоваться его преимуществами.';
 	@override String get send => 'Отправить';
+	@override late final _TranslationsReferralCodeRu referralCode = _TranslationsReferralCodeRu._(_root);
 	@override String get deleteNotifications => 'Удалить уведомления';
 	@override String get deleteNotificationsDescription => 'Вы уверены, что хотите удалить все\nваши уведомления? Это действие необратимо.';
 	@override String get deleteAll => 'Удалить все';
@@ -446,6 +447,19 @@ class _TranslationsAuthRu implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Продолжить как гость';
 	@override String signInFailed({required Object error}) => 'Вход не выполнен: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeRu implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => 'Введите 8-значный код';
+	@override String get applying => 'Применение кода...';
+	@override late final _TranslationsReferralCodeSuccessRu success = _TranslationsReferralCodeSuccessRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsRu errors = _TranslationsReferralCodeErrorsRu._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsRu implements TranslationsFacialScanPositi
 	@override String get right => 'СПРАВА';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessRu implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Успех!';
+	@override String get message => 'Реферальный код успешно применен! Вы и ваш друг получили 1 неделю премиум-доступа.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsRu implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeRu missingCode = _TranslationsReferralCodeErrorsMissingCodeRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatRu invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedRu alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralRu selfReferral = _TranslationsReferralCodeErrorsSelfReferralRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundRu codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundRu._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorRu genericError = _TranslationsReferralCodeErrorsGenericErrorRu._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialRu implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialRu._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Ru implements Translation
 	// Translations
 	@override String get title => 'Нанесите масло для лица или увлажняющий крем';
 	@override String get description => 'Плавно скользите, не растягивая кожу.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeRu implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Требуется код';
+	@override String get message => 'Пожалуйста, введите реферальный код для продолжения.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatRu implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Неверный формат';
+	@override String get message => 'Реферальный код должен содержать ровно 8 символов.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedRu implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Уже использован';
+	@override String get message => 'Вы уже использовали реферальный код. Каждый пользователь может использовать только один код.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralRu implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Неверный код';
+	@override String get message => 'Вы не можете использовать свой собственный код приглашения. Пожалуйста, используйте код друга.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundRu implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Код не найден';
+	@override String get message => 'Введенный реферальный код не существует. Пожалуйста, проверьте и попробуйте снова.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorRu implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ошибка';
+	@override String get message => 'Произошла ошибка при применении реферального кода. Пожалуйста, попробуйте снова.';
 }
 
 /// The flat map containing all translations for locale <ru>.
@@ -1725,9 +1831,25 @@ extension on TranslationsRu {
 			'enterInvitationCode' => 'Введите код приглашения',
 			'bePartOfPeace' => 'Станьте частью мира',
 			'inviteFriends' => 'Введите код приглашения, полученный от друга.\nВведите его в соответствующее поле',
-			'twoDaysPremium' => '2 дня Премиум',
+			'twoDaysPremium' => '7 дней Премиум',
 			'advantage' => '\nчтобы воспользоваться его преимуществами.',
 			'send' => 'Отправить',
+			'referralCode.inputPlaceholder' => 'Введите 8-значный код',
+			'referralCode.applying' => 'Применение кода...',
+			'referralCode.success.title' => 'Успех!',
+			'referralCode.success.message' => 'Реферальный код успешно применен! Вы и ваш друг получили 1 неделю премиум-доступа.',
+			'referralCode.errors.missingCode.title' => 'Требуется код',
+			'referralCode.errors.missingCode.message' => 'Пожалуйста, введите реферальный код для продолжения.',
+			'referralCode.errors.invalidFormat.title' => 'Неверный формат',
+			'referralCode.errors.invalidFormat.message' => 'Реферальный код должен содержать ровно 8 символов.',
+			'referralCode.errors.alreadyUsed.title' => 'Уже использован',
+			'referralCode.errors.alreadyUsed.message' => 'Вы уже использовали реферальный код. Каждый пользователь может использовать только один код.',
+			'referralCode.errors.selfReferral.title' => 'Неверный код',
+			'referralCode.errors.selfReferral.message' => 'Вы не можете использовать свой собственный код приглашения. Пожалуйста, используйте код друга.',
+			'referralCode.errors.codeNotFound.title' => 'Код не найден',
+			'referralCode.errors.codeNotFound.message' => 'Введенный реферальный код не существует. Пожалуйста, проверьте и попробуйте снова.',
+			'referralCode.errors.genericError.title' => 'Ошибка',
+			'referralCode.errors.genericError.message' => 'Произошла ошибка при применении реферального кода. Пожалуйста, попробуйте снова.',
 			'deleteNotifications' => 'Удалить уведомления',
 			'deleteNotificationsDescription' => 'Вы уверены, что хотите удалить все\nваши уведомления? Это действие необратимо.',
 			'deleteAll' => 'Удалить все',

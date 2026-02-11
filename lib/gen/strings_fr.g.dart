@@ -93,12 +93,13 @@ class TranslationsFr with BaseTranslations<AppLocale, Translations> implements T
 	@override String get noFavoritesInCategory => 'Aucun favori dans cette catégorie';
 	@override String get noFavoritesAdded => 'Aucun favori ajouté pour le moment.';
 	@override String get favoriteExercisesDescription => 'Pour définir vos exercices favoris, vous pouvez ajouter les exercices que vous aimez depuis la page Mes exercices.';
-	@override String get enterInvitationCode => 'Entrer le code d\'invitation';
+	@override String get enterInvitationCode => 'Saisir le code d\'invitation';
 	@override String get bePartOfPeace => 'Faites partie de la paix';
-	@override String get inviteFriends => 'Entrez le code d\'invitation que vous avez reçu d\'un ami.\nTapez-le dans le champ désigné';
-	@override String get twoDaysPremium => '2 jours Premium';
+	@override String get inviteFriends => 'Entrez le code d\'invitation reçu d\'un ami.\nTapez-le dans le champ désigné';
+	@override String get twoDaysPremium => '7 jours Premium';
 	@override String get advantage => '\npour profiter de ses avantages.';
 	@override String get send => 'Envoyer';
+	@override late final _TranslationsReferralCodeFr referralCode = _TranslationsReferralCodeFr._(_root);
 	@override String get deleteNotifications => 'Supprimer les notifications';
 	@override String get deleteNotificationsDescription => 'Êtes-vous sûr de vouloir supprimer toutes\nvos notifications ? Cette action est irréversible et ne peut pas être annulée.';
 	@override String get deleteAll => 'Tout supprimer';
@@ -446,6 +447,19 @@ class _TranslationsAuthFr implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Continuer en tant qu\'invité';
 	@override String signInFailed({required Object error}) => 'Échec de la connexion : ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeFr implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => 'Entrez le code à 8 caractères';
+	@override String get applying => 'Application du code...';
+	@override late final _TranslationsReferralCodeSuccessFr success = _TranslationsReferralCodeSuccessFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsFr errors = _TranslationsReferralCodeErrorsFr._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsFr implements TranslationsFacialScanPositi
 	@override String get right => 'DROITE';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessFr implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Succès !';
+	@override String get message => 'Code de parrainage appliqué avec succès ! Vous et votre ami avez reçu 1 semaine de premium.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsFr implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeFr missingCode = _TranslationsReferralCodeErrorsMissingCodeFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatFr invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedFr alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralFr selfReferral = _TranslationsReferralCodeErrorsSelfReferralFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundFr codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundFr._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorFr genericError = _TranslationsReferralCodeErrorsGenericErrorFr._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialFr implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialFr._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Fr implements Translation
 	// Translations
 	@override String get title => 'Appliquez de l\'huile pour le visage ou une crème hydratante';
 	@override String get description => 'Glissez en douceur sans tirer votre peau.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeFr implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Code requis';
+	@override String get message => 'Veuillez entrer un code de parrainage pour continuer.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatFr implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Format invalide';
+	@override String get message => 'Le code de parrainage doit contenir exactement 8 caractères.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedFr implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Déjà utilisé';
+	@override String get message => 'Vous avez déjà utilisé un code de parrainage. Chaque utilisateur ne peut utiliser qu\'un seul code.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralFr implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Code invalide';
+	@override String get message => 'Vous ne pouvez pas utiliser votre propre code d\'invitation. Veuillez utiliser un code d\'un ami.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundFr implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Code non trouvé';
+	@override String get message => 'Le code de parrainage que vous avez saisi n\'existe pas. Veuillez vérifier et réessayer.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorFr implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorFr._(this._root);
+
+	final TranslationsFr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Erreur';
+	@override String get message => 'Une erreur s\'est produite lors de l\'application du code de parrainage. Veuillez réessayer.';
 }
 
 /// The flat map containing all translations for locale <fr>.
@@ -1722,12 +1828,28 @@ extension on TranslationsFr {
 			'noFavoritesInCategory' => 'Aucun favori dans cette catégorie',
 			'noFavoritesAdded' => 'Aucun favori ajouté pour le moment.',
 			'favoriteExercisesDescription' => 'Pour définir vos exercices favoris, vous pouvez ajouter les exercices que vous aimez depuis la page Mes exercices.',
-			'enterInvitationCode' => 'Entrer le code d\'invitation',
+			'enterInvitationCode' => 'Saisir le code d\'invitation',
 			'bePartOfPeace' => 'Faites partie de la paix',
-			'inviteFriends' => 'Entrez le code d\'invitation que vous avez reçu d\'un ami.\nTapez-le dans le champ désigné',
-			'twoDaysPremium' => '2 jours Premium',
+			'inviteFriends' => 'Entrez le code d\'invitation reçu d\'un ami.\nTapez-le dans le champ désigné',
+			'twoDaysPremium' => '7 jours Premium',
 			'advantage' => '\npour profiter de ses avantages.',
 			'send' => 'Envoyer',
+			'referralCode.inputPlaceholder' => 'Entrez le code à 8 caractères',
+			'referralCode.applying' => 'Application du code...',
+			'referralCode.success.title' => 'Succès !',
+			'referralCode.success.message' => 'Code de parrainage appliqué avec succès ! Vous et votre ami avez reçu 1 semaine de premium.',
+			'referralCode.errors.missingCode.title' => 'Code requis',
+			'referralCode.errors.missingCode.message' => 'Veuillez entrer un code de parrainage pour continuer.',
+			'referralCode.errors.invalidFormat.title' => 'Format invalide',
+			'referralCode.errors.invalidFormat.message' => 'Le code de parrainage doit contenir exactement 8 caractères.',
+			'referralCode.errors.alreadyUsed.title' => 'Déjà utilisé',
+			'referralCode.errors.alreadyUsed.message' => 'Vous avez déjà utilisé un code de parrainage. Chaque utilisateur ne peut utiliser qu\'un seul code.',
+			'referralCode.errors.selfReferral.title' => 'Code invalide',
+			'referralCode.errors.selfReferral.message' => 'Vous ne pouvez pas utiliser votre propre code d\'invitation. Veuillez utiliser un code d\'un ami.',
+			'referralCode.errors.codeNotFound.title' => 'Code non trouvé',
+			'referralCode.errors.codeNotFound.message' => 'Le code de parrainage que vous avez saisi n\'existe pas. Veuillez vérifier et réessayer.',
+			'referralCode.errors.genericError.title' => 'Erreur',
+			'referralCode.errors.genericError.message' => 'Une erreur s\'est produite lors de l\'application du code de parrainage. Veuillez réessayer.',
 			'deleteNotifications' => 'Supprimer les notifications',
 			'deleteNotificationsDescription' => 'Êtes-vous sûr de vouloir supprimer toutes\nvos notifications ? Cette action est irréversible et ne peut pas être annulée.',
 			'deleteAll' => 'Tout supprimer',

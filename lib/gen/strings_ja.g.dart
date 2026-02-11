@@ -96,9 +96,10 @@ class TranslationsJa with BaseTranslations<AppLocale, Translations> implements T
 	@override String get enterInvitationCode => '招待コードを入力';
 	@override String get bePartOfPeace => '平和の一部になる';
 	@override String get inviteFriends => '友達から受け取った招待コードを入力してください。\n指定されたフィールドに入力してください';
-	@override String get twoDaysPremium => '2日間プレミアム';
+	@override String get twoDaysPremium => '7日間プレミアム';
 	@override String get advantage => '\nその利点を享受するために。';
 	@override String get send => '送信';
+	@override late final _TranslationsReferralCodeJa referralCode = _TranslationsReferralCodeJa._(_root);
 	@override String get deleteNotifications => '通知を削除';
 	@override String get deleteNotificationsDescription => 'すべての通知を削除してもよろしいですか？\nこのアクションは元に戻せず、取り消すことはできません。';
 	@override String get deleteAll => 'すべて削除';
@@ -446,6 +447,19 @@ class _TranslationsAuthJa implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'ゲストとして続行';
 	@override String signInFailed({required Object error}) => 'サインインに失敗しました：${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeJa implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => '8桁のコードを入力';
+	@override String get applying => 'コードを適用中...';
+	@override late final _TranslationsReferralCodeSuccessJa success = _TranslationsReferralCodeSuccessJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsJa errors = _TranslationsReferralCodeErrorsJa._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsJa implements TranslationsFacialScanPositi
 	@override String get right => '右';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessJa implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '成功！';
+	@override String get message => '紹介コードが正常に適用されました！あなたとあなたの友人は1週間のプレミアムを受け取りました。';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsJa implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeJa missingCode = _TranslationsReferralCodeErrorsMissingCodeJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatJa invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedJa alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralJa selfReferral = _TranslationsReferralCodeErrorsSelfReferralJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundJa codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundJa._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorJa genericError = _TranslationsReferralCodeErrorsGenericErrorJa._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialJa implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialJa._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2Ja implements Translation
 	// Translations
 	@override String get title => 'フェイスオイルまたは保湿剤を塗る';
 	@override String get description => '肌を引っ張らずにスムーズに滑らせます。';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeJa implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'コードが必要です';
+	@override String get message => '続行するには紹介コードを入力してください。';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatJa implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '無効な形式';
+	@override String get message => '紹介コードは正確に8文字である必要があります。';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedJa implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '既に使用済み';
+	@override String get message => 'すでに紹介コードを使用しています。各ユーザーは1つのコードのみを使用できます。';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralJa implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '無効なコード';
+	@override String get message => '自分の招待コードは使用できません。友人のコードを使用してください。';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundJa implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'コードが見つかりません';
+	@override String get message => '入力された紹介コードは存在しません。確認してもう一度お試しください。';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorJa implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'エラー';
+	@override String get message => '紹介コードの適用中にエラーが発生しました。もう一度お試しください。';
 }
 
 /// The flat map containing all translations for locale <ja>.
@@ -1725,9 +1831,25 @@ extension on TranslationsJa {
 			'enterInvitationCode' => '招待コードを入力',
 			'bePartOfPeace' => '平和の一部になる',
 			'inviteFriends' => '友達から受け取った招待コードを入力してください。\n指定されたフィールドに入力してください',
-			'twoDaysPremium' => '2日間プレミアム',
+			'twoDaysPremium' => '7日間プレミアム',
 			'advantage' => '\nその利点を享受するために。',
 			'send' => '送信',
+			'referralCode.inputPlaceholder' => '8桁のコードを入力',
+			'referralCode.applying' => 'コードを適用中...',
+			'referralCode.success.title' => '成功！',
+			'referralCode.success.message' => '紹介コードが正常に適用されました！あなたとあなたの友人は1週間のプレミアムを受け取りました。',
+			'referralCode.errors.missingCode.title' => 'コードが必要です',
+			'referralCode.errors.missingCode.message' => '続行するには紹介コードを入力してください。',
+			'referralCode.errors.invalidFormat.title' => '無効な形式',
+			'referralCode.errors.invalidFormat.message' => '紹介コードは正確に8文字である必要があります。',
+			'referralCode.errors.alreadyUsed.title' => '既に使用済み',
+			'referralCode.errors.alreadyUsed.message' => 'すでに紹介コードを使用しています。各ユーザーは1つのコードのみを使用できます。',
+			'referralCode.errors.selfReferral.title' => '無効なコード',
+			'referralCode.errors.selfReferral.message' => '自分の招待コードは使用できません。友人のコードを使用してください。',
+			'referralCode.errors.codeNotFound.title' => 'コードが見つかりません',
+			'referralCode.errors.codeNotFound.message' => '入力された紹介コードは存在しません。確認してもう一度お試しください。',
+			'referralCode.errors.genericError.title' => 'エラー',
+			'referralCode.errors.genericError.message' => '紹介コードの適用中にエラーが発生しました。もう一度お試しください。',
 			'deleteNotifications' => '通知を削除',
 			'deleteNotificationsDescription' => 'すべての通知を削除してもよろしいですか？\nこのアクションは元に戻せず、取り消すことはできません。',
 			'deleteAll' => 'すべて削除',

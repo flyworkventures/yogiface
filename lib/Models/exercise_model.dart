@@ -11,6 +11,8 @@ class Exercise {
   final bool isFavorited;
   final String? language;
   final DateTime? favoritedAt;
+  final int? recommendationScore;
+  final List<String>? matchedCategories;
 
   Exercise({
     required this.id,
@@ -25,6 +27,8 @@ class Exercise {
     this.isFavorited = false,
     this.language,
     this.favoritedAt,
+    this.recommendationScore,
+    this.matchedCategories,
   });
 
   static List<String>? _parseBenefits(dynamic benefitsData) {
@@ -68,6 +72,12 @@ class Exercise {
       favoritedAt: json['favoritedAt'] != null
           ? DateTime.parse(json['favoritedAt'] as String)
           : null,
+      recommendationScore: json['recommendationScore'] as int?,
+      matchedCategories: json['matchedCategories'] != null
+          ? (json['matchedCategories'] as List)
+              .map((e) => e.toString())
+              .toList()
+          : null,
     );
   }
 
@@ -85,6 +95,8 @@ class Exercise {
       'isFavorited': isFavorited,
       'language': language,
       'favoritedAt': favoritedAt?.toIso8601String(),
+      'recommendationScore': recommendationScore,
+      'matchedCategories': matchedCategories,
     };
   }
 
@@ -101,6 +113,8 @@ class Exercise {
     bool? isFavorited,
     String? language,
     DateTime? favoritedAt,
+    int? recommendationScore,
+    List<String>? matchedCategories,
   }) {
     return Exercise(
       id: id ?? this.id,
@@ -115,6 +129,8 @@ class Exercise {
       isFavorited: isFavorited ?? this.isFavorited,
       language: language ?? this.language,
       favoritedAt: favoritedAt ?? this.favoritedAt,
+      recommendationScore: recommendationScore ?? this.recommendationScore,
+      matchedCategories: matchedCategories ?? this.matchedCategories,
     );
   }
 }

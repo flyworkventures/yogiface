@@ -54,11 +54,11 @@ class BottomNavBarWidget extends HookWidget {
                           label: context.t.courses.title,
                           isSelected: currentIndex == 0,
                         ),
-                        const SizedBox(width: 48), // Reduced space for center
+                        const SizedBox(width: 48),
                         _buildNavItem(
                           index: 2,
                           icon: AppIcons.menuperson,
-                          label: context.t.profile.title, //TODO:Check here
+                          label: context.t.profile.title,
                           isSelected: currentIndex == 2,
                         ),
                       ],

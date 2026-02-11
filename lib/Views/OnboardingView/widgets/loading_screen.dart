@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:yogiface/Repositories/onboarding_repository.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
@@ -147,6 +148,31 @@ class LoadingScreen extends HookConsumerWidget {
               improvementAreas:
                   List<String>.from(onboardingData['improvement_areas']),
             );
+
+            // Try to save OneSignal player id so backend can send push notifications
+            try {
+              // Use pushSubscription.id (player ID) instead of getOnesignalId() (user ID)
+              // because notifications are sent to subscription IDs, not user IDs
+              final playerId = OneSignal.User.pushSubscription.id;
+              final isOptedIn = OneSignal.User.pushSubscription.optedIn;
+
+              if (playerId != null &&
+                  playerId.isNotEmpty &&
+                  isOptedIn == true) {
+                final userNotifier =
+                    ref.read(AllProviders.userProvider.notifier);
+                await userNotifier.saveOneSignalId(playerId);
+                debugPrint(
+                    '✅ OneSignal player id saved: $playerId (subscribed)');
+              } else if (playerId != null && isOptedIn != true) {
+                debugPrint(
+                    '⚠️ OneSignal player id exists but user not subscribed: $playerId');
+              } else {
+                debugPrint('⚠️ OneSignal player id not available');
+              }
+            } catch (e) {
+              debugPrint('❌ Error saving OneSignal player id: $e');
+            }
 
             // Clear pending auth credentials now that account is created
             await storageService.clearPendingAuthCredentials();

@@ -94,11 +94,12 @@ class TranslationsIt with BaseTranslations<AppLocale, Translations> implements T
 	@override String get noFavoritesAdded => 'Nessun preferito aggiunto ancora.';
 	@override String get favoriteExercisesDescription => 'Per impostare i tuoi esercizi preferiti, puoi aggiungere gli esercizi che ti piacciono dalla pagina I miei esercizi.';
 	@override String get enterInvitationCode => 'Inserisci codice invito';
-	@override String get bePartOfPeace => 'Fai parte della pace';
-	@override String get inviteFriends => 'Inserisci il codice di invito che hai ricevuto da un amico.\nDigitalo nel campo designato';
-	@override String get twoDaysPremium => '2 giorni Premium';
-	@override String get advantage => '\nper godere dei suoi vantaggi.';
+	@override String get bePartOfPeace => 'Sii parte della pace';
+	@override String get inviteFriends => 'Inserisci il codice di invito ricevuto da un amico.\nScrivilo nel campo designato';
+	@override String get twoDaysPremium => '7 giorni Premium';
+	@override String get advantage => '\nper godere dei suoi benefici.';
 	@override String get send => 'Invia';
+	@override late final _TranslationsReferralCodeIt referralCode = _TranslationsReferralCodeIt._(_root);
 	@override String get deleteNotifications => 'Elimina notifiche';
 	@override String get deleteNotificationsDescription => 'Sei sicuro di voler eliminare tutte\nle tue notifiche? Questa azione è irreversibile e non può essere annullata.';
 	@override String get deleteAll => 'Elimina tutto';
@@ -446,6 +447,19 @@ class _TranslationsAuthIt implements TranslationsAuthEn {
 	@override String get apple => 'Apple';
 	@override String get guest => 'Continua come ospite';
 	@override String signInFailed({required Object error}) => 'Accesso non riuscito: ${error}';
+}
+
+// Path: referralCode
+class _TranslationsReferralCodeIt implements TranslationsReferralCodeEn {
+	_TranslationsReferralCodeIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get inputPlaceholder => 'Inserisci codice di 8 caratteri';
+	@override String get applying => 'Applicazione codice...';
+	@override late final _TranslationsReferralCodeSuccessIt success = _TranslationsReferralCodeSuccessIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsIt errors = _TranslationsReferralCodeErrorsIt._(_root);
 }
 
 // Path: languageOptions
@@ -1034,6 +1048,32 @@ class _TranslationsFacialScanPositionsIt implements TranslationsFacialScanPositi
 	@override String get right => 'DESTRA';
 }
 
+// Path: referralCode.success
+class _TranslationsReferralCodeSuccessIt implements TranslationsReferralCodeSuccessEn {
+	_TranslationsReferralCodeSuccessIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Successo!';
+	@override String get message => 'Codice referral applicato con successo! Sia tu che il tuo amico avete ricevuto 1 settimana di premium.';
+}
+
+// Path: referralCode.errors
+class _TranslationsReferralCodeErrorsIt implements TranslationsReferralCodeErrorsEn {
+	_TranslationsReferralCodeErrorsIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsReferralCodeErrorsMissingCodeIt missingCode = _TranslationsReferralCodeErrorsMissingCodeIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsInvalidFormatIt invalidFormat = _TranslationsReferralCodeErrorsInvalidFormatIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsAlreadyUsedIt alreadyUsed = _TranslationsReferralCodeErrorsAlreadyUsedIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsSelfReferralIt selfReferral = _TranslationsReferralCodeErrorsSelfReferralIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsCodeNotFoundIt codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundIt._(_root);
+	@override late final _TranslationsReferralCodeErrorsGenericErrorIt genericError = _TranslationsReferralCodeErrorsGenericErrorIt._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class _TranslationsCookiesPolicySection2EssentialIt implements TranslationsCookiesPolicySection2EssentialEn {
 	_TranslationsCookiesPolicySection2EssentialIt._(this._root);
@@ -1340,6 +1380,72 @@ class _TranslationsCourseDetailInstructionsInstruction2It implements Translation
 	// Translations
 	@override String get title => 'Applica olio per il viso o crema idratante';
 	@override String get description => 'Scivola dolcemente senza tirare la pelle.';
+}
+
+// Path: referralCode.errors.missingCode
+class _TranslationsReferralCodeErrorsMissingCodeIt implements TranslationsReferralCodeErrorsMissingCodeEn {
+	_TranslationsReferralCodeErrorsMissingCodeIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Codice richiesto';
+	@override String get message => 'Inserisci un codice referral per continuare.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class _TranslationsReferralCodeErrorsInvalidFormatIt implements TranslationsReferralCodeErrorsInvalidFormatEn {
+	_TranslationsReferralCodeErrorsInvalidFormatIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Formato non valido';
+	@override String get message => 'Il codice referral deve essere di esattamente 8 caratteri.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class _TranslationsReferralCodeErrorsAlreadyUsedIt implements TranslationsReferralCodeErrorsAlreadyUsedEn {
+	_TranslationsReferralCodeErrorsAlreadyUsedIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Già usato';
+	@override String get message => 'Hai già usato un codice referral. Ogni utente può usare un solo codice.';
+}
+
+// Path: referralCode.errors.selfReferral
+class _TranslationsReferralCodeErrorsSelfReferralIt implements TranslationsReferralCodeErrorsSelfReferralEn {
+	_TranslationsReferralCodeErrorsSelfReferralIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Codice non valido';
+	@override String get message => 'Non puoi usare il tuo stesso codice invito. Usa un codice di un amico.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class _TranslationsReferralCodeErrorsCodeNotFoundIt implements TranslationsReferralCodeErrorsCodeNotFoundEn {
+	_TranslationsReferralCodeErrorsCodeNotFoundIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Codice non trovato';
+	@override String get message => 'Il codice referral inserito non esiste. Controlla e riprova.';
+}
+
+// Path: referralCode.errors.genericError
+class _TranslationsReferralCodeErrorsGenericErrorIt implements TranslationsReferralCodeErrorsGenericErrorEn {
+	_TranslationsReferralCodeErrorsGenericErrorIt._(this._root);
+
+	final TranslationsIt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Errore';
+	@override String get message => 'Si è verificato un errore durante l\'applicazione del codice referral. Riprova.';
 }
 
 /// The flat map containing all translations for locale <it>.
@@ -1723,11 +1829,27 @@ extension on TranslationsIt {
 			'noFavoritesAdded' => 'Nessun preferito aggiunto ancora.',
 			'favoriteExercisesDescription' => 'Per impostare i tuoi esercizi preferiti, puoi aggiungere gli esercizi che ti piacciono dalla pagina I miei esercizi.',
 			'enterInvitationCode' => 'Inserisci codice invito',
-			'bePartOfPeace' => 'Fai parte della pace',
-			'inviteFriends' => 'Inserisci il codice di invito che hai ricevuto da un amico.\nDigitalo nel campo designato',
-			'twoDaysPremium' => '2 giorni Premium',
-			'advantage' => '\nper godere dei suoi vantaggi.',
+			'bePartOfPeace' => 'Sii parte della pace',
+			'inviteFriends' => 'Inserisci il codice di invito ricevuto da un amico.\nScrivilo nel campo designato',
+			'twoDaysPremium' => '7 giorni Premium',
+			'advantage' => '\nper godere dei suoi benefici.',
 			'send' => 'Invia',
+			'referralCode.inputPlaceholder' => 'Inserisci codice di 8 caratteri',
+			'referralCode.applying' => 'Applicazione codice...',
+			'referralCode.success.title' => 'Successo!',
+			'referralCode.success.message' => 'Codice referral applicato con successo! Sia tu che il tuo amico avete ricevuto 1 settimana di premium.',
+			'referralCode.errors.missingCode.title' => 'Codice richiesto',
+			'referralCode.errors.missingCode.message' => 'Inserisci un codice referral per continuare.',
+			'referralCode.errors.invalidFormat.title' => 'Formato non valido',
+			'referralCode.errors.invalidFormat.message' => 'Il codice referral deve essere di esattamente 8 caratteri.',
+			'referralCode.errors.alreadyUsed.title' => 'Già usato',
+			'referralCode.errors.alreadyUsed.message' => 'Hai già usato un codice referral. Ogni utente può usare un solo codice.',
+			'referralCode.errors.selfReferral.title' => 'Codice non valido',
+			'referralCode.errors.selfReferral.message' => 'Non puoi usare il tuo stesso codice invito. Usa un codice di un amico.',
+			'referralCode.errors.codeNotFound.title' => 'Codice non trovato',
+			'referralCode.errors.codeNotFound.message' => 'Il codice referral inserito non esiste. Controlla e riprova.',
+			'referralCode.errors.genericError.title' => 'Errore',
+			'referralCode.errors.genericError.message' => 'Si è verificato un errore durante l\'applicazione del codice referral. Riprova.',
 			'deleteNotifications' => 'Elimina notifiche',
 			'deleteNotificationsDescription' => 'Sei sicuro di voler eliminare tutte\nle tue notifiche? Questa azione è irreversibile e non può essere annullata.',
 			'deleteAll' => 'Elimina tutto',

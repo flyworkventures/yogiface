@@ -188,14 +188,16 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Enter the invitation code you received from a friend. Type it into the designated field'
 	String get inviteFriends => 'Enter the invitation code you received from a friend.\nType it into the designated field';
 
-	/// en: '2-Day Premium'
-	String get twoDaysPremium => '2-Day Premium';
+	/// en: '7-Day Premium'
+	String get twoDaysPremium => '7-Day Premium';
 
 	/// en: ' to enjoy its benefits.'
 	String get advantage => '\nto enjoy its benefits.';
 
 	/// en: 'Send'
 	String get send => 'Send';
+
+	late final TranslationsReferralCodeEn referralCode = TranslationsReferralCodeEn._(_root);
 
 	/// en: 'Delete Notifications'
 	String get deleteNotifications => 'Delete Notifications';
@@ -851,6 +853,24 @@ class TranslationsAuthEn {
 
 	/// en: 'Sign-in failed: $error'
 	String signInFailed({required Object error}) => 'Sign-in failed: ${error}';
+}
+
+// Path: referralCode
+class TranslationsReferralCodeEn {
+	TranslationsReferralCodeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Enter 8-character code'
+	String get inputPlaceholder => 'Enter 8-character code';
+
+	/// en: 'Applying code...'
+	String get applying => 'Applying code...';
+
+	late final TranslationsReferralCodeSuccessEn success = TranslationsReferralCodeSuccessEn._(_root);
+	late final TranslationsReferralCodeErrorsEn errors = TranslationsReferralCodeErrorsEn._(_root);
 }
 
 // Path: languageOptions
@@ -1683,6 +1703,36 @@ class TranslationsFacialScanPositionsEn {
 	String get right => 'RIGHT';
 }
 
+// Path: referralCode.success
+class TranslationsReferralCodeSuccessEn {
+	TranslationsReferralCodeSuccessEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Success!'
+	String get title => 'Success!';
+
+	/// en: 'Referral code applied successfully! Both you and your friend received 1 week of premium.'
+	String get message => 'Referral code applied successfully! Both you and your friend received 1 week of premium.';
+}
+
+// Path: referralCode.errors
+class TranslationsReferralCodeErrorsEn {
+	TranslationsReferralCodeErrorsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final TranslationsReferralCodeErrorsMissingCodeEn missingCode = TranslationsReferralCodeErrorsMissingCodeEn._(_root);
+	late final TranslationsReferralCodeErrorsInvalidFormatEn invalidFormat = TranslationsReferralCodeErrorsInvalidFormatEn._(_root);
+	late final TranslationsReferralCodeErrorsAlreadyUsedEn alreadyUsed = TranslationsReferralCodeErrorsAlreadyUsedEn._(_root);
+	late final TranslationsReferralCodeErrorsSelfReferralEn selfReferral = TranslationsReferralCodeErrorsSelfReferralEn._(_root);
+	late final TranslationsReferralCodeErrorsCodeNotFoundEn codeNotFound = TranslationsReferralCodeErrorsCodeNotFoundEn._(_root);
+	late final TranslationsReferralCodeErrorsGenericErrorEn genericError = TranslationsReferralCodeErrorsGenericErrorEn._(_root);
+}
+
 // Path: cookiesPolicy.section2.essential
 class TranslationsCookiesPolicySection2EssentialEn {
 	TranslationsCookiesPolicySection2EssentialEn._(this._root);
@@ -2099,6 +2149,96 @@ class TranslationsCourseDetailInstructionsInstruction2En {
 	String get description => 'Smoothly glide without pulling your skin.';
 }
 
+// Path: referralCode.errors.missingCode
+class TranslationsReferralCodeErrorsMissingCodeEn {
+	TranslationsReferralCodeErrorsMissingCodeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Code Required'
+	String get title => 'Code Required';
+
+	/// en: 'Please enter a referral code to continue.'
+	String get message => 'Please enter a referral code to continue.';
+}
+
+// Path: referralCode.errors.invalidFormat
+class TranslationsReferralCodeErrorsInvalidFormatEn {
+	TranslationsReferralCodeErrorsInvalidFormatEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Invalid Format'
+	String get title => 'Invalid Format';
+
+	/// en: 'Referral code must be exactly 8 characters long.'
+	String get message => 'Referral code must be exactly 8 characters long.';
+}
+
+// Path: referralCode.errors.alreadyUsed
+class TranslationsReferralCodeErrorsAlreadyUsedEn {
+	TranslationsReferralCodeErrorsAlreadyUsedEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Already Used'
+	String get title => 'Already Used';
+
+	/// en: 'You have already used a referral code. Each user can only use one code.'
+	String get message => 'You have already used a referral code. Each user can only use one code.';
+}
+
+// Path: referralCode.errors.selfReferral
+class TranslationsReferralCodeErrorsSelfReferralEn {
+	TranslationsReferralCodeErrorsSelfReferralEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Invalid Code'
+	String get title => 'Invalid Code';
+
+	/// en: 'You cannot use your own invitation code. Please use a code from a friend.'
+	String get message => 'You cannot use your own invitation code. Please use a code from a friend.';
+}
+
+// Path: referralCode.errors.codeNotFound
+class TranslationsReferralCodeErrorsCodeNotFoundEn {
+	TranslationsReferralCodeErrorsCodeNotFoundEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Code Not Found'
+	String get title => 'Code Not Found';
+
+	/// en: 'The referral code you entered does not exist. Please double-check and try again.'
+	String get message => 'The referral code you entered does not exist. Please double-check and try again.';
+}
+
+// Path: referralCode.errors.genericError
+class TranslationsReferralCodeErrorsGenericErrorEn {
+	TranslationsReferralCodeErrorsGenericErrorEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Error'
+	String get title => 'Error';
+
+	/// en: 'An error occurred while applying the referral code. Please try again.'
+	String get message => 'An error occurred while applying the referral code. Please try again.';
+}
+
 /// The flat map containing all translations for locale <en>.
 /// Only for edge cases! For simple maps, use the map function of this library.
 ///
@@ -2482,9 +2622,25 @@ extension on Translations {
 			'enterInvitationCode' => 'Enter Invitation Code',
 			'bePartOfPeace' => 'Be Part of Peace',
 			'inviteFriends' => 'Enter the invitation code you received from a friend.\nType it into the designated field',
-			'twoDaysPremium' => '2-Day Premium',
+			'twoDaysPremium' => '7-Day Premium',
 			'advantage' => '\nto enjoy its benefits.',
 			'send' => 'Send',
+			'referralCode.inputPlaceholder' => 'Enter 8-character code',
+			'referralCode.applying' => 'Applying code...',
+			'referralCode.success.title' => 'Success!',
+			'referralCode.success.message' => 'Referral code applied successfully! Both you and your friend received 1 week of premium.',
+			'referralCode.errors.missingCode.title' => 'Code Required',
+			'referralCode.errors.missingCode.message' => 'Please enter a referral code to continue.',
+			'referralCode.errors.invalidFormat.title' => 'Invalid Format',
+			'referralCode.errors.invalidFormat.message' => 'Referral code must be exactly 8 characters long.',
+			'referralCode.errors.alreadyUsed.title' => 'Already Used',
+			'referralCode.errors.alreadyUsed.message' => 'You have already used a referral code. Each user can only use one code.',
+			'referralCode.errors.selfReferral.title' => 'Invalid Code',
+			'referralCode.errors.selfReferral.message' => 'You cannot use your own invitation code. Please use a code from a friend.',
+			'referralCode.errors.codeNotFound.title' => 'Code Not Found',
+			'referralCode.errors.codeNotFound.message' => 'The referral code you entered does not exist. Please double-check and try again.',
+			'referralCode.errors.genericError.title' => 'Error',
+			'referralCode.errors.genericError.message' => 'An error occurred while applying the referral code. Please try again.',
 			'deleteNotifications' => 'Delete Notifications',
 			'deleteNotificationsDescription' => 'Are you sure you want to delete all \nyour notifications? This action is irreversible and cannot be undone.',
 			'deleteAll' => 'Delete All',

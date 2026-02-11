@@ -50,6 +50,11 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            
+        <!-- Google Sign-In Web Client ID for OAuth -->
+        <meta-data
+            android:name="com.google.android.gms.auth.api.signin.clientId"
+            android:value="643185133399-juee6bm3s0nb5bfcjvol2tcnb53s6vof.apps.googleusercontent.com" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

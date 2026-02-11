@@ -13,23 +13,14 @@ class SocialAuthService {
   /// Returns the ID token needed for backend authentication
   Future<String?> signInWithGoogle() async {
     try {
-      // Get GoogleSignIn instance (version 7.x uses singleton pattern)
+      // Get GoogleSignIn instance
+      // Web client ID is configured in AndroidManifest.xml (Android) and Info.plist (iOS)
       final googleSignIn = GoogleSignIn.instance;
+      await googleSignIn.initialize();
+      // Authenticate (this shows the account picker)
+      final GoogleSignInAccount account = await googleSignIn.authenticate();
 
-      // Initialize Google Sign-In (call only once)
-      // Client ID is configured in Info.plist (iOS) and google-services.json (Android)
-      await googleSignIn.initialize(
-          serverClientId:
-              "643185133399-juee6bm3s0nb5bfcjvol2tcnb53s6vof.apps.googleusercontent.com");
-
-      // If lightweight auth fails, show the interactive sign-in UI
-
-      GoogleSignInAccount account = await googleSignIn.authenticate(
-        scopeHint: ['email', 'profile'],
-      );
-
-      // Get authentication details directly from the account
-
+      // Get authentication details
       final GoogleSignInAuthentication auth = account.authentication;
 
       if (auth.idToken == null) {
@@ -39,6 +30,13 @@ class SocialAuthService {
 
       Print.info('Google sign-in successful for: ${account.email}');
       return auth.idToken;
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        Print.info('User cancelled Google Sign-In $e');
+        return null;
+      }
+      Print.error('Error signing in with Google: $e');
+      rethrow;
     } catch (e) {
       Print.error('Error signing in with Google: $e');
       rethrow;
@@ -91,6 +89,12 @@ class SocialAuthService {
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
+        webAuthenticationOptions: WebAuthenticationOptions(
+          clientId: 'com.flywork.yogifaceapp',
+          redirectUri: Uri.parse(
+            'http://localhost:3000/api/auth/apple/callback', //TODO: Update this to your actual redirect URI for production (must match what you set in Apple Developer Console)
+          ),
+        ),
       );
 
       // Check if we got the identity token

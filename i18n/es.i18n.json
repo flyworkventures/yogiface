@@ -567,10 +567,44 @@
   "favoriteExercisesDescription": "Para establecer tus ejercicios favoritos, puedes agregar los ejercicios que te gusten desde la página Mis ejercicios.",
   "enterInvitationCode": "Ingresar código de invitación",
   "bePartOfPeace": "Sé parte de la paz",
-  "inviteFriends": "Ingresa el código de invitación que recibiste de un amigo.\\nEscríbelo en el campo designado",
-  "twoDaysPremium": "2 días Premium",
-  "advantage": "\\npara disfrutar de sus beneficios.",
+  "inviteFriends": "Ingresa el código de invitación que recibiste de un amigo.\nEscríbelo en el campo designado",
+  "twoDaysPremium": "7 días Premium",
+  "advantage": "\npara disfrutar de sus beneficios.",
   "send": "Enviar",
+  "referralCode": {
+    "inputPlaceholder": "Ingresa el código de 8 caracteres",
+    "applying": "Aplicando código...",
+    "success": {
+      "title": "¡Éxito!",
+      "message": "¡Código de referencia aplicado con éxito! Tú y tu amigo recibieron 1 semana de premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Código requerido",
+        "message": "Por favor, ingresa un código de referencia para continuar."
+      },
+      "invalidFormat": {
+        "title": "Formato inválido",
+        "message": "El código de referencia debe tener exactamente 8 caracteres."
+      },
+      "alreadyUsed": {
+        "title": "Ya utilizado",
+        "message": "Ya has utilizado un código de referencia. Cada usuario solo puede usar un código."
+      },
+      "selfReferral": {
+        "title": "Código inválido",
+        "message": "No puedes usar tu propio código de invitación. Por favor usa un código de un amigo."
+      },
+      "codeNotFound": {
+        "title": "Código no encontrado",
+        "message": "El código de referencia que ingresaste no existe. Por favor verifica e intenta nuevamente."
+      },
+      "genericError": {
+        "title": "Error",
+        "message": "Ocurrió un error al aplicar el código de referencia. Por favor intenta nuevamente."
+      }
+    }
+  },
   "deleteNotifications": "Eliminar notificaciones",
   "deleteNotificationsDescription": "¿Estás seguro de que quieres eliminar todas\\ntus notificaciones? Esta acción es irreversible y no se puede deshacer.",
   "deleteAll": "Eliminar todo",

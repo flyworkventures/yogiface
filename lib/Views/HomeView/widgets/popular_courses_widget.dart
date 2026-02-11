@@ -1,90 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Repositories/exercise_repository.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
-import 'package:yogiface/utils/app_assets.dart';
 
 import '../../../theme/app_colors.dart';
 
-class PopularCoursesWidget extends StatelessWidget {
+// Provider definition is usually in the repository file or a global providers file.
+// Assuming it's defined in exercise_repository.dart based on previous context.
+// If it's not exported, we might need to check where it is.
+// For now, I'll rely on the import. If the provider is not a top-level variable there, I'll check.
+// Checking the previous file view of exercise_repository.dart shows:
+// final dioServiceProvider = Provider<DioService>((ref) { ... });
+// But it DOES NOT show exerciseRepositoryProvider.
+// I need to define it or find where it is.
+// Actually, looking at the previous view_file of exercise_repository.dart, I don't see exerciseRepositoryProvider defined.
+// I should define it there.
+
+class PopularCoursesWidget extends HookConsumerWidget {
   const PopularCoursesWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final List<Course> courses = [
-      Course(
-        title: context.t.home.courses.foreheadSmoother.title,
-        imagePath: AppImages.focusarea2,
-        thumbnailPath: AppImages.popularcourses1,
-        benefits: [
-          BenefitItem(
-              title: context.t.home.benefits.naturalIroning.title,
-              description: context.t.home.benefits.naturalIroning.description),
-          BenefitItem(
-              title: context.t.home.benefits.botoxEffect.title,
-              description: context.t.home.benefits.botoxEffect.description),
-          BenefitItem(
-              title: context.t.home.benefits.stressRelief.title,
-              description: context.t.home.benefits.stressRelief.description),
-          BenefitItem(
-              title: context.t.home.benefits.radiantAppearance.title,
-              description:
-                  context.t.home.benefits.radiantAppearance.description),
-          BenefitItem(
-              title: context.t.home.benefits.dePuffing.title,
-              description: context.t.home.benefits.dePuffing.description)
-        ],
-        description: context.t.home.courses.foreheadSmoother.description,
-      ),
-      Course(
-        title: context.t.home.courses.vMove.title,
-        imagePath: AppImages.focusarea2,
-        benefits: [
-          BenefitItem(
-              title: context.t.home.benefits.naturalIroning.title,
-              description: context.t.home.benefits.naturalIroning.description),
-          BenefitItem(
-              title: context.t.home.benefits.botoxEffect.title,
-              description: context.t.home.benefits.botoxEffect.description),
-          BenefitItem(
-              title: context.t.home.benefits.stressRelief.title,
-              description: context.t.home.benefits.stressRelief.description),
-          BenefitItem(
-              title: context.t.home.benefits.radiantAppearance.title,
-              description:
-                  context.t.home.benefits.radiantAppearance.description),
-          BenefitItem(
-              title: context.t.home.benefits.dePuffing.title,
-              description: context.t.home.benefits.dePuffing.description)
-        ],
-        thumbnailPath: AppImages.vmove,
-        description: context.t.home.courses.vMove.description,
-      ),
-      Course(
-        title: context.t.home.courses.cheekLifter.title,
-        imagePath: AppImages.focusarea2,
-        benefits: [
-          BenefitItem(
-              title: context.t.home.benefits.naturalIroning.title,
-              description: context.t.home.benefits.naturalIroning.description),
-          BenefitItem(
-              title: context.t.home.benefits.botoxEffect.title,
-              description: context.t.home.benefits.botoxEffect.description),
-          BenefitItem(
-              title: context.t.home.benefits.stressRelief.title,
-              description: context.t.home.benefits.stressRelief.description),
-          BenefitItem(
-              title: context.t.home.benefits.radiantAppearance.title,
-              description:
-                  context.t.home.benefits.radiantAppearance.description),
-          BenefitItem(
-              title: context.t.home.benefits.dePuffing.title,
-              description: context.t.home.benefits.dePuffing.description)
-        ],
-        thumbnailPath: AppImages.cheeflifter,
-        description: context.t.home.courses.cheekLifter.description,
-      ),
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final popularExercisesAsync = useFuture(useMemoized(
+      () => ref.read(exerciseRepositoryProvider).getPopularExercises(
+            lang: LocaleSettings.currentLocale.languageCode,
+          ),
+    ));
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
@@ -135,29 +79,57 @@ class PopularCoursesWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           // Kurs Listesi
-          ...courses.asMap().entries.map((entry) {
-            final course = entry.value;
-            final isLast = entry.key == courses.length - 1;
+          if (popularExercisesAsync.connectionState == ConnectionState.waiting)
+            const Center(child: CircularProgressIndicator())
+          else if (popularExercisesAsync.hasError)
+            Text('Error: ${popularExercisesAsync.error}')
+          else if (popularExercisesAsync.hasData &&
+              popularExercisesAsync.data?.data.exercises != null)
+            ...popularExercisesAsync.data!.data.exercises!
+                .asMap()
+                .entries
+                .map((entry) {
+              final exercise = entry.value;
+              final isLast = entry.key ==
+                  popularExercisesAsync.data!.data.exercises!.length - 1;
 
-            return Column(
-              children: [
-                _CourseCard(
-                  title: course.title,
-                  description: course.description,
-                  imagePath: course.thumbnailPath,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => CourseDetailView(course: course),
-                      ),
-                    );
-                  },
-                ),
-                if (!isLast) const SizedBox(height: 12),
-              ],
-            );
-          }),
+              // Map Exercise to Course
+              final course = Course(
+                id: exercise.id,
+                title: exercise.title ?? '',
+                description: exercise.description ?? '',
+                imagePath: exercise.imageCdnPath,
+                thumbnailPath:
+                    exercise.imageCdnPath, // Using same image for now
+                benefits: exercise.benefits
+                        ?.map((b) => BenefitItem(title: b, description: ''))
+                        .toList() ??
+                    [],
+              );
+
+              return Column(
+                children: [
+                  _CourseCard(
+                    title: course.title,
+                    description: course.description,
+                    imagePath: course.thumbnailPath,
+                    isNetworkImage: true,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CourseDetailView(course: course),
+                        ),
+                      );
+                    },
+                  ),
+                  if (!isLast) const SizedBox(height: 12),
+                ],
+              );
+            })
+          else
+            const Text('No popular courses found'),
         ],
       ),
     );
@@ -169,12 +141,14 @@ class _CourseCard extends StatelessWidget {
   final String description;
   final String imagePath;
   final VoidCallback? onTap;
+  final bool isNetworkImage;
 
   const _CourseCard({
     required this.title,
     required this.description,
     required this.imagePath,
     this.onTap,
+    this.isNetworkImage = false,
   });
 
   @override
@@ -199,8 +173,20 @@ class _CourseCard extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  imagePath,
+                child: SizedBox(
+                  width: 100, // Fixed width for image consistency
+                  height: 100, // Fixed height for image consistency
+                  child: isNetworkImage
+                      ? Image.network(
+                          imagePath,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.error),
+                        )
+                      : Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
             ),

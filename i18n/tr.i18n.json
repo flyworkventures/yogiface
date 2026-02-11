@@ -568,9 +568,43 @@
     "enterInvitationCode": "Davet Kodu Gir",
     "bePartOfPeace": "Huzura Ortak Ol",
     "inviteFriends": "Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak",
-    "twoDaysPremium": "2 Günlük Premium",
+    "twoDaysPremium": "7 Günlük Premium",
     "advantage": "\navantajlarından yararlanabilirsiniz.",
     "send": "Gönder",
+    "referralCode": {
+        "inputPlaceholder": "8 karakterli kodu girin",
+        "applying": "Kod uygulanıyor...",
+        "success": {
+            "title": "Başarılı!",
+            "message": "Referans kodu başarıyla uygulandı! Hem siz hem de arkadaşınız 1 hafta premium kazandınız."
+        },
+        "errors": {
+            "missingCode": {
+                "title": "Kod Gerekli",
+                "message": "Devam etmek için lütfen bir referans kodu girin."
+            },
+            "invalidFormat": {
+                "title": "Geçersiz Format",
+                "message": "Referans kodu tam olarak 8 karakter uzunluğunda olmalıdır."
+            },
+            "alreadyUsed": {
+                "title": "Zaten Kullanıldı",
+                "message": "Zaten bir referans kodu kullandınız. Her kullanıcı yalnızca bir kod kullanabilir."
+            },
+            "selfReferral": {
+                "title": "Geçersiz Kod",
+                "message": "Kendi davet kodunuzu kullanamazsınız. Lütfen bir arkadaşınızın kodunu kullanın."
+            },
+            "codeNotFound": {
+                "title": "Kod Bulunamadı",
+                "message": "Girdiğiniz referans kodu mevcut değil. Lütfen kontrol edip tekrar deneyin."
+            },
+            "genericError": {
+                "title": "Hata",
+                "message": "Referans kodu uygulanırken bir hata oluştu. Lütfen tekrar deneyin."
+            }
+        }
+    },
     "deleteNotifications": "Bildirimleri Sil",
     "deleteNotificationsDescription": "Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.",
     "deleteAll": "Tümünü Sil",
