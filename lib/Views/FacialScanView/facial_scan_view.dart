@@ -298,7 +298,7 @@ class FacialScanView extends HookConsumerWidget {
             onCapturePressed: handleCapture,
             onDeleteImage: handleDeleteImage,
             onGetStarted: startAnalysis,
-            onSkipToResult: skipToResult, // DEBUG: Skip button callback
+            // onSkipToResult: skipToResult, // DEBUG: Skip button callback
           ),
         );
       case FacialScanState.analyzing:
