@@ -1,18 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:yogiface/Models/exercise_model.dart' as api;
 import 'package:yogiface/Repositories/auth_repository.dart';
 import 'package:yogiface/Repositories/exercise_repository.dart';
 import 'package:yogiface/Repositories/notification_repository.dart';
+import 'package:yogiface/Repositories/personal_program_repository.dart';
 import 'package:yogiface/Repositories/referral_repository.dart';
 import 'package:yogiface/Repositories/user_repository.dart';
-import 'package:yogiface/Repositories/personal_program_repository.dart';
-import 'package:yogiface/Riverpod/Providers/user_provider.dart';
-import 'package:yogiface/Services/dio_service.dart';
 import 'package:yogiface/Riverpod/Controllers/exercise_state.dart';
 import 'package:yogiface/Riverpod/Providers/exercise_provider.dart';
-import 'package:yogiface/Models/exercise_model.dart' as api;
-import 'package:yogiface/Models/auth_model.dart';
-import 'package:yogiface/Services/secure_storage_service.dart';
 import 'package:yogiface/Riverpod/Providers/premium_provider.dart';
+import 'package:yogiface/Riverpod/Providers/user_provider.dart';
+import 'package:yogiface/Services/dio_service.dart';
+import 'package:yogiface/Services/secure_storage_service.dart';
 
 class AllProviders {
   static final exerciseProvider =
@@ -82,7 +81,7 @@ class AllProviders {
   });
 
   static final userProvider =
-      StateNotifierProvider<UserNotifier, AsyncValue<AuthResponse?>>((ref) {
+      StateNotifierProvider<UserNotifier, UserState>((ref) {
     return UserNotifier(ref);
   });
 

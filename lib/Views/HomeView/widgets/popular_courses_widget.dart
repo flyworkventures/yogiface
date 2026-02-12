@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+import 'package:yogiface/Models/exercise_model.dart';
 import 'package:yogiface/Repositories/exercise_repository.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
@@ -23,8 +24,59 @@ class PopularCoursesWidget extends HookConsumerWidget {
 
     final isPremiumRevenueCat = ref.watch(AllProviders.premiumProvider);
     final userState = ref.watch(AllProviders.userProvider);
-    final isPremiumUser = userState.value?.user?.isPremium ?? false;
+    final isPremiumUser = userState.currentUser?.user?.isPremium ?? false;
     final isPremium = isPremiumRevenueCat || isPremiumUser;
+    void navigateToCourseDetail(BuildContext context, Exercise course) {
+      // Parse benefits string/json if needed, or use dummy if benefits is just a string description
+      // for now we construct Course object
+      // Wait, CourseDetailView expects a Course object.
+      // I need to see Course definition in course_detail_view.dart or define one here.
+      // existing code: import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
+
+      // Attempting to map Exercise to Course.
+      // Since I don't see Course definition, I stick to the one used in previous file content
+      final courseDetail = Course(
+        id: course.id,
+        title: course.title ?? '',
+        description: course.description ?? '',
+        imagePath: course.imageCdnPath,
+        thumbnailPath: course.imageCdnPath,
+        benefits: [
+          // Parse course.benefits from backend (now a List<String>)
+          // Each string format: "Title: Description"
+          if (course.benefits != null && course.benefits!.isNotEmpty)
+            ...course.benefits!.map((benefit) {
+              // Remove quotation marks and trim
+              final cleanBenefit = benefit
+                  .replaceAll('"', '')
+                  .replaceAll('[', '')
+                  .replaceAll(']', '')
+                  .trim();
+
+              // Split by colon to get title and description
+              final parts = cleanBenefit.split(':');
+              if (parts.length >= 2) {
+                return BenefitItem(
+                  title: parts[0].trim(),
+                  description: parts.sublist(1).join(':').trim(),
+                );
+              } else {
+                // If no colon, use the whole string as description
+                return BenefitItem(
+                  title: 'Benefit',
+                  description: cleanBenefit,
+                );
+              }
+            })
+        ],
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CourseDetailView(course: courseDetail),
+        ),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
@@ -123,13 +175,7 @@ class PopularCoursesWidget extends HookConsumerWidget {
                         }
                         return;
                       }
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CourseDetailView(course: course),
-                        ),
-                      );
+                      navigateToCourseDetail(context, exercise);
                     },
                   ),
                   if (!isLast) const SizedBox(height: 16),

@@ -29,8 +29,8 @@ class EditProfileView extends HookConsumerWidget {
 
     // Watch user data
     final userState = ref.watch(AllProviders.userProvider);
-    final user = userState.value?.user;
-    final profile = userState.value?.profile;
+    final user = userState.currentUser?.user;
+    final profile = userState.currentUser?.profile;
 
     final nameController = useTextEditingController(text: user?.fullName ?? '');
     final emailController = useTextEditingController(text: user?.email ?? '');

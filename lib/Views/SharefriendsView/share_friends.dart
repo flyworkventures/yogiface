@@ -46,12 +46,37 @@ class ShareWithFriendsPage extends HookConsumerWidget {
         ),
         child: SizedBox.expand(
           child: SafeArea(
-            child: userState.when(
-              data: (authResponse) {
+            child: Builder(
+              builder: (context) {
+                final authResponse = userState.currentUser;
                 final user = authResponse?.user;
-                if (user == null) {
+
+                // Show loading if no user data
+                if (!userState.hasUser && userState.asyncValue.isLoading) {
                   return const Center(child: CircularProgressIndicator());
                 }
+
+                // Show error if still no user
+                if (user == null) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Unable to load user data'),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            ref
+                                .read(AllProviders.userProvider.notifier)
+                                .refreshUser(silent: false);
+                          },
+                          child: const Text('Retry'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Column(
@@ -186,12 +211,6 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                   ),
                 );
               },
-              error: (error, stack) => Center(
-                child: Text('Error: $error'),
-              ),
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
             ),
           ),
         ),

@@ -8,6 +8,7 @@ import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
+import 'package:yogiface/utils/print.dart';
 
 class FocusAreasWidget extends HookConsumerWidget {
   const FocusAreasWidget({super.key});
@@ -74,17 +75,42 @@ class FocusAreasWidget extends HookConsumerWidget {
         final exercise = startCoursesAsync.data!.data.exercises!.firstWhere(
           (e) => e.type.toLowerCase() == selectedAreaKey.value.toLowerCase(),
         );
-
+        Print.info(exercise.benefits.toString());
         selectedCourse = Course(
-            id: exercise.id,
-            title: exercise.title ?? '',
-            description: exercise.description ?? '',
-            imagePath: exercise.imageCdnPath,
-            thumbnailPath: exercise.imageCdnPath,
-            benefits: exercise.benefits
-                    ?.map((b) => BenefitItem(title: b, description: ''))
-                    .toList() ??
-                []);
+          id: exercise.id,
+          title: exercise.title ?? '',
+          description: exercise.description ?? '',
+          imagePath: exercise.imageCdnPath,
+          thumbnailPath: exercise.imageCdnPath,
+          benefits: [
+            // Parse course.benefits from backend (now a List<String>)
+            // Each string format: "Title: Description"
+            if (exercise.benefits != null && exercise.benefits!.isNotEmpty)
+              ...exercise.benefits!.map((benefit) {
+                // Remove quotation marks and trim
+                final cleanBenefit = benefit
+                    .replaceAll('"', '')
+                    .replaceAll('[', '')
+                    .replaceAll(']', '')
+                    .trim();
+                Print.info(cleanBenefit);
+                // Split by colon to get title and description
+                final parts = cleanBenefit.split(':');
+                if (parts.length >= 2) {
+                  return BenefitItem(
+                    title: parts[0].trim(),
+                    description: parts.sublist(1).join(':').trim(),
+                  );
+                } else {
+                  // If no colon, use the whole string as description
+                  return BenefitItem(
+                    title: 'Benefit',
+                    description: cleanBenefit,
+                  );
+                }
+              })
+          ],
+        );
       } catch (_) {
         // No exercise found for this type
         selectedCourse = null;

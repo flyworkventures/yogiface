@@ -7,13 +7,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yogiface/Models/auth_model.dart';
-import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/Models/exercise_model.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/FacialScanView/services/face_detection_service.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analysis_result_screen.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/analyzing_screen.dart';
 import 'package:yogiface/Views/FacialScanView/widgets/capture_screen.dart';
+import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/utils/print.dart';
 
 enum FacialScanState {
   capture,
@@ -67,14 +68,14 @@ class FacialScanView extends HookConsumerWidget {
           minScore: 0,
         );
         recommendations.value = result;
-        print('✅ DEBUG: Fetched ${result.length} recommendations');
-        print('📋 Exercise Names:');
+        Print.info('✅ DEBUG: Fetched ${result.length} recommendations');
+        Print.info('📋 Exercise Names:');
         for (var i = 0; i < result.length; i++) {
-          print(
+          Print.info(
               '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
         }
       } catch (e) {
-        print('❌ DEBUG: Error fetching recommendations: $e');
+        Print.info('❌ DEBUG: Error fetching recommendations: $e');
         recommendations.value = [];
       }
       // Skip to result screen
@@ -94,16 +95,16 @@ class FacialScanView extends HookConsumerWidget {
       )
           .then((result) {
         recommendations.value = result;
-        print('✅ Fetched ${result.length} recommendations in facial scan');
+        Print.info('✅ Fetched ${result.length} recommendations in facial scan');
         if (result.isNotEmpty) {
-          print('📋 All Exercise Names:');
+          Print.info('📋 All Exercise Names:');
           for (var i = 0; i < result.length; i++) {
-            print(
+            Print.info(
                 '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
           }
         }
       }).catchError((e) {
-        print('❌ Error fetching recommendations: $e');
+        Print.info('❌ Error fetching recommendations: $e');
         recommendations.value = [];
       });
 
@@ -222,7 +223,7 @@ class FacialScanView extends HookConsumerWidget {
 
     // Get user profile data
     final userState = ref.watch(AllProviders.userProvider);
-    final userProfile = userState.value?.profile;
+    final userProfile = userState.currentUser?.profile;
 
     // Map skinType to localized format
     String getSkinTypeDisplay(BuildContext context, String? skinType) {
@@ -310,17 +311,17 @@ class FacialScanView extends HookConsumerWidget {
           ),
         );
       case FacialScanState.result:
-        print(
+        Print.info(
             '📊 RESULT SCREEN - Recommendations count: ${recommendations.value?.length ?? 0}');
         if (recommendations.value != null &&
             recommendations.value!.isNotEmpty) {
-          print(
+          Print.info(
               '📊 First recommendation: ${recommendations.value!.first.title}');
           // Convert to JSON for better readability
           final recommendationsJson =
               recommendations.value!.map((e) => e.toJson()).toList();
-          print('📊 Full recommendations (JSON):');
-          print(jsonEncode(recommendationsJson));
+          Print.info('📊 Full recommendations (JSON):');
+          Print.info(jsonEncode(recommendationsJson));
         }
         return Scaffold(
           backgroundColor: Colors.white,

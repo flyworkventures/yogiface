@@ -118,9 +118,9 @@ class _RevenueCatDebugHelperState extends ConsumerState<RevenueCatDebugHelper> {
     Print.info('🎯 RevenueCat Premium: $isPremiumRC');
     Print.info('🎯 PremiumProvider Premium: $isPremiumProvider');
 
-    userState.when(
+    userState.asyncValue.whenOrNull(
       data: (authResponse) {
-        final user = authResponse?.user;
+        final user = userState.currentUser?.user;
         Print.info('🎯 Backend User Premium: ${user?.isPremium}');
         Print.info('🎯 User ID: ${user?.id}');
 
@@ -182,19 +182,27 @@ class _RevenueCatDebugHelperState extends ConsumerState<RevenueCatDebugHelper> {
           const SizedBox(height: 8),
           _buildInfoRow('Status', _status),
           _buildInfoRow('RC Premium', isPremium ? '✅ Active' : '❌ Inactive'),
-          userState.when(
-            data: (authResponse) {
+          Builder(
+            builder: (context) {
+              final authResponse = userState.currentUser;
               final user = authResponse?.user;
+
+              if (userState.asyncValue.isLoading && !userState.hasUser) {
+                return _buildInfoRow('Backend', 'Loading...');
+              }
+
+              if (user == null) {
+                return _buildInfoRow('Backend', 'Error');
+              }
+
               return Column(
                 children: [
                   _buildInfoRow('Backend Premium',
-                      user?.isPremium == true ? '✅ Active' : '❌ Inactive'),
-                  _buildInfoRow('User ID', user?.id.toString() ?? 'null'),
+                      user.isPremium == true ? '✅ Active' : '❌ Inactive'),
+                  _buildInfoRow('User ID', user.id.toString()),
                 ],
               );
             },
-            loading: () => _buildInfoRow('Backend', 'Loading...'),
-            error: (e, s) => _buildInfoRow('Backend', 'Error'),
           ),
           if (_customerInfo != null) ...[
             _buildInfoRow('RC User ID', _customerInfo!.originalAppUserId),

@@ -4,9 +4,63 @@ import 'package:yogiface/Repositories/user_repository.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/utils/print.dart';
 
-class UserNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
-  UserNotifier(this.ref) : super(const AsyncValue.loading()) {
-    refreshUser();
+/// Enhanced user state with caching and defensive null handling
+class UserState {
+  final AsyncValue<AuthResponse?> asyncValue;
+  final AuthResponse? lastKnownUser;
+  final bool isRefreshing;
+  final DateTime? lastUpdated;
+  final int retryCount;
+
+  const UserState({
+    required this.asyncValue,
+    this.lastKnownUser,
+    this.isRefreshing = false,
+    this.lastUpdated,
+    this.retryCount = 0,
+  });
+
+  /// Whether we have valid user data (from current state or cache)
+  bool get hasUser => lastKnownUser?.user != null;
+
+  /// Whether user is authenticated
+  bool get isAuthenticated => hasUser;
+
+  /// Get current user data (from async value if available, otherwise from cache)
+  AuthResponse? get currentUser {
+    return asyncValue.valueOrNull ?? lastKnownUser;
+  }
+
+  /// Whether the cached data is stale (older than 5 minutes)
+  bool get isStale {
+    if (lastUpdated == null) return true;
+    return DateTime.now().difference(lastUpdated!) > const Duration(minutes: 5);
+  }
+
+  UserState copyWith({
+    AsyncValue<AuthResponse?>? asyncValue,
+    AuthResponse? lastKnownUser,
+    bool? isRefreshing,
+    DateTime? lastUpdated,
+    int? retryCount,
+  }) {
+    return UserState(
+      asyncValue: asyncValue ?? this.asyncValue,
+      lastKnownUser: lastKnownUser ?? this.lastKnownUser,
+      isRefreshing: isRefreshing ?? this.isRefreshing,
+      lastUpdated: lastUpdated ?? this.lastUpdated,
+      retryCount: retryCount ?? this.retryCount,
+    );
+  }
+}
+
+class UserNotifier extends StateNotifier<UserState> {
+  UserNotifier(this.ref)
+      : super(UserState(
+          asyncValue: const AsyncValue.loading(),
+          isRefreshing: false,
+        )) {
+    _initialize();
   }
 
   final Ref ref;
@@ -14,44 +68,169 @@ class UserNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
   UserRepository get _repository =>
       ref.read(AllProviders.userRepositoryProvider);
 
-  Future<void> refreshUser() async {
+  /// Initialize user state - load from cache then refresh from API
+  Future<void> _initialize() async {
     try {
-      state = const AsyncValue.loading();
+      // First, try to load from cache for instant UI
+      await _loadFromCache();
+
+      // Then refresh from API in background
+      await refreshUser(silent: true);
+    } catch (e, stack) {
+      Print.error('Error initializing user state: $e');
+      // If initialization fails, set error state but keep any cached data
+      state = state.copyWith(
+        asyncValue: AsyncValue.error(e, stack),
+      );
+    }
+  }
+
+  /// Load user data from secure storage cache
+  Future<void> _loadFromCache() async {
+    try {
+      final storage = ref.read(AllProviders.secureStorageServiceProvider);
+      final cachedUserJson = await storage.getUserCache();
+
+      if (cachedUserJson != null) {
+        final cachedUser = AuthResponse.fromJson(cachedUserJson);
+        Print.info('Loaded user from cache: ${cachedUser.user?.fullName}');
+
+        state = state.copyWith(
+          asyncValue: AsyncValue.data(cachedUser),
+          lastKnownUser: cachedUser,
+          lastUpdated: DateTime.now(),
+        );
+      }
+    } catch (e) {
+      Print.error('Error loading user from cache: $e');
+      // Cache load failure is not critical, continue without cache
+    }
+  }
+
+  /// Save user data to secure storage cache
+  Future<void> _saveToCache(AuthResponse user) async {
+    try {
+      final storage = ref.read(AllProviders.secureStorageServiceProvider);
+      await storage.saveUserCache(user.toJson());
+      Print.info('Saved user to cache');
+    } catch (e) {
+      Print.error('Error saving user to cache: $e');
+      // Cache save failure is not critical
+    }
+  }
+
+  /// Clear user cache from storage
+  Future<void> _clearCache() async {
+    try {
+      final storage = ref.read(AllProviders.secureStorageServiceProvider);
+      await storage.clearUserCache();
+      Print.info('Cleared user cache');
+    } catch (e) {
+      Print.error('Error clearing user cache: $e');
+    }
+  }
+
+  /// Refresh user data from API
+  /// @param silent - if true, keeps last known user visible during refresh
+  Future<void> refreshUser({bool silent = true}) async {
+    try {
+      // If silent refresh, don't show loading spinner - keep last known data visible
+      if (silent && state.lastKnownUser != null) {
+        state = state.copyWith(isRefreshing: true);
+      } else {
+        // Initial load or explicit non-silent refresh
+        state = state.copyWith(
+          asyncValue: const AsyncValue.loading(),
+          isRefreshing: true,
+        );
+      }
+
       final response = await _repository.getUserProfile();
 
       if (response.statusCode == 200 && response.data != null) {
-        // Backend returns { success: true, data: { user: {...}, profile: {...} } }
-        // We wrap this into AuthResponse to process 'data'
         Print.info(response.data, tag: 'user');
         final authResponse = AuthResponse.fromJson(response.data);
-        state = AsyncValue.data(authResponse);
 
-        // After we successfully refreshed user (meaning user is logged in),
-        // try to process any pending OneSignal/player id or notification prefs
+        // Update state with new data
+        state = state.copyWith(
+          asyncValue: AsyncValue.data(authResponse),
+          lastKnownUser: authResponse,
+          lastUpdated: DateTime.now(),
+          isRefreshing: false,
+          retryCount: 0, // Reset retry count on success
+        );
+
+        // Save to cache for next app launch
+        await _saveToCache(authResponse);
+
+        // Process pending OneSignal/notification preferences
         await retryPendingOneSignalId();
         await processPendingNotificationPref();
       } else if (response.statusCode == 401 || response.statusCode == 404) {
         // Unauthorized or not found - user not logged in or token expired
         Print.info('User not authenticated (${response.statusCode})');
-        state = const AsyncValue.data(null);
+
+        // Clear cache since user is not authenticated
+        await _clearCache();
+
+        state = state.copyWith(
+          asyncValue: const AsyncValue.data(null),
+          lastKnownUser: null,
+          isRefreshing: false,
+          retryCount: 0,
+        );
       } else {
-        // Other HTTP errors - log and set null state to prevent error UI
+        // Other HTTP errors - preserve last known state
         Print.error('HTTP ${response.statusCode} error fetching user profile');
-        state = const AsyncValue.data(null);
+
+        // Keep last known user if available, but set error state
+        state = state.copyWith(
+          asyncValue: state.lastKnownUser != null
+              ? AsyncValue.data(state.lastKnownUser)
+              : const AsyncValue.data(null),
+          isRefreshing: false,
+        );
       }
     } catch (e, stack) {
       Print.error('Error fetching user profile: $e');
 
-      // Check if it's a network/timeout error vs parsing error
+      // Check if it's a network/timeout error for retry logic
       final errorMessage = e.toString().toLowerCase();
-      if (errorMessage.contains('socket') ||
+      final isNetworkError = errorMessage.contains('socket') ||
           errorMessage.contains('timeout') ||
-          errorMessage.contains('failed host lookup')) {
-        Print.info('Network error detected - will retry on next refresh');
+          errorMessage.contains('failed host lookup');
+
+      if (isNetworkError && state.retryCount < 3) {
+        // Retry with exponential backoff
+        final retryDelay =
+            Duration(seconds: (1 << state.retryCount)); // 1s, 2s, 4s
+        Print.info(
+            'Network error detected - retrying in ${retryDelay.inSeconds}s (attempt ${state.retryCount + 1}/3)');
+
+        state = state.copyWith(
+          retryCount: state.retryCount + 1,
+          isRefreshing: false,
+        );
+
+        await Future.delayed(retryDelay);
+        return refreshUser(silent: silent);
       }
 
-      // Still set error state so UI can show retry option
-      state = AsyncValue.error(e, stack);
+      // If we have cached data, keep it and just update error state
+      if (state.lastKnownUser != null) {
+        Print.info(
+            'Keeping cached user data despite error (last updated: ${state.lastUpdated})');
+        state = state.copyWith(
+          asyncValue: AsyncValue.data(state.lastKnownUser),
+          isRefreshing: false,
+        );
+      } else {
+        // No cached data, set error state
+        state = state.copyWith(
+          asyncValue: AsyncValue.error(e, stack),
+          isRefreshing: false,
+        );
+      }
     }
   }
 
@@ -60,7 +239,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
       final response = await _repository.updateUserProfile(data);
       if (response.statusCode == 200) {
         // Refresh user data after successful update
-        await refreshUser();
+        await refreshUser(silent: false);
         return true;
       }
       return false;
@@ -190,7 +369,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
     try {
       final response = await _repository.uploadProfilePicture(filePath);
       if (response.statusCode == 200) {
-        await refreshUser();
+        await refreshUser(silent: false);
         return true;
       }
       return false;
@@ -204,7 +383,13 @@ class UserNotifier extends StateNotifier<AsyncValue<AuthResponse?>> {
     try {
       final response = await _repository.deleteAccount();
       if (response.statusCode == 200) {
-        state = const AsyncValue.data(null);
+        // Clear all user data
+        await _clearCache();
+        state = state.copyWith(
+          asyncValue: const AsyncValue.data(null),
+          lastKnownUser: null,
+          retryCount: 0,
+        );
         return true;
       }
       return false;

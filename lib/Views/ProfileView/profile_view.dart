@@ -72,25 +72,74 @@ class ProfileView extends HookConsumerWidget {
                       ),
                     ),
                   ),
-                  // Profile Header
-                  user.when(
-                    data: (data) => Center(
-                      child: ProfileHeader(
-                        userName: data!.user!.fullName ?? '',
-                        versionText: data.user!.isPremium
-                            ? context.t.profile.premiumVersion
-                            : context.t.profile.freeVersion,
-                        profileImage:
-                            NetworkImage(data.user!.profilePictureUrl ?? ''),
-                        onTap: () {},
-                      ),
-                    ),
-                    error: (error, stackTrace) => Center(
-                      child: Text(context.t.profile.error),
-                    ),
-                    loading: () => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                  // Profile Header with defensive null handling
+                  Builder(
+                    builder: (context) {
+                      final authResponse = user.currentUser;
+                      final userData = authResponse?.user;
+
+                      // Show loading only if no cached data exists
+                      if (!user.hasUser && user.asyncValue.isLoading) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      // Show error if no user data available
+                      if (userData == null) {
+                        return Center(
+                          child: Column(
+                            children: [
+                              Text(context.t.profile.error),
+                              const SizedBox(height: 16),
+                              ElevatedButton(
+                                onPressed: () {
+                                  ref
+                                      .read(AllProviders.userProvider.notifier)
+                                      .refreshUser(silent: false);
+                                },
+                                child: const Text('Retry'),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+
+                      // Show user data with subtle refresh indicator
+                      return Stack(
+                        children: [
+                          Center(
+                            child: ProfileHeader(
+                              userName: userData.fullName ?? '',
+                              versionText: userData.isPremium
+                                  ? context.t.profile.premiumVersion
+                                  : context.t.profile.freeVersion,
+                              profileImage: NetworkImage(
+                                  userData.profilePictureUrl ?? ''),
+                              onTap: () {},
+                            ),
+                          ),
+                          // Show subtle loading indicator during background refresh
+                          if (user.isRefreshing)
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.5),
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox(height: 32),
 

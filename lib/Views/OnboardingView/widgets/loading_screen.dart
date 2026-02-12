@@ -149,6 +149,17 @@ class LoadingScreen extends HookConsumerWidget {
                   List<String>.from(onboardingData['improvement_areas']),
             );
 
+            // Fetch and cache user data immediately after onboarding
+            // This ensures HeaderWidget displays user info instead of error state
+            try {
+              final userNotifier = ref.read(AllProviders.userProvider.notifier);
+              await userNotifier.refreshUser(silent: false);
+              debugPrint('✅ User data fetched and cached after onboarding');
+            } catch (e) {
+              debugPrint('⚠️ Error fetching user after onboarding: $e');
+              // Don't throw - continue with OneSignal setup
+            }
+
             // Try to save OneSignal player id so backend can send push notifications
             try {
               // Use pushSubscription.id (player ID) instead of getOnesignalId() (user ID)

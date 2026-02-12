@@ -1,8 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/Services/dio_service.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/shared/custom_form_text_field.dart';
@@ -64,15 +64,16 @@ class InvitationCode extends HookConsumerWidget {
 
         if (response.statusCode == 200 && response.data['success'] == true) {
           // Success
-          CustomOverlay.show(
-            context,
-            title: context.t.referralCode.success.title,
-            message: context.t.referralCode.success.message,
-            icon: AppIcons.tick,
-            type: OverlayType.success,
-            duration: const Duration(seconds: 4),
-          );
-
+          if (context.mounted) {
+            CustomOverlay.show(
+              context,
+              title: context.t.referralCode.success.title,
+              message: context.t.referralCode.success.message,
+              icon: AppIcons.tick,
+              type: OverlayType.success,
+              duration: const Duration(seconds: 4),
+            );
+          }
           // Clear the input field
           codeController.clear();
 
@@ -83,75 +84,54 @@ class InvitationCode extends HookConsumerWidget {
             }
           });
         }
-      } on DioException catch (e) {
-        Print.error('[InvitationCode] Error applying referral code: $e');
-        Print.error('[InvitationCode] Response data: ${e.response?.data}');
-        Print.error('[InvitationCode] Status code: ${e.response?.statusCode}');
-
-        // Parse backend error response - use safe defaults first
-        String title = 'Error';
-        String message = 'An error occurred while applying the referral code.';
-
-        if (e.response?.data != null) {
-          final errorData = e.response!.data;
-          Print.error('[InvitationCode] Error data structure: $errorData');
-
-          // Backend returns error in format: { error: { type: "...", reason: "..." } }
-          final errorType = errorData['error']?['type'] as String?;
-          Print.error('[InvitationCode] Error type: $errorType');
-
-          // Map backend error types to localized messages
-          switch (errorType) {
-            case 'MISSING_REFERRAL_CODE':
-              title = context.t.referralCode.errors.missingCode.title;
-              message = context.t.referralCode.errors.missingCode.message;
-              break;
-            case 'INVALID_CODE_FORMAT':
-              title = context.t.referralCode.errors.invalidFormat.title;
-              message = context.t.referralCode.errors.invalidFormat.message;
-              break;
-            case 'ALREADY_USED_CODE':
-              title = context.t.referralCode.errors.alreadyUsed.title;
-              message = context.t.referralCode.errors.alreadyUsed.message;
-              break;
-            case 'SELF_REFERRAL_FORBIDDEN':
-              title = context.t.referralCode.errors.selfReferral.title;
-              message = context.t.referralCode.errors.selfReferral.message;
-              break;
-            case 'CODE_NOT_FOUND':
-              title = context.t.referralCode.errors.codeNotFound.title;
-              message = context.t.referralCode.errors.codeNotFound.message;
-              break;
-            case 'USER_NOT_FOUND':
-              title = context.t.referralCode.errors.genericError.title;
-              message = context.t.referralCode.errors.genericError.message;
-              break;
-            default:
-              // Use generic error for unknown error types
-              title = context.t.referralCode.errors.genericError.title;
-              message = context.t.referralCode.errors.genericError.message;
-              break;
-          }
-        }
-
-        CustomOverlay.show(
-          context,
-          title: title,
-          message: message,
-          icon: AppIcons.forbidden,
-          type: OverlayType.error,
-          duration: const Duration(seconds: 4),
-        );
       } catch (e) {
         Print.error('[InvitationCode] Unexpected error: $e');
 
-        CustomOverlay.show(
-          context,
-          title: context.t.referralCode.errors.genericError.title,
-          message: context.t.referralCode.errors.genericError.message,
-          icon: AppIcons.forbidden,
-          type: OverlayType.error,
-        );
+        // Parse backend error response - use safe defaults first
+        String title = context.t.referralCode.errors.genericError.title;
+        String message = context.t.referralCode.errors.genericError.message;
+
+        // Check if it's a CustomException (thrown by DioService)
+        if (e is CustomException) {
+          Print.error('[InvitationCode] CustomException caught');
+          Print.error('[InvitationCode] Message: ${e.message}');
+          Print.error(
+              '[InvitationCode] Detailed message: ${e.detailedMessage}');
+
+          // Parse the detailedMessage to extract backend error message
+          // The detailedMessage contains "Message: {backend_message}"
+          final detailedMsg = e.detailedMessage.toLowerCase();
+
+          if (detailedMsg.contains('cannot use your own code')) {
+            title = context.t.referralCode.errors.selfReferral.title;
+            message = context.t.referralCode.errors.selfReferral.message;
+          } else if (detailedMsg.contains('already used')) {
+            title = context.t.referralCode.errors.alreadyUsed.title;
+            message = context.t.referralCode.errors.alreadyUsed.message;
+          } else if (detailedMsg.contains('not found')) {
+            title = context.t.referralCode.errors.codeNotFound.title;
+            message = context.t.referralCode.errors.codeNotFound.message;
+          } else if (detailedMsg.contains('invalid') &&
+              detailedMsg.contains('format')) {
+            title = context.t.referralCode.errors.invalidFormat.title;
+            message = context.t.referralCode.errors.invalidFormat.message;
+          } else if (detailedMsg.contains('missing')) {
+            title = context.t.referralCode.errors.missingCode.title;
+            message = context.t.referralCode.errors.missingCode.message;
+          }
+          // If no specific error matched, use generic error (already set as default)
+        }
+
+        if (context.mounted) {
+          CustomOverlay.show(
+            context,
+            title: title,
+            message: message,
+            icon: AppIcons.forbidden,
+            type: OverlayType.error,
+            duration: const Duration(seconds: 4),
+          );
+        }
       } finally {
         isLoading.value = false;
       }

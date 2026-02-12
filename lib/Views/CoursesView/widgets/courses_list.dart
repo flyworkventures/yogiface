@@ -5,7 +5,6 @@ import 'package:yogiface/Models/exercise_model.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Views/CourseDetailView/course_detail_view.dart';
 import 'package:yogiface/Views/HomeView/widgets/featured_course_card.dart';
-import 'package:yogiface/Views/HomeView/widgets/premium_plan_widget.dart';
 import 'package:yogiface/gen/strings.g.dart';
 
 class CoursesList extends ConsumerWidget {
@@ -28,7 +27,7 @@ class CoursesList extends ConsumerWidget {
 
     final isPremiumRevenueCat = ref.watch(AllProviders.premiumProvider);
     final userState = ref.watch(AllProviders.userProvider);
-    final isPremiumUser = userState.value?.user?.isPremium ?? false;
+    final isPremiumUser = userState.currentUser?.user?.isPremium ?? false;
     final isPremium = isPremiumRevenueCat || isPremiumUser;
 
     return ListView.separated(

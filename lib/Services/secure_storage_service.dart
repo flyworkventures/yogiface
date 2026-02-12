@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:yogiface/utils/print.dart';
 
@@ -8,6 +10,7 @@ class SecureStorageService {
   static const String _userIdKey = 'user_id';
   static const String _isGuestKey = 'is_guest';
   static const String _languageKey = 'app_language';
+  static const String _userCacheKey = 'user_cache_json';
   // OneSignal / notification keys
   static const String _oneSignalPlayerIdKey = 'onesignal_player_id';
   static const String _pendingOneSignalPlayerIdKey =
@@ -460,6 +463,44 @@ class SecureStorageService {
       Print.info('Notification permission asked flag cleared');
     } catch (e) {
       Print.error('Error clearing notification permission asked flag: $e');
+      rethrow;
+    }
+  }
+
+  // ==================== User Cache Methods ====================
+
+  /// Save user cache as JSON string for instant loading on next app launch
+  Future<void> saveUserCache(Map<String, dynamic> userJson) async {
+    try {
+      final jsonString = jsonEncode(userJson);
+      await _storage.write(key: _userCacheKey, value: jsonString);
+      Print.info('User cache saved to secure storage');
+    } catch (e) {
+      Print.error('Error saving user cache: $e');
+      rethrow;
+    }
+  }
+
+  /// Get cached user data as JSON map
+  Future<Map<String, dynamic>?> getUserCache() async {
+    try {
+      final jsonString = await _storage.read(key: _userCacheKey);
+      if (jsonString == null || jsonString.isEmpty) return null;
+
+      return jsonDecode(jsonString) as Map<String, dynamic>;
+    } catch (e) {
+      Print.error('Error getting user cache: $e');
+      return null;
+    }
+  }
+
+  /// Clear user cache from storage
+  Future<void> clearUserCache() async {
+    try {
+      await _storage.delete(key: _userCacheKey);
+      Print.info('User cache cleared from storage');
+    } catch (e) {
+      Print.error('Error clearing user cache: $e');
       rethrow;
     }
   }

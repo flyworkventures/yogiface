@@ -49,6 +49,7 @@ class CourseDetailView extends HookWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F5FC),
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             // Header
@@ -134,34 +135,36 @@ class CourseDetailView extends HookWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBarWidget(
-          currentIndex: 0,
-          onTap: (index) {
-            if (index == 0) {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/main',
-                (route) => false,
-                arguments: {'initialIndex': 0},
-              );
-            }
-            if (index == 1) {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/main',
-                (route) => false,
-                arguments: {'initialIndex': 1},
-              );
-            }
-            if (index == 2) {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/main',
-                (route) => false,
-                arguments: {'initialIndex': 2},
-              );
-            }
-          }),
+      bottomNavigationBar: SafeArea(
+        child: BottomNavBarWidget(
+            currentIndex: 0,
+            onTap: (index) {
+              if (index == 0) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/main',
+                  (route) => false,
+                  arguments: {'initialIndex': 0},
+                );
+              }
+              if (index == 1) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/main',
+                  (route) => false,
+                  arguments: {'initialIndex': 1},
+                );
+              }
+              if (index == 2) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/main',
+                  (route) => false,
+                  arguments: {'initialIndex': 2},
+                );
+              }
+            }),
+      ),
     );
   }
 }

@@ -38,14 +38,18 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
     }
 
     final userState = ref.watch(AllProviders.userProvider);
+    final user =
+        userState.currentUser; // Get current user (from async or cache)
+    final hasUser = userState.hasUser;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          userState.when(data: (user) {
-            return Row(
+          // Show user info if we have data (from current state or cached)
+          if (hasUser && user != null)
+            Row(
               children: [
                 GestureDetector(
                   onTap: () {
@@ -62,8 +66,8 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                       ),
                     ),
                     child: ClipOval(
-                      child: user?.user?.profilePictureUrl != null &&
-                              user!.user!.profilePictureUrl!.isNotEmpty
+                      child: user.user?.profilePictureUrl != null &&
+                              user.user!.profilePictureUrl!.isNotEmpty
                           ? Image.network(
                               user.user!.profilePictureUrl!,
                               fit: BoxFit.cover,
@@ -82,7 +86,7 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      context.t.welcome(name: user?.user?.fullName ?? ""),
+                      context.t.welcome(name: user.user?.fullName ?? ""),
                       style: AppTextStyles.onboardingBody(
                         18,
                         weight: FontWeight.w500,
@@ -91,25 +95,78 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      greting(),
-                      style: AppTextStyles.onboardingBody(
-                        18,
-                        height: 1,
-                        letterSpacing: 0.5,
-                        color: AppColors.onboardingButtonGradientStart,
+                    Row(
+                      children: [
+                        Text(
+                          greting(),
+                          style: AppTextStyles.onboardingBody(
+                            18,
+                            height: 1,
+                            letterSpacing: 0.5,
+                            color: AppColors.onboardingButtonGradientStart,
+                          ),
+                        ),
+                        // Show subtle loading indicator if refreshing in background
+                        if (userState.isRefreshing) ...[
+                          const SizedBox(width: 8),
+                          SizedBox(
+                            width: 12,
+                            height: 12,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                AppColors.onboardingButtonGradientStart
+                                    .withOpacity(0.5),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            )
+          // Show loading skeleton only on initial load (no cached data)
+          else if (userState.asyncValue.isLoading && !hasUser)
+            Row(
+              children: [
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.grey[300],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 120,
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Container(
+                      width: 80,
+                      height: 14,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                   ],
                 ),
               ],
-            );
-          }, error: (Object error, StackTrace stackTrace) {
-            // Log the error for debugging
-            debugPrint('HeaderWidget: User fetch error - $error');
-
-            // Provide a graceful fallback UI with retry option
-            return Row(
+            )
+          // Show error state with retry button (but keep last known data visible)
+          else
+            Row(
               children: [
                 Container(
                   width: 48,
@@ -144,7 +201,7 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                         // Retry fetching user data
                         ref
                             .read(AllProviders.userProvider.notifier)
-                            .refreshUser();
+                            .refreshUser(silent: false);
                       },
                       child: Row(
                         children: [
@@ -153,16 +210,21 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                             size: 14,
                             color: AppColors.onboardingButtonGradientStart,
                           ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Retry',
+                            style: AppTextStyles.onboardingBody(
+                              12,
+                              color: AppColors.onboardingButtonGradientStart,
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ],
                 ),
               ],
-            );
-          }, loading: () {
-            return const SizedBox.shrink();
-          }),
+            ),
           GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, '/notifications');

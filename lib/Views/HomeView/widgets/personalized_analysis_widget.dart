@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
-import 'package:yogiface/gen/strings.g.dart';
 
 class PersonalizedAnalysisWidget extends ConsumerWidget {
   const PersonalizedAnalysisWidget({super.key});
@@ -14,7 +14,7 @@ class PersonalizedAnalysisWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isPremiumRevenueCat = ref.watch(AllProviders.premiumProvider);
     final userState = ref.watch(AllProviders.userProvider);
-    final isPremiumUser = userState.value?.user?.isPremium ?? false;
+    final isPremiumUser = userState.currentUser?.user?.isPremium ?? false;
     final isPremium = isPremiumRevenueCat || isPremiumUser;
 
     return Padding(
