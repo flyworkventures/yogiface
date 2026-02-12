@@ -44,7 +44,7 @@ void main() async {
   ]);
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  FlutterNativeSplash.remove();
+// FlutterNativeSplash.remove(); // Moved to SplashView
   await initPlatformState();
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
