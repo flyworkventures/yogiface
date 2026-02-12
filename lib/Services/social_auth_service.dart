@@ -92,7 +92,7 @@ class SocialAuthService {
         webAuthenticationOptions: WebAuthenticationOptions(
           clientId: 'com.flywork.yogifaceapp',
           redirectUri: Uri.parse(
-            'http://localhost:3000/api/auth/apple/callback', //TODO: Update this to your actual redirect URI for production (must match what you set in Apple Developer Console)
+            'https://yogiface.fly-work.com/api/auth/apple/callback', //TODO: Update this to your actual redirect URI for production (must match what you set in Apple Developer Console)
           ),
         ),
       );
