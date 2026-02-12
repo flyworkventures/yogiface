@@ -290,6 +290,7 @@ class _TranslationsProfileRu implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Профиль';
 	@override String get freeVersion => 'Бесплатная версия';
+	@override String get premiumVersion => 'Премиум версия';
 	@override String get error => 'Ошибка';
 	@override late final _TranslationsProfileSectionsRu sections = _TranslationsProfileSectionsRu._(_root);
 	@override late final _TranslationsProfileMenuRu menu = _TranslationsProfileMenuRu._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsRu {
 			'splash.screen3.description' => 'При регулярном использовании контуры лица становятся более четкими, кровообращение улучшается, а кожа выглядит более живой. Маленькие шаги каждый день приносят большие изменения.',
 			'profile.title' => 'Профиль',
 			'profile.freeVersion' => 'Бесплатная версия',
+			'profile.premiumVersion' => 'Премиум версия',
 			'profile.error' => 'Ошибка',
 			'profile.sections.accountSettings' => 'НАСТРОЙКИ УЧЕТНОЙ ЗАПИСИ',
 			'profile.sections.supportAndOther' => 'ПОДДЕРЖКА И ДРУГОЕ',

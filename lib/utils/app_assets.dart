@@ -101,6 +101,7 @@ class AppIcons {
   static const String eng = 'assets/icons/eng.png';
   static const String kr = 'assets/icons/kr.png';
   static const String pr = 'assets/icons/pr.png';
+  static const String spanish = 'assets/icons/spanish_icon.png';
   static const String lightining = 'assets/icons/lightining.png';
   static const String mountains = 'assets/icons/mountains.png';
   static const String timefast = 'assets/icons/time-fast.png';

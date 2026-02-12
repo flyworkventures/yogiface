@@ -46,7 +46,7 @@ class LanguageViewPage extends HookConsumerWidget {
       },
       {
         'name': context.t.languageOptions.spanish,
-        'icon': AppIcons.tr, // TODO: Spanish flag asset needed
+        'icon': AppIcons.spanish,
         'value': AppLocale.es,
       },
       {
@@ -116,13 +116,14 @@ class LanguageViewPage extends HookConsumerWidget {
                 Text(
                   context.t.selectLanguage,
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.latoBody(
+                  style: AppTextStyles.onboardingBody(
+                    height: 1,
                     24,
                     weight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 34),
                 Expanded(
                   child: ListView.separated(
                     padding: const EdgeInsets.symmetric(horizontal: 24),

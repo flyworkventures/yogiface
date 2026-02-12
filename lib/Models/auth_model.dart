@@ -34,6 +34,7 @@ class AuthUser {
   final String? invitationCode;
   final String authProvider;
   final bool isGuest;
+  final bool isPremium;
   final bool onboardingCompleted;
   final String? preferredLanguage;
   final DateTime? createdAt;
@@ -46,10 +47,20 @@ class AuthUser {
     this.invitationCode,
     required this.authProvider,
     required this.isGuest,
+    this.isPremium = false,
     required this.onboardingCompleted,
     this.preferredLanguage,
     this.createdAt,
   });
+
+  static String _processProfilePictureUrl(String url) {
+    // If URL already starts with http/https, return as-is (OAuth provider URLs)
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    // Otherwise, prepend CDN URL (relative paths)
+    return 'https://yogiface.b-cdn.net/user$url';
+  }
 
   factory AuthUser.fromJson(Map<String, dynamic> json) {
     print('AuthUser.fromJson: $json');
@@ -58,7 +69,7 @@ class AuthUser {
       email: json['email'] as String?,
       fullName: json['fullName'] as String? ?? json['full_name'] as String?,
       profilePictureUrl: (json['profilePictureUrl'] as String?) != null
-          ? 'https://yogiface.b-cdn.net/user${json['profilePictureUrl'] as String?}'
+          ? _processProfilePictureUrl(json['profilePictureUrl'] as String)
           : null,
       authProvider: json['authProvider'] as String? ??
           json['auth_provider'] as String? ??
@@ -66,6 +77,9 @@ class AuthUser {
       isGuest: (json['isGuest'] ?? json['is_guest']) is int
           ? (json['isGuest'] ?? json['is_guest']) == 1
           : json['isGuest'] as bool? ?? json['is_guest'] as bool? ?? false,
+      isPremium: (json['isPremium'] ?? json['is_premium']) is int
+          ? (json['isPremium'] ?? json['is_premium']) == 1
+          : json['isPremium'] as bool? ?? json['is_premium'] as bool? ?? false,
       onboardingCompleted: (json['onboardingCompleted'] ??
               json['onboarding_completed']) is int
           ? (json['onboardingCompleted'] ?? json['onboarding_completed']) == 1
@@ -92,6 +106,7 @@ class AuthUser {
       'profilePictureUrl': profilePictureUrl,
       'authProvider': authProvider,
       'isGuest': isGuest,
+      'isPremium': isPremium,
       'onboardingCompleted': onboardingCompleted,
       'preferredLanguage': preferredLanguage,
       'invitationCode': invitationCode,
@@ -106,6 +121,7 @@ class AuthUser {
     String? profilePictureUrl,
     String? authProvider,
     bool? isGuest,
+    bool? isPremium,
     bool? onboardingCompleted,
     String? preferredLanguage,
     String? invitationCode,
@@ -118,6 +134,7 @@ class AuthUser {
       profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
       authProvider: authProvider ?? this.authProvider,
       isGuest: isGuest ?? this.isGuest,
+      isPremium: isPremium ?? this.isPremium,
       onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
       preferredLanguage: preferredLanguage ?? this.preferredLanguage,
       invitationCode: invitationCode ?? this.invitationCode,
@@ -127,7 +144,7 @@ class AuthUser {
 
   @override
   String toString() {
-    return 'AuthUser(id: $id, invitationCode: $invitationCode, preferredLanguage: $preferredLanguage)';
+    return 'AuthUser(id: $id, isPremium: $isPremium, invitationCode: $invitationCode, preferredLanguage: $preferredLanguage)';
   }
 }
 

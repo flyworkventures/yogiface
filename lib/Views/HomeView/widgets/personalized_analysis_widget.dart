@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/theme/app_colors.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 import 'package:yogiface/gen/strings.g.dart';
 
-class PersonalizedAnalysisWidget extends StatelessWidget {
+class PersonalizedAnalysisWidget extends ConsumerWidget {
   const PersonalizedAnalysisWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isPremiumRevenueCat = ref.watch(AllProviders.premiumProvider);
+    final userState = ref.watch(AllProviders.userProvider);
+    final isPremiumUser = userState.value?.user?.isPremium ?? false;
+    final isPremium = isPremiumRevenueCat || isPremiumUser;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Container(
@@ -54,8 +62,16 @@ class PersonalizedAnalysisWidget extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, '/facial-scan');
+                onTap: () async {
+                  if (!isPremium) {
+                    try {
+                      await RevenueCatUI.presentPaywall();
+                    } catch (e) {
+                      debugPrint('Error presenting paywall: $e');
+                    }
+                  } else {
+                    Navigator.pushNamed(context, '/facial-scan');
+                  }
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -63,23 +79,41 @@ class PersonalizedAnalysisWidget extends StatelessWidget {
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFFD4A5FF),
-                        Color(0xFFB57EDC),
-                      ],
+                    gradient: LinearGradient(
+                      colors: isPremium
+                          ? [
+                              const Color(0xFFD4A5FF),
+                              const Color(0xFFB57EDC),
+                            ]
+                          : [
+                              Colors.grey.shade400,
+                              Colors.grey.shade600,
+                            ],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                     ),
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  child: Text(
-                    context.t.home.personalized.button,
-                    style: AppTextStyles.onboardingBody(
-                      14,
-                      color: AppColors.backgroundLight,
-                      weight: FontWeight.w700,
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (!isPremium) ...[
+                        const Icon(
+                          Icons.lock,
+                          size: 16,
+                          color: Colors.white,
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                      Text(
+                        context.t.home.personalized.button,
+                        style: AppTextStyles.onboardingBody(
+                          14,
+                          color: AppColors.backgroundLight,
+                          weight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -19,44 +19,44 @@ class FavoriteExerciseView extends HookConsumerWidget {
     // Focus Areas configuration matching AllCoursesView
     final focusAreas = [
       {
-        'name': t.onboarding.fullface,
-        'image': AppImages.yuz,
-        'type': 'full_face'
+        'name': context.t.onboarding.fullface,
+        'image': AppImages.focusareafullface,
+        'key': 'full_face'
       },
       {
-        'name': t.onboarding.eyes,
-        'image': AppImages.focusareaeyes,
-        'type': 'eye_area'
-      },
-      {
-        'name': t.onboarding.nose,
-        'image': AppImages.focusareanoise,
-        'type': 'nose_area'
-      },
-      {
-        'name': t.onboarding.cheeks,
-        'image': AppImages.focusareacheek,
-        'type': 'cheeks_mid_face'
-      },
-      {
-        'name': t.onboarding.lips,
+        'name': context.t.onboarding.lips,
         'image': AppImages.focusarea1,
-        'type': 'lip_area'
+        'key': 'lip_area'
       },
       {
-        'name': t.onboarding.jawline,
-        'image': AppImages.cene,
-        'type': 'jawline_chin'
+        'name': context.t.onboarding.eyes,
+        'image': AppImages.focusareaeyes,
+        'key': 'eye_area'
       },
       {
-        'name': t.onboarding.forehead,
+        'name': context.t.onboarding.nose,
+        'image': AppImages.focusareanoise,
+        'key': 'nose_area'
+      },
+      {
+        'name': context.t.onboarding.cheeks,
+        'image': AppImages.focusareacheek,
+        'key': 'cheeks_mid_face'
+      },
+      {
+        'name': context.t.onboarding.jawline,
+        'image': AppImages.focusareajawline,
+        'key': 'jawline_chin'
+      },
+      {
+        'name': context.t.onboarding.forehead,
         'image': AppImages.focusareaforehead,
-        'type': 'forehead_brow'
+        'key': 'forehead_brow'
       },
       {
-        'name': t.onboarding.neck,
-        'image': AppImages.boyun,
-        'type': 'neck_decollete'
+        'name': context.t.onboarding.neck,
+        'image': AppImages.focusareaneck,
+        'key': 'neck_decollete'
       },
     ];
 
@@ -102,7 +102,7 @@ class FavoriteExerciseView extends HookConsumerWidget {
     }, [tabController]);
 
     // Filtering logic
-    final currentType = focusAreas[selectedIndex.value]['type'];
+    final currentType = focusAreas[selectedIndex.value]['key'];
 
     final currentExercises = useMemoized(() {
       if (currentType == 'full_face') {
@@ -152,14 +152,20 @@ class FavoriteExerciseView extends HookConsumerWidget {
         ),
         title: Text(
           context.t.favoriteExercises,
-        ),
-        centerTitle: false,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.tune, color: Colors.black),
-            onPressed: () {},
+          style: AppTextStyles.latoBody(
+            18,
+            color: Theme.of(context).colorScheme.onSurface,
+            weight: FontWeight.w600,
           ),
-        ],
+        ),
+
+        centerTitle: false,
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.tune, color: Colors.black),
+        //     onPressed: () {},
+        //   ),
+        // ],
       ),
       body: Column(
         children: [
@@ -188,16 +194,20 @@ class FavoriteExerciseView extends HookConsumerWidget {
                             ? Center(
                                 child: Text(context.t.noFavoritesInCategory),
                               )
-                            : Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                child: CoursesList(
-                                  courses: currentExercises,
-                                  // For favorites view, all displayed items are by definition favorites
-                                  favoriteCourses:
-                                      currentExercises.map((e) => e.id).toSet(),
-                                  onFavoriteToggle: (id) =>
-                                      handleRemoveFavorite(id),
+                            : SingleChildScrollView(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
+                                  child: CoursesList(
+                                    courses: currentExercises,
+                                    // For favorites view, all displayed items are by definition favorites
+                                    favoriteCourses: currentExercises
+                                        .map((e) => e.id)
+                                        .toSet(),
+                                    onFavoriteToggle: (id) =>
+                                        handleRemoveFavorite(id),
+                                  ),
                                 ),
                               ),
           ),

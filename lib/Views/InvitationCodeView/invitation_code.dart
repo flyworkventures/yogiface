@@ -85,14 +85,20 @@ class InvitationCode extends HookConsumerWidget {
         }
       } on DioException catch (e) {
         Print.error('[InvitationCode] Error applying referral code: $e');
+        Print.error('[InvitationCode] Response data: ${e.response?.data}');
+        Print.error('[InvitationCode] Status code: ${e.response?.statusCode}');
 
-        // Parse backend error response
-        String title = context.t.referralCode.errors.genericError.title;
-        String message = context.t.referralCode.errors.genericError.message;
+        // Parse backend error response - use safe defaults first
+        String title = 'Error';
+        String message = 'An error occurred while applying the referral code.';
 
         if (e.response?.data != null) {
           final errorData = e.response!.data;
+          Print.error('[InvitationCode] Error data structure: $errorData');
+
+          // Backend returns error in format: { error: { type: "...", reason: "..." } }
           final errorType = errorData['error']?['type'] as String?;
+          Print.error('[InvitationCode] Error type: $errorType');
 
           // Map backend error types to localized messages
           switch (errorType) {
@@ -117,11 +123,13 @@ class InvitationCode extends HookConsumerWidget {
               message = context.t.referralCode.errors.codeNotFound.message;
               break;
             case 'USER_NOT_FOUND':
+              title = context.t.referralCode.errors.genericError.title;
+              message = context.t.referralCode.errors.genericError.message;
+              break;
             default:
               // Use generic error for unknown error types
               title = context.t.referralCode.errors.genericError.title;
-              message = errorData['message'] as String? ??
-                  context.t.referralCode.errors.genericError.message;
+              message = context.t.referralCode.errors.genericError.message;
               break;
           }
         }

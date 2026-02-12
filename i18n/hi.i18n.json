@@ -341,6 +341,7 @@
     "profile": {
         "title": "प्रोफ़ाइल",
         "freeVersion": "मुफ्त संस्करण",
+        "premiumVersion": "प्रीमियम संस्करण",
         "error": "त्रुटि",
         "sections": {
             "accountSettings": "खाता सेटिंग्स",

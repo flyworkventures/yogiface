@@ -341,6 +341,7 @@
   "profile": {
     "title": "Profilo",
     "freeVersion": "Versione gratuita",
+    "premiumVersion": "Versione Premium",
     "error": "Errore",
     "sections": {
       "accountSettings": "IMPOSTAZIONI ACCOUNT",

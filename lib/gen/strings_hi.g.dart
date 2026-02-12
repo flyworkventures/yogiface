@@ -290,6 +290,7 @@ class _TranslationsProfileHi implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'प्रोफ़ाइल';
 	@override String get freeVersion => 'मुफ्त संस्करण';
+	@override String get premiumVersion => 'प्रीमियम संस्करण';
 	@override String get error => 'त्रुटि';
 	@override late final _TranslationsProfileSectionsHi sections = _TranslationsProfileSectionsHi._(_root);
 	@override late final _TranslationsProfileMenuHi menu = _TranslationsProfileMenuHi._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsHi {
 			'splash.screen3.description' => 'नियमित उपयोग के साथ, चेहरे की रूपरेखा अधिक परिभाषित हो जाती है, परिसंचरण में सुधार होता है और त्वचा अधिक जीवंत दिखती है। हर दिन छोटे कदम बड़े बदलाव लाते हैं।',
 			'profile.title' => 'प्रोफ़ाइल',
 			'profile.freeVersion' => 'मुफ्त संस्करण',
+			'profile.premiumVersion' => 'प्रीमियम संस्करण',
 			'profile.error' => 'त्रुटि',
 			'profile.sections.accountSettings' => 'खाता सेटिंग्स',
 			'profile.sections.supportAndOther' => 'समर्थन और अन्य',

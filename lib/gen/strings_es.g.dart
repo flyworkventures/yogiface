@@ -290,6 +290,7 @@ class _TranslationsProfileEs implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Perfil';
 	@override String get freeVersion => 'Versión gratuita';
+	@override String get premiumVersion => 'Versión Premium';
 	@override String get error => 'Error';
 	@override late final _TranslationsProfileSectionsEs sections = _TranslationsProfileSectionsEs._(_root);
 	@override late final _TranslationsProfileMenuEs menu = _TranslationsProfileMenuEs._(_root);
@@ -1437,7 +1438,7 @@ class _TranslationsReferralCodeErrorsMissingCodeEs implements TranslationsReferr
 
 	// Translations
 	@override String get title => 'Código requerido';
-	@override String get message => 'Por favor, ingresa un código de referencia para continuar.';
+	@override String get message => 'Por favor ingresa un código de referencia para continuar.';
 }
 
 // Path: referralCode.errors.invalidFormat
@@ -1481,7 +1482,7 @@ class _TranslationsReferralCodeErrorsCodeNotFoundEs implements TranslationsRefer
 
 	// Translations
 	@override String get title => 'Código no encontrado';
-	@override String get message => 'El código de referencia que ingresaste no existe. Por favor verifica e intenta nuevamente.';
+	@override String get message => 'El código de referencia que ingresaste no existe. Por favor verifica y vuelve a intentarlo.';
 }
 
 // Path: referralCode.errors.genericError
@@ -1492,7 +1493,7 @@ class _TranslationsReferralCodeErrorsGenericErrorEs implements TranslationsRefer
 
 	// Translations
 	@override String get title => 'Error';
-	@override String get message => 'Ocurrió un error al aplicar el código de referencia. Por favor intenta nuevamente.';
+	@override String get message => 'Ocurrió un error al aplicar el código de referencia. Por favor, inténtalo de nuevo.';
 }
 
 /// The flat map containing all translations for locale <es>.
@@ -1722,6 +1723,7 @@ extension on TranslationsEs {
 			'splash.screen3.description' => 'Con uso regular, los contornos faciales se vuelven más definidos, la circulación mejora y la piel se ve más vibrante. Pequeños pasos cada día traen grandes cambios.',
 			'profile.title' => 'Perfil',
 			'profile.freeVersion' => 'Versión gratuita',
+			'profile.premiumVersion' => 'Versión Premium',
 			'profile.error' => 'Error',
 			'profile.sections.accountSettings' => 'CONFIGURACIÓN DE CUENTA',
 			'profile.sections.supportAndOther' => 'SOPORTE Y OTROS',
@@ -1903,7 +1905,7 @@ extension on TranslationsEs {
 			'referralCode.success.title' => '¡Éxito!',
 			'referralCode.success.message' => '¡Código de referencia aplicado con éxito! Tú y tu amigo recibieron 1 semana de premium.',
 			'referralCode.errors.missingCode.title' => 'Código requerido',
-			'referralCode.errors.missingCode.message' => 'Por favor, ingresa un código de referencia para continuar.',
+			'referralCode.errors.missingCode.message' => 'Por favor ingresa un código de referencia para continuar.',
 			'referralCode.errors.invalidFormat.title' => 'Formato inválido',
 			'referralCode.errors.invalidFormat.message' => 'El código de referencia debe tener exactamente 8 caracteres.',
 			'referralCode.errors.alreadyUsed.title' => 'Ya utilizado',
@@ -1911,9 +1913,9 @@ extension on TranslationsEs {
 			'referralCode.errors.selfReferral.title' => 'Código inválido',
 			'referralCode.errors.selfReferral.message' => 'No puedes usar tu propio código de invitación. Por favor usa un código de un amigo.',
 			'referralCode.errors.codeNotFound.title' => 'Código no encontrado',
-			'referralCode.errors.codeNotFound.message' => 'El código de referencia que ingresaste no existe. Por favor verifica e intenta nuevamente.',
+			'referralCode.errors.codeNotFound.message' => 'El código de referencia que ingresaste no existe. Por favor verifica y vuelve a intentarlo.',
 			'referralCode.errors.genericError.title' => 'Error',
-			'referralCode.errors.genericError.message' => 'Ocurrió un error al aplicar el código de referencia. Por favor intenta nuevamente.',
+			'referralCode.errors.genericError.message' => 'Ocurrió un error al aplicar el código de referencia. Por favor, inténtalo de nuevo.',
 			'deleteNotifications' => 'Eliminar notificaciones',
 			'deleteNotificationsDescription' => '¿Estás seguro de que quieres eliminar todas\ntus notificaciones? Esta acción es irreversible y no se puede deshacer.',
 			'deleteAll' => 'Eliminar todo',

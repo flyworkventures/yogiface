@@ -20,10 +20,12 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       body: SafeArea(
+        top: false,
         bottom: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: kToolbarHeight),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
                 child: const HeaderWidget(),

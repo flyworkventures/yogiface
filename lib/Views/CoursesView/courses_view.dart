@@ -131,9 +131,11 @@ class AllCoursesView extends HookConsumerWidget {
           ),
         ),
         child: SafeArea(
+          top: false,
           bottom: false,
           child: Column(
             children: [
+              const SizedBox(height: kToolbarHeight),
               CourseHeader(
                 showBackButton: false,
                 title: t.courses.title,

@@ -290,6 +290,7 @@ class _TranslationsProfileKo implements TranslationsProfileEn {
 	// Translations
 	@override String get title => '프로필';
 	@override String get freeVersion => '무료 버전';
+	@override String get premiumVersion => '프리미엄 버전';
 	@override String get error => '오류';
 	@override late final _TranslationsProfileSectionsKo sections = _TranslationsProfileSectionsKo._(_root);
 	@override late final _TranslationsProfileMenuKo menu = _TranslationsProfileMenuKo._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsKo {
 			'splash.screen3.description' => '정기적으로 사용하면 얼굴 윤곽이 더 뚜렷해지고 순환이 개선되며 피부가 더 생기 있어 보입니다. 매일의 작은 발걸음이 큰 변화를 가져옵니다.',
 			'profile.title' => '프로필',
 			'profile.freeVersion' => '무료 버전',
+			'profile.premiumVersion' => '프리미엄 버전',
 			'profile.error' => '오류',
 			'profile.sections.accountSettings' => '계정 설정',
 			'profile.sections.supportAndOther' => '지원 & 기타',

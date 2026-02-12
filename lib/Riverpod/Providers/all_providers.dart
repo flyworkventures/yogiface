@@ -12,6 +12,7 @@ import 'package:yogiface/Riverpod/Providers/exercise_provider.dart';
 import 'package:yogiface/Models/exercise_model.dart' as api;
 import 'package:yogiface/Models/auth_model.dart';
 import 'package:yogiface/Services/secure_storage_service.dart';
+import 'package:yogiface/Riverpod/Providers/premium_provider.dart';
 
 class AllProviders {
   static final exerciseProvider =
@@ -97,5 +98,12 @@ class AllProviders {
   static final personalProgramRepositoryProvider =
       Provider<PersonalProgramRepository>((ref) {
     return PersonalProgramRepository(ref);
+  });
+
+  static final premiumProvider =
+      StateNotifierProvider<PremiumNotifier, bool>((ref) {
+    return PremiumNotifier(onPremiumPurchased: () async {
+      await ref.read(userProvider.notifier).refreshUser();
+    });
   });
 }

@@ -290,6 +290,7 @@ class _TranslationsProfilePt implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Perfil';
 	@override String get freeVersion => 'Versão Gratuita';
+	@override String get premiumVersion => 'Versão Premium';
 	@override String get error => 'Erro';
 	@override late final _TranslationsProfileSectionsPt sections = _TranslationsProfileSectionsPt._(_root);
 	@override late final _TranslationsProfileMenuPt menu = _TranslationsProfileMenuPt._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsPt {
 			'splash.screen3.description' => 'Com uso regular, os contornos faciais tornam-se mais definidos, a circulação melhora e a pele parece mais vibrante. Pequenos passos todos os dias trazem grandes mudanças.',
 			'profile.title' => 'Perfil',
 			'profile.freeVersion' => 'Versão Gratuita',
+			'profile.premiumVersion' => 'Versão Premium',
 			'profile.error' => 'Erro',
 			'profile.sections.accountSettings' => 'CONFIGURAÇÕES DA CONTA',
 			'profile.sections.supportAndOther' => 'SUPORTE E OUTROS',

@@ -570,6 +570,9 @@ class TranslationsProfileEn {
 	/// en: 'Free Version'
 	String get freeVersion => 'Free Version';
 
+	/// en: 'Premium Version'
+	String get premiumVersion => 'Premium Version';
+
 	/// en: 'Error'
 	String get error => 'Error';
 
@@ -2548,6 +2551,7 @@ extension on Translations {
 			'splash.screen3.description' => 'With regular use, facial contours become more defined, circulation improves, and skin appears more vibrant. Small steps every day bring big changes.',
 			'profile.title' => 'Profile',
 			'profile.freeVersion' => 'Free Version',
+			'profile.premiumVersion' => 'Premium Version',
 			'profile.error' => 'Error',
 			'profile.sections.accountSettings' => 'ACCOUNT SETTINGS',
 			'profile.sections.supportAndOther' => 'SUPPORT & OTHER',

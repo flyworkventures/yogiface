@@ -290,6 +290,7 @@ class _TranslationsProfileFr implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Profil';
 	@override String get freeVersion => 'Version gratuite';
+	@override String get premiumVersion => 'Version Premium';
 	@override String get error => 'Erreur';
 	@override late final _TranslationsProfileSectionsFr sections = _TranslationsProfileSectionsFr._(_root);
 	@override late final _TranslationsProfileMenuFr menu = _TranslationsProfileMenuFr._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsFr {
 			'splash.screen3.description' => 'Avec une utilisation régulière, les contours du visage deviennent plus définis, la circulation s\'améliore et la peau paraît plus éclatante. De petits pas chaque jour apportent de grands changements.',
 			'profile.title' => 'Profil',
 			'profile.freeVersion' => 'Version gratuite',
+			'profile.premiumVersion' => 'Version Premium',
 			'profile.error' => 'Erreur',
 			'profile.sections.accountSettings' => 'PARAMÈTRES DU COMPTE',
 			'profile.sections.supportAndOther' => 'SUPPORT ET AUTRE',

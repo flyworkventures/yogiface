@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/shared/custom_button.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -8,12 +9,18 @@ import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/utils/print.dart';
 
 import '../../../theme/app_colors.dart';
+import 'package:yogiface/Views/HomeView/widgets/premium_plan_widget.dart';
 
 class QuickActionsWidget extends ConsumerWidget {
   const QuickActionsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isPremiumRevenueCat = ref.watch(AllProviders.premiumProvider);
+    final userState = ref.watch(AllProviders.userProvider);
+    final isPremiumUser = userState.value?.user?.isPremium ?? false;
+    final isPremium = isPremiumRevenueCat || isPremiumUser;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
       child: Column(
@@ -97,6 +104,15 @@ class QuickActionsWidget extends ConsumerWidget {
                       ),
                       CustomButton(
                         onPressed: () async {
+                          if (!isPremium) {
+                            try {
+                              await RevenueCatUI.presentPaywall();
+                            } catch (e) {
+                              debugPrint('Error presenting paywall: $e');
+                            }
+                            return;
+                          }
+
                           // Check if user has personal program
                           try {
                             final repo = ref.read(
@@ -125,10 +141,23 @@ class QuickActionsWidget extends ConsumerWidget {
                         label: context.t.home.quickActions.button,
                         size: CustomButtonSize.small,
                         fullWidth: true,
-                        gradientColors: [
-                          AppColors.onboardingButtonGradientEnd,
-                          AppColors.onboardingButtonGradientStart,
-                        ],
+                        icon: !isPremium
+                            ? const Icon(
+                                Icons.lock,
+                                color: Colors.white,
+                                size: 16,
+                              )
+                            : null,
+                        iconPadding: 8,
+                        gradientColors: isPremium
+                            ? [
+                                AppColors.onboardingButtonGradientEnd,
+                                AppColors.onboardingButtonGradientStart,
+                              ]
+                            : [
+                                Colors.grey.shade600,
+                                Colors.grey.shade400,
+                              ],
                         labelColor: Colors.white,
                         labelStyle: AppTextStyles.onboardingBody(
                           13,

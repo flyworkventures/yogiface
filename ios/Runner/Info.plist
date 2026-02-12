@@ -44,8 +44,12 @@
     <string>We need camera access to capture your face photos for facial analysis.</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>We need photo library access to select your face photos for facial analysis.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>We need permission to save photos to your photo library.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>We need microphone access for video recording features within the app.</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>We need Face ID access to authenticate and enhance your facial analysis experience.</string>
     
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>We need access to your location to provide personalized content and features based on your region.</string>

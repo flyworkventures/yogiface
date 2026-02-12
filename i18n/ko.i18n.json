@@ -341,6 +341,7 @@
     "profile": {
         "title": "프로필",
         "freeVersion": "무료 버전",
+        "premiumVersion": "프리미엄 버전",
         "error": "오류",
         "sections": {
             "accountSettings": "계정 설정",

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:yogiface/Models/auth_model.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/Services/dio_service.dart';
@@ -45,6 +46,14 @@ class AuthRepository {
       if (authResponse.user != null) {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
+
+        // Log in to RevenueCat with user ID
+        try {
+          await Purchases.logIn(authResponse.user!.id.toString());
+          Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+        } catch (e) {
+          Print.error('RevenueCat login error: $e');
+        }
       }
 
       Print.info('Guest user created successfully');
@@ -84,6 +93,14 @@ class AuthRepository {
       if (authResponse.user != null) {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
+
+        // Log in to RevenueCat with user ID
+        try {
+          await Purchases.logIn(authResponse.user!.id.toString());
+          Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+        } catch (e) {
+          Print.error('RevenueCat login error: $e');
+        }
       }
 
       Print.info('Google sign-in successful');
@@ -123,6 +140,14 @@ class AuthRepository {
       if (authResponse.user != null) {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
+
+        // Log in to RevenueCat with user ID
+        try {
+          await Purchases.logIn(authResponse.user!.id.toString());
+          Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+        } catch (e) {
+          Print.error('RevenueCat login error: $e');
+        }
       }
 
       Print.info('Facebook sign-in successful');
@@ -164,6 +189,14 @@ class AuthRepository {
       if (authResponse.user != null) {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
+
+        // Log in to RevenueCat with user ID
+        try {
+          await Purchases.logIn(authResponse.user!.id.toString());
+          Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+        } catch (e) {
+          Print.error('RevenueCat login error: $e');
+        }
       }
 
       Print.info('Apple sign-in successful');
@@ -231,12 +264,29 @@ class AuthRepository {
         cancelToken: cancelToken,
       );
 
+      // Log out from RevenueCat
+      try {
+        await Purchases.logOut();
+        Print.info('RevenueCat: Logged out successfully');
+      } catch (e) {
+        Print.error('RevenueCat logout error: $e');
+      }
+
       // Clear local storage
       await _storageService.clearAll();
 
       Print.info('Logout successful');
     } catch (e) {
       Print.error('Error logging out: $e');
+
+      // Log out from RevenueCat even if API call fails
+      try {
+        await Purchases.logOut();
+        Print.info('RevenueCat: Logged out successfully (fallback)');
+      } catch (rcError) {
+        Print.error('RevenueCat logout error: $rcError');
+      }
+
       // Clear local storage even if API call fails
       await _storageService.clearAll();
       rethrow;

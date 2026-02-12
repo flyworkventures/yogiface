@@ -290,6 +290,7 @@ class _TranslationsProfileJa implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'プロフィール';
 	@override String get freeVersion => '無料版';
+	@override String get premiumVersion => 'プレミアム版';
 	@override String get error => 'エラー';
 	@override late final _TranslationsProfileSectionsJa sections = _TranslationsProfileSectionsJa._(_root);
 	@override late final _TranslationsProfileMenuJa menu = _TranslationsProfileMenuJa._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsJa {
 			'splash.screen3.description' => '定期的な使用により、顔の輪郭がより明確になり、循環が改善され、肌がより活気に満ちて見えます。毎日の小さな一歩が大きな変化をもたらします。',
 			'profile.title' => 'プロフィール',
 			'profile.freeVersion' => '無料版',
+			'profile.premiumVersion' => 'プレミアム版',
 			'profile.error' => 'エラー',
 			'profile.sections.accountSettings' => 'アカウント設定',
 			'profile.sections.supportAndOther' => 'サポートとその他',

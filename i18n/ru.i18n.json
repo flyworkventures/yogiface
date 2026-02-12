@@ -341,6 +341,7 @@
     "profile": {
         "title": "Профиль",
         "freeVersion": "Бесплатная версия",
+        "premiumVersion": "Премиум версия",
         "error": "Ошибка",
         "sections": {
             "accountSettings": "НАСТРОЙКИ УЧЕТНОЙ ЗАПИСИ",

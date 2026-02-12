@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:yogiface/Models/auth_model.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/Models/exercise_model.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
@@ -219,6 +220,70 @@ class FacialScanView extends HookConsumerWidget {
       Navigator.of(context).pop();
     }
 
+    // Get user profile data
+    final userState = ref.watch(AllProviders.userProvider);
+    final userProfile = userState.value?.profile;
+
+    // Map skinType to localized format
+    String getSkinTypeDisplay(BuildContext context, String? skinType) {
+      if (skinType == null) return 'Unknown'; // TODO: Add translation key
+      final skinTypesMap = {
+        'normal': context.t.onboarding.normal,
+        'oily': context.t.onboarding.oily,
+        'dry': context.t.onboarding.dry,
+        'combination': context.t.onboarding.combination,
+        'sensitive': context.t.onboarding.sensitive,
+      };
+      return skinTypesMap[skinType.toLowerCase()] ?? skinType;
+    }
+
+    // Map objectives/improvementAreas to localized format for primary goal
+    String getPrimaryGoalDisplay(BuildContext context, UserProfile? profile) {
+      if (profile == null)
+        return 'Overall Wellness'; // TODO: Add translation key
+
+      // Priority: objectives > improvementAreas > skinConcerns
+      if (profile.objectives.isNotEmpty) {
+        final objective = profile.objectives.first;
+        final objectivesMap = {
+          'reduce_wrinkles': context.t.onboarding.reduceWrinkles,
+          'tighten_skin': context.t.onboarding.tightenSkin,
+          'lift_eyelids': context.t.onboarding.liftDroopyEyelids,
+          'eliminate_double_chin': context.t.onboarding.eliminateDoubleChin,
+          'brighten_tone': context.t.onboarding.brightenSkinTone,
+        };
+        return objectivesMap[objective] ?? objective;
+      }
+
+      if (profile.improvementAreas.isNotEmpty) {
+        final area = profile.improvementAreas.first;
+        final areasMap = {
+          'forehead': context.t.onboarding.forehead,
+          'eyes': context.t.onboarding.eyes,
+          'nose': context.t.onboarding.nose,
+          'cheeks': context.t.onboarding.cheeks,
+          'lips': context.t.onboarding.lips,
+          'jawline': context.t.onboarding.jawline,
+          'neck': context.t.onboarding.neck,
+        };
+        return areasMap[area] ?? area;
+      }
+
+      if (profile.skinConcerns.isNotEmpty) {
+        final concern = profile.skinConcerns.first;
+        final concernsMap = {
+          'acne': context.t.onboarding.acneAndPimples,
+          'redness': context.t.onboarding.redness,
+          'swelling': context.t.onboarding.swelling,
+          'wrinkles': context.t.onboarding.wrinkles,
+          'neck_lines': context.t.onboarding.neckLines,
+        };
+        return concernsMap[concern] ?? concern;
+      }
+
+      return 'Overall Wellness'; // TODO: Add translation key
+    }
+
     switch (scanState.value) {
       case FacialScanState.capture:
         return Scaffold(
@@ -261,8 +326,8 @@ class FacialScanView extends HookConsumerWidget {
           backgroundColor: Colors.white,
           body: AnalysisResultScreen(
             profileImagePath: capturedImages.value[FacePosition.front],
-            skinType: 'Balanced / Oily',
-            primaryGoal: 'Forehead Smoothing',
+            skinType: getSkinTypeDisplay(context, userProfile?.skinType),
+            primaryGoal: getPrimaryGoalDisplay(context, userProfile),
             onBackPressed: handleBackFromResult,
             recommendations: recommendations.value ?? [],
           ),

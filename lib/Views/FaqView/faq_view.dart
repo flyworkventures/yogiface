@@ -67,7 +67,7 @@ class FaqPage extends HookWidget {
           context.t.faq.title,
           style: const TextStyle(
             color: Color(0xFF1A1A1A),
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),

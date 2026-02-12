@@ -341,6 +341,7 @@
   "profile": {
     "title": "プロフィール",
     "freeVersion": "無料版",
+    "premiumVersion": "プレミアム版",
     "error": "エラー",
     "sections": {
       "accountSettings": "アカウント設定",

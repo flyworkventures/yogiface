@@ -20,8 +20,17 @@ class DioService {
     // For iOS simulator: use localhost
     // For real device: use your computer's IP address
 
-    return 'https://yogiface.fly-work.com/api/';
+    // return 'https://yogiface.fly-work.com/api/';
+    if (Platform.isAndroid) {
+      // Android emulator uses 10.0.2.2 to access host machine's localhost
+      return 'http://10.0.2.2:3000/api/';
+    } else {
+      // iOS simulator can use localhost
+      return 'http://localhost:3000/api/';
+    }
 
+    // For real devices, you should use your computer's IP address:
+    // return 'http://192.168.1.XXX:3000/api/';
   }
 
   static final _headers = <String, Object?>{

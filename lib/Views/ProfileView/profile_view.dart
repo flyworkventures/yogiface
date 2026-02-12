@@ -77,7 +77,9 @@ class ProfileView extends HookConsumerWidget {
                     data: (data) => Center(
                       child: ProfileHeader(
                         userName: data!.user!.fullName ?? '',
-                        versionText: context.t.profile.freeVersion,
+                        versionText: data.user!.isPremium
+                            ? context.t.profile.premiumVersion
+                            : context.t.profile.freeVersion,
                         profileImage:
                             NetworkImage(data.user!.profilePictureUrl ?? ''),
                         onTap: () {},
@@ -207,15 +209,15 @@ class ProfileView extends HookConsumerWidget {
                         },
                       ),
                       const SizedBox(height: 12),
-                      ProfileMenuItem(
-                        icon: AppIcons.like,
-                        title: context.t.profile.menu.rateUs,
-                        iconBackgroundColor: const Color(0xFFFFB300),
-                        onTap: () {
-                          // TODO: Rate app
-                        },
-                      ),
-                      const SizedBox(height: 12),
+                      // ProfileMenuItem(
+                      //   icon: AppIcons.like,
+                      //   title: context.t.profile.menu.rateUs,
+                      //   iconBackgroundColor: const Color(0xFFFFB300),
+                      //   onTap: () {
+                      //     // TODO: Rate app
+                      //   },
+                      // ),
+                      // const SizedBox(height: 12),
                       ProfileMenuItem(
                         icon: AppIcons.questionmark,
                         title: context.t.profile.menu.faq,

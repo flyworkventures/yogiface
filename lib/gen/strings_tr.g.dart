@@ -290,6 +290,7 @@ class _TranslationsProfileTr implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Profil';
 	@override String get freeVersion => 'Ücretsiz Versiyon';
+	@override String get premiumVersion => 'Premium Versiyon';
 	@override String get error => 'Hata';
 	@override late final _TranslationsProfileSectionsTr sections = _TranslationsProfileSectionsTr._(_root);
 	@override late final _TranslationsProfileMenuTr menu = _TranslationsProfileMenuTr._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsTr {
 			'splash.screen3.description' => 'Düzenli kullanımla yüz hatları daha belirgin hale gelir, dolaşım iyileşir ve cilt daha canlı görünür. Her gün küçük adımlar büyük değişimler getirir.',
 			'profile.title' => 'Profil',
 			'profile.freeVersion' => 'Ücretsiz Versiyon',
+			'profile.premiumVersion' => 'Premium Versiyon',
 			'profile.error' => 'Hata',
 			'profile.sections.accountSettings' => 'HESAP AYARLARI',
 			'profile.sections.supportAndOther' => 'DESTEK & DİĞER',

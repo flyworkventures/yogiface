@@ -24,6 +24,11 @@ class FocusAreasWidget extends HookConsumerWidget {
 
     final List<Map<String, String>> areas = [
       {
+        'name': context.t.onboarding.fullface,
+        'image': AppImages.focusareafullface,
+        'key': 'full_face'
+      },
+      {
         'name': context.t.onboarding.lips,
         'image': AppImages.focusarea1,
         'key': 'lip_area'
@@ -57,11 +62,6 @@ class FocusAreasWidget extends HookConsumerWidget {
         'name': context.t.onboarding.neck,
         'image': AppImages.focusareaneck,
         'key': 'neck_decollete'
-      },
-      {
-        'name': context.t.onboarding.fullface,
-        'image': AppImages.focusareafullface,
-        'key': 'full_face'
       },
     ];
 
@@ -112,27 +112,24 @@ class FocusAreasWidget extends HookConsumerWidget {
         const SizedBox(height: 16),
 
         // Yuvarlak Fotoğraflar - Yatay Liste
-        Padding(
-          padding: EdgeInsets.only(left: AppSpacing.xxl),
-          child: SizedBox(
-            height: 85,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: areas.length,
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
-              itemBuilder: (context, index) {
-                final area = areas[index];
-                final isSelected = area['key'] == selectedAreaKey.value;
-                return _FocusAreaCircle(
-                  name: area['name']!,
-                  imagePath: area['image']!,
-                  isSelected: isSelected,
-                  onTap: () {
-                    selectedAreaKey.value = area['key']!;
-                  },
-                );
-              },
-            ),
+        SizedBox(
+          height: 85,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: areas.length,
+            separatorBuilder: (context, index) => const SizedBox(width: 16),
+            itemBuilder: (context, index) {
+              final area = areas[index];
+              final isSelected = area['key'] == selectedAreaKey.value;
+              return _FocusAreaCircle(
+                name: area['name']!,
+                imagePath: area['image']!,
+                isSelected: isSelected,
+                onTap: () {
+                  selectedAreaKey.value = area['key']!;
+                },
+              );
+            },
           ),
         ),
 

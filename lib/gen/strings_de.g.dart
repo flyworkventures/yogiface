@@ -290,6 +290,7 @@ class _TranslationsProfileDe implements TranslationsProfileEn {
 	// Translations
 	@override String get title => 'Profil';
 	@override String get freeVersion => 'Kostenlose Version';
+	@override String get premiumVersion => 'Premium Version';
 	@override String get error => 'Fehler';
 	@override late final _TranslationsProfileSectionsDe sections = _TranslationsProfileSectionsDe._(_root);
 	@override late final _TranslationsProfileMenuDe menu = _TranslationsProfileMenuDe._(_root);
@@ -1722,6 +1723,7 @@ extension on TranslationsDe {
 			'splash.screen3.description' => 'Bei regelmäßiger Anwendung werden Gesichtskonturen definierter, die Durchblutung verbessert sich und die Haut erscheint lebendiger. Kleine Schritte jeden Tag bringen große Veränderungen.',
 			'profile.title' => 'Profil',
 			'profile.freeVersion' => 'Kostenlose Version',
+			'profile.premiumVersion' => 'Premium Version',
 			'profile.error' => 'Fehler',
 			'profile.sections.accountSettings' => 'KONTOEINSTELLUNGEN',
 			'profile.sections.supportAndOther' => 'SUPPORT & SONSTIGES',
