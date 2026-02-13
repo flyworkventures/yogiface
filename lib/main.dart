@@ -146,6 +146,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SplashView(),
+      debugShowCheckedModeBanner: false,
       locale: TranslationProvider.of(context).flutterLocale,
       supportedLocales: AppLocaleUtils.supportedLocales,
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
