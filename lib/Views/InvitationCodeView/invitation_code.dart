@@ -148,7 +148,7 @@ class InvitationCode extends HookConsumerWidget {
         ),
         title: Text(
           context.t.enterInvitationCode,
-          style: AppTextStyles.latoBody(
+          style: AppTextStyles.onboardingBody(
             16,
             weight: FontWeight.w600,
           ),
@@ -163,7 +163,7 @@ class InvitationCode extends HookConsumerWidget {
               const SizedBox(height: AppSpacing.xxxl),
               Text(
                 context.t.bePartOfPeace,
-                style: AppTextStyles.latoBody(
+                style: AppTextStyles.onboardingBody(
                   24,
                   weight: FontWeight.w700,
                   height: 1.4,
@@ -174,7 +174,7 @@ class InvitationCode extends HookConsumerWidget {
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  style: AppTextStyles.latoBody(
+                  style: AppTextStyles.onboardingBody(
                     16,
                     height: 1.4,
                   ),
@@ -182,7 +182,7 @@ class InvitationCode extends HookConsumerWidget {
                     TextSpan(text: context.t.inviteFriends),
                     TextSpan(
                       text: ' ${context.t.twoDaysPremium} ',
-                      style: AppTextStyles.latoBody(
+                      style: AppTextStyles.onboardingBody(
                         16,
                         weight: FontWeight.w700,
                         height: 1,
@@ -203,7 +203,7 @@ class InvitationCode extends HookConsumerWidget {
                   AppIcons.qr,
                   color: AppColors.profileTitle,
                 ),
-                hintStyle: AppTextStyles.latoBody(
+                hintStyle: AppTextStyles.onboardingBody(
                   14,
                 ),
                 textCapitalization: TextCapitalization.characters,

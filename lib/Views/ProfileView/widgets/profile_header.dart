@@ -28,7 +28,7 @@ class ProfileHeader extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             userName,
-            style: AppTextStyles.latoBody(
+            style: AppTextStyles.onboardingBody(
               20,
               weight: FontWeight.w700,
             ),
@@ -36,7 +36,7 @@ class ProfileHeader extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             versionText,
-            style: AppTextStyles.latoBody(
+            style: AppTextStyles.onboardingBody(
               14,
               weight: FontWeight.w400,
               color: Colors.grey,

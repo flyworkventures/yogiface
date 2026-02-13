@@ -76,7 +76,7 @@ class EditProfileView extends HookConsumerWidget {
         ),
         title: Text(
           context.t.editProfile.title,
-          style: AppTextStyles.latoBody(
+          style: AppTextStyles.onboardingBody(
             18,
             color: colorScheme.onSurface,
             weight: FontWeight.w600,
@@ -159,7 +159,7 @@ class EditProfileView extends HookConsumerWidget {
                         onPressed: pickImage,
                         child: Text(
                           context.t.editProfile.changePhoto,
-                          style: AppTextStyles.latoBody(
+                          style: AppTextStyles.onboardingBody(
                             14,
                             color: colorScheme.onSurfaceVariant,
                           ),
@@ -174,7 +174,7 @@ class EditProfileView extends HookConsumerWidget {
                 // Full Name Field
                 Text(
                   context.t.editProfile.fullName,
-                  style: AppTextStyles.latoBody(
+                  style: AppTextStyles.onboardingBody(
                     13,
                     color: AppColors.profileTitle,
                     weight: FontWeight.w700,
@@ -513,7 +513,7 @@ class _GenderChip extends StatelessWidget {
               const SizedBox(width: AppSpacing.md),
               Text(
                 label!,
-                style: AppTextStyles.latoBody(
+                style: AppTextStyles.onboardingBody(
                   14,
                   color: AppColors.profileTitle,
                   weight: isSelected ? FontWeight.w500 : FontWeight.normal,
@@ -565,7 +565,7 @@ class _SelectableField extends StatelessWidget {
             Expanded(
               child: Text(
                 hasValue ? value! : (hintText ?? ''),
-                style: AppTextStyles.latoBody(
+                style: AppTextStyles.onboardingBody(
                   14,
                   color: AppColors.profileTitle,
                 ),

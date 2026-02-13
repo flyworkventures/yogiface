@@ -9,18 +9,30 @@ import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/shared/custom_overlay.dart';
 import 'package:yogiface/utils/app_assets.dart';
 
-class MainNavigationView extends HookWidget {
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
+
+class MainNavigationView extends HookConsumerWidget {
   const MainNavigationView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // Route arguments'tan initialIndex'i al
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-    final initialIndex = args?['initialIndex'] as int? ?? 1;
 
-    final currentIndex = useState(
-        initialIndex); // Başlangıçta Home seçili (ortadaki) veya arguments'tan gelen index
+    // Eğer navigation state henüz initialize edilmediyse arguments'tan veya default (1) olarak set et
+    useEffect(() {
+      final initialIndex = args?['initialIndex'] as int? ?? 1;
+      // Sadece ilk buildde set et - future.microtask ile build hatasını önle
+      Future.microtask(() {
+        ref.read(AllProviders.bottomNavIndexProvider.notifier).state =
+            initialIndex;
+      });
+      return null;
+    }, []);
+
+    final currentIndex = ref.watch(AllProviders.bottomNavIndexProvider);
 
     final lastBackPress = useState<DateTime?>(null);
 
@@ -53,16 +65,20 @@ class MainNavigationView extends HookWidget {
         );
       },
       child: Scaffold(
-        body: pages[currentIndex.value],
+        body: pages[currentIndex],
         extendBody: true,
-        bottomNavigationBar: SafeArea(
-          child: BottomNavBarWidget(
-            currentIndex: currentIndex.value,
-            onTap: (index) {
-              currentIndex.value = index;
-            },
-          ),
-        ),
+        bottomNavigationBar: currentIndex != 2
+            ? SafeArea(
+                child: BottomNavBarWidget(
+                  currentIndex: currentIndex,
+                  onTap: (index) {
+                    ref
+                        .read(AllProviders.bottomNavIndexProvider.notifier)
+                        .state = index;
+                  },
+                ),
+              )
+            : null,
       ),
     );
   }

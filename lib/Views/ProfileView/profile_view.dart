@@ -9,6 +9,7 @@ import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_paddings.dart';
+import 'package:yogiface/theme/app_text_styles.dart';
 import 'package:yogiface/utils/app_assets.dart';
 import 'package:yogiface/utils/print.dart';
 
@@ -65,12 +66,20 @@ class ProfileView extends HookConsumerWidget {
                   // Title
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Text(
-                      context.t.profile.title,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: () {
+                        // Navigate to Home (index 1)
+                        ref
+                            .read(AllProviders.bottomNavIndexProvider.notifier)
+                            .state = 1;
+                      },
+                      child: Text(
+                        context.t.profile.title,
+                        style: AppTextStyles.onboardingBody(
+                          18,
+                          weight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),

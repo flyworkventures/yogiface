@@ -19,7 +19,7 @@ class ProfileSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: AppTextStyles.latoBody(
+          style: AppTextStyles.onboardingBody(
             14,
             weight: FontWeight.w600,
             color: AppColors.profileTitle,

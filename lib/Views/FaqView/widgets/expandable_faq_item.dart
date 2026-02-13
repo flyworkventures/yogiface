@@ -106,7 +106,7 @@ class ExpandableFaqItem extends HookWidget {
               child: Text(
                 answer,
                 style: AppTextStyles.onboardingBody(
-                  12,
+                  14,
                   weight: FontWeight.w400,
                   height: 1.4,
                 ),

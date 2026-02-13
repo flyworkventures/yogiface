@@ -19,16 +19,17 @@ class ShareWithFriendsPage extends HookConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           context.t.share.title,
-          style: const TextStyle(
+          style: AppTextStyles.onboardingBody(
+            16,
+            weight: FontWeight.w500,
             color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -91,7 +92,7 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                       // Başlık
                       Text(
                         context.t.share.mainTitle,
-                        style: AppTextStyles.latoBody(
+                        style: AppTextStyles.onboardingBody(
                           24,
                           weight: FontWeight.bold,
                           color: Colors.black,
@@ -102,7 +103,7 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          style: AppTextStyles.latoBody(
+                          style: AppTextStyles.onboardingBody(
                             16,
                             weight: FontWeight.w400,
                             height: 1.3,
@@ -112,7 +113,7 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                             TextSpan(text: context.t.share.descriptionPart1),
                             TextSpan(
                                 text: context.t.share.descriptionPart2,
-                                style: AppTextStyles.latoBody(
+                                style: AppTextStyles.onboardingBody(
                                   16,
                                   height: 1.3,
                                   weight: FontWeight.w700,
@@ -134,9 +135,10 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                           children: [
                             Text(
                               context.t.share.yourReferralCode,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey,
+                              style: AppTextStyles.onboardingBody(
+                                12,
+                                weight: FontWeight.w500,
+                                // color: Colors.grey,
                                 letterSpacing: 1,
                               ),
                             ),
@@ -152,9 +154,9 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                               child: Text(
                                 user.invitationCode ?? '',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
+                                style: AppTextStyles.onboardingBody(
+                                  18,
+                                  weight: FontWeight.w600,
                                   letterSpacing: 2,
                                 ),
                               ),
@@ -194,9 +196,10 @@ class ShareWithFriendsPage extends HookConsumerWidget {
                                     const SizedBox(width: 8),
                                     Text(
                                       context.t.share.copyCode,
-                                      style: const TextStyle(
+                                      style: AppTextStyles.onboardingBody(
+                                        14,
+                                        weight: FontWeight.w600,
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],

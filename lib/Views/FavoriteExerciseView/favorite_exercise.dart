@@ -152,10 +152,10 @@ class FavoriteExerciseView extends HookConsumerWidget {
         ),
         title: Text(
           context.t.favoriteExercises,
-          style: AppTextStyles.latoBody(
-            18,
-            color: Theme.of(context).colorScheme.onSurface,
+          style: AppTextStyles.onboardingBody(
+            16,
             weight: FontWeight.w600,
+            color: const Color(0xFF1A1A1A),
           ),
         ),
 

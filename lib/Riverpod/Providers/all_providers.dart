@@ -105,4 +105,6 @@ class AllProviders {
       await ref.read(userProvider.notifier).refreshUser();
     });
   });
+
+  static final bottomNavIndexProvider = StateProvider<int>((ref) => 1);
 }

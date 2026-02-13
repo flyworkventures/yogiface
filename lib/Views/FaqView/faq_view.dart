@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:yogiface/Views/FaqView/widgets/expandable_faq_item.dart';
 import 'package:yogiface/gen/strings.g.dart';
+import 'package:yogiface/theme/app_text_styles.dart';
 
 class FaqPage extends HookWidget {
   const FaqPage({super.key});
@@ -65,10 +66,10 @@ class FaqPage extends HookWidget {
         ),
         title: Text(
           context.t.faq.title,
-          style: const TextStyle(
-            color: Color(0xFF1A1A1A),
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+          style: AppTextStyles.onboardingBody(
+            16,
+            weight: FontWeight.w600,
+            color: const Color(0xFF1A1A1A),
           ),
         ),
         centerTitle: false,

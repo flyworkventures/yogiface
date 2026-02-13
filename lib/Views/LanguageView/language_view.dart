@@ -82,16 +82,17 @@ class LanguageViewPage extends HookConsumerWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        centerTitle: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           context.t.appLanguage,
-          style: TextStyle(
+          style: AppTextStyles.onboardingBody(
+            16,
+            weight: FontWeight.w500,
             color: Colors.black,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -187,10 +188,10 @@ class LanguageViewPage extends HookConsumerWidget {
                       child: Text(
                         context.t.save,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: AppTextStyles.onboardingBody(
+                          16,
+                          weight: FontWeight.w600,
                           color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -255,7 +256,7 @@ class LanguageMenuItem extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: AppTextStyles.latoBody(
+                style: AppTextStyles.onboardingBody(
                   16,
                   weight: FontWeight.w500,
                   color: Colors.black,

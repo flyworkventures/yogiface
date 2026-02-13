@@ -86,7 +86,7 @@ class ProfileMenuItem extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppTextStyles.latoBody(
+                    style: AppTextStyles.onboardingBody(
                       16,
                       weight: FontWeight.w500,
                       color: Colors.black,
@@ -95,7 +95,7 @@ class ProfileMenuItem extends StatelessWidget {
                   if (isHighlighted)
                     Text(
                       context.t.profile.manage,
-                      style: AppTextStyles.latoBody(
+                      style: AppTextStyles.onboardingBody(
                         12,
                         weight: FontWeight.w500,
                         color: Color(0xffEAB307),
