@@ -6,11 +6,14 @@ class FocusAreasList extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onAreaSelected;
 
+  final EdgeInsetsGeometry? padding;
+
   const FocusAreasList({
     super.key,
     required this.focusAreas,
     required this.selectedIndex,
     required this.onAreaSelected,
+    this.padding,
   });
 
   @override
@@ -18,6 +21,7 @@ class FocusAreasList extends StatelessWidget {
     return SizedBox(
       height: 90,
       child: ListView.separated(
+        padding: padding,
         scrollDirection: Axis.horizontal,
         itemCount: focusAreas.length,
         separatorBuilder: (context, index) => const SizedBox(width: 16),

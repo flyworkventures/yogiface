@@ -136,6 +136,7 @@ class AllCoursesView extends HookConsumerWidget {
                     children: [
                       const SizedBox(height: 16),
                       FocusAreasList(
+                        padding: const EdgeInsets.only(left: 16),
                         focusAreas: focusAreas
                             .map((e) => {
                                   'name': e['name'] as String,

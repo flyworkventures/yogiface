@@ -304,7 +304,7 @@ class _CourseCard extends StatelessWidget {
                   child: const Icon(
                     Icons.lock,
                     // User said "replace favorite icon". Favorite icon was 0xFFCB9EF6.
-                    color: Color(0xFFCB9EF6),
+                    color: Colors.grey,
                     size: 20,
                   ),
                 ),

@@ -99,7 +99,8 @@ class FeaturedCourseCard extends StatelessWidget {
                               : (isFavorite
                                   ? Icons.favorite
                                   : Icons.favorite_border),
-                          color: const Color(0xFFCB9EF6),
+                          color:
+                              isLocked ? Colors.grey : const Color(0xFFCB9EF6),
                           size: 20,
                         ),
                       ),

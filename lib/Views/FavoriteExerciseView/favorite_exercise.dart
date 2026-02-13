@@ -170,6 +170,7 @@ class FavoriteExerciseView extends HookConsumerWidget {
       body: Column(
         children: [
           FocusAreasList(
+            padding: const EdgeInsets.only(left: 16),
             focusAreas: focusAreas
                 .map((e) => {
                       'name': e['name'] as String,
