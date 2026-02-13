@@ -90,28 +90,28 @@ class _PremiumPlanWidgetState extends ConsumerState<PremiumPlanWidget> {
                       height: 1.2,
                       letterSpacing: 0.5,
                     )),
-                if (annualPrice.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    'Yearly: $annualPrice',
-                    style: AppTextStyles.onboardingBody(
-                      14,
-                      weight: FontWeight.bold,
-                      color: AppColors.backgroundLight,
-                    ),
-                  ),
-                ],
-                if (monthlyPrice.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(
-                    'Monthly: $monthlyPrice',
-                    style: AppTextStyles.onboardingBody(
-                      14,
-                      weight: FontWeight.bold,
-                      color: AppColors.backgroundLight,
-                    ),
-                  ),
-                ],
+                // if (annualPrice.isNotEmpty) ...[
+                //   const SizedBox(height: 8),
+                //   Text(
+                //     'Yearly: $annualPrice',
+                //     style: AppTextStyles.onboardingBody(
+                //       14,
+                //       weight: FontWeight.bold,
+                //       color: AppColors.backgroundLight,
+                //     ),
+                //   ),
+                // ],
+                // if (monthlyPrice.isNotEmpty) ...[
+                //   const SizedBox(height: 4),
+                //   Text(
+                //     'Monthly: $monthlyPrice',
+                //     style: AppTextStyles.onboardingBody(
+                //       14,
+                //       weight: FontWeight.bold,
+                //       color: AppColors.backgroundLight,
+                //     ),
+                //   ),
+                // ],
                 const SizedBox(height: 16),
                 CustomButton(
                   label: context.t.home.premiumPlan.button,
