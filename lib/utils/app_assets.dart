@@ -53,6 +53,7 @@ class AppImages {
 class AppIcons {
   AppIcons._();
   static const String female = 'assets/icons/female.png';
+  static const String premium2 = 'assets/icons/premium2.png';
   static const String copy = 'assets/icons/copy.png';
   static const String male = 'assets/icons/male.png';
   static const String arrow = 'assets/icons/arrow.png';

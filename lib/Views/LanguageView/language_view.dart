@@ -81,6 +81,7 @@ class LanguageViewPage extends HookConsumerWidget {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        scrolledUnderElevation: 0,
         elevation: 0,
         centerTitle: false,
         leading: IconButton(

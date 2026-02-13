@@ -215,33 +215,37 @@ class ProfileView extends HookConsumerWidget {
                           }
                         },
                       ),
-                      const SizedBox(height: 12),
-                      ProfileMenuItem(
-                        icon: AppIcons.premiumaward,
-                        title: context.t.profile.menu.premium,
-                        iconBackgroundColor: const Color(0xFFFFB300),
-                        isHighlighted: true,
-                        onTap: () async {
-                          try {
-                            // Show loading indicator or similar if needed while fetching
-                            final offerings = await Purchases.getOfferings();
-                            if (offerings.current != null && context.mounted) {
-                              final paywallResult =
-                                  await RevenueCatUI.presentPaywall(
-                                      offering: offerings.current);
+                      if (!(user.currentUser?.user?.isPremium ?? false)) ...[
+                        const SizedBox(height: 12),
+                        ProfileMenuItem(
+                          icon: AppIcons.premiumaward,
+                          title: context.t.profile.menu.premium,
+                          iconBackgroundColor: const Color(0xFFFFB300),
+                          isHighlighted: true,
+                          onTap: () async {
+                            try {
+                              // Show loading indicator or similar if needed while fetching
+                              final offerings = await Purchases.getOfferings();
+                              if (offerings.current != null &&
+                                  context.mounted) {
+                                final paywallResult =
+                                    await RevenueCatUI.presentPaywall(
+                                        offering: offerings.current);
 
-                              if (paywallResult == PaywallResult.purchased) {
-                                // Force refresh of premium status
-                                await ref
-                                    .read(AllProviders.premiumProvider.notifier)
-                                    .refreshCustomerInfo();
+                                if (paywallResult == PaywallResult.purchased) {
+                                  // Force refresh of premium status
+                                  await ref
+                                      .read(
+                                          AllProviders.premiumProvider.notifier)
+                                      .refreshCustomerInfo();
+                                }
                               }
+                            } catch (e) {
+                              Print.error('Error presenting paywall: $e');
                             }
-                          } catch (e) {
-                            Print.error('Error presenting paywall: $e');
-                          }
-                        },
-                      ),
+                          },
+                        ),
+                      ],
                     ],
                   ),
                   const SizedBox(height: 28),

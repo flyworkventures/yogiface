@@ -88,7 +88,7 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                     Text(
                       context.t.welcome(name: user.user?.fullName ?? ""),
                       style: AppTextStyles.onboardingBody(
-                        18,
+                        15,
                         weight: FontWeight.w500,
                         color: Colors.black,
                         letterSpacing: 0.5,
@@ -100,7 +100,7 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                         Text(
                           greting(),
                           style: AppTextStyles.onboardingBody(
-                            18,
+                            15,
                             height: 1,
                             letterSpacing: 0.5,
                             color: AppColors.onboardingButtonGradientStart,
@@ -145,7 +145,7 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                   children: [
                     Container(
                       width: 120,
-                      height: 16,
+                      height: 14,
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(4),
@@ -189,8 +189,8 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                     Text(
                       context.t.welcome(name: ""),
                       style: AppTextStyles.onboardingBody(
-                        18,
-                        weight: FontWeight.w500,
+                        14,
+                        weight: FontWeight.w400,
                         color: Colors.black,
                         letterSpacing: 0.5,
                       ),
@@ -225,74 +225,105 @@ class _HeaderWidgetState extends ConsumerState<HeaderWidget> {
                 ),
               ],
             ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/notifications');
-            },
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
+          Row(
+            children: [
+              if (user?.user?.isPremium ?? false) ...[
                 Container(
-                  width: 34,
-                  height: 34,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    shape: BoxShape.circle,
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: AppColors.boxShadowColor,
-                    //     blurRadius: 4,
-                    //     offset: const Offset(0, 4),
-                    //   ),
-                    // ],
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Center(
-                    child: Image.asset(
-                      AppIcons.notifications,
-                    ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AppIcons.premium2,
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        "PREMIUM",
+                        style: AppTextStyles.onboardingBody(
+                          12,
+                          weight: FontWeight.w700,
+                          color: const Color(0xFFE8A7F2),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                // Unread count badge
-                Consumer(
-                  builder: (context, ref, child) {
-                    final unreadCountAsync = ref.watch(unreadCountProvider);
+                const SizedBox(width: 12),
+              ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/notifications');
+                },
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: AppColors.boxShadowColor,
+                        //     blurRadius: 4,
+                        //     // offset: const Offset(0, 4),
+                        //   ),
+                        // ],
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          AppIcons.notifications,
+                        ),
+                      ),
+                    ),
+                    // Unread count badge
+                    Consumer(
+                      builder: (context, ref, child) {
+                        final unreadCountAsync = ref.watch(unreadCountProvider);
 
-                    return unreadCountAsync.when(
-                      data: (count) {
-                        if (count == 0) return const SizedBox.shrink();
+                        return unreadCountAsync.when(
+                          data: (count) {
+                            if (count == 0) return const SizedBox.shrink();
 
-                        return Positioned(
-                          right: -2,
-                          top: -2,
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                            constraints: const BoxConstraints(
-                              minWidth: 18,
-                              minHeight: 18,
-                            ),
-                            child: Text(
-                              count > 99 ? '99+' : count.toString(),
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
+                            return Positioned(
+                              right: -2,
+                              top: -2,
+                              child: Container(
+                                padding: const EdgeInsets.all(4),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                constraints: const BoxConstraints(
+                                  minWidth: 18,
+                                  minHeight: 18,
+                                ),
+                                child: Text(
+                                  count > 99 ? '99+' : count.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                            );
+                          },
+                          loading: () => const SizedBox.shrink(),
+                          error: (_, __) => const SizedBox.shrink(),
                         );
                       },
-                      loading: () => const SizedBox.shrink(),
-                      error: (_, __) => const SizedBox.shrink(),
-                    );
-                  },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
