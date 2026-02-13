@@ -67,18 +67,15 @@ class MainNavigationView extends HookConsumerWidget {
       child: Scaffold(
         body: pages[currentIndex],
         extendBody: true,
-        bottomNavigationBar: currentIndex != 2
-            ? SafeArea(
-                child: BottomNavBarWidget(
-                  currentIndex: currentIndex,
-                  onTap: (index) {
-                    ref
-                        .read(AllProviders.bottomNavIndexProvider.notifier)
-                        .state = index;
-                  },
-                ),
-              )
-            : null,
+        bottomNavigationBar: SafeArea(
+          child: BottomNavBarWidget(
+            currentIndex: currentIndex,
+            onTap: (index) {
+              ref.read(AllProviders.bottomNavIndexProvider.notifier).state =
+                  index;
+            },
+          ),
+        ),
       ),
     );
   }
