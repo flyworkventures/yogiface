@@ -284,22 +284,28 @@ class _CourseCard extends StatelessWidget {
               ],
             ),
             if (isLocked)
-              Positioned.fill(
+              Positioned(
+                top: 12,
+                right: 12,
                 child: Container(
+                  width: 36,
+                  height: 36,
                   decoration: BoxDecoration(
-                    color: Colors.black.withValues(alpha: 0.5),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 24.0),
-                      child: const Icon(
-                        Icons.lock,
-                        color: Colors.white,
-                        size: 32,
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
                       ),
-                    ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.lock,
+                    // User said "replace favorite icon". Favorite icon was 0xFFCB9EF6.
+                    color: Color(0xFFCB9EF6),
+                    size: 20,
                   ),
                 ),
               ),

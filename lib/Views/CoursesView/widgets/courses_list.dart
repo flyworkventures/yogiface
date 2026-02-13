@@ -43,57 +43,26 @@ class CoursesList extends ConsumerWidget {
         // Lock if not premium and not the first item
         final isLocked = !isPremium && index > 0;
 
-        return Stack(
-          children: [
-            FeaturedCourseCard(
-              imagePath: course.imageCdnPath,
-              title: course.title ?? '',
-              description: course.description ?? '',
-              thumbnailPath: course.imageCdnPath,
-              showFavoriteButton: true,
-              isFavorite: isFavorite,
-              onFavoriteTap: () => onFavoriteToggle(course.id),
-              onTap: () async {
-                if (isLocked) {
-                  try {
-                    await RevenueCatUI.presentPaywall();
-                  } catch (e) {
-                    debugPrint('Error presenting paywall: $e');
-                  }
-                } else {
-                  _navigateToCourseDetail(context, course);
-                }
-              },
-            ),
-            if (isLocked)
-              Positioned.fill(
-                child: IgnorePointer(
-                  ignoring:
-                      true, // Allow clicks to pass through to the Card's onTap which handles the redirect?
-                  // Wait, FeaturedCourseCard has onTap. If I put a Container on top, it might block touches.
-                  // If I use IgnorePointer, touches go to the Card.
-                  // But I want to intercept touches?
-                  // Actually, FeaturedCourseCard's onTap is what checks isLocked. So I just need visual overlay here.
-                  // So IgnorePointer is correct so that the ripple effect might still show on the card, or I can just let it be.
-                  // Better: Make the overlay absorb clicks if I didn't handle it in Card's onTap.
-                  // But since I handled it in Card's onTap, I can just let clicks pass through or have the overlay be transparent to hits.
-                  // Let's use IgnorePointer so the card receives the tap and executes the logic.
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(
-                          30), // Matching FeaturedCourseCard radius
-                    ),
-                    alignment: Alignment.center,
-                    child: const Icon(
-                      Icons.lock,
-                      color: Colors.white,
-                      size: 48,
-                    ),
-                  ),
-                ),
-              ),
-          ],
+        return FeaturedCourseCard(
+          imagePath: course.imageCdnPath,
+          title: course.title ?? '',
+          description: course.description ?? '',
+          thumbnailPath: course.imageCdnPath,
+          showFavoriteButton: true,
+          isFavorite: isFavorite,
+          isLocked: isLocked, // Pass isLocked
+          onFavoriteTap: () => onFavoriteToggle(course.id),
+          onTap: () async {
+            if (isLocked) {
+              try {
+                await RevenueCatUI.presentPaywall();
+              } catch (e) {
+                debugPrint('Error presenting paywall: $e');
+              }
+            } else {
+              _navigateToCourseDetail(context, course);
+            }
+          },
         );
       },
     );

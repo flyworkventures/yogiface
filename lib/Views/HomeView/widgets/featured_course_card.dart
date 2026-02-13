@@ -14,6 +14,7 @@ class FeaturedCourseCard extends StatelessWidget {
   final bool isFavorite;
   final VoidCallback? onFavoriteTap;
   final bool showFavoriteButton;
+  final bool isLocked;
 
   const FeaturedCourseCard({
     required this.imagePath,
@@ -25,6 +26,7 @@ class FeaturedCourseCard extends StatelessWidget {
     this.isFavorite = false,
     this.onFavoriteTap,
     this.showFavoriteButton = false,
+    this.isLocked = false,
     super.key,
   });
 
@@ -70,13 +72,13 @@ class FeaturedCourseCard extends StatelessWidget {
                           backgroundImage: AppImages.courseBackground,
                         ),
                 ),
-                // Favori Butonu
-                if (showFavoriteButton)
+                // Favori veya Kilit Butonu
+                if (showFavoriteButton || isLocked)
                   Positioned(
                     top: 12,
                     right: 12,
                     child: GestureDetector(
-                      onTap: onFavoriteTap,
+                      onTap: isLocked ? null : onFavoriteTap,
                       child: Container(
                         width: 36,
                         height: 36,
@@ -92,7 +94,11 @@ class FeaturedCourseCard extends StatelessWidget {
                           ],
                         ),
                         child: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                          isLocked
+                              ? Icons.lock
+                              : (isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border),
                           color: const Color(0xFFCB9EF6),
                           size: 20,
                         ),

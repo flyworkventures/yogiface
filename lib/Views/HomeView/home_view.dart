@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yogiface/Riverpod/Providers/all_providers.dart';
 import 'package:yogiface/gen/strings.g.dart';
 import 'package:yogiface/theme/app_paddings.dart';
 import 'package:yogiface/theme/app_text_styles.dart';
@@ -12,11 +14,14 @@ import 'widgets/premium_plan_widget.dart';
 import 'widgets/quick_actions_widget.dart';
 import 'widgets/todays_exercise_widget.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(AllProviders.userProvider);
+    final isPremium = user.currentUser?.user?.isPremium ?? false;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       body: SafeArea(
@@ -51,24 +56,26 @@ class HomeView extends StatelessWidget {
                 child: const TodaysExerciseWidget(),
               ),
               const SizedBox(height: 12),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    context.t.home.premium,
-                    style: AppTextStyles.onboardingBody(
-                      20,
-                      weight: FontWeight.w600,
+              if (!isPremium) ...[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      context.t.home.premium,
+                      style: AppTextStyles.onboardingBody(
+                        20,
+                        weight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                child: const PremiumPlanWidget(),
-              ),
+                const SizedBox(height: 4),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                  child: const PremiumPlanWidget(),
+                ),
+              ],
               const SizedBox(height: 150),
             ],
           ),

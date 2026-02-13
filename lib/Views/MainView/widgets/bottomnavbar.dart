@@ -16,7 +16,7 @@ class BottomNavBarWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+      margin: const EdgeInsets.fromLTRB(5, 0, 5, 0),
       height: 90, // Increased height to accommodate the floating button
       child: Stack(
         clipBehavior: Clip.none,
