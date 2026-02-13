@@ -142,6 +142,8 @@ class FavoriteExerciseView extends HookConsumerWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent, // Disable surface tint
+        scrolledUnderElevation: 0, // Disable elevation/shadow on scroll
         elevation: 0,
         leading: IconButton(
           icon: Icon(
