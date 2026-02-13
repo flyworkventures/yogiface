@@ -135,12 +135,13 @@ class FocusAreasWidget extends HookConsumerWidget {
             ),
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 30),
 
         // Yuvarlak Fotoğraflar - Yatay Liste
         SizedBox(
           height: 85,
           child: ListView.separated(
+            padding: EdgeInsets.only(left: AppSpacing.xxl),
             scrollDirection: Axis.horizontal,
             itemCount: areas.length,
             separatorBuilder: (context, index) => const SizedBox(width: 16),
@@ -159,7 +160,7 @@ class FocusAreasWidget extends HookConsumerWidget {
           ),
         ),
 
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
 
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSpacing.xxl),

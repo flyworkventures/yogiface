@@ -39,11 +39,12 @@ class HomeView extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
                 child: const QuickActionsWidget(),
               ),
+              const SizedBox(height: 40),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: AppSpacing.md),
                 child: const PopularCoursesWidget(),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 40),
               const FocusAreasWidget(),
               const SizedBox(height: 16),
               Padding(

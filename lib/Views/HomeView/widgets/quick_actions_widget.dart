@@ -28,9 +28,8 @@ class QuickActionsWidget extends ConsumerWidget {
           Text(
             context.t.home.quickActions.title,
             style: AppTextStyles.onboardingBody(
-              16,
-              weight: FontWeight.w600,
-              color: Colors.black,
+              18,
+              weight: FontWeight.w700,
             ),
           ),
           const SizedBox(height: 12),

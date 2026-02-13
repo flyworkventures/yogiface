@@ -90,9 +90,8 @@ class PopularCoursesWidget extends HookConsumerWidget {
               Text(
                 context.t.home.popularCourses,
                 style: AppTextStyles.onboardingBody(
-                  16,
-                  weight: FontWeight.w600,
-                  color: Colors.black,
+                  18,
+                  weight: FontWeight.w700,
                 ),
               ),
               GestureDetector(
