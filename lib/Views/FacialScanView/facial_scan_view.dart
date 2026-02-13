@@ -40,16 +40,12 @@ class FacialScanView extends HookConsumerWidget {
     final recommendations = useState<List<Exercise>?>([]);
 
     final imagePicker = useMemoized(() => ImagePicker());
-
-    // Get the current locale for API calls
     final currentLocale = LocaleSettings.currentLocale;
-
-    // Get exercise repository
     final exerciseRepository =
         ref.watch(AllProviders.exerciseRepositoryProvider);
-
     final faceDetectionService =
         useMemoized(() => FaceDetectionService.instance);
+
     int getCurrentStep() {
       final images = capturedImages.value;
       if (images[FacePosition.front] == null) return 1;
@@ -58,35 +54,10 @@ class FacialScanView extends HookConsumerWidget {
       return 3;
     }
 
-    // DEBUG: Skip directly to results for testing
-    Future<void> skipToResult() async {
-      // Fetch recommendations
-      try {
-        final result = await exerciseRepository.getRecommendations(
-          lang: currentLocale.languageCode,
-          limit: 5,
-          minScore: 0,
-        );
-        recommendations.value = result;
-        Print.info('✅ DEBUG: Fetched ${result.length} recommendations');
-        Print.info('📋 Exercise Names:');
-        for (var i = 0; i < result.length; i++) {
-          Print.info(
-              '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
-        }
-      } catch (e) {
-        Print.info('❌ DEBUG: Error fetching recommendations: $e');
-        recommendations.value = [];
-      }
-      // Skip to result screen
-      scanState.value = FacialScanState.result;
-    }
-
     Future<void> startAnalysis() async {
       scanState.value = FacialScanState.analyzing;
       analyzeProgress.value = 0.0;
 
-      // Fetch recommendations while showing progress
       exerciseRepository
           .getRecommendations(
         lang: currentLocale.languageCode,
@@ -95,16 +66,9 @@ class FacialScanView extends HookConsumerWidget {
       )
           .then((result) {
         recommendations.value = result;
-        Print.info('✅ Fetched ${result.length} recommendations in facial scan');
-        if (result.isNotEmpty) {
-          Print.info('📋 All Exercise Names:');
-          for (var i = 0; i < result.length; i++) {
-            Print.info(
-                '   ${i + 1}. ${result[i].title} (score: ${result[i].recommendationScore})');
-          }
-        }
+        Print.info('✅ Fetched ${result.length} recommendations');
       }).catchError((e) {
-        Print.info('❌ Error fetching recommendations: $e');
+        Print.error('❌ Error fetching recommendations: $e');
         recommendations.value = [];
       });
 
@@ -113,51 +77,61 @@ class FacialScanView extends HookConsumerWidget {
           timer.cancel();
           scanState.value = FacialScanState.result;
         } else {
-          analyzeProgress.value += 0.01; // Slower progress
+          analyzeProgress.value += 0.01;
         }
       });
     }
 
+    // iOS ve Android uyumlu güvenli izin ve yakalama fonksiyonu
     Future<void> handleCapture() async {
       isLoading.value = true;
       errorMessage.value = null;
 
       try {
-        final cameraStatus = await Permission.camera.request();
+        // 1. Mevcut durumu kontrol et
+        var status = await Permission.camera.status;
 
-        if (!cameraStatus.isGranted) {
-          errorMessage.value = context.t.facialScan.errors.cameraPermission;
-          isLoading.value = false;
-
-          if (cameraStatus.isPermanentlyDenied) {
-            final shouldOpenSettings = await showDialog<bool>(
-              context: context,
-              builder: (context) => AlertDialog(
-                title:
-                    Text(context.t.facialScan.errors.cameraPermissionRequired),
-                content: Text(
-                  context.t.facialScan.errors.cameraPermissionMessage,
+        // 2. Eğer kalıcı olarak reddedilmişse (iOS'te sistem diyaloğu çıkmaz)
+        if (status.isPermanentlyDenied) {
+          final shouldOpenSettings = await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text(context.t.facialScan.errors.cameraPermissionRequired),
+              content:
+                  Text(context.t.facialScan.errors.cameraPermissionMessage),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context, false),
+                  child: Text(context.t.facialScan.errors.cancel),
                 ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, false),
-                    child: Text(context.t.facialScan.errors.cancel),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, true),
-                    child: Text(context.t.facialScan.errors.openSettings),
-                  ),
-                ],
-              ),
-            );
+                TextButton(
+                  onPressed: () => Navigator.pop(context, true),
+                  child: Text(context.t.facialScan.errors.openSettings),
+                ),
+              ],
+            ),
+          );
 
-            if (shouldOpenSettings == true) {
-              await openAppSettings();
-            }
+          if (shouldOpenSettings == true) {
+            await openAppSettings();
           }
+          isLoading.value = false;
           return;
         }
 
+        // 3. İzin verilmemişse sistem diyaloğunu tetikle
+        if (!status.isGranted) {
+          status = await Permission.camera.request();
+        }
+
+        // 4. Kullanıcı hala izin vermediyse hata mesajı göster ve dur
+        if (!status.isGranted) {
+          errorMessage.value = context.t.facialScan.errors.cameraPermission;
+          isLoading.value = false;
+          return;
+        }
+
+        // 5. İzin TAMAM, kamerayı aç
         final XFile? image = await imagePicker.pickImage(
           source: ImageSource.camera,
           preferredCameraDevice: CameraDevice.front,
@@ -169,6 +143,7 @@ class FacialScanView extends HookConsumerWidget {
           return;
         }
 
+        // Yüz algılama kontrolü
         final hasFace = await faceDetectionService.hasFace(image.path);
 
         if (!hasFace) {
@@ -177,9 +152,11 @@ class FacialScanView extends HookConsumerWidget {
           return;
         }
 
+        // State güncelleme ve pozisyon yönetimi
         final newImages = Map<FacePosition, String?>.from(capturedImages.value);
         newImages[currentPosition.value] = image.path;
         capturedImages.value = newImages;
+
         final allCaptured = newImages[FacePosition.front] != null &&
             newImages[FacePosition.left] != null &&
             newImages[FacePosition.right] != null;
@@ -194,26 +171,22 @@ class FacialScanView extends HookConsumerWidget {
           }
         }
       } catch (e) {
+        Print.error("Capture Error: $e");
         errorMessage.value = context.t.facialScan.errors.captureFailed;
       } finally {
         isLoading.value = false;
       }
     }
 
-    // Handle position tap
     void handlePositionTap(FacePosition position) {
       currentPosition.value = position;
     }
 
-    // Handle delete image
     void handleDeleteImage(FacePosition position) {
       final newImages = Map<FacePosition, String?>.from(capturedImages.value);
       newImages[position] = null;
       capturedImages.value = newImages;
-
-      // Clear error message
       errorMessage.value = null;
-
       currentPosition.value = position;
     }
 
@@ -221,13 +194,11 @@ class FacialScanView extends HookConsumerWidget {
       Navigator.of(context).pop();
     }
 
-    // Get user profile data
     final userState = ref.watch(AllProviders.userProvider);
     final userProfile = userState.currentUser?.profile;
 
-    // Map skinType to localized format
     String getSkinTypeDisplay(BuildContext context, String? skinType) {
-      if (skinType == null) return 'Unknown'; // TODO: Add translation key
+      if (skinType == null) return 'Unknown';
       final skinTypesMap = {
         'normal': context.t.onboarding.normal,
         'oily': context.t.onboarding.oily,
@@ -238,12 +209,9 @@ class FacialScanView extends HookConsumerWidget {
       return skinTypesMap[skinType.toLowerCase()] ?? skinType;
     }
 
-    // Map objectives/improvementAreas to localized format for primary goal
     String getPrimaryGoalDisplay(BuildContext context, UserProfile? profile) {
-      if (profile == null)
-        return 'Overall Wellness'; // TODO: Add translation key
+      if (profile == null) return 'Overall Wellness';
 
-      // Priority: objectives > improvementAreas > skinConcerns
       if (profile.objectives.isNotEmpty) {
         final objective = profile.objectives.first;
         final objectivesMap = {
@@ -255,36 +223,10 @@ class FacialScanView extends HookConsumerWidget {
         };
         return objectivesMap[objective] ?? objective;
       }
-
-      if (profile.improvementAreas.isNotEmpty) {
-        final area = profile.improvementAreas.first;
-        final areasMap = {
-          'forehead': context.t.onboarding.forehead,
-          'eyes': context.t.onboarding.eyes,
-          'nose': context.t.onboarding.nose,
-          'cheeks': context.t.onboarding.cheeks,
-          'lips': context.t.onboarding.lips,
-          'jawline': context.t.onboarding.jawline,
-          'neck': context.t.onboarding.neck,
-        };
-        return areasMap[area] ?? area;
-      }
-
-      if (profile.skinConcerns.isNotEmpty) {
-        final concern = profile.skinConcerns.first;
-        final concernsMap = {
-          'acne': context.t.onboarding.acneAndPimples,
-          'redness': context.t.onboarding.redness,
-          'swelling': context.t.onboarding.swelling,
-          'wrinkles': context.t.onboarding.wrinkles,
-          'neck_lines': context.t.onboarding.neckLines,
-        };
-        return concernsMap[concern] ?? concern;
-      }
-
-      return 'Overall Wellness'; // TODO: Add translation key
+      return 'Overall Wellness';
     }
 
+    // UI Rendering
     switch (scanState.value) {
       case FacialScanState.capture:
         return Scaffold(
@@ -299,7 +241,6 @@ class FacialScanView extends HookConsumerWidget {
             onCapturePressed: handleCapture,
             onDeleteImage: handleDeleteImage,
             onGetStarted: startAnalysis,
-            // onSkipToResult: skipToResult, // DEBUG: Skip button callback
           ),
         );
       case FacialScanState.analyzing:
@@ -311,18 +252,6 @@ class FacialScanView extends HookConsumerWidget {
           ),
         );
       case FacialScanState.result:
-        Print.info(
-            '📊 RESULT SCREEN - Recommendations count: ${recommendations.value?.length ?? 0}');
-        if (recommendations.value != null &&
-            recommendations.value!.isNotEmpty) {
-          Print.info(
-              '📊 First recommendation: ${recommendations.value!.first.title}');
-          // Convert to JSON for better readability
-          final recommendationsJson =
-              recommendations.value!.map((e) => e.toJson()).toList();
-          Print.info('📊 Full recommendations (JSON):');
-          Print.info(jsonEncode(recommendationsJson));
-        }
         return Scaffold(
           backgroundColor: Colors.white,
           body: AnalysisResultScreen(
