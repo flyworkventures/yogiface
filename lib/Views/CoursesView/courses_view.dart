@@ -120,16 +120,6 @@ class AllCoursesView extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFF2F5FC),
-              Color(0x00F2F5FC),
-            ],
-          ),
-        ),
         child: SafeArea(
           top: false,
           bottom: false,
@@ -158,7 +148,7 @@ class AllCoursesView extends HookConsumerWidget {
                           selectedIndex.value = index;
                         },
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 10),
                       if (exercisesSnapshot.connectionState ==
                           ConnectionState.waiting)
                         const Center(child: CircularProgressIndicator())
@@ -170,7 +160,7 @@ class AllCoursesView extends HookConsumerWidget {
                         AnimatedSwitcher(
                           duration: const Duration(milliseconds: 300),
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                             child: CoursesList(
                               key: ValueKey(selectedIndex.value),
                               courses: currentCourses,
